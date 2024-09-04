@@ -21,5 +21,10 @@ namespace MAD_AAVD_proyecto
         {
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
