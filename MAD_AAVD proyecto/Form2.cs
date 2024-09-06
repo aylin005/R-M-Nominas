@@ -15,8 +15,15 @@ namespace MAD_AAVD_proyecto
         public Form2()
         {
             InitializeComponent();
+            CustomizeDesign();
         }
 
+        private void CustomizeDesign()
+        {
+            SM_Panel_SubMenuNomina.Visible = false;
+            SM_Panel_SubMenuConceptos.Visible = false;
+            SM_Panel_SubMenuEmpleados.Visible = false;
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
