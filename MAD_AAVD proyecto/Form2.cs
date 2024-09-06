@@ -16,5 +16,10 @@ namespace MAD_AAVD_proyecto
         {
             InitializeComponent();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
