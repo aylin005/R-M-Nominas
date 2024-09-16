@@ -1,6 +1,6 @@
 ﻿namespace MAD_AAVD_proyecto
 {
-    partial class Form2
+    partial class FormAdmin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdmin));
             this.SM_Panel = new System.Windows.Forms.Panel();
             this.SM_Headcounter = new System.Windows.Forms.Button();
             this.SM_Panel_SubMenuNomina = new System.Windows.Forms.Panel();
@@ -47,10 +47,14 @@
             this.SM_Empleados = new System.Windows.Forms.Button();
             this.SM_Panel_Logo = new System.Windows.Forms.Panel();
             this.SM_Logout = new System.Windows.Forms.Button();
+            this.TopBar = new System.Windows.Forms.Panel();
+            this.ADMIN_Close = new System.Windows.Forms.Button();
+            this.ADMIN_PanelChildForm = new System.Windows.Forms.Panel();
             this.SM_Panel.SuspendLayout();
             this.SM_Panel_SubMenuNomina.SuspendLayout();
             this.SM_Panel_SubMenuConceptos.SuspendLayout();
             this.SM_Panel_SubMenuEmpleados.SuspendLayout();
+            this.TopBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // SM_Panel
@@ -84,7 +88,7 @@
             this.SM_Headcounter.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Headcounter.Image = ((System.Drawing.Image)(resources.GetObject("SM_Headcounter.Image")));
             this.SM_Headcounter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Headcounter.Location = new System.Drawing.Point(0, 568);
+            this.SM_Headcounter.Location = new System.Drawing.Point(0, 564);
             this.SM_Headcounter.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Headcounter.Name = "SM_Headcounter";
             this.SM_Headcounter.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -101,7 +105,7 @@
             this.SM_Panel_SubMenuNomina.Controls.Add(this.SM_Nomina_Reporte);
             this.SM_Panel_SubMenuNomina.Controls.Add(this.SM_Nomina_Generar);
             this.SM_Panel_SubMenuNomina.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SM_Panel_SubMenuNomina.Location = new System.Drawing.Point(0, 496);
+            this.SM_Panel_SubMenuNomina.Location = new System.Drawing.Point(0, 492);
             this.SM_Panel_SubMenuNomina.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Panel_SubMenuNomina.Name = "SM_Panel_SubMenuNomina";
             this.SM_Panel_SubMenuNomina.Size = new System.Drawing.Size(197, 72);
@@ -109,9 +113,12 @@
             // 
             // SM_Nomina_Reporte
             // 
+            this.SM_Nomina_Reporte.BackColor = System.Drawing.Color.Black;
             this.SM_Nomina_Reporte.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Nomina_Reporte.FlatAppearance.BorderSize = 0;
             this.SM_Nomina_Reporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Nomina_Reporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Nomina_Reporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Nomina_Reporte.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SM_Nomina_Reporte.Location = new System.Drawing.Point(0, 37);
             this.SM_Nomina_Reporte.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Nomina_Reporte.Name = "SM_Nomina_Reporte";
@@ -120,14 +127,17 @@
             this.SM_Nomina_Reporte.TabIndex = 1;
             this.SM_Nomina_Reporte.Text = "Reporte de nómina";
             this.SM_Nomina_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Nomina_Reporte.UseVisualStyleBackColor = true;
+            this.SM_Nomina_Reporte.UseVisualStyleBackColor = false;
             this.SM_Nomina_Reporte.Click += new System.EventHandler(this.SM_Nomina_Reporte_Click);
             // 
             // SM_Nomina_Generar
             // 
+            this.SM_Nomina_Generar.BackColor = System.Drawing.Color.Black;
             this.SM_Nomina_Generar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Nomina_Generar.FlatAppearance.BorderSize = 0;
             this.SM_Nomina_Generar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Nomina_Generar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Nomina_Generar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Nomina_Generar.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SM_Nomina_Generar.Location = new System.Drawing.Point(0, 0);
             this.SM_Nomina_Generar.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Nomina_Generar.Name = "SM_Nomina_Generar";
@@ -136,7 +146,7 @@
             this.SM_Nomina_Generar.TabIndex = 0;
             this.SM_Nomina_Generar.Text = "Generar nómina";
             this.SM_Nomina_Generar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Nomina_Generar.UseVisualStyleBackColor = true;
+            this.SM_Nomina_Generar.UseVisualStyleBackColor = false;
             this.SM_Nomina_Generar.Click += new System.EventHandler(this.SM_Nomina_Generar_Click);
             // 
             // SM_Nomina
@@ -148,7 +158,7 @@
             this.SM_Nomina.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Nomina.Image = ((System.Drawing.Image)(resources.GetObject("SM_Nomina.Image")));
             this.SM_Nomina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Nomina.Location = new System.Drawing.Point(0, 449);
+            this.SM_Nomina.Location = new System.Drawing.Point(0, 445);
             this.SM_Nomina.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Nomina.Name = "SM_Nomina";
             this.SM_Nomina.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -162,11 +172,11 @@
             // 
             // SM_Panel_SubMenuConceptos
             // 
-            this.SM_Panel_SubMenuConceptos.BackColor = System.Drawing.Color.Gray;
+            this.SM_Panel_SubMenuConceptos.BackColor = System.Drawing.Color.Black;
             this.SM_Panel_SubMenuConceptos.Controls.Add(this.SM_Conceptos_Aplicar);
             this.SM_Panel_SubMenuConceptos.Controls.Add(this.SM_Conceptos_Catalogo);
             this.SM_Panel_SubMenuConceptos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SM_Panel_SubMenuConceptos.Location = new System.Drawing.Point(0, 372);
+            this.SM_Panel_SubMenuConceptos.Location = new System.Drawing.Point(0, 368);
             this.SM_Panel_SubMenuConceptos.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Panel_SubMenuConceptos.Name = "SM_Panel_SubMenuConceptos";
             this.SM_Panel_SubMenuConceptos.Size = new System.Drawing.Size(197, 77);
@@ -174,26 +184,32 @@
             // 
             // SM_Conceptos_Aplicar
             // 
+            this.SM_Conceptos_Aplicar.BackColor = System.Drawing.Color.Black;
             this.SM_Conceptos_Aplicar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Conceptos_Aplicar.FlatAppearance.BorderSize = 0;
             this.SM_Conceptos_Aplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Conceptos_Aplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Conceptos_Aplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Conceptos_Aplicar.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SM_Conceptos_Aplicar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SM_Conceptos_Aplicar.Location = new System.Drawing.Point(0, 38);
             this.SM_Conceptos_Aplicar.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Conceptos_Aplicar.Name = "SM_Conceptos_Aplicar";
             this.SM_Conceptos_Aplicar.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.SM_Conceptos_Aplicar.Size = new System.Drawing.Size(197, 38);
+            this.SM_Conceptos_Aplicar.Size = new System.Drawing.Size(197, 39);
             this.SM_Conceptos_Aplicar.TabIndex = 1;
             this.SM_Conceptos_Aplicar.Text = "Aplicar conceptos";
             this.SM_Conceptos_Aplicar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Conceptos_Aplicar.UseVisualStyleBackColor = true;
+            this.SM_Conceptos_Aplicar.UseVisualStyleBackColor = false;
             this.SM_Conceptos_Aplicar.Click += new System.EventHandler(this.SM_Conceptos_Aplicar_Click);
             // 
             // SM_Conceptos_Catalogo
             // 
+            this.SM_Conceptos_Catalogo.BackColor = System.Drawing.Color.Black;
             this.SM_Conceptos_Catalogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Conceptos_Catalogo.FlatAppearance.BorderSize = 0;
             this.SM_Conceptos_Catalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Conceptos_Catalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Conceptos_Catalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Conceptos_Catalogo.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SM_Conceptos_Catalogo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SM_Conceptos_Catalogo.Location = new System.Drawing.Point(0, 0);
             this.SM_Conceptos_Catalogo.Margin = new System.Windows.Forms.Padding(2);
@@ -203,7 +219,7 @@
             this.SM_Conceptos_Catalogo.TabIndex = 0;
             this.SM_Conceptos_Catalogo.Text = "Cátalogo de conceptos";
             this.SM_Conceptos_Catalogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Conceptos_Catalogo.UseVisualStyleBackColor = true;
+            this.SM_Conceptos_Catalogo.UseVisualStyleBackColor = false;
             this.SM_Conceptos_Catalogo.Click += new System.EventHandler(this.SM_Conceptos_Catalogo_Click);
             // 
             // SM_Conceptos
@@ -215,7 +231,7 @@
             this.SM_Conceptos.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Conceptos.Image = ((System.Drawing.Image)(resources.GetObject("SM_Conceptos.Image")));
             this.SM_Conceptos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Conceptos.Location = new System.Drawing.Point(0, 325);
+            this.SM_Conceptos.Location = new System.Drawing.Point(0, 321);
             this.SM_Conceptos.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Conceptos.Name = "SM_Conceptos";
             this.SM_Conceptos.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -236,7 +252,7 @@
             this.SM_Departamentos.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Departamentos.Image = ((System.Drawing.Image)(resources.GetObject("SM_Departamentos.Image")));
             this.SM_Departamentos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Departamentos.Location = new System.Drawing.Point(0, 278);
+            this.SM_Departamentos.Location = new System.Drawing.Point(0, 274);
             this.SM_Departamentos.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Departamentos.Name = "SM_Departamentos";
             this.SM_Departamentos.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -256,7 +272,7 @@
             this.SM_Puestos.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Puestos.Image = ((System.Drawing.Image)(resources.GetObject("SM_Puestos.Image")));
             this.SM_Puestos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Puestos.Location = new System.Drawing.Point(0, 231);
+            this.SM_Puestos.Location = new System.Drawing.Point(0, 227);
             this.SM_Puestos.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Puestos.Name = "SM_Puestos";
             this.SM_Puestos.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -269,11 +285,11 @@
             // 
             // SM_Panel_SubMenuEmpleados
             // 
-            this.SM_Panel_SubMenuEmpleados.BackColor = System.Drawing.Color.DimGray;
+            this.SM_Panel_SubMenuEmpleados.BackColor = System.Drawing.Color.Black;
             this.SM_Panel_SubMenuEmpleados.Controls.Add(this.SM_Empleados_Lista);
             this.SM_Panel_SubMenuEmpleados.Controls.Add(this.SM_Empleados_Gestion);
             this.SM_Panel_SubMenuEmpleados.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SM_Panel_SubMenuEmpleados.Location = new System.Drawing.Point(0, 151);
+            this.SM_Panel_SubMenuEmpleados.Location = new System.Drawing.Point(0, 147);
             this.SM_Panel_SubMenuEmpleados.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Panel_SubMenuEmpleados.Name = "SM_Panel_SubMenuEmpleados";
             this.SM_Panel_SubMenuEmpleados.Size = new System.Drawing.Size(197, 80);
@@ -281,25 +297,31 @@
             // 
             // SM_Empleados_Lista
             // 
+            this.SM_Empleados_Lista.BackColor = System.Drawing.Color.Black;
             this.SM_Empleados_Lista.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Empleados_Lista.FlatAppearance.BorderSize = 0;
             this.SM_Empleados_Lista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Empleados_Lista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Empleados_Lista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Empleados_Lista.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SM_Empleados_Lista.Location = new System.Drawing.Point(0, 39);
             this.SM_Empleados_Lista.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Empleados_Lista.Name = "SM_Empleados_Lista";
             this.SM_Empleados_Lista.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.SM_Empleados_Lista.Size = new System.Drawing.Size(197, 39);
+            this.SM_Empleados_Lista.Size = new System.Drawing.Size(197, 41);
             this.SM_Empleados_Lista.TabIndex = 1;
             this.SM_Empleados_Lista.Text = "Lista de empleados";
             this.SM_Empleados_Lista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Empleados_Lista.UseVisualStyleBackColor = true;
+            this.SM_Empleados_Lista.UseVisualStyleBackColor = false;
             this.SM_Empleados_Lista.Click += new System.EventHandler(this.SM_Empleados_Lista_Click);
             // 
             // SM_Empleados_Gestion
             // 
+            this.SM_Empleados_Gestion.BackColor = System.Drawing.Color.Black;
             this.SM_Empleados_Gestion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Empleados_Gestion.FlatAppearance.BorderSize = 0;
             this.SM_Empleados_Gestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Empleados_Gestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Empleados_Gestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Empleados_Gestion.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.SM_Empleados_Gestion.Location = new System.Drawing.Point(0, 0);
             this.SM_Empleados_Gestion.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Empleados_Gestion.Name = "SM_Empleados_Gestion";
@@ -308,7 +330,7 @@
             this.SM_Empleados_Gestion.TabIndex = 0;
             this.SM_Empleados_Gestion.Text = "Gestión de empleados";
             this.SM_Empleados_Gestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Empleados_Gestion.UseVisualStyleBackColor = true;
+            this.SM_Empleados_Gestion.UseVisualStyleBackColor = false;
             this.SM_Empleados_Gestion.Click += new System.EventHandler(this.SM_Empleados_Gestion_Click);
             // 
             // SM_Empleados
@@ -320,7 +342,7 @@
             this.SM_Empleados.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Empleados.Image = ((System.Drawing.Image)(resources.GetObject("SM_Empleados.Image")));
             this.SM_Empleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Empleados.Location = new System.Drawing.Point(0, 104);
+            this.SM_Empleados.Location = new System.Drawing.Point(0, 100);
             this.SM_Empleados.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Empleados.Name = "SM_Empleados";
             this.SM_Empleados.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
@@ -338,7 +360,7 @@
             this.SM_Panel_Logo.Location = new System.Drawing.Point(0, 0);
             this.SM_Panel_Logo.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Panel_Logo.Name = "SM_Panel_Logo";
-            this.SM_Panel_Logo.Size = new System.Drawing.Size(197, 104);
+            this.SM_Panel_Logo.Size = new System.Drawing.Size(197, 100);
             this.SM_Panel_Logo.TabIndex = 5;
             // 
             // SM_Logout
@@ -346,7 +368,7 @@
             this.SM_Logout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SM_Logout.FlatAppearance.BorderSize = 0;
             this.SM_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SM_Logout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Logout.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SM_Logout.Location = new System.Drawing.Point(0, 703);
             this.SM_Logout.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Logout.Name = "SM_Logout";
@@ -357,17 +379,52 @@
             this.SM_Logout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Logout.UseVisualStyleBackColor = true;
             // 
-            // Form2
+            // TopBar
+            // 
+            this.TopBar.BackColor = System.Drawing.Color.Black;
+            this.TopBar.Controls.Add(this.ADMIN_Close);
+            this.TopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBar.Location = new System.Drawing.Point(197, 0);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(983, 34);
+            this.TopBar.TabIndex = 0;
+            // 
+            // ADMIN_Close
+            // 
+            this.ADMIN_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ADMIN_Close.BackgroundImage")));
+            this.ADMIN_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ADMIN_Close.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ADMIN_Close.FlatAppearance.BorderSize = 0;
+            this.ADMIN_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ADMIN_Close.Location = new System.Drawing.Point(947, 0);
+            this.ADMIN_Close.Name = "ADMIN_Close";
+            this.ADMIN_Close.Size = new System.Drawing.Size(36, 34);
+            this.ADMIN_Close.TabIndex = 0;
+            this.ADMIN_Close.UseVisualStyleBackColor = true;
+            this.ADMIN_Close.Click += new System.EventHandler(this.ADMIN_Close_Click);
+            // 
+            // ADMIN_PanelChildForm
+            // 
+            this.ADMIN_PanelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ADMIN_PanelChildForm.Location = new System.Drawing.Point(197, 34);
+            this.ADMIN_PanelChildForm.Name = "ADMIN_PanelChildForm";
+            this.ADMIN_PanelChildForm.Size = new System.Drawing.Size(983, 709);
+            this.ADMIN_PanelChildForm.TabIndex = 1;
+            // 
+            // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1180, 743);
+            this.Controls.Add(this.ADMIN_PanelChildForm);
+            this.Controls.Add(this.TopBar);
             this.Controls.Add(this.SM_Panel);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form2";
+            this.Name = "FormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -375,6 +432,7 @@
             this.SM_Panel_SubMenuNomina.ResumeLayout(false);
             this.SM_Panel_SubMenuConceptos.ResumeLayout(false);
             this.SM_Panel_SubMenuEmpleados.ResumeLayout(false);
+            this.TopBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -399,5 +457,8 @@
         private System.Windows.Forms.Panel SM_Panel_SubMenuNomina;
         private System.Windows.Forms.Button SM_Nomina_Reporte;
         private System.Windows.Forms.Button SM_Nomina_Generar;
+        private System.Windows.Forms.Panel TopBar;
+        private System.Windows.Forms.Button ADMIN_Close;
+        private System.Windows.Forms.Panel ADMIN_PanelChildForm;
     }
 }

@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace MAD_AAVD_proyecto
 {
-    public partial class Form2 : Form
+    public partial class FormAdmin : Form
     {
-        public Form2()
+        FormGestionEmpleados GestionEmpleados;
+
+        public FormAdmin()
         {
             InitializeComponent();
             CustomizeDesign();
@@ -23,8 +25,6 @@ namespace MAD_AAVD_proyecto
             SM_Panel_SubMenuNomina.Visible = false;
             SM_Panel_SubMenuConceptos.Visible = false;
             SM_Panel_SubMenuEmpleados.Visible = false;
-
-
         }
 
         private void HideBtnSubMenu(Panel panel) //cierra el submenu de cierto boton
@@ -76,6 +76,7 @@ namespace MAD_AAVD_proyecto
         private void SM_Empleados_Gestion_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+            OpenChildForm(new FormGestionEmpleados());
         }
 
         private void SM_Empleados_Lista_Click(object sender, EventArgs e)
@@ -101,6 +102,26 @@ namespace MAD_AAVD_proyecto
         private void SM_Nomina_Reporte_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+        }
+
+        private void ADMIN_Close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private Form activeForm = null; //Guarda la ChildForm que esta abierta
+        private void OpenChildForm(Form childForm)
+        {
+            if(activeForm != null) //Si hay una form abierta la cerramos
+                activeForm.Close();
+            activeForm = childForm; // la form activa es la que se pasa por parametro
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            ADMIN_PanelChildForm.Controls.Add(childForm);
+            ADMIN_PanelChildForm.Tag = childForm;
+            childForm.BringToFront(); //logo
+            childForm.Show();
         }
     }
 }

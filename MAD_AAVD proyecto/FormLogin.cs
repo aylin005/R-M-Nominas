@@ -41,7 +41,7 @@ namespace MAD_AAVD_proyecto
         {
             if (LOGIN_TB_username.Text == "admin" && LOGIN_TB_password.Text == "1111") //Para pruebas
             {
-                new Form2().Show();
+                new FormAdmin().Show();
                 this.Hide();
             }
             else
