@@ -262,6 +262,7 @@
             this.SM_Departamentos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Departamentos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SM_Departamentos.UseVisualStyleBackColor = true;
+            this.SM_Departamentos.Click += new System.EventHandler(this.SM_Departamentos_Click);
             // 
             // SM_Puestos
             // 
@@ -282,6 +283,7 @@
             this.SM_Puestos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Puestos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SM_Puestos.UseVisualStyleBackColor = true;
+            this.SM_Puestos.Click += new System.EventHandler(this.SM_Puestos_Click);
             // 
             // SM_Panel_SubMenuEmpleados
             // 
@@ -378,6 +380,7 @@
             this.SM_Logout.Text = "Cerrar sesión";
             this.SM_Logout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Logout.UseVisualStyleBackColor = true;
+            this.SM_Logout.Click += new System.EventHandler(this.SM_Logout_Click);
             // 
             // TopBar
             // 
@@ -422,7 +425,6 @@
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.SM_Panel);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

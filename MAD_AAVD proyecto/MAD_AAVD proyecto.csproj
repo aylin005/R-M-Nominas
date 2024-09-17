@@ -47,6 +47,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormConceptosAplicar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConceptosAplicar.Designer.cs">
+      <DependentUpon>FormConceptosAplicar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConceptosCatalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConceptosCatalogo.Designer.cs">
+      <DependentUpon>FormConceptosCatalogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDepartamentos.Designer.cs">
+      <DependentUpon>FormDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHeadCounter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHeadCounter.Designer.cs">
+      <DependentUpon>FormHeadCounter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListaEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListaEmpleados.Designer.cs">
+      <DependentUpon>FormListaEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,8 +95,29 @@
     <Compile Include="FormGestionEmpleados.Designer.cs">
       <DependentUpon>FormGestionEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNominaGenerar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNominaGenerar.Designer.cs">
+      <DependentUpon>FormNominaGenerar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNominaReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNominaReporte.Designer.cs">
+      <DependentUpon>FormNominaReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPuestos.Designer.cs">
+      <DependentUpon>FormPuestos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormListaEmpleados.resx">
+      <DependentUpon>FormListaEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>

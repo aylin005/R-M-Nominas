@@ -82,26 +82,31 @@ namespace MAD_AAVD_proyecto
         private void SM_Empleados_Lista_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+            OpenChildForm(new FormListaEmpleados());
         }
 
         private void SM_Conceptos_Catalogo_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+            OpenChildForm(new FormConceptosCatalogo());
         }
 
         private void SM_Conceptos_Aplicar_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+            OpenChildForm(new FormConceptosAplicar());
         }
 
         private void SM_Nomina_Generar_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+            OpenChildForm(new FormNominaGenerar());
         }
 
         private void SM_Nomina_Reporte_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
+            OpenChildForm(new FormNominaReporte());
         }
 
         private void ADMIN_Close_Click(object sender, EventArgs e)
@@ -122,6 +127,23 @@ namespace MAD_AAVD_proyecto
             ADMIN_PanelChildForm.Tag = childForm;
             childForm.BringToFront(); //logo
             childForm.Show();
+        }
+
+        private void SM_Puestos_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormPuestos());
+        }
+
+        private void SM_Departamentos_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDepartamentos());
+        }
+
+        private void SM_Logout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Login().ShowDialog();
+            this.Close();
         }
     }
 }
