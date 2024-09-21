@@ -16,5 +16,23 @@ namespace MAD_AAVD_proyecto
         {
             InitializeComponent();
         }
+
+        private void CONCEPAPLICAR_RB_Departamento_CheckedChanged(object sender, EventArgs e)
+        {
+            CONCEPAPLICAR_Panel_Departamento.Visible = true;
+            CONCEPAPLICAR_Panel_Empleado.Visible = false;
+        }
+
+        private void CONCEPAPLICAR_RB_Empleado_CheckedChanged(object sender, EventArgs e)
+        {
+            CONCEPAPLICAR_Panel_Empleado.Visible = true;
+            CONCEPAPLICAR_Panel_Departamento.Visible = false;
+        }
+
+        private void FormConceptosAplicar_Load(object sender, EventArgs e)
+        {
+            CONCEPAPLICAR_Panel_Empleado.Visible = false;
+            CONCEPAPLICAR_Panel_Departamento.Visible = false;
+        }
     }
 }
