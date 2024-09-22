@@ -49,11 +49,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.NoConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.NoConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel6.SuspendLayout();
@@ -64,7 +64,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(322, 14);
+            this.label1.Location = new System.Drawing.Point(321, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(394, 45);
             this.label1.TabIndex = 3;
@@ -86,10 +86,10 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(0, 115);
+            this.panel2.Location = new System.Drawing.Point(0, 116);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(985, 3);
+            this.panel2.Size = new System.Drawing.Size(983, 3);
             this.panel2.TabIndex = 43;
             // 
             // panel1
@@ -99,7 +99,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 278);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(985, 3);
+            this.panel1.Size = new System.Drawing.Size(983, 3);
             this.panel1.TabIndex = 40;
             // 
             // label2
@@ -156,10 +156,10 @@
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel5.Location = new System.Drawing.Point(507, 179);
+            this.panel5.Location = new System.Drawing.Point(507, 180);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(193, 2);
+            this.panel5.Size = new System.Drawing.Size(191, 2);
             this.panel5.TabIndex = 55;
             // 
             // textBox1
@@ -184,10 +184,10 @@
             this.comboBox9.Items.AddRange(new object[] {
             "Percepción",
             "Deducción"});
-            this.comboBox9.Location = new System.Drawing.Point(375, 221);
+            this.comboBox9.Location = new System.Drawing.Point(375, 222);
             this.comboBox9.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(135, 21);
+            this.comboBox9.Size = new System.Drawing.Size(133, 21);
             this.comboBox9.TabIndex = 56;
             // 
             // comboBox1
@@ -200,20 +200,20 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Sí",
             "No"});
-            this.comboBox1.Location = new System.Drawing.Point(622, 220);
+            this.comboBox1.Location = new System.Drawing.Point(622, 221);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(76, 21);
+            this.comboBox1.Size = new System.Drawing.Size(74, 21);
             this.comboBox1.TabIndex = 57;
             // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel3.Location = new System.Drawing.Point(397, 303);
+            this.panel3.Location = new System.Drawing.Point(397, 304);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(89, 2);
+            this.panel3.Size = new System.Drawing.Size(87, 2);
             this.panel3.TabIndex = 57;
             // 
             // textBox2
@@ -232,10 +232,10 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel4.Location = new System.Drawing.Point(625, 303);
+            this.panel4.Location = new System.Drawing.Point(625, 304);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(49, 2);
+            this.panel4.Size = new System.Drawing.Size(47, 2);
             this.panel4.TabIndex = 59;
             // 
             // textBox3
@@ -278,7 +278,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(459, 331);
+            this.button1.Location = new System.Drawing.Point(458, 331);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 35);
@@ -304,6 +304,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(242, 264);
             this.dataGridView1.TabIndex = 65;
             // 
+            // NoConcepto
+            // 
+            this.NoConcepto.HeaderText = "No.";
+            this.NoConcepto.Name = "NoConcepto";
+            this.NoConcepto.ReadOnly = true;
+            // 
+            // NombreConcepto
+            // 
+            this.NombreConcepto.HeaderText = "Nombre";
+            this.NombreConcepto.Name = "NombreConcepto";
+            this.NombreConcepto.ReadOnly = true;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -320,10 +332,10 @@
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel6.Controls.Add(this.panel7);
-            this.panel6.Location = new System.Drawing.Point(12, 410);
+            this.panel6.Location = new System.Drawing.Point(12, 411);
             this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(985, 3);
+            this.panel6.Size = new System.Drawing.Size(983, 3);
             this.panel6.TabIndex = 64;
             // 
             // panel7
@@ -333,27 +345,15 @@
             this.panel7.Location = new System.Drawing.Point(0, 278);
             this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(985, 3);
+            this.panel7.Size = new System.Drawing.Size(983, 3);
             this.panel7.TabIndex = 40;
-            // 
-            // NoConcepto
-            // 
-            this.NoConcepto.HeaderText = "No.";
-            this.NoConcepto.Name = "NoConcepto";
-            this.NoConcepto.ReadOnly = true;
-            // 
-            // NombreConcepto
-            // 
-            this.NombreConcepto.HeaderText = "Nombre";
-            this.NombreConcepto.Name = "NombreConcepto";
-            this.NombreConcepto.ReadOnly = true;
             // 
             // FormConceptosCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(982, 708);
+            this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel6);

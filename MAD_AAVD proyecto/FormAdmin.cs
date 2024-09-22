@@ -109,6 +109,12 @@ namespace MAD_AAVD_proyecto
             OpenChildForm(new FormNominaReporte());
         }
 
+        private void SM_Headcounter_Click(object sender, EventArgs e)
+        {
+            HideAllSubMenus();
+            OpenChildForm(new FormHeadCounter());
+        }
+
         private void ADMIN_Close_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -144,6 +150,11 @@ namespace MAD_AAVD_proyecto
             this.Hide();
             new Login().ShowDialog();
             this.Close();
+        }
+
+        private void ADMIN_PanelChildForm_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

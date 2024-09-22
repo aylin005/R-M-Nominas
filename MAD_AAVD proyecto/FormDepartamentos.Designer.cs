@@ -56,7 +56,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(282, 14);
+            this.label1.Location = new System.Drawing.Point(281, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(457, 45);
             this.label1.TabIndex = 1;
@@ -111,10 +111,10 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(-1, 115);
+            this.panel2.Location = new System.Drawing.Point(-1, 116);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(985, 3);
+            this.panel2.Size = new System.Drawing.Size(983, 3);
             this.panel2.TabIndex = 39;
             // 
             // panel1
@@ -124,7 +124,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 278);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(985, 3);
+            this.panel1.Size = new System.Drawing.Size(983, 3);
             this.panel1.TabIndex = 40;
             // 
             // panel3
@@ -132,10 +132,10 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(-1, 395);
+            this.panel3.Location = new System.Drawing.Point(-1, 396);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(985, 3);
+            this.panel3.Size = new System.Drawing.Size(983, 3);
             this.panel3.TabIndex = 41;
             // 
             // panel4
@@ -145,17 +145,17 @@
             this.panel4.Location = new System.Drawing.Point(0, 278);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(985, 3);
+            this.panel4.Size = new System.Drawing.Size(983, 3);
             this.panel4.TabIndex = 40;
             // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel5.Location = new System.Drawing.Point(519, 207);
+            this.panel5.Location = new System.Drawing.Point(519, 208);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(220, 2);
+            this.panel5.Size = new System.Drawing.Size(218, 2);
             this.panel5.TabIndex = 43;
             // 
             // textBox1
@@ -174,10 +174,10 @@
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel6.Location = new System.Drawing.Point(520, 262);
+            this.panel6.Location = new System.Drawing.Point(520, 263);
             this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(73, 2);
+            this.panel6.Size = new System.Drawing.Size(71, 2);
             this.panel6.TabIndex = 45;
             // 
             // textBox2
@@ -199,7 +199,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(446, 318);
+            this.button1.Location = new System.Drawing.Point(445, 318);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 35);
@@ -224,6 +224,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(242, 264);
             this.dataGridView1.TabIndex = 48;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // NoDepartamento
             // 
@@ -252,7 +253,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(982, 708);
+            this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
@@ -269,7 +270,7 @@
             this.Controls.Add(this.label5);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormDepartamentos";
             this.Text = "FormDepartamentos";
             this.Load += new System.EventHandler(this.FormDepartamentos_Load);

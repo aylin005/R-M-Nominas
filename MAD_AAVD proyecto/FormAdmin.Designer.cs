@@ -98,6 +98,7 @@
             this.SM_Headcounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Headcounter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SM_Headcounter.UseVisualStyleBackColor = true;
+            this.SM_Headcounter.Click += new System.EventHandler(this.SM_Headcounter_Click);
             // 
             // SM_Panel_SubMenuNomina
             // 
@@ -367,10 +368,12 @@
             // 
             // SM_Logout
             // 
+            this.SM_Logout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(35)))));
             this.SM_Logout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SM_Logout.FlatAppearance.BorderSize = 0;
             this.SM_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SM_Logout.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Logout.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.SM_Logout.Location = new System.Drawing.Point(0, 703);
             this.SM_Logout.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Logout.Name = "SM_Logout";
@@ -378,8 +381,7 @@
             this.SM_Logout.Size = new System.Drawing.Size(197, 40);
             this.SM_Logout.TabIndex = 4;
             this.SM_Logout.Text = "Cerrar sesión";
-            this.SM_Logout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Logout.UseVisualStyleBackColor = true;
+            this.SM_Logout.UseVisualStyleBackColor = false;
             this.SM_Logout.Click += new System.EventHandler(this.SM_Logout_Click);
             // 
             // TopBar
@@ -413,6 +415,7 @@
             this.ADMIN_PanelChildForm.Name = "ADMIN_PanelChildForm";
             this.ADMIN_PanelChildForm.Size = new System.Drawing.Size(983, 709);
             this.ADMIN_PanelChildForm.TabIndex = 1;
+            this.ADMIN_PanelChildForm.Paint += new System.Windows.Forms.PaintEventHandler(this.ADMIN_PanelChildForm_Paint);
             // 
             // FormAdmin
             // 

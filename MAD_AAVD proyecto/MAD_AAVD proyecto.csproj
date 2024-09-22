@@ -124,6 +124,9 @@
     <EmbeddedResource Include="FormDepartamentos.resx">
       <DependentUpon>FormDepartamentos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormHeadCounter.resx">
+      <DependentUpon>FormHeadCounter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormListaEmpleados.resx">
       <DependentUpon>FormListaEmpleados.cs</DependentUpon>
     </EmbeddedResource>
