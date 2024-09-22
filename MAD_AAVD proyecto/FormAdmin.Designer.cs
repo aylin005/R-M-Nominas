@@ -32,6 +32,7 @@
             this.SM_Panel = new System.Windows.Forms.Panel();
             this.SM_Headcounter = new System.Windows.Forms.Button();
             this.SM_Panel_SubMenuNomina = new System.Windows.Forms.Panel();
+            this.SM_Nomina_EmployReport = new System.Windows.Forms.Button();
             this.SM_Nomina_Reporte = new System.Windows.Forms.Button();
             this.SM_Nomina_Generar = new System.Windows.Forms.Button();
             this.SM_Nomina = new System.Windows.Forms.Button();
@@ -78,6 +79,7 @@
             this.SM_Panel.Name = "SM_Panel";
             this.SM_Panel.Size = new System.Drawing.Size(197, 743);
             this.SM_Panel.TabIndex = 0;
+            this.SM_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.SM_Panel_Paint);
             // 
             // SM_Headcounter
             // 
@@ -88,12 +90,12 @@
             this.SM_Headcounter.ForeColor = System.Drawing.Color.AliceBlue;
             this.SM_Headcounter.Image = ((System.Drawing.Image)(resources.GetObject("SM_Headcounter.Image")));
             this.SM_Headcounter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SM_Headcounter.Location = new System.Drawing.Point(0, 564);
+            this.SM_Headcounter.Location = new System.Drawing.Point(0, 610);
             this.SM_Headcounter.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Headcounter.Name = "SM_Headcounter";
             this.SM_Headcounter.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.SM_Headcounter.Size = new System.Drawing.Size(197, 47);
-            this.SM_Headcounter.TabIndex = 13;
+            this.SM_Headcounter.TabIndex = 15;
             this.SM_Headcounter.Text = "  Headcounter";
             this.SM_Headcounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Headcounter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -103,14 +105,33 @@
             // SM_Panel_SubMenuNomina
             // 
             this.SM_Panel_SubMenuNomina.BackColor = System.Drawing.Color.Gray;
+            this.SM_Panel_SubMenuNomina.Controls.Add(this.SM_Nomina_EmployReport);
             this.SM_Panel_SubMenuNomina.Controls.Add(this.SM_Nomina_Reporte);
             this.SM_Panel_SubMenuNomina.Controls.Add(this.SM_Nomina_Generar);
             this.SM_Panel_SubMenuNomina.Dock = System.Windows.Forms.DockStyle.Top;
             this.SM_Panel_SubMenuNomina.Location = new System.Drawing.Point(0, 492);
             this.SM_Panel_SubMenuNomina.Margin = new System.Windows.Forms.Padding(2);
             this.SM_Panel_SubMenuNomina.Name = "SM_Panel_SubMenuNomina";
-            this.SM_Panel_SubMenuNomina.Size = new System.Drawing.Size(197, 72);
+            this.SM_Panel_SubMenuNomina.Size = new System.Drawing.Size(197, 118);
             this.SM_Panel_SubMenuNomina.TabIndex = 12;
+            // 
+            // SM_Nomina_EmployReport
+            // 
+            this.SM_Nomina_EmployReport.BackColor = System.Drawing.Color.Black;
+            this.SM_Nomina_EmployReport.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SM_Nomina_EmployReport.FlatAppearance.BorderSize = 0;
+            this.SM_Nomina_EmployReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SM_Nomina_EmployReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SM_Nomina_EmployReport.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.SM_Nomina_EmployReport.Location = new System.Drawing.Point(0, 74);
+            this.SM_Nomina_EmployReport.Name = "SM_Nomina_EmployReport";
+            this.SM_Nomina_EmployReport.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.SM_Nomina_EmployReport.Size = new System.Drawing.Size(197, 44);
+            this.SM_Nomina_EmployReport.TabIndex = 19;
+            this.SM_Nomina_EmployReport.Text = "Reporte General de Nómina";
+            this.SM_Nomina_EmployReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SM_Nomina_EmployReport.UseVisualStyleBackColor = false;
+            this.SM_Nomina_EmployReport.Click += new System.EventHandler(this.SM_Nomina_EmployReport_Click);
             // 
             // SM_Nomina_Reporte
             // 
@@ -125,7 +146,7 @@
             this.SM_Nomina_Reporte.Name = "SM_Nomina_Reporte";
             this.SM_Nomina_Reporte.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.SM_Nomina_Reporte.Size = new System.Drawing.Size(197, 37);
-            this.SM_Nomina_Reporte.TabIndex = 1;
+            this.SM_Nomina_Reporte.TabIndex = 18;
             this.SM_Nomina_Reporte.Text = "Reporte de nómina";
             this.SM_Nomina_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Nomina_Reporte.UseVisualStyleBackColor = false;
@@ -144,7 +165,7 @@
             this.SM_Nomina_Generar.Name = "SM_Nomina_Generar";
             this.SM_Nomina_Generar.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.SM_Nomina_Generar.Size = new System.Drawing.Size(197, 37);
-            this.SM_Nomina_Generar.TabIndex = 0;
+            this.SM_Nomina_Generar.TabIndex = 17;
             this.SM_Nomina_Generar.Text = "Generar nómina";
             this.SM_Nomina_Generar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SM_Nomina_Generar.UseVisualStyleBackColor = false;
@@ -459,12 +480,13 @@
         private System.Windows.Forms.Button SM_Conceptos;
         private System.Windows.Forms.Button SM_Nomina;
         private System.Windows.Forms.Button SM_Conceptos_Aplicar;
-        private System.Windows.Forms.Button SM_Headcounter;
         private System.Windows.Forms.Panel SM_Panel_SubMenuNomina;
-        private System.Windows.Forms.Button SM_Nomina_Reporte;
-        private System.Windows.Forms.Button SM_Nomina_Generar;
         private System.Windows.Forms.Panel TopBar;
         private System.Windows.Forms.Button ADMIN_Close;
         private System.Windows.Forms.Panel ADMIN_PanelChildForm;
+        private System.Windows.Forms.Button SM_Headcounter;
+        private System.Windows.Forms.Button SM_Nomina_EmployReport;
+        private System.Windows.Forms.Button SM_Nomina_Reporte;
+        private System.Windows.Forms.Button SM_Nomina_Generar;
     }
 }

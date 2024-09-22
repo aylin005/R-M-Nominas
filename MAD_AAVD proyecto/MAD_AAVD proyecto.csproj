@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormReporteEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReporteEmpleados.Designer.cs">
+      <DependentUpon>FormReporteEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormConceptosAplicar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormNominaReporte.resx">
+      <DependentUpon>FormNominaReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReporteEmpleados.resx">
+      <DependentUpon>FormReporteEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormConceptosAplicar.resx">
       <DependentUpon>FormConceptosAplicar.cs</DependentUpon>
     </EmbeddedResource>

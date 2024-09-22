@@ -108,6 +108,11 @@ namespace MAD_AAVD_proyecto
             HideAllSubMenus();
             OpenChildForm(new FormNominaReporte());
         }
+        private void SM_Nomina_EmployReport_Click(object sender, EventArgs e)
+        {
+            HideAllSubMenus();
+            OpenChildForm(new FormEmployReport());
+        }
 
         private void SM_Headcounter_Click(object sender, EventArgs e)
         {
@@ -153,6 +158,16 @@ namespace MAD_AAVD_proyecto
         }
 
         private void ADMIN_PanelChildForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void SM_Panel_Paint(object sender, PaintEventArgs e)
         {
 
         }

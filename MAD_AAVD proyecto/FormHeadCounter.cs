@@ -14,16 +14,18 @@ namespace MAD_AAVD_proyecto
     {
         //private bool areAllElementsOn = true; //muestra todos los elementos
         //private bool isOneElementOn = false; //mejor chequemos esto despues
-
         //private bool isFilteredByDepYPlace = false; //se muestra departamento y puesto
         //private bool isFilteredByDep = false; //se muestra el departamento
 
+
+        //**** M A N E J A D O R    D E   V E N T A N A
         public FormHeadCounter()
         {
             InitializeComponent();
             InitializeValues(false);
         }
 
+        //**** F U N C I O N E S   D E   B O T O N E S
         private void HDCOUNTER_Filter_Click(object sender, EventArgs e)
         {
         }
@@ -55,10 +57,20 @@ namespace MAD_AAVD_proyecto
         {
         }
 
+        //**** F U N C I O N E S   A U X I L I A R E S
         private void InitializeValues(bool status) //por default solo mostramos dos campos
         {
             jobPlace.Visible = status;
             employCountJob.Visible = status;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HDCOUNTER_CB_orderOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
