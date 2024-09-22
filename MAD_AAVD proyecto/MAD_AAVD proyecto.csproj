@@ -121,6 +121,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormNominaGenerar.es-CO.resx">
+      <DependentUpon>FormNominaGenerar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNominaGenerar.resx">
+      <DependentUpon>FormNominaGenerar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormNominaReporte.resx">
       <DependentUpon>FormNominaReporte.cs</DependentUpon>
     </EmbeddedResource>

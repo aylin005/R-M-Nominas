@@ -107,7 +107,7 @@
             // 
             // HDCOUNTER_DTP_Date
             // 
-            this.HDCOUNTER_DTP_Date.CustomFormat = "dd/mmm/yyyy";
+            this.HDCOUNTER_DTP_Date.CustomFormat = "dd/MMM/yyyy";
             this.HDCOUNTER_DTP_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(211, 105);
             this.HDCOUNTER_DTP_Date.MaxDate = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);

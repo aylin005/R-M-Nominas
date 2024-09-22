@@ -17,25 +17,35 @@ namespace MAD_AAVD_proyecto
             InitializeComponent();
             UpdateTable();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         void UpdateTable()
         {
-            dataGridView1.DefaultCellStyle.ForeColor = Color.Black; //por alguna razon me sale en blanco
-            dataGridView1.Rows.Add("Administracion", 2020, "Octubre", "$" + 290, "$" + 690); //ejemplo
+            NREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.Black; //por alguna razon me sale en blanco
+            NREPORTE_DGV_table.Rows.Add("Administracion", 2020, "Octubre", "$" + 290, "$" + 690); //ejemplo
             //recuperar las celdas 3 y 4 anteriores a la final para obtener la sumatoria
-            int lastIndex = dataGridView1.Rows.Count - 1; //esto es por si agregas mas
-            dataGridView1.Rows[lastIndex].DefaultCellStyle.ForeColor = Color.RoyalBlue;
-            dataGridView1.Rows[lastIndex].Cells[3].Value = "$" +  0; //estas son para los totales
-            dataGridView1.Rows[lastIndex].Cells[4].Value = "$" + 10;
+            int lastIndex = NREPORTE_DGV_table.Rows.Count - 1; //esto es por si agregas mas
+            NREPORTE_DGV_table.Rows[lastIndex].DefaultCellStyle.ForeColor = Color.RoyalBlue;
+            NREPORTE_DGV_table.Rows[lastIndex].Cells[3].Value = "$" +  0; //estas son para los totales
+            NREPORTE_DGV_table.Rows[lastIndex].Cells[4].Value = "$" + 10;
+        }
+
+        private void NReport_CB_OrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NREPORT_BTN_Filter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NREPORTE_DTP_date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NREPORTE_DGV_table_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

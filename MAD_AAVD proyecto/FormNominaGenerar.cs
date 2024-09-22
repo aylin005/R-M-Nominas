@@ -16,5 +16,15 @@ namespace MAD_AAVD_proyecto
         {
             InitializeComponent();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GREPORTE_DTP_date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
