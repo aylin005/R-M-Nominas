@@ -12,71 +12,53 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormHeadCounter : Form
     {
+        //private bool areAllElementsOn = true; //muestra todos los elementos
+        //private bool isOneElementOn = false; //mejor chequemos esto despues
+
+        //private bool isFilteredByDepYPlace = false; //se muestra departamento y puesto
+        //private bool isFilteredByDep = false; //se muestra el departamento
+
         public FormHeadCounter()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            InitializeValues(false);
         }
 
         private void HDCOUNTER_Filter_Click(object sender, EventArgs e)
         {
-            if (!HDCOUNTER_FilterOptions.Visible)
+        }
+
+        private void FormHeadCounter_Load(object sender, EventArgs e) { }
+        private void HDCOUNTER_Title_Click(object sender, EventArgs e) { }
+
+        private void HDCOUNTER_ComboBoxDep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (HDCOUNTER_ComboBoxDep.SelectedIndex == 1)
             {
-                HDCOUNTER_FilterOptions.Visible = true;
+                InitializeValues(false);
             }
             else
             {
-                HDCOUNTER_FilterOptions.Visible = false;
+                if (HDCOUNTER_ComboBoxDep.SelectedIndex == 2)
+                {
+                    InitializeValues(true);
+                }
             }
         }
 
-        private void label4_Click_1(object sender, EventArgs e)
+        private void HDCOUNTER_DTP_Date_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click_1(object sender, EventArgs e)
+        private void HDCOUNTER_DGV_table_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void InitializeValues(bool status) //por default solo mostramos dos campos
         {
-            //por el momento estan configuradas para que no sean editables por el usuario
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormHeadCounter_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
+            jobPlace.Visible = status;
+            employCountJob.Visible = status;
         }
     }
 }
