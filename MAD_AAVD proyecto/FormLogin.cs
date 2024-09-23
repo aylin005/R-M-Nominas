@@ -39,10 +39,16 @@ namespace MAD_AAVD_proyecto
 
         private void LOGIN_BTN_login_Click(object sender, EventArgs e)
         {
-            if (LOGIN_TB_username.Text == "admin" && LOGIN_TB_password.Text == "1111") //Para pruebas
+            if (LOGIN_TB_username.Text == "admin" && LOGIN_TB_password.Text == "1111") //Para pruebas admin
             {
                 this.Hide();
                 new FormAdmin().ShowDialog();
+                this.Close();
+            }
+            else if(LOGIN_TB_username.Text == "empleado" && LOGIN_TB_password.Text == "1111") //Para pruebas empleado
+            {
+                this.Hide();
+                new FormUsuario().ShowDialog();
                 this.Close();
             }
             else

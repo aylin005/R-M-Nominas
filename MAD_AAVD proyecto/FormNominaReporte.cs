@@ -47,5 +47,10 @@ namespace MAD_AAVD_proyecto
         {
 
         }
+
+        private void FormNominaReporte_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

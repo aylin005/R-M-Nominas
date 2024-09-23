@@ -234,6 +234,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormNominaReporte";
             this.Text = "FormNominaReporte";
+            this.Load += new System.EventHandler(this.FormNominaReporte_Load);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NREPORTE_DGV_table)).EndInit();

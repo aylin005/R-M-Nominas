@@ -16,5 +16,10 @@ namespace MAD_AAVD_proyecto
         {
             InitializeComponent();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

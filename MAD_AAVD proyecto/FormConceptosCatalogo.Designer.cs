@@ -54,6 +54,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.LOGIN_BTN_exit = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel6.SuspendLayout();
@@ -348,12 +350,45 @@
             this.panel7.Size = new System.Drawing.Size(983, 3);
             this.panel7.TabIndex = 40;
             // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.Location = new System.Drawing.Point(664, 673);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(96, 26);
+            this.button2.TabIndex = 67;
+            this.button2.Text = "Eliminar";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // LOGIN_BTN_exit
+            // 
+            this.LOGIN_BTN_exit.FlatAppearance.BorderSize = 0;
+            this.LOGIN_BTN_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LOGIN_BTN_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LOGIN_BTN_exit.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(664, 634);
+            this.LOGIN_BTN_exit.Margin = new System.Windows.Forms.Padding(2);
+            this.LOGIN_BTN_exit.Name = "LOGIN_BTN_exit";
+            this.LOGIN_BTN_exit.Size = new System.Drawing.Size(70, 26);
+            this.LOGIN_BTN_exit.TabIndex = 66;
+            this.LOGIN_BTN_exit.Text = "Editar";
+            this.LOGIN_BTN_exit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LOGIN_BTN_exit.UseVisualStyleBackColor = true;
+            // 
             // FormConceptosCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.LOGIN_BTN_exit);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel6);
@@ -416,5 +451,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button LOGIN_BTN_exit;
     }
 }

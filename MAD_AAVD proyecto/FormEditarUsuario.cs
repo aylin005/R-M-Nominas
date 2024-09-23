@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MAD_AAVD_proyecto
 {
-    public partial class FormListaEmpleados : Form
+    public partial class FormEditarUsuario : Form
     {
-        public FormListaEmpleados()
+        public FormEditarUsuario()
         {
             InitializeComponent();
         }

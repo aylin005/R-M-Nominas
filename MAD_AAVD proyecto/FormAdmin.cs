@@ -24,7 +24,6 @@ namespace MAD_AAVD_proyecto
         {
             SM_Panel_SubMenuNomina.Visible = false;
             SM_Panel_SubMenuConceptos.Visible = false;
-            SM_Panel_SubMenuEmpleados.Visible = false;
         }
 
         private void HideBtnSubMenu(Panel panel) //cierra el submenu de cierto boton
@@ -37,7 +36,6 @@ namespace MAD_AAVD_proyecto
         {
             HideBtnSubMenu(SM_Panel_SubMenuNomina);
             HideBtnSubMenu(SM_Panel_SubMenuConceptos);
-            HideBtnSubMenu(SM_Panel_SubMenuEmpleados);
         }
 
         private void ShowSubMenu(Panel panel) //limpia los submenus abiertos
@@ -60,7 +58,9 @@ namespace MAD_AAVD_proyecto
 
         private void SM_Empleados_Click(object sender, EventArgs e)
         {
-            ShowSubMenu(SM_Panel_SubMenuEmpleados);
+            //ShowSubMenu(SM_Panel_SubMenuEmpleados);
+            HideAllSubMenus();
+            OpenChildForm(new FormGestionEmpleados());
         }
 
         private void SM_Conceptos_Click(object sender, EventArgs e)
@@ -75,14 +75,12 @@ namespace MAD_AAVD_proyecto
 
         private void SM_Empleados_Gestion_Click(object sender, EventArgs e)
         {
-            HideAllSubMenus();
-            OpenChildForm(new FormGestionEmpleados());
+           
         }
 
         private void SM_Empleados_Lista_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
-            OpenChildForm(new FormListaEmpleados());
         }
 
         private void SM_Conceptos_Catalogo_Click(object sender, EventArgs e)
