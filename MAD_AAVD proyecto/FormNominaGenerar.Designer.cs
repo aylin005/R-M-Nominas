@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.GREPORTE_DTP_date = new System.Windows.Forms.DateTimePicker();
             this.GREPORTE_BTN_generate = new System.Windows.Forms.Button();
-            this.GREPORTE_PB_line = new System.Windows.Forms.ProgressBar();
             this.GREPORTE_DGV_table = new System.Windows.Forms.DataGridView();
             this.numEmploy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameEmploy = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +51,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(267, 14);
+            this.label1.Location = new System.Drawing.Point(275, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(392, 45);
             this.label1.TabIndex = 5;
@@ -63,10 +62,10 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(-1, 116);
+            this.panel2.Location = new System.Drawing.Point(-1, 136);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(983, 3);
+            this.panel2.Size = new System.Drawing.Size(999, 3);
             this.panel2.TabIndex = 67;
             // 
             // panel1
@@ -76,14 +75,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 278);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(983, 3);
+            this.panel1.Size = new System.Drawing.Size(999, 3);
             this.panel1.TabIndex = 40;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(124, 130);
+            this.label2.Location = new System.Drawing.Point(124, 158);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(262, 20);
             this.label2.TabIndex = 68;
@@ -96,7 +95,7 @@
             this.GREPORTE_DTP_date.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.GREPORTE_DTP_date.CustomFormat = "MM/yyyy";
             this.GREPORTE_DTP_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.GREPORTE_DTP_date.Location = new System.Drawing.Point(208, 155);
+            this.GREPORTE_DTP_date.Location = new System.Drawing.Point(208, 185);
             this.GREPORTE_DTP_date.Name = "GREPORTE_DTP_date";
             this.GREPORTE_DTP_date.Size = new System.Drawing.Size(83, 22);
             this.GREPORTE_DTP_date.TabIndex = 69;
@@ -109,19 +108,12 @@
             this.GREPORTE_BTN_generate.FlatAppearance.BorderSize = 0;
             this.GREPORTE_BTN_generate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GREPORTE_BTN_generate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GREPORTE_BTN_generate.Location = new System.Drawing.Point(599, 133);
+            this.GREPORTE_BTN_generate.Location = new System.Drawing.Point(605, 166);
             this.GREPORTE_BTN_generate.Name = "GREPORTE_BTN_generate";
             this.GREPORTE_BTN_generate.Size = new System.Drawing.Size(230, 37);
             this.GREPORTE_BTN_generate.TabIndex = 70;
             this.GREPORTE_BTN_generate.Text = "Generar";
             this.GREPORTE_BTN_generate.UseVisualStyleBackColor = false;
-            // 
-            // GREPORTE_PB_line
-            // 
-            this.GREPORTE_PB_line.Location = new System.Drawing.Point(599, 167);
-            this.GREPORTE_PB_line.Name = "GREPORTE_PB_line";
-            this.GREPORTE_PB_line.Size = new System.Drawing.Size(230, 10);
-            this.GREPORTE_PB_line.TabIndex = 71;
             // 
             // GREPORTE_DGV_table
             // 
@@ -135,7 +127,7 @@
             this.bank,
             this.accountNum});
             this.GREPORTE_DGV_table.GridColor = System.Drawing.Color.DodgerBlue;
-            this.GREPORTE_DGV_table.Location = new System.Drawing.Point(36, 209);
+            this.GREPORTE_DGV_table.Location = new System.Drawing.Point(36, 244);
             this.GREPORTE_DGV_table.Name = "GREPORTE_DGV_table";
             this.GREPORTE_DGV_table.Size = new System.Drawing.Size(890, 427);
             this.GREPORTE_DGV_table.TabIndex = 72;
@@ -185,9 +177,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(964, 671);
+            this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.GREPORTE_DGV_table);
-            this.Controls.Add(this.GREPORTE_PB_line);
             this.Controls.Add(this.GREPORTE_BTN_generate);
             this.Controls.Add(this.GREPORTE_DTP_date);
             this.Controls.Add(this.label2);
@@ -199,6 +190,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormNominaGenerar";
             this.Text = "FormNominaGenerar";
+            this.Load += new System.EventHandler(this.FormNominaGenerar_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GREPORTE_DGV_table)).EndInit();
             this.ResumeLayout(false);
@@ -214,7 +206,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker GREPORTE_DTP_date;
         private System.Windows.Forms.Button GREPORTE_BTN_generate;
-        private System.Windows.Forms.ProgressBar GREPORTE_PB_line;
         private System.Windows.Forms.DataGridView GREPORTE_DGV_table;
         private System.Windows.Forms.DataGridViewTextBoxColumn numEmploy;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameEmploy;

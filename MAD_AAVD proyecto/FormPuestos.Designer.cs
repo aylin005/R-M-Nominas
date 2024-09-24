@@ -39,16 +39,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.NoPuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombrePuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADMIN_DGV_Puestos = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.LOGIN_BTN_exit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.NoPuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombrePuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Puestos)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,36 +177,26 @@
             this.button1.Text = "Registrar";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // ADMIN_DGV_Puestos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ADMIN_DGV_Puestos.AllowUserToAddRows = false;
+            this.ADMIN_DGV_Puestos.AllowUserToDeleteRows = false;
+            this.ADMIN_DGV_Puestos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ADMIN_DGV_Puestos.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_Puestos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ADMIN_DGV_Puestos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.ADMIN_DGV_Puestos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_Puestos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoPuesto,
-            this.NombrePuesto});
-            this.dataGridView1.GridColor = System.Drawing.Color.DodgerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(383, 432);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(242, 264);
-            this.dataGridView1.TabIndex = 59;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // NoPuesto
-            // 
-            this.NoPuesto.HeaderText = "No.";
-            this.NoPuesto.Name = "NoPuesto";
-            this.NoPuesto.ReadOnly = true;
-            // 
-            // NombrePuesto
-            // 
-            this.NombrePuesto.HeaderText = "Nombre";
-            this.NombrePuesto.Name = "NombrePuesto";
-            this.NombrePuesto.ReadOnly = true;
+            this.NombrePuesto,
+            this.Column1});
+            this.ADMIN_DGV_Puestos.GridColor = System.Drawing.Color.DodgerBlue;
+            this.ADMIN_DGV_Puestos.Location = new System.Drawing.Point(193, 432);
+            this.ADMIN_DGV_Puestos.Name = "ADMIN_DGV_Puestos";
+            this.ADMIN_DGV_Puestos.ReadOnly = true;
+            this.ADMIN_DGV_Puestos.Size = new System.Drawing.Size(580, 264);
+            this.ADMIN_DGV_Puestos.TabIndex = 59;
+            this.ADMIN_DGV_Puestos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label6
             // 
@@ -245,7 +236,7 @@
             this.LOGIN_BTN_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LOGIN_BTN_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOGIN_BTN_exit.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(652, 621);
+            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(791, 627);
             this.LOGIN_BTN_exit.Margin = new System.Windows.Forms.Padding(2);
             this.LOGIN_BTN_exit.Name = "LOGIN_BTN_exit";
             this.LOGIN_BTN_exit.Size = new System.Drawing.Size(70, 26);
@@ -261,7 +252,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(652, 660);
+            this.button2.Location = new System.Drawing.Point(791, 666);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 26);
@@ -269,6 +260,24 @@
             this.button2.Text = "Eliminar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // NoPuesto
+            // 
+            this.NoPuesto.HeaderText = "No. Puesto";
+            this.NoPuesto.Name = "NoPuesto";
+            this.NoPuesto.ReadOnly = true;
+            // 
+            // NombrePuesto
+            // 
+            this.NombrePuesto.HeaderText = "Nombre";
+            this.NombrePuesto.Name = "NombrePuesto";
+            this.NombrePuesto.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Nivel salarial";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // FormPuestos
             // 
@@ -278,7 +287,7 @@
             this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.LOGIN_BTN_exit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ADMIN_DGV_Puestos);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.button1);
@@ -295,8 +304,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPuestos";
             this.Text = "FormPuestos";
+            this.Load += new System.EventHandler(this.FormPuestos_Load);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Puestos)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -316,13 +326,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_Puestos;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoPuesto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombrePuesto;
         private System.Windows.Forms.Button LOGIN_BTN_exit;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoPuesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombrePuesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

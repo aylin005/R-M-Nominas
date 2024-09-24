@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.HDCOUNTER_Filter = new System.Windows.Forms.Button();
             this.HDCOUNTER_DTP_Date = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ADMIN_DGV_ReporteGeneral = new System.Windows.Forms.DataGridView();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,8 +45,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_ReporteGeneral)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,12 +97,12 @@
             this.HDCOUNTER_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HDCOUNTER_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HDCOUNTER_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.HDCOUNTER_Filter.Location = new System.Drawing.Point(50, 96);
+            this.HDCOUNTER_Filter.Location = new System.Drawing.Point(717, 101);
             this.HDCOUNTER_Filter.Name = "HDCOUNTER_Filter";
             this.HDCOUNTER_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.HDCOUNTER_Filter.Size = new System.Drawing.Size(155, 39);
+            this.HDCOUNTER_Filter.Size = new System.Drawing.Size(113, 31);
             this.HDCOUNTER_Filter.TabIndex = 68;
-            this.HDCOUNTER_Filter.Text = "Filtrar por fecha";
+            this.HDCOUNTER_Filter.Text = "Filtrar";
             this.HDCOUNTER_Filter.UseVisualStyleBackColor = false;
             this.HDCOUNTER_Filter.Click += new System.EventHandler(this.HDCOUNTER_Filter_Click);
             // 
@@ -109,32 +110,32 @@
             // 
             this.HDCOUNTER_DTP_Date.CustomFormat = "dd/MMM/yyyy";
             this.HDCOUNTER_DTP_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(211, 105);
+            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(223, 106);
             this.HDCOUNTER_DTP_Date.MaxDate = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);
             this.HDCOUNTER_DTP_Date.MinDate = new System.DateTime(1924, 9, 22, 0, 0, 0, 0);
             this.HDCOUNTER_DTP_Date.Name = "HDCOUNTER_DTP_Date";
-            this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(224, 22);
+            this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(103, 22);
             this.HDCOUNTER_DTP_Date.TabIndex = 70;
             this.HDCOUNTER_DTP_Date.Value = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);
             this.HDCOUNTER_DTP_Date.ValueChanged += new System.EventHandler(this.HDCOUNTER_DTP_Date_ValueChanged);
             // 
-            // dataGridView1
+            // ADMIN_DGV_ReporteGeneral
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ADMIN_DGV_ReporteGeneral.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_ReporteGeneral.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_ReporteGeneral.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.department,
             this.employJob,
             this.employName,
             this.startDate,
             this.employAge,
             this.employSalary});
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.MenuHighlight;
-            this.dataGridView1.Location = new System.Drawing.Point(50, 175);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(868, 485);
-            this.dataGridView1.TabIndex = 71;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.ADMIN_DGV_ReporteGeneral.GridColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ADMIN_DGV_ReporteGeneral.Location = new System.Drawing.Point(50, 175);
+            this.ADMIN_DGV_ReporteGeneral.Name = "ADMIN_DGV_ReporteGeneral";
+            this.ADMIN_DGV_ReporteGeneral.Size = new System.Drawing.Size(868, 485);
+            this.ADMIN_DGV_ReporteGeneral.TabIndex = 71;
+            this.ADMIN_DGV_ReporteGeneral.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // department
             // 
@@ -209,12 +210,12 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.AliceBlue;
-            this.button1.Location = new System.Drawing.Point(523, 90);
+            this.button1.Location = new System.Drawing.Point(350, 101);
             this.button1.Name = "button1";
             this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(130, 53);
+            this.button1.Size = new System.Drawing.Size(141, 31);
             this.button1.TabIndex = 72;
-            this.button1.Text = "Ordenar por:";
+            this.button1.Text = "Departamento:";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -225,15 +226,29 @@
             this.comboBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Departamento",
-            "Puesto",
-            "Nombre(s)",
-            "Apellido paterno",
-            "Apellido materno"});
-            this.comboBox1.Location = new System.Drawing.Point(644, 105);
+            "Todos",
+            "Desarrollo",
+            "Contabilidad"});
+            this.comboBox1.Location = new System.Drawing.Point(497, 104);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(274, 24);
+            this.comboBox1.Size = new System.Drawing.Size(188, 24);
             this.comboBox1.TabIndex = 73;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.AliceBlue;
+            this.button2.Location = new System.Drawing.Point(133, 101);
+            this.button2.Name = "button2";
+            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button2.Size = new System.Drawing.Size(84, 31);
+            this.button2.TabIndex = 74;
+            this.button2.Text = "Fecha:";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // FormEmployReport
             // 
@@ -241,10 +256,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ADMIN_DGV_ReporteGeneral);
             this.Controls.Add(this.HDCOUNTER_DTP_Date);
             this.Controls.Add(this.HDCOUNTER_Filter);
             this.Controls.Add(this.panel2);
@@ -256,8 +272,9 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormEmployReport";
             this.Text = "FormEmployReport";
+            this.Load += new System.EventHandler(this.FormEmployReport_Load);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_ReporteGeneral)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -272,7 +289,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button HDCOUNTER_Filter;
         private System.Windows.Forms.DateTimePicker HDCOUNTER_DTP_Date;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_ReporteGeneral;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button1;
@@ -283,5 +300,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn startDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn employAge;
         private System.Windows.Forms.DataGridViewTextBoxColumn employSalary;
+        private System.Windows.Forms.Button button2;
     }
 }

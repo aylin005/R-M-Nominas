@@ -74,7 +74,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(289, 168);
+            this.label2.Location = new System.Drawing.Point(300, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 20);
             this.label2.TabIndex = 45;
@@ -84,7 +84,7 @@
             // 
             this.CONCEPAPLICAR_RB_Departamento.AutoSize = true;
             this.CONCEPAPLICAR_RB_Departamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.CONCEPAPLICAR_RB_Departamento.Location = new System.Drawing.Point(334, 217);
+            this.CONCEPAPLICAR_RB_Departamento.Location = new System.Drawing.Point(345, 217);
             this.CONCEPAPLICAR_RB_Departamento.Name = "CONCEPAPLICAR_RB_Departamento";
             this.CONCEPAPLICAR_RB_Departamento.Size = new System.Drawing.Size(142, 24);
             this.CONCEPAPLICAR_RB_Departamento.TabIndex = 48;
@@ -97,7 +97,7 @@
             // 
             this.CONCEPAPLICAR_RB_Empleado.AutoSize = true;
             this.CONCEPAPLICAR_RB_Empleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.CONCEPAPLICAR_RB_Empleado.Location = new System.Drawing.Point(508, 217);
+            this.CONCEPAPLICAR_RB_Empleado.Location = new System.Drawing.Point(519, 217);
             this.CONCEPAPLICAR_RB_Empleado.Name = "CONCEPAPLICAR_RB_Empleado";
             this.CONCEPAPLICAR_RB_Empleado.Size = new System.Drawing.Size(107, 24);
             this.CONCEPAPLICAR_RB_Empleado.TabIndex = 49;
@@ -116,7 +116,7 @@
             this.comboBox9.Items.AddRange(new object[] {
             "Percepción",
             "Deducción"});
-            this.comboBox9.Location = new System.Drawing.Point(475, 171);
+            this.comboBox9.Location = new System.Drawing.Point(486, 171);
             this.comboBox9.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(192, 21);
@@ -126,11 +126,11 @@
             // 
             this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.dateTimePicker1.CustomFormat = "MM/yyyy";
+            this.dateTimePicker1.CustomFormat = "dd/MMM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(497, 485);
+            this.dateTimePicker1.Location = new System.Drawing.Point(473, 484);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(83, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(102, 20);
             this.dateTimePicker1.TabIndex = 62;
             // 
             // CONCEPAPLICAR_Panel_Departamento
@@ -138,7 +138,7 @@
             this.CONCEPAPLICAR_Panel_Departamento.BackColor = System.Drawing.Color.Black;
             this.CONCEPAPLICAR_Panel_Departamento.Controls.Add(this.label10);
             this.CONCEPAPLICAR_Panel_Departamento.Controls.Add(this.comboBox1);
-            this.CONCEPAPLICAR_Panel_Departamento.Location = new System.Drawing.Point(282, 265);
+            this.CONCEPAPLICAR_Panel_Departamento.Location = new System.Drawing.Point(276, 265);
             this.CONCEPAPLICAR_Panel_Departamento.Name = "CONCEPAPLICAR_Panel_Departamento";
             this.CONCEPAPLICAR_Panel_Departamento.Size = new System.Drawing.Size(209, 122);
             this.CONCEPAPLICAR_Panel_Departamento.TabIndex = 63;
@@ -158,6 +158,7 @@
             // 
             this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox1.ForeColor = System.Drawing.Color.AliceBlue;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(50, 55);
             this.comboBox1.Name = "comboBox1";
@@ -178,7 +179,7 @@
             this.CONCEPAPLICAR_Panel_Empleado.Controls.Add(this.label5);
             this.CONCEPAPLICAR_Panel_Empleado.Controls.Add(this.label4);
             this.CONCEPAPLICAR_Panel_Empleado.Controls.Add(this.textBox1);
-            this.CONCEPAPLICAR_Panel_Empleado.Location = new System.Drawing.Point(493, 265);
+            this.CONCEPAPLICAR_Panel_Empleado.Location = new System.Drawing.Point(487, 265);
             this.CONCEPAPLICAR_Panel_Empleado.Name = "CONCEPAPLICAR_Panel_Empleado";
             this.CONCEPAPLICAR_Panel_Empleado.Size = new System.Drawing.Size(276, 192);
             this.CONCEPAPLICAR_Panel_Empleado.TabIndex = 64;
@@ -187,6 +188,7 @@
             // 
             this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox4.ForeColor = System.Drawing.Color.AliceBlue;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(113, 154);
             this.comboBox4.Name = "comboBox4";
@@ -197,6 +199,7 @@
             // 
             this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox3.ForeColor = System.Drawing.Color.AliceBlue;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(113, 94);
             this.comboBox3.Name = "comboBox3";
@@ -207,6 +210,7 @@
             // 
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox2.ForeColor = System.Drawing.Color.AliceBlue;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(113, 65);
             this.comboBox2.Name = "comboBox2";
@@ -215,11 +219,11 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.CustomFormat = "MM/yyyy";
+            this.dateTimePicker2.CustomFormat = "dd/MMM/yyyy";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(113, 124);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(66, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(93, 20);
             this.dateTimePicker2.TabIndex = 7;
             // 
             // label9
@@ -240,9 +244,9 @@
             this.label8.ForeColor = System.Drawing.Color.LightBlue;
             this.label8.Location = new System.Drawing.Point(21, 128);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 13);
+            this.label8.Size = new System.Drawing.Size(85, 13);
             this.label8.TabIndex = 5;
-            this.label8.Text = "Mes/año:";
+            this.label8.Text = "Fecha activo:";
             // 
             // label7
             // 
@@ -302,11 +306,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(409, 485);
+            this.label3.Location = new System.Drawing.Point(394, 484);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 20);
+            this.label3.Size = new System.Drawing.Size(64, 20);
             this.label3.TabIndex = 65;
-            this.label3.Text = "Mes/año:";
+            this.label3.Text = "Fecha:";
             // 
             // panel2
             // 
@@ -336,7 +340,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(455, 555);
+            this.button1.Location = new System.Drawing.Point(429, 544);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 35);

@@ -33,8 +33,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.NREPORT_BTN_Filter = new System.Windows.Forms.Button();
             this.NREPORTE_DTP_date = new System.Windows.Forms.DateTimePicker();
-            this.NREPORT_OrderBy = new System.Windows.Forms.Button();
-            this.NReport_CB_OrderBy = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.NREPORTE_DGV_table = new System.Windows.Forms.DataGridView();
@@ -87,13 +85,13 @@
             this.NREPORT_BTN_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NREPORT_BTN_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NREPORT_BTN_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.NREPORT_BTN_Filter.Location = new System.Drawing.Point(156, 100);
+            this.NREPORT_BTN_Filter.Location = new System.Drawing.Point(512, 104);
             this.NREPORT_BTN_Filter.Name = "NREPORT_BTN_Filter";
             this.NREPORT_BTN_Filter.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.NREPORT_BTN_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.NREPORT_BTN_Filter.Size = new System.Drawing.Size(155, 39);
+            this.NREPORT_BTN_Filter.Size = new System.Drawing.Size(85, 28);
             this.NREPORT_BTN_Filter.TabIndex = 0;
-            this.NREPORT_BTN_Filter.Text = "Filtrar por año";
+            this.NREPORT_BTN_Filter.Text = "Filtrar";
             this.NREPORT_BTN_Filter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.NREPORT_BTN_Filter.UseVisualStyleBackColor = false;
             this.NREPORT_BTN_Filter.Click += new System.EventHandler(this.NREPORT_BTN_Filter_Click);
@@ -104,43 +102,11 @@
             this.NREPORTE_DTP_date.CalendarTitleForeColor = System.Drawing.SystemColors.ButtonFace;
             this.NREPORTE_DTP_date.CustomFormat = "yyyy";
             this.NREPORTE_DTP_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.NREPORTE_DTP_date.Location = new System.Drawing.Point(328, 107);
+            this.NREPORTE_DTP_date.Location = new System.Drawing.Point(399, 106);
             this.NREPORTE_DTP_date.Name = "NREPORTE_DTP_date";
             this.NREPORTE_DTP_date.Size = new System.Drawing.Size(93, 22);
             this.NREPORTE_DTP_date.TabIndex = 70;
             this.NREPORTE_DTP_date.ValueChanged += new System.EventHandler(this.NREPORTE_DTP_date_ValueChanged);
-            // 
-            // NREPORT_OrderBy
-            // 
-            this.NREPORT_OrderBy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.NREPORT_OrderBy.FlatAppearance.BorderSize = 0;
-            this.NREPORT_OrderBy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NREPORT_OrderBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NREPORT_OrderBy.ForeColor = System.Drawing.Color.AliceBlue;
-            this.NREPORT_OrderBy.Location = new System.Drawing.Point(478, 93);
-            this.NREPORT_OrderBy.Name = "NREPORT_OrderBy";
-            this.NREPORT_OrderBy.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.NREPORT_OrderBy.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.NREPORT_OrderBy.Size = new System.Drawing.Size(131, 53);
-            this.NREPORT_OrderBy.TabIndex = 0;
-            this.NREPORT_OrderBy.Text = "Ordenar por:";
-            this.NREPORT_OrderBy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.NREPORT_OrderBy.UseVisualStyleBackColor = false;
-            // 
-            // NReport_CB_OrderBy
-            // 
-            this.NReport_CB_OrderBy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.NReport_CB_OrderBy.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.NReport_CB_OrderBy.FormattingEnabled = true;
-            this.NReport_CB_OrderBy.Items.AddRange(new object[] {
-            "Departamento",
-            "Año",
-            "Mes"});
-            this.NReport_CB_OrderBy.Location = new System.Drawing.Point(602, 109);
-            this.NReport_CB_OrderBy.Name = "NReport_CB_OrderBy";
-            this.NReport_CB_OrderBy.Size = new System.Drawing.Size(337, 24);
-            this.NReport_CB_OrderBy.TabIndex = 71;
-            this.NReport_CB_OrderBy.SelectedIndexChanged += new System.EventHandler(this.NReport_CB_OrderBy_SelectedIndexChanged);
             // 
             // panel3
             // 
@@ -222,8 +188,6 @@
             this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.NREPORTE_DGV_table);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.NReport_CB_OrderBy);
-            this.Controls.Add(this.NREPORT_OrderBy);
             this.Controls.Add(this.NREPORTE_DTP_date);
             this.Controls.Add(this.NREPORT_BTN_Filter);
             this.Controls.Add(this.panel2);
@@ -250,8 +214,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button NREPORT_BTN_Filter;
         private System.Windows.Forms.DateTimePicker NREPORTE_DTP_date;
-        private System.Windows.Forms.Button NREPORT_OrderBy;
-        private System.Windows.Forms.ComboBox NReport_CB_OrderBy;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView NREPORTE_DGV_table;

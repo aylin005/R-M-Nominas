@@ -42,7 +42,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ADMIN_DGV_Departamentos = new System.Windows.Forms.DataGridView();
             this.NoDepartamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreDepartamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.LOGIN_BTN_exit = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Departamentos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -209,24 +209,24 @@
             this.button1.Text = "Registrar";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // ADMIN_DGV_Departamentos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ADMIN_DGV_Departamentos.AllowUserToAddRows = false;
+            this.ADMIN_DGV_Departamentos.AllowUserToDeleteRows = false;
+            this.ADMIN_DGV_Departamentos.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_Departamentos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ADMIN_DGV_Departamentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.ADMIN_DGV_Departamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_Departamentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoDepartamento,
             this.NombreDepartamento});
-            this.dataGridView1.GridColor = System.Drawing.Color.DodgerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(384, 432);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(242, 264);
-            this.dataGridView1.TabIndex = 48;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.ADMIN_DGV_Departamentos.GridColor = System.Drawing.Color.DodgerBlue;
+            this.ADMIN_DGV_Departamentos.Location = new System.Drawing.Point(384, 432);
+            this.ADMIN_DGV_Departamentos.Name = "ADMIN_DGV_Departamentos";
+            this.ADMIN_DGV_Departamentos.ReadOnly = true;
+            this.ADMIN_DGV_Departamentos.Size = new System.Drawing.Size(242, 264);
+            this.ADMIN_DGV_Departamentos.TabIndex = 48;
+            this.ADMIN_DGV_Departamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // NoDepartamento
             // 
@@ -289,7 +289,7 @@
             this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.LOGIN_BTN_exit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ADMIN_DGV_Departamentos);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel6);
@@ -311,7 +311,7 @@
             this.Load += new System.EventHandler(this.FormDepartamentos_Load);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Departamentos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,7 +333,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_Departamentos;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoDepartamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreDepartamento;
         private System.Windows.Forms.Label label5;

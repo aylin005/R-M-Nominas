@@ -48,16 +48,20 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.NoConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADMIN_DGV_Conceptos = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.LOGIN_BTN_exit = new System.Windows.Forms.Button();
+            this.NoConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Conceptos)).BeginInit();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -257,7 +261,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(386, 285);
+            this.label8.Location = new System.Drawing.Point(380, 285);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(18, 20);
             this.label8.TabIndex = 60;
@@ -267,7 +271,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label9.Location = new System.Drawing.Point(671, 291);
+            this.label9.Location = new System.Drawing.Point(677, 286);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 20);
             this.label9.TabIndex = 61;
@@ -288,35 +292,27 @@
             this.button1.Text = "Registrar";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // ADMIN_DGV_Conceptos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ADMIN_DGV_Conceptos.AllowUserToAddRows = false;
+            this.ADMIN_DGV_Conceptos.AllowUserToDeleteRows = false;
+            this.ADMIN_DGV_Conceptos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ADMIN_DGV_Conceptos.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_Conceptos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ADMIN_DGV_Conceptos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_Conceptos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoConcepto,
-            this.NombreConcepto});
-            this.dataGridView1.GridColor = System.Drawing.Color.DodgerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(396, 436);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(242, 264);
-            this.dataGridView1.TabIndex = 65;
-            // 
-            // NoConcepto
-            // 
-            this.NoConcepto.HeaderText = "No.";
-            this.NoConcepto.Name = "NoConcepto";
-            this.NoConcepto.ReadOnly = true;
-            // 
-            // NombreConcepto
-            // 
-            this.NombreConcepto.HeaderText = "Nombre";
-            this.NombreConcepto.Name = "NombreConcepto";
-            this.NombreConcepto.ReadOnly = true;
+            this.NombreConcepto,
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.ADMIN_DGV_Conceptos.GridColor = System.Drawing.Color.DodgerBlue;
+            this.ADMIN_DGV_Conceptos.Location = new System.Drawing.Point(95, 434);
+            this.ADMIN_DGV_Conceptos.Name = "ADMIN_DGV_Conceptos";
+            this.ADMIN_DGV_Conceptos.ReadOnly = true;
+            this.ADMIN_DGV_Conceptos.Size = new System.Drawing.Size(765, 264);
+            this.ADMIN_DGV_Conceptos.TabIndex = 65;
             // 
             // label10
             // 
@@ -357,7 +353,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(664, 673);
+            this.button2.Location = new System.Drawing.Point(865, 662);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 26);
@@ -372,7 +368,7 @@
             this.LOGIN_BTN_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LOGIN_BTN_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOGIN_BTN_exit.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(664, 634);
+            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(865, 623);
             this.LOGIN_BTN_exit.Margin = new System.Windows.Forms.Padding(2);
             this.LOGIN_BTN_exit.Name = "LOGIN_BTN_exit";
             this.LOGIN_BTN_exit.Size = new System.Drawing.Size(70, 26);
@@ -380,6 +376,42 @@
             this.LOGIN_BTN_exit.Text = "Editar";
             this.LOGIN_BTN_exit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LOGIN_BTN_exit.UseVisualStyleBackColor = true;
+            // 
+            // NoConcepto
+            // 
+            this.NoConcepto.HeaderText = "No. Concepto";
+            this.NoConcepto.Name = "NoConcepto";
+            this.NoConcepto.ReadOnly = true;
+            // 
+            // NombreConcepto
+            // 
+            this.NombreConcepto.HeaderText = "Nombre";
+            this.NombreConcepto.Name = "NombreConcepto";
+            this.NombreConcepto.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Tipo";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Cuota";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Porcentaje";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Fijo";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // FormConceptosCatalogo
             // 
@@ -389,7 +421,7 @@
             this.ClientSize = new System.Drawing.Size(980, 710);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.LOGIN_BTN_exit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ADMIN_DGV_Conceptos);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.button1);
@@ -415,8 +447,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormConceptosCatalogo";
             this.Text = "FormConceptosCatalogo";
+            this.Load += new System.EventHandler(this.FormConceptosCatalogo_Load);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Conceptos)).EndInit();
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -445,13 +478,17 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoConcepto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreConcepto;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_Conceptos;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button LOGIN_BTN_exit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoConcepto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreConcepto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
