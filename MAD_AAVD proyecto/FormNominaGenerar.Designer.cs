@@ -154,7 +154,7 @@
             // 
             // salaryResult
             // 
-            this.salaryResult.HeaderText = "Cantidad a depósitar";
+            this.salaryResult.HeaderText = "Cantidad a depositar";
             this.salaryResult.Name = "salaryResult";
             this.salaryResult.ReadOnly = true;
             // 

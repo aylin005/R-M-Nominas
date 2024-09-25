@@ -110,11 +110,11 @@
             // 
             this.HDCOUNTER_DTP_Date.CustomFormat = "dd/MMM/yyyy";
             this.HDCOUNTER_DTP_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(223, 106);
+            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(216, 106);
             this.HDCOUNTER_DTP_Date.MaxDate = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);
             this.HDCOUNTER_DTP_Date.MinDate = new System.DateTime(1924, 9, 22, 0, 0, 0, 0);
             this.HDCOUNTER_DTP_Date.Name = "HDCOUNTER_DTP_Date";
-            this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(103, 22);
+            this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(128, 22);
             this.HDCOUNTER_DTP_Date.TabIndex = 70;
             this.HDCOUNTER_DTP_Date.Value = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);
             this.HDCOUNTER_DTP_Date.ValueChanged += new System.EventHandler(this.HDCOUNTER_DTP_Date_ValueChanged);
@@ -241,7 +241,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.AliceBlue;
-            this.button2.Location = new System.Drawing.Point(133, 101);
+            this.button2.Location = new System.Drawing.Point(126, 101);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button2.Size = new System.Drawing.Size(84, 31);

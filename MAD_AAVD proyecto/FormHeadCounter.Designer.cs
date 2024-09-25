@@ -34,22 +34,25 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.HDCOUNTER_FilterOptions = new System.Windows.Forms.Panel();
+            this.HDCOUNTER_Filter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.HDCOUNTER_ComboBoxDep = new System.Windows.Forms.ComboBox();
+            this.HDCOUNTER_CB_orderOption = new System.Windows.Forms.ComboBox();
             this.HDCOUNTER_DTP_Date = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.HDCOUNTER_DGV_table = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.HDCOUNTER_CB_orderOption = new System.Windows.Forms.ComboBox();
+            this.ADMIN_DGV_PuestoCant = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.HDCOUNTER_Filter = new System.Windows.Forms.Button();
-            this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employCountJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADMIN_DGV_DepartamentoCant = new System.Windows.Forms.DataGridView();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantPuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.HDCOUNTER_FilterOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HDCOUNTER_DGV_table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).BeginInit();
             this.SuspendLayout();
             // 
             // HDCOUNTER_Title
@@ -109,10 +112,8 @@
             this.HDCOUNTER_FilterOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
             this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_Filter);
             this.HDCOUNTER_FilterOptions.Controls.Add(this.label1);
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_ComboBoxDep);
             this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_CB_orderOption);
             this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_DTP_Date);
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.button1);
             this.HDCOUNTER_FilterOptions.Controls.Add(this.label5);
             this.HDCOUNTER_FilterOptions.Dock = System.Windows.Forms.DockStyle.Top;
             this.HDCOUNTER_FilterOptions.Location = new System.Drawing.Point(0, 0);
@@ -120,37 +121,55 @@
             this.HDCOUNTER_FilterOptions.Size = new System.Drawing.Size(982, 71);
             this.HDCOUNTER_FilterOptions.TabIndex = 47;
             // 
+            // HDCOUNTER_Filter
+            // 
+            this.HDCOUNTER_Filter.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.HDCOUNTER_Filter.FlatAppearance.BorderSize = 0;
+            this.HDCOUNTER_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HDCOUNTER_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HDCOUNTER_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.HDCOUNTER_Filter.Location = new System.Drawing.Point(665, 15);
+            this.HDCOUNTER_Filter.Name = "HDCOUNTER_Filter";
+            this.HDCOUNTER_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.HDCOUNTER_Filter.Size = new System.Drawing.Size(113, 31);
+            this.HDCOUNTER_Filter.TabIndex = 69;
+            this.HDCOUNTER_Filter.Text = "Filtrar";
+            this.HDCOUNTER_Filter.UseVisualStyleBackColor = false;
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.LightBlue;
-            this.label1.Location = new System.Drawing.Point(515, 17);
+            this.label1.Location = new System.Drawing.Point(351, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 16);
             this.label1.TabIndex = 52;
             this.label1.Text = "Departamento: ";
             // 
-            // HDCOUNTER_ComboBoxDep
+            // HDCOUNTER_CB_orderOption
             // 
-            this.HDCOUNTER_ComboBoxDep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.HDCOUNTER_ComboBoxDep.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.HDCOUNTER_ComboBoxDep.FormattingEnabled = true;
-            this.HDCOUNTER_ComboBoxDep.Items.AddRange(new object[] {
-            "Por departamento",
-            "Por departamento y puesto"});
-            this.HDCOUNTER_ComboBoxDep.Location = new System.Drawing.Point(145, 15);
-            this.HDCOUNTER_ComboBoxDep.Name = "HDCOUNTER_ComboBoxDep";
-            this.HDCOUNTER_ComboBoxDep.Size = new System.Drawing.Size(161, 21);
-            this.HDCOUNTER_ComboBoxDep.TabIndex = 4;
-            this.HDCOUNTER_ComboBoxDep.SelectedIndexChanged += new System.EventHandler(this.HDCOUNTER_ComboBoxDep_SelectedIndexChanged);
+            this.HDCOUNTER_CB_orderOption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
+            this.HDCOUNTER_CB_orderOption.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.HDCOUNTER_CB_orderOption.FormattingEnabled = true;
+            this.HDCOUNTER_CB_orderOption.Items.AddRange(new object[] {
+            "Todos",
+            "Desarrollo",
+            "Contabilidad",
+            "Seguridad",
+            "TI"});
+            this.HDCOUNTER_CB_orderOption.Location = new System.Drawing.Point(470, 18);
+            this.HDCOUNTER_CB_orderOption.Name = "HDCOUNTER_CB_orderOption";
+            this.HDCOUNTER_CB_orderOption.Size = new System.Drawing.Size(174, 21);
+            this.HDCOUNTER_CB_orderOption.TabIndex = 54;
+            this.HDCOUNTER_CB_orderOption.SelectedIndexChanged += new System.EventHandler(this.HDCOUNTER_CB_orderOption_SelectedIndexChanged);
             // 
             // HDCOUNTER_DTP_Date
             // 
             this.HDCOUNTER_DTP_Date.CustomFormat = "MMM/yyyy";
             this.HDCOUNTER_DTP_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(402, 17);
+            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(238, 19);
             this.HDCOUNTER_DTP_Date.Name = "HDCOUNTER_DTP_Date";
             this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(92, 20);
             this.HDCOUNTER_DTP_Date.TabIndex = 6;
@@ -162,58 +181,27 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.LightBlue;
-            this.label5.Location = new System.Drawing.Point(325, 19);
+            this.label5.Location = new System.Drawing.Point(161, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 16);
             this.label5.TabIndex = 5;
             this.label5.Text = "Mes/año:";
             // 
-            // HDCOUNTER_DGV_table
+            // ADMIN_DGV_PuestoCant
             // 
-            this.HDCOUNTER_DGV_table.BackgroundColor = System.Drawing.Color.Black;
-            this.HDCOUNTER_DGV_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.HDCOUNTER_DGV_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.department,
-            this.jobPlace,
-            this.employCountJob});
-            this.HDCOUNTER_DGV_table.GridColor = System.Drawing.SystemColors.MenuHighlight;
-            this.HDCOUNTER_DGV_table.Location = new System.Drawing.Point(29, 172);
-            this.HDCOUNTER_DGV_table.Name = "HDCOUNTER_DGV_table";
-            this.HDCOUNTER_DGV_table.Size = new System.Drawing.Size(898, 497);
-            this.HDCOUNTER_DGV_table.TabIndex = 47;
-            this.HDCOUNTER_DGV_table.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HDCOUNTER_DGV_table_CellContentClick);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.LightBlue;
-            this.button1.Location = new System.Drawing.Point(28, 11);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(125, 27);
-            this.button1.TabIndex = 54;
-            this.button1.Text = "Ordenar por:";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // HDCOUNTER_CB_orderOption
-            // 
-            this.HDCOUNTER_CB_orderOption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.HDCOUNTER_CB_orderOption.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.HDCOUNTER_CB_orderOption.FormattingEnabled = true;
-            this.HDCOUNTER_CB_orderOption.Items.AddRange(new object[] {
-            "Departamento",
-            "Puesto"});
-            this.HDCOUNTER_CB_orderOption.Location = new System.Drawing.Point(634, 16);
-            this.HDCOUNTER_CB_orderOption.Name = "HDCOUNTER_CB_orderOption";
-            this.HDCOUNTER_CB_orderOption.Size = new System.Drawing.Size(174, 21);
-            this.HDCOUNTER_CB_orderOption.TabIndex = 54;
-            this.HDCOUNTER_CB_orderOption.SelectedIndexChanged += new System.EventHandler(this.HDCOUNTER_CB_orderOption_SelectedIndexChanged);
+            this.ADMIN_DGV_PuestoCant.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ADMIN_DGV_PuestoCant.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_PuestoCant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_PuestoCant.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Departamento,
+            this.Puesto,
+            this.CantPuesto});
+            this.ADMIN_DGV_PuestoCant.GridColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ADMIN_DGV_PuestoCant.Location = new System.Drawing.Point(29, 167);
+            this.ADMIN_DGV_PuestoCant.Name = "ADMIN_DGV_PuestoCant";
+            this.ADMIN_DGV_PuestoCant.Size = new System.Drawing.Size(898, 315);
+            this.ADMIN_DGV_PuestoCant.TabIndex = 47;
+            this.ADMIN_DGV_PuestoCant.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HDCOUNTER_DGV_table_CellContentClick);
             // 
             // panel4
             // 
@@ -225,41 +213,62 @@
             this.panel4.Size = new System.Drawing.Size(982, 3);
             this.panel4.TabIndex = 40;
             // 
-            // HDCOUNTER_Filter
+            // ADMIN_DGV_DepartamentoCant
             // 
-            this.HDCOUNTER_Filter.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.HDCOUNTER_Filter.FlatAppearance.BorderSize = 0;
-            this.HDCOUNTER_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HDCOUNTER_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HDCOUNTER_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.HDCOUNTER_Filter.Location = new System.Drawing.Point(829, 13);
-            this.HDCOUNTER_Filter.Name = "HDCOUNTER_Filter";
-            this.HDCOUNTER_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.HDCOUNTER_Filter.Size = new System.Drawing.Size(113, 31);
-            this.HDCOUNTER_Filter.TabIndex = 69;
-            this.HDCOUNTER_Filter.Text = "Filtrar";
-            this.HDCOUNTER_Filter.UseVisualStyleBackColor = false;
+            this.ADMIN_DGV_DepartamentoCant.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ADMIN_DGV_DepartamentoCant.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_DepartamentoCant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_DepartamentoCant.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.ADMIN_DGV_DepartamentoCant.GridColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ADMIN_DGV_DepartamentoCant.Location = new System.Drawing.Point(29, 506);
+            this.ADMIN_DGV_DepartamentoCant.Name = "ADMIN_DGV_DepartamentoCant";
+            this.ADMIN_DGV_DepartamentoCant.Size = new System.Drawing.Size(898, 192);
+            this.ADMIN_DGV_DepartamentoCant.TabIndex = 48;
             // 
-            // department
+            // panel6
             // 
-            this.department.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.department.HeaderText = "Departamento";
-            this.department.Name = "department";
-            this.department.ReadOnly = true;
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel6.Location = new System.Drawing.Point(0, 495);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(982, 3);
+            this.panel6.TabIndex = 40;
             // 
-            // jobPlace
+            // Departamento
             // 
-            this.jobPlace.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.jobPlace.HeaderText = "Puesto";
-            this.jobPlace.Name = "jobPlace";
-            this.jobPlace.ReadOnly = true;
+            this.Departamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Departamento.HeaderText = "Departamento";
+            this.Departamento.Name = "Departamento";
+            this.Departamento.ReadOnly = true;
             // 
-            // employCountJob
+            // Puesto
             // 
-            this.employCountJob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.employCountJob.HeaderText = "Cantidad de empleados";
-            this.employCountJob.Name = "employCountJob";
-            this.employCountJob.ReadOnly = true;
+            this.Puesto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.Name = "Puesto";
+            this.Puesto.ReadOnly = true;
+            // 
+            // CantPuesto
+            // 
+            this.CantPuesto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CantPuesto.HeaderText = "Cantidad de empleados";
+            this.CantPuesto.Name = "CantPuesto";
+            this.CantPuesto.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Departamento";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad de empleados";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // FormHeadCounter
             // 
@@ -267,8 +276,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.ADMIN_DGV_DepartamentoCant);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.HDCOUNTER_DGV_table);
+            this.Controls.Add(this.ADMIN_DGV_PuestoCant);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.HDCOUNTER_Title);
@@ -281,7 +292,8 @@
             this.panel1.ResumeLayout(false);
             this.HDCOUNTER_FilterOptions.ResumeLayout(false);
             this.HDCOUNTER_FilterOptions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HDCOUNTER_DGV_table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,18 +306,20 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox HDCOUNTER_ComboBoxDep;
-        private System.Windows.Forms.DataGridView HDCOUNTER_DGV_table;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_PuestoCant;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel HDCOUNTER_FilterOptions;
         private System.Windows.Forms.DateTimePicker HDCOUNTER_DTP_Date;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox HDCOUNTER_CB_orderOption;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button HDCOUNTER_Filter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn department;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobPlace;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employCountJob;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_DepartamentoCant;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Departamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantPuesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

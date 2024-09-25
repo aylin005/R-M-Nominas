@@ -22,32 +22,29 @@ namespace MAD_AAVD_proyecto
         public FormHeadCounter()
         {
             InitializeComponent();
-            InitializeValues(false);
+            //InitializeValues(false);
         }
 
         private void FormHeadCounter_Load(object sender, EventArgs e) 
         {
-            HDCOUNTER_DGV_table.DefaultCellStyle.ForeColor = Color.Black; //por alguna razon me sale en blanco
-            HDCOUNTER_DGV_table.Rows.Add(00123, "DESARROLLO", "Programador Junior", "30"); //ejemplo
-            HDCOUNTER_DGV_table.Rows.Add(00124, "DESARROLLO", "Programador Senior", "10");
-            HDCOUNTER_DGV_table.Rows.Add(00125, "CONTABILIDAD", "Contador", "JOSÉ ARTURO RODRÍGUEZ CAVAZOS", "24", "$700.00");
-            HDCOUNTER_DGV_table.Rows.Add(00126, "CONTABILIDAD", "Interno", "ELIUD ASAEL SÁNCHEZ MORALES", "19", "$400.00");
+            ADMIN_DGV_PuestoCant.DefaultCellStyle.ForeColor = Color.Black; //por alguna razon me sale en blanco
+            ADMIN_DGV_PuestoCant.Rows.Add("DESARROLLO","Programador Junior", "30"); //ejemplo
+            ADMIN_DGV_PuestoCant.Rows.Add("DESARROLLO", "Programador Senior", "10");
+            ADMIN_DGV_PuestoCant.Rows.Add("CONTABILIDAD", "Contador", "23");
+            ADMIN_DGV_PuestoCant.Rows.Add("CONTABILIDAD", "Ayudante", "10");
+
+            ADMIN_DGV_DepartamentoCant.DefaultCellStyle.ForeColor = Color.Black;
+            ADMIN_DGV_DepartamentoCant.Rows.Add("DESARROLLO", "40");
+            ADMIN_DGV_DepartamentoCant.Rows.Add("CONTABILIDAD", "33");
         }
         private void HDCOUNTER_Title_Click(object sender, EventArgs e) { }
 
         private void HDCOUNTER_ComboBoxDep_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (HDCOUNTER_ComboBoxDep.SelectedIndex == 0)
-            {
-                InitializeValues(false);
-            }
-            else
-            {
-                if (HDCOUNTER_ComboBoxDep.SelectedIndex == 1)
-                {
-                    InitializeValues(true);
-                }
-            }
+            //if (HDCOUNTER_ComboBoxDep.SelectedIndex == 0) //Selecciono solo departamento
+            //    InitializeValues(false);
+            //else if(HDCOUNTER_ComboBoxDep.SelectedIndex == 1) //Selecciono departamento y puestos
+            //        InitializeValues(true);
         }
 
         private void HDCOUNTER_DTP_Date_ValueChanged(object sender, EventArgs e)
@@ -60,11 +57,12 @@ namespace MAD_AAVD_proyecto
         }
 
         //**** F U N C I O N E S   A U X I L I A R E S
-        private void InitializeValues(bool status) //por default solo mostramos dos campos
-        {
-            jobPlace.Visible = status;
-            employCountJob.Visible = status;
-        }
+        //private void InitializeValues(bool status) //por default solo mostramos dos campos
+        //{
+        //    Puesto.Visible = status;
+        //    CantPuesto.Visible = status;
+        //    CantDepartamento.Visible = !status;
+        //}
 
         private void button1_Click(object sender, EventArgs e)
         {
