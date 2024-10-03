@@ -15,6 +15,7 @@ namespace MAD_AAVD_proyecto
         public FormEditarUsuario()
         {
             InitializeComponent();
+            //pollito
         }
     }
 }
