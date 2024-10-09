@@ -62,6 +62,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -77,10 +78,11 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RECIBO_DGV_Percepciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RECIBO_DGV_Deducciones)).BeginInit();
             this.panel5.SuspendLayout();
@@ -179,7 +181,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel2.Location = new System.Drawing.Point(22, 379);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(446, 3);
             this.panel2.TabIndex = 40;
@@ -201,7 +203,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel1.Location = new System.Drawing.Point(494, 379);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(446, 3);
             this.panel1.TabIndex = 41;
@@ -232,7 +234,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel3.Location = new System.Drawing.Point(0, 125);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(982, 3);
             this.panel3.TabIndex = 72;
@@ -423,7 +425,7 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel4.Location = new System.Drawing.Point(0, 583);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(982, 3);
             this.panel4.TabIndex = 41;
@@ -434,7 +436,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.LightBlue;
-            this.label20.Location = new System.Drawing.Point(458, 600);
+            this.label20.Location = new System.Drawing.Point(217, 600);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(48, 19);
             this.label20.TabIndex = 88;
@@ -448,10 +450,22 @@
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label22);
             this.panel5.Location = new System.Drawing.Point(0, 180);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(982, 34);
             this.panel5.TabIndex = 73;
+            // 
+            // label34
+            // 
+            this.label34.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.Color.AliceBlue;
+            this.label34.Location = new System.Drawing.Point(747, 10);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(162, 16);
+            this.label34.TabIndex = 104;
+            this.label34.Text = "01/sep/2024 - 30/sep/2024";
             // 
             // label22
             // 
@@ -628,18 +642,6 @@
             this.label33.TabIndex = 103;
             this.label33.Text = "30/sep/2024 11:00:00 PM";
             // 
-            // label34
-            // 
-            this.label34.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label34.Location = new System.Drawing.Point(747, 10);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(162, 16);
-            this.label34.TabIndex = 104;
-            this.label34.Text = "01/sep/2024 - 30/sep/2024";
-            // 
             // label35
             // 
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -670,11 +672,35 @@
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label37.Location = new System.Drawing.Point(450, 626);
+            this.label37.Location = new System.Drawing.Point(209, 626);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(66, 16);
             this.label37.TabIndex = 106;
             this.label37.Text = "$12,600.00";
+            // 
+            // label21
+            // 
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.LightBlue;
+            this.label21.Location = new System.Drawing.Point(660, 600);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(117, 19);
+            this.label21.TabIndex = 107;
+            this.label21.Text = "Total con letra:";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.AliceBlue;
+            this.label38.Location = new System.Drawing.Point(704, 626);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(28, 16);
+            this.label38.TabIndex = 108;
+            this.label38.Text = "aaa";
             // 
             // FormReciboNomina
             // 
@@ -682,6 +708,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(965, 670);
+            this.Controls.Add(this.label38);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.label36);
@@ -795,5 +823,7 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label38;
     }
 }
