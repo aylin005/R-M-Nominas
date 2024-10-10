@@ -4,8 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace MAD_AAVD_proyecto
 {
+    ///////////VARIABLES GLOBALES////////////
+    public static class Globals
+    {
+        public static bool DB_Cassandra {get;set;}
+        public static bool DB_SQLServer {get;set;}
+    }
     internal static class Program
     {
         /// <summary>
