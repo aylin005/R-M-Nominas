@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static MAD_AAVD_proyecto.Globals; //Agregar a cada archivo para no tener que escribir Globals.
+
 namespace MAD_AAVD_proyecto
 {
     public partial class Login : Form
@@ -19,8 +21,8 @@ namespace MAD_AAVD_proyecto
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Globals.DB_Cassandra = false;
-            Globals.DB_SQLServer = false;
+            DB_Cassandra = false;
+            DB_SQLServer = false;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -40,7 +42,7 @@ namespace MAD_AAVD_proyecto
 
         private void LOGIN_BTN_login_Click(object sender, EventArgs e)
         {
-            if (Globals.DB_Cassandra || Globals.DB_SQLServer) //si se selecciono una base de datos entra
+            if (DB_Cassandra || DB_SQLServer) //si se selecciono una base de datos entra
             {
                 if (LOGIN_TB_username.Text == "admin" && LOGIN_TB_password.Text == "1111") //Para pruebas admin
                 {
@@ -80,15 +82,15 @@ namespace MAD_AAVD_proyecto
 
         private void LOGIN_BTN_Cassandra_Click(object sender, EventArgs e)
         {
-            Globals.DB_Cassandra = true;
-            Globals.DB_SQLServer = false;
+            DB_Cassandra = true;
+            DB_SQLServer = false;
             MessageBox.Show("Seleccionó Cassandra como la base de datos");
         }
 
         private void LOGIN_BTN_Sql_Click(object sender, EventArgs e)
         {
-            Globals.DB_Cassandra = false;
-            Globals.DB_SQLServer = true;
+            DB_Cassandra = false;
+            DB_SQLServer = true;
             MessageBox.Show("Seleccionó SQL Server como la base de datos");
         }
     }
