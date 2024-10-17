@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnlaceCassandra.cs" />
+    <Compile Include="EnlaceDB.cs" />
     <Compile Include="FormEditarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -56,7 +56,7 @@ namespace MAD_AAVD_proyecto
 			
 			tal como lo vimos en clase.
 			*/
-            string cnn = ConfigurationManager.ConnectionStrings["Grupo01"].ToString(); 
+            string cnn = ConfigurationManager.ConnectionStrings["MAD"].ToString(); 
 			// Cambiar Grupo01 por el que ustedes hayan definido en el App.Confif
             _conexion = new SqlConnection(cnn);
             _conexion.Open();
@@ -103,7 +103,7 @@ namespace MAD_AAVD_proyecto
             return isValid;
         }
 
-        public DataTable get_Users()
+        public DataTable get_Puestos()
         {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -112,7 +112,7 @@ namespace MAD_AAVD_proyecto
                 conectar();
 				// Ejemplo de cómo ejecutar un query, 
 				// PERO lo correcto es siempre usar SP para cualquier consulta a la base de datos
-                string qry = "Select Nombre, email, Fecha_modif from Usuarios where Activo = 0;";
+                string qry = "Select * From PUESTOS";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.Text;
 						// Esta opción solo la podrían utilizar si hacen un EXEC al SP concatenando los parámetros.
@@ -213,5 +213,55 @@ namespace MAD_AAVD_proyecto
             return add;
         }
 
+        public bool GestionPuestos(string accion, Int16 noPuesto, string nombrePuesto, float nivelSalarial)
+        {
+            var msg = "";
+            var add = true;
+            try
+            {
+                conectar();
+                string qry = "sp_PUESTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                // Parámetro obligatorio
+                var parameter1 = _comandosql.Parameters.Add("@Action", SqlDbType.Char, 1);
+                parameter1.Value = accion;
+
+                // Solo agregar estos parámetros si la acción es "Insertar"
+                if (accion == "I")
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@NombrePuesto", SqlDbType.VarChar, 40);
+                    parameter2.Value = nombrePuesto ?? (object)DBNull.Value;  // Manejo de nulos
+
+                    var parameter3 = _comandosql.Parameters.Add("@NivelSalarial", SqlDbType.Decimal, 5);
+                    parameter3.Value = nivelSalarial;
+                }
+
+                if(accion =="D")
+                {
+                    var parameter4 = _comandosql.Parameters.Add("@NoPuesto", SqlDbType.SmallInt, 1);
+                    parameter4.Value = noPuesto;
+                }
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return add;
+        }
     }
 }
