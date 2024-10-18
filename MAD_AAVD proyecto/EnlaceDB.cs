@@ -230,7 +230,7 @@ namespace MAD_AAVD_proyecto
                 parameter1.Value = accion;
 
                 // Solo agregar estos parámetros si la acción es "Insertar"
-                if (accion == "I")
+                if (accion == "I" || accion == "U")
                 {
                     var parameter2 = _comandosql.Parameters.Add("@NombrePuesto", SqlDbType.VarChar, 40);
                     parameter2.Value = nombrePuesto ?? (object)DBNull.Value;  // Manejo de nulos
@@ -239,7 +239,7 @@ namespace MAD_AAVD_proyecto
                     parameter3.Value = nivelSalarial;
                 }
 
-                if(accion =="D")
+                if (accion == "D" || accion == "U")
                 {
                     var parameter4 = _comandosql.Parameters.Add("@NoPuesto", SqlDbType.SmallInt, 1);
                     parameter4.Value = noPuesto;
@@ -262,6 +262,48 @@ namespace MAD_AAVD_proyecto
             }
 
             return add;
+        }
+
+        public void GetPuesto(Int16 noPuesto, TextBox txtNombrePuesto, TextBox txtNivelSalarial)
+        {
+            try
+            {
+                conectar(); // Asegúrate de que esta función establezca la conexión a la base de datos
+
+                string qry = "sp_PUESTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                // Parámetros del procedimiento almacenado
+                var parameter1 = _comandosql.Parameters.Add("@Action", SqlDbType.Char, 1);
+                parameter1.Value = 'S';  // Acción 'S' para seleccionar
+                var parameter2 = _comandosql.Parameters.Add("@NoPuesto", SqlDbType.SmallInt);
+                parameter2.Value = noPuesto;
+
+                // Ejecutamos el comando y obtenemos los resultados
+                SqlDataReader reader = _comandosql.ExecuteReader();
+
+                if (reader.Read()) // Si hay datos, llenamos los TextBox
+                {
+                    txtNombrePuesto.Text = reader["nombrePuesto"].ToString();
+                    txtNivelSalarial.Text = reader["nivelSalarial"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para el puesto especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                reader.Close(); // Cerramos el lector
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
         }
     }
 }

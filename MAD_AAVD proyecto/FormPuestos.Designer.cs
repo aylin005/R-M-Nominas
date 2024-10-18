@@ -45,6 +45,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.PUESTOS_BTN_Editar = new System.Windows.Forms.Button();
             this.PUESTOS_BTN_Eliminar = new System.Windows.Forms.Button();
+            this.PUESTOS_LBL_Edit = new System.Windows.Forms.Label();
+            this.PUESTOS_BTN_Limpiar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Puestos)).BeginInit();
             this.panel3.SuspendLayout();
@@ -66,7 +68,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(527, 127);
+            this.label4.Location = new System.Drawing.Point(543, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(262, 29);
             this.label4.TabIndex = 40;
@@ -239,6 +241,7 @@
             this.PUESTOS_BTN_Editar.Text = "Editar";
             this.PUESTOS_BTN_Editar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.PUESTOS_BTN_Editar.UseVisualStyleBackColor = true;
+            this.PUESTOS_BTN_Editar.Click += new System.EventHandler(this.PUESTOS_BTN_Editar_Click);
             // 
             // PUESTOS_BTN_Eliminar
             // 
@@ -257,12 +260,42 @@
             this.PUESTOS_BTN_Eliminar.UseVisualStyleBackColor = true;
             this.PUESTOS_BTN_Eliminar.Click += new System.EventHandler(this.PUESTOS_BTN_Eliminar_Click);
             // 
+            // PUESTOS_LBL_Edit
+            // 
+            this.PUESTOS_LBL_Edit.AutoSize = true;
+            this.PUESTOS_LBL_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PUESTOS_LBL_Edit.ForeColor = System.Drawing.Color.SkyBlue;
+            this.PUESTOS_LBL_Edit.Location = new System.Drawing.Point(579, 189);
+            this.PUESTOS_LBL_Edit.Name = "PUESTOS_LBL_Edit";
+            this.PUESTOS_LBL_Edit.Size = new System.Drawing.Size(165, 18);
+            this.PUESTOS_LBL_Edit.TabIndex = 62;
+            this.PUESTOS_LBL_Edit.Text = "EDITANDO PUESTO";
+            this.PUESTOS_LBL_Edit.Visible = false;
+            // 
+            // PUESTOS_BTN_Limpiar
+            // 
+            this.PUESTOS_BTN_Limpiar.FlatAppearance.BorderSize = 0;
+            this.PUESTOS_BTN_Limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PUESTOS_BTN_Limpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PUESTOS_BTN_Limpiar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.PUESTOS_BTN_Limpiar.Location = new System.Drawing.Point(810, 401);
+            this.PUESTOS_BTN_Limpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PUESTOS_BTN_Limpiar.Name = "PUESTOS_BTN_Limpiar";
+            this.PUESTOS_BTN_Limpiar.Size = new System.Drawing.Size(112, 32);
+            this.PUESTOS_BTN_Limpiar.TabIndex = 63;
+            this.PUESTOS_BTN_Limpiar.Text = "Limpiar";
+            this.PUESTOS_BTN_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PUESTOS_BTN_Limpiar.UseVisualStyleBackColor = true;
+            this.PUESTOS_BTN_Limpiar.Click += new System.EventHandler(this.PUESTOS_BTN_Limpiar_Click);
+            // 
             // FormPuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.PUESTOS_BTN_Limpiar);
+            this.Controls.Add(this.PUESTOS_LBL_Edit);
             this.Controls.Add(this.PUESTOS_BTN_Eliminar);
             this.Controls.Add(this.PUESTOS_BTN_Editar);
             this.Controls.Add(this.ADMIN_DGV_Puestos);
@@ -311,5 +344,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button PUESTOS_BTN_Editar;
         private System.Windows.Forms.Button PUESTOS_BTN_Eliminar;
+        private System.Windows.Forms.Label PUESTOS_LBL_Edit;
+        private System.Windows.Forms.Button PUESTOS_BTN_Limpiar;
     }
 }

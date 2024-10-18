@@ -13,6 +13,10 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormPuestos : Form
     {
+        public bool edit_Puesto = false; //Variable para saber si se esta editando el puesto
+        public Int16 edit_noPuesto = 0; // guarda el noPuesto al que se le va a hacer un update
+
+
         public FormPuestos()
         {
             InitializeComponent();
@@ -50,10 +54,23 @@ namespace MAD_AAVD_proyecto
 
                 var linkDB = new EnlaceDB();
                 bool ok = false;
-                ok = linkDB.GestionPuestos("I", 0, nombrePuesto, nivelPuesto);//noPuesto 0 porq no importa
+
+                if(!edit_Puesto) // si se va a hacer insert
+                    ok = linkDB.GestionPuestos("I", 0, nombrePuesto, nivelPuesto);//noPuesto 0 porq no importa
+                else // si se esta modificando un puesto existente
+                {
+                    ok = linkDB.GestionPuestos("U", edit_noPuesto, nombrePuesto, nivelPuesto);
+                    edit_Puesto = false;
+                    PUESTOS_LBL_Edit.Visible = false;
+                }
+                   
 
                 if (ok)
+                {
                     MessageBox.Show("Se guardo en la BD");
+                    PUESTOS_TB_Nombre.Clear();//Se limpian para que no se pueda agregar un nuevo campo con lo que se edito antes
+                    PUESTOS_TB_Nivel.Clear();
+                }
                 else
                     MessageBox.Show("Error en el guardado");
             }
@@ -78,6 +95,35 @@ namespace MAD_AAVD_proyecto
             {
                 MessageBox.Show("No hay ninguna fila seleccionada.");
             }
+        }
+
+        private void PUESTOS_BTN_Editar_Click(object sender, EventArgs e)
+        {
+            if (ADMIN_DGV_Puestos.CurrentRow != null) //hay fila seleccionada
+            {
+                edit_noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
+  
+                //Cargar los datos a los text box
+                var linkDB = new EnlaceDB();
+                linkDB.GetPuesto(edit_noPuesto, PUESTOS_TB_Nombre, PUESTOS_TB_Nivel);
+                
+                edit_Puesto = true; //para que cuando registre se haga un update en vez de un insert
+                PUESTOS_LBL_Edit.Text = "EDITANDO PUESTO " + edit_noPuesto.ToString();
+                PUESTOS_LBL_Edit.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.");
+            }
+        }
+
+        private void PUESTOS_BTN_Limpiar_Click(object sender, EventArgs e)
+        {
+            PUESTOS_LBL_Edit.Visible = false; //Se deja de mostrar que se esta editando
+            edit_Puesto = false;
+            edit_noPuesto = 0;
+            PUESTOS_TB_Nombre.Clear();
+            PUESTOS_TB_Nivel.Clear();
         }
     }
 }
