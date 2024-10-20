@@ -120,6 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes Cassandra.cs" />
     <Compile Include="EnlaceCassandra.cs" />
     <Compile Include="EnlaceDB.cs" />
     <Compile Include="FormEditarUsuario.cs">

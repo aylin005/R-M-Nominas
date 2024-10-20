@@ -7,6 +7,9 @@ using Cassandra;
 using Cassandra.Mapping;
 using System.Configuration;
 using System.Windows.Forms;
+using System.Data;
+using System.Reflection;
+
 
 namespace MAD_AAVD_proyecto
 {
@@ -19,8 +22,8 @@ namespace MAD_AAVD_proyecto
 
         private static void conectar()
         {
-            _dbServer = ConfigurationManager.AppSettings["localhost"].ToString();
-            _dbKeySpace = ConfigurationManager.AppSettings["keyspace"].ToString();
+            _dbServer = ConfigurationManager.AppSettings["Cluster"].ToString();
+            _dbKeySpace = ConfigurationManager.AppSettings["KeySpace"].ToString();
 
 
             _cluster = Cluster.Builder()
@@ -111,18 +114,41 @@ namespace MAD_AAVD_proyecto
         //    return users.ToList();
         //}
 
-        //public List<HotelesXCiudad> Get_All()
-        //{
-        //    string query = "SELECT campo1, campo2 FROM ejemplo;";
-        //    conectar();
-            
-        //    IMapper mapper = new Mapper(_session);
-        //    IEnumerable<HotelesXCiudad> users = mapper.Fetch<HotelesXCiudad>(query);
+        public List<Puestos> Get_All()
+        {
+            //var statement = new SimpleStatement("SELECT * FROM PUESTOS").SetConsistencyLevel(ConsistencyLevel.One);
+            string query = "SELECT noPuesto, nombrePuesto, nivelSalarial FROM PUESTOS;";
+            conectar();
 
-        //    desconectar();
-        //    return users.ToList();
-            
-        //}
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Puestos> puestos = mapper.Fetch<Puestos>(query);
+
+            desconectar();
+            return puestos.ToList();
+
+        }
+        public DataTable ToDataTable<T>(List<T> items)
+        {
+            DataTable dataTable = new DataTable(typeof(T).Name);
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo prop in Props)
+            {
+                dataTable.Columns.Add(prop.Name);
+            }
+
+            foreach (T item in items)
+            {
+                var values = new object[Props.Length];
+                for (int i = 0; i < Props.Length; i++)
+                {
+                    values[i] = Props[i].GetValue(item, null);
+                }
+                dataTable.Rows.Add(values);
+            }
+            return dataTable;
+        }
 
         // Ejemplo de leer row x row
         //public void GetOne()
@@ -133,7 +159,7 @@ namespace MAD_AAVD_proyecto
 
         //    // Execute a query on a connection synchronously 
         //    var rs = _session.Execute(query);
-            
+
         //    // Iterate through the RowSet 
         //    foreach (var row in rs)
         //    {
@@ -144,21 +170,21 @@ namespace MAD_AAVD_proyecto
 
         //        MessageBox.Show(texto, value.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                /*
-                RowSet rsUsers = session.Execute(qry);
+        /*
+        RowSet rsUsers = session.Execute(qry);
 
-                ////////////////////////////////////////////////
-                var users = new List<UserModel>();
-                foreach (var userRow in rsUsers)
-                {
-                    //users.Add(ReflectionTools.GetSingleEntryDynamicFromReader<UserModel>(userRow));
-                }
+        ////////////////////////////////////////////////
+        var users = new List<UserModel>();
+        foreach (var userRow in rsUsers)
+        {
+            //users.Add(ReflectionTools.GetSingleEntryDynamicFromReader<UserModel>(userRow));
+        }
 
-                foreach (UserModel user in users)
-                {
-                    Console.WriteLine("{0} {1} {2} {3} {4}", user.Id, user.FirstName, user.LastName, user.Country, user.IsActive);
-                }
-                */
+        foreach (UserModel user in users)
+        {
+            Console.WriteLine("{0} {1} {2} {3} {4}", user.Id, user.FirstName, user.LastName, user.Country, user.IsActive);
+        }
+        */
 
         //    }
         //}

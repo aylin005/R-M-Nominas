@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static MAD_AAVD_proyecto.Globals; //Agregar a cada archivo para no tener que escribir Globals.
+using Cassandra;
+using Cassandra.Mapping;
 
 namespace MAD_AAVD_proyecto
 {
@@ -37,17 +39,43 @@ namespace MAD_AAVD_proyecto
             //ADMIN_DGV_Puestos.Rows.Add(003, "Interno", "1.5");
             //ADMIN_DGV_Puestos.Rows.Add(004, "Ayudante", "1.3");
 
-            var linkDB = new EnlaceDB();
-            DataTable TablaPuestos = new DataTable();
-            TablaPuestos = linkDB.get_Puestos();
-            ADMIN_DGV_Puestos.DataSource = TablaPuestos;
+            //////////////////ENLACE SQL//////////////////////
+            if (DB_SQLServer) 
+            {
+                var linkDB = new EnlaceDB();
+                DataTable TablaPuestos = new DataTable();
+                TablaPuestos = linkDB.get_Puestos();
+                ADMIN_DGV_Puestos.DataSource = TablaPuestos;
+            }
+            ////////////////ENLACE CASSANDRA////////////////////
+            else if(DB_Cassandra)
+            {
+                var stopwatch = new System.Diagnostics.Stopwatch();
+
+                // Medir tiempo de la consulta a Cassandra
+                stopwatch.Start();
+                var linkCassandra = new EnlaceCassandra();
+                List<Puestos> tabla = linkCassandra.Get_All();
+                stopwatch.Stop();
+                MessageBox.Show($"Tiempo de consulta a Cassandra: {stopwatch.ElapsedMilliseconds} ms");
+
+                // Reiniciar el cronómetro
+                stopwatch.Restart();
+
+                // Medir tiempo de asignación al DataGridView
+                ADMIN_DGV_Puestos.DataSource = tabla;
+                stopwatch.Stop();
+                MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
+            }
         }
 
         private void PUESTOS_BTN_Registrar_Click(object sender, EventArgs e)
         {
             if (PUESTOS_TB_Nombre.Text.Length == 0 || PUESTOS_TB_Nivel.Text.Length == 0) // si los campos estan vacios
                 MessageBox.Show("Llene todos los campos");
-            else
+
+            ///////////////////////////SQL///////////////////////////////////////////
+            else if(DB_SQLServer)
             {
                 var nombrePuesto = PUESTOS_TB_Nombre.Text;
                 var nivelPuesto = float.Parse(PUESTOS_TB_Nivel.Text);
@@ -74,22 +102,36 @@ namespace MAD_AAVD_proyecto
                 else
                     MessageBox.Show("Error en el guardado");
             }
+            ////////////////////////////////ENLACE CASSANDRA///////////////////////////////
+            else if(DB_Cassandra)
+            {
+
+            }
         }
 
         private void PUESTOS_BTN_Eliminar_Click(object sender, EventArgs e)
         {
             if (ADMIN_DGV_Puestos.CurrentRow != null) //hay fila seleccionada
             {
-                Int16 noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
-                //Eliminar de la base de datos
-                var linkDB = new EnlaceDB();
-                bool ok = false;
-                ok = linkDB.GestionPuestos("D", noPuesto, null, 0.0f);
+                ////////////////////////////////////////////////////////////////////////////////////
+                if(DB_SQLServer)
+                {
+                    Int16 noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
+                    //Eliminar de la base de datos
+                    var linkDB = new EnlaceDB();
+                    bool ok = false;
+                    ok = linkDB.GestionPuestos("D", noPuesto, null, 0.0f);
 
-                if (ok)
-                    MessageBox.Show("Se elimino de la BD");
-                else
-                    MessageBox.Show("Error en el proceso");
+                    if (ok)
+                        MessageBox.Show("Se elimino de la BD");
+                    else
+                        MessageBox.Show("Error en el proceso");
+                }
+                /////////////////////////////////////////////////////////////////////////////////////
+                else if (DB_Cassandra)
+                {
+
+                }
             }
             else
             {
@@ -101,15 +143,24 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Puestos.CurrentRow != null) //hay fila seleccionada
             {
-                edit_noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
-  
-                //Cargar los datos a los text box
-                var linkDB = new EnlaceDB();
-                linkDB.GetPuesto(edit_noPuesto, PUESTOS_TB_Nombre, PUESTOS_TB_Nivel);
-                
-                edit_Puesto = true; //para que cuando registre se haga un update en vez de un insert
-                PUESTOS_LBL_Edit.Text = "EDITANDO PUESTO " + edit_noPuesto.ToString();
-                PUESTOS_LBL_Edit.Visible = true;
+                ////////////////////////////////////////////////////////////////////////
+                if(DB_SQLServer)
+                {
+                    edit_noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
+
+                    //Cargar los datos a los text box
+                    var linkDB = new EnlaceDB();
+                    linkDB.GetPuesto(edit_noPuesto, PUESTOS_TB_Nombre, PUESTOS_TB_Nivel);
+
+                    edit_Puesto = true; //para que cuando registre se haga un update en vez de un insert
+                    PUESTOS_LBL_Edit.Text = "EDITANDO PUESTO " + edit_noPuesto.ToString();
+                    PUESTOS_LBL_Edit.Visible = true;
+                }
+                ///////////////////////////////////////////////////////////////////////
+                else if(DB_Cassandra)
+                {
+
+                }
             }
             else
             {
