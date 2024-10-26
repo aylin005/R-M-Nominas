@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.CONCEPTOSCAT_LBL_Titulo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,13 +38,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CONCEPTOSCAT_TB_Nombre = new System.Windows.Forms.TextBox();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.CONCEPTOSCAT_TB_Cuota = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.CONCEPTOSCAT_TB_Porcentaje = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -52,14 +52,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.LOGIN_BTN_exit = new System.Windows.Forms.Button();
-            this.NoConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONCEPTOSCAT_BTN_Eliminar = new System.Windows.Forms.Button();
+            this.CONCEPTOSCAT_BTN_Editar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Conceptos)).BeginInit();
             this.panel6.SuspendLayout();
@@ -76,16 +70,16 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Catálogo de conceptos";
             // 
-            // label4
+            // CONCEPTOSCAT_LBL_Titulo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(411, 105);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(226, 23);
-            this.label4.TabIndex = 42;
-            this.label4.Text = "Registrar nuevo concepto";
+            this.CONCEPTOSCAT_LBL_Titulo.AutoSize = true;
+            this.CONCEPTOSCAT_LBL_Titulo.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.CONCEPTOSCAT_LBL_Titulo.Location = new System.Drawing.Point(411, 105);
+            this.CONCEPTOSCAT_LBL_Titulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CONCEPTOSCAT_LBL_Titulo.Name = "CONCEPTOSCAT_LBL_Titulo";
+            this.CONCEPTOSCAT_LBL_Titulo.Size = new System.Drawing.Size(226, 23);
+            this.CONCEPTOSCAT_LBL_Titulo.TabIndex = 42;
+            this.CONCEPTOSCAT_LBL_Titulo.Text = "Registrar nuevo concepto";
             // 
             // panel2
             // 
@@ -168,17 +162,17 @@
             this.panel5.Size = new System.Drawing.Size(191, 2);
             this.panel5.TabIndex = 55;
             // 
-            // textBox1
+            // CONCEPTOSCAT_TB_Nombre
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(508, 156);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(192, 20);
-            this.textBox1.TabIndex = 54;
+            this.CONCEPTOSCAT_TB_Nombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.CONCEPTOSCAT_TB_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CONCEPTOSCAT_TB_Nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_TB_Nombre.ForeColor = System.Drawing.SystemColors.Window;
+            this.CONCEPTOSCAT_TB_Nombre.Location = new System.Drawing.Point(508, 156);
+            this.CONCEPTOSCAT_TB_Nombre.Multiline = true;
+            this.CONCEPTOSCAT_TB_Nombre.Name = "CONCEPTOSCAT_TB_Nombre";
+            this.CONCEPTOSCAT_TB_Nombre.Size = new System.Drawing.Size(192, 20);
+            this.CONCEPTOSCAT_TB_Nombre.TabIndex = 54;
             // 
             // comboBox9
             // 
@@ -222,17 +216,17 @@
             this.panel3.Size = new System.Drawing.Size(87, 2);
             this.panel3.TabIndex = 57;
             // 
-            // textBox2
+            // CONCEPTOSCAT_TB_Cuota
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(398, 280);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(88, 20);
-            this.textBox2.TabIndex = 56;
+            this.CONCEPTOSCAT_TB_Cuota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.CONCEPTOSCAT_TB_Cuota.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CONCEPTOSCAT_TB_Cuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_TB_Cuota.ForeColor = System.Drawing.SystemColors.Window;
+            this.CONCEPTOSCAT_TB_Cuota.Location = new System.Drawing.Point(398, 280);
+            this.CONCEPTOSCAT_TB_Cuota.Multiline = true;
+            this.CONCEPTOSCAT_TB_Cuota.Name = "CONCEPTOSCAT_TB_Cuota";
+            this.CONCEPTOSCAT_TB_Cuota.Size = new System.Drawing.Size(88, 20);
+            this.CONCEPTOSCAT_TB_Cuota.TabIndex = 56;
             // 
             // panel4
             // 
@@ -244,18 +238,18 @@
             this.panel4.Size = new System.Drawing.Size(47, 2);
             this.panel4.TabIndex = 59;
             // 
-            // textBox3
+            // CONCEPTOSCAT_TB_Porcentaje
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox3.Location = new System.Drawing.Point(626, 280);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(48, 20);
-            this.textBox3.TabIndex = 58;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CONCEPTOSCAT_TB_Porcentaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.CONCEPTOSCAT_TB_Porcentaje.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CONCEPTOSCAT_TB_Porcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_TB_Porcentaje.ForeColor = System.Drawing.SystemColors.Window;
+            this.CONCEPTOSCAT_TB_Porcentaje.Location = new System.Drawing.Point(626, 280);
+            this.CONCEPTOSCAT_TB_Porcentaje.Multiline = true;
+            this.CONCEPTOSCAT_TB_Porcentaje.Name = "CONCEPTOSCAT_TB_Porcentaje";
+            this.CONCEPTOSCAT_TB_Porcentaje.Size = new System.Drawing.Size(48, 20);
+            this.CONCEPTOSCAT_TB_Porcentaje.TabIndex = 58;
+            this.CONCEPTOSCAT_TB_Porcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
@@ -300,19 +294,13 @@
             this.ADMIN_DGV_Conceptos.BackgroundColor = System.Drawing.Color.Black;
             this.ADMIN_DGV_Conceptos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ADMIN_DGV_Conceptos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ADMIN_DGV_Conceptos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NoConcepto,
-            this.NombreConcepto,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
             this.ADMIN_DGV_Conceptos.GridColor = System.Drawing.Color.DodgerBlue;
             this.ADMIN_DGV_Conceptos.Location = new System.Drawing.Point(95, 434);
             this.ADMIN_DGV_Conceptos.Name = "ADMIN_DGV_Conceptos";
             this.ADMIN_DGV_Conceptos.ReadOnly = true;
             this.ADMIN_DGV_Conceptos.Size = new System.Drawing.Size(765, 264);
             this.ADMIN_DGV_Conceptos.TabIndex = 65;
+            this.ADMIN_DGV_Conceptos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ADMIN_DGV_Conceptos_CellContentClick);
             // 
             // label10
             // 
@@ -346,72 +334,37 @@
             this.panel7.Size = new System.Drawing.Size(983, 3);
             this.panel7.TabIndex = 40;
             // 
-            // button2
+            // CONCEPTOSCAT_BTN_Eliminar
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(865, 662);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 26);
-            this.button2.TabIndex = 67;
-            this.button2.Text = "Eliminar";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.CONCEPTOSCAT_BTN_Eliminar.FlatAppearance.BorderSize = 0;
+            this.CONCEPTOSCAT_BTN_Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONCEPTOSCAT_BTN_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_BTN_Eliminar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.CONCEPTOSCAT_BTN_Eliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CONCEPTOSCAT_BTN_Eliminar.Location = new System.Drawing.Point(865, 662);
+            this.CONCEPTOSCAT_BTN_Eliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.CONCEPTOSCAT_BTN_Eliminar.Name = "CONCEPTOSCAT_BTN_Eliminar";
+            this.CONCEPTOSCAT_BTN_Eliminar.Size = new System.Drawing.Size(96, 26);
+            this.CONCEPTOSCAT_BTN_Eliminar.TabIndex = 67;
+            this.CONCEPTOSCAT_BTN_Eliminar.Text = "Eliminar";
+            this.CONCEPTOSCAT_BTN_Eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CONCEPTOSCAT_BTN_Eliminar.UseVisualStyleBackColor = true;
             // 
-            // LOGIN_BTN_exit
+            // CONCEPTOSCAT_BTN_Editar
             // 
-            this.LOGIN_BTN_exit.FlatAppearance.BorderSize = 0;
-            this.LOGIN_BTN_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LOGIN_BTN_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOGIN_BTN_exit.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(865, 623);
-            this.LOGIN_BTN_exit.Margin = new System.Windows.Forms.Padding(2);
-            this.LOGIN_BTN_exit.Name = "LOGIN_BTN_exit";
-            this.LOGIN_BTN_exit.Size = new System.Drawing.Size(70, 26);
-            this.LOGIN_BTN_exit.TabIndex = 66;
-            this.LOGIN_BTN_exit.Text = "Editar";
-            this.LOGIN_BTN_exit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LOGIN_BTN_exit.UseVisualStyleBackColor = true;
-            // 
-            // NoConcepto
-            // 
-            this.NoConcepto.HeaderText = "No. Concepto";
-            this.NoConcepto.Name = "NoConcepto";
-            this.NoConcepto.ReadOnly = true;
-            // 
-            // NombreConcepto
-            // 
-            this.NombreConcepto.HeaderText = "Nombre";
-            this.NombreConcepto.Name = "NombreConcepto";
-            this.NombreConcepto.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Tipo";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Cuota";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Porcentaje";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Fijo";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.CONCEPTOSCAT_BTN_Editar.FlatAppearance.BorderSize = 0;
+            this.CONCEPTOSCAT_BTN_Editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONCEPTOSCAT_BTN_Editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_BTN_Editar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.CONCEPTOSCAT_BTN_Editar.Location = new System.Drawing.Point(865, 623);
+            this.CONCEPTOSCAT_BTN_Editar.Margin = new System.Windows.Forms.Padding(2);
+            this.CONCEPTOSCAT_BTN_Editar.Name = "CONCEPTOSCAT_BTN_Editar";
+            this.CONCEPTOSCAT_BTN_Editar.Size = new System.Drawing.Size(70, 26);
+            this.CONCEPTOSCAT_BTN_Editar.TabIndex = 66;
+            this.CONCEPTOSCAT_BTN_Editar.Text = "Editar";
+            this.CONCEPTOSCAT_BTN_Editar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CONCEPTOSCAT_BTN_Editar.UseVisualStyleBackColor = true;
+            this.CONCEPTOSCAT_BTN_Editar.Click += new System.EventHandler(this.CONCEPTOSCAT_BTN_Editar_Click);
             // 
             // FormConceptosCatalogo
             // 
@@ -419,8 +372,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.LOGIN_BTN_exit);
+            this.Controls.Add(this.CONCEPTOSCAT_BTN_Eliminar);
+            this.Controls.Add(this.CONCEPTOSCAT_BTN_Editar);
             this.Controls.Add(this.ADMIN_DGV_Conceptos);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel6);
@@ -428,19 +381,19 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.CONCEPTOSCAT_TB_Porcentaje);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.CONCEPTOSCAT_TB_Cuota);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.comboBox9);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CONCEPTOSCAT_TB_Nombre);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.CONCEPTOSCAT_LBL_Titulo);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -459,7 +412,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label CONCEPTOSCAT_LBL_Titulo;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
@@ -468,13 +421,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CONCEPTOSCAT_TB_Nombre;
         private System.Windows.Forms.ComboBox comboBox9;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox CONCEPTOSCAT_TB_Cuota;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox CONCEPTOSCAT_TB_Porcentaje;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
@@ -482,13 +435,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button LOGIN_BTN_exit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoConcepto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreConcepto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Eliminar;
+        private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Editar;
     }
 }
