@@ -86,7 +86,7 @@ namespace MAD_AAVD_proyecto
         private void SM_Conceptos_Catalogo_Click(object sender, EventArgs e)
         {
             HideAllSubMenus();
-            OpenChildForm(new FormConceptosCatalogo());
+            OpenChildForm(new CONCEPTOSCAT_DB_Tipo());
         }
 
         private void SM_Conceptos_Aplicar_Click(object sender, EventArgs e)

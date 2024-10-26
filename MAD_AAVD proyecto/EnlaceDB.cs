@@ -12,6 +12,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MAD_AAVD_proyecto
 {
@@ -291,6 +292,65 @@ namespace MAD_AAVD_proyecto
             return add;
         }
 
+        public bool GestionConceptos(string pOpcion, Int16 pNoConcepto, string pNombre, decimal pCuota, decimal pPorcentaje, bool pTipo, bool pFijo)
+        {
+            var msg = "";
+            var add = true;
+            try
+            {
+                conectar();
+                string qry = "sp_CONCEPTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                // Parámetro obligatorio
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parameter1.Value = pOpcion;
+
+                // Solo agregar estos parámetros si la acción es "Insertar"
+                if (pOpcion == "I" || pOpcion == "U")
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@pNombreConcepto", SqlDbType.VarChar, 50);
+                    parameter2.Value = pNombre ?? (object)DBNull.Value;  // Manejo de nulos
+
+                    var parameter3 = _comandosql.Parameters.Add("@pCuota", SqlDbType.Decimal, 5);
+                    parameter3.Value = pCuota;
+
+                    var parameter4 = _comandosql.Parameters.Add("@pPorcentaje", SqlDbType.Decimal, 5);
+                    parameter4.Value = pPorcentaje;
+
+                    var parameter6 = _comandosql.Parameters.Add("@pFijo", SqlDbType.Bit, 1);
+                    parameter6.Value = pFijo;
+
+                    var parameter7 = _comandosql.Parameters.Add("@pPercepcion", SqlDbType.Bit, 1);
+                    parameter7.Value = pTipo;
+                }
+
+                if (pOpcion == "D" || pOpcion == "U")
+                {
+                    var parameter5 = _comandosql.Parameters.Add("@pNoConcepto", SqlDbType.SmallInt, 1);
+                    parameter5.Value = pNoConcepto;
+                }
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return add;
+        }
+
         //******************* P A R A     S E L E C T S
         public void GetPuesto(Int16 noPuesto, TextBox txtNombrePuesto, TextBox txtNivelSalarial)
         {
@@ -358,6 +418,90 @@ namespace MAD_AAVD_proyecto
                 {
                     txtNombreDepto.Text = reader["nombreDpto"].ToString();
                     txtSueldoBase.Text = reader["sueldoBase"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para el departamento especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                reader.Close(); // Cerramos el lector
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public void GetConcepto(Int16 noConcepto, TextBox txtNombreConcepto, TextBox txtCuota, TextBox txtPorcentaje, ComboBox cbEsFijo, ComboBox cbEsTipo)
+        {
+            try
+            {
+                conectar();
+                string qry = "sp_CONCEPTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                // Parámetros del procedimiento almacenado
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parameter1.Value = 'S';  // Acción 'S' para seleccionar
+                var parameter2 = _comandosql.Parameters.Add("@pNoConcepto", SqlDbType.SmallInt);
+                parameter2.Value = noConcepto;
+
+                // Ejecutamos el comando y obtenemos los resultados
+                SqlDataReader reader = _comandosql.ExecuteReader();
+
+                if (reader.Read()) // Si hay datos, llenamos los TextBox
+                {
+                    txtNombreConcepto.Text = reader["nombreConcepto"].ToString();
+                    string aux = reader["cuota"].ToString();
+                    if (aux == "")
+                    {
+                        txtCuota.Text = "N/A";
+                    }
+                    else
+                    {
+                        txtCuota.Text = aux;
+                    }
+
+                    aux = reader["porcentaje"].ToString();
+                    if (aux == "")
+                    {
+                        txtPorcentaje.Text = "N/A";
+                    }
+                    else
+                    {
+                        float valueAux = float.Parse(aux, CultureInfo.InvariantCulture.NumberFormat);
+                        valueAux *= 100;
+                        txtPorcentaje.Text = valueAux.ToString();
+                    }
+                    //configurar para listbox
+
+                    string esFijo = reader["fijo"].ToString();
+
+
+                    if(esFijo == "true")
+                    {
+                        cbEsFijo.SelectedItem = 0;
+                    }
+                    else
+                    {
+                        cbEsFijo.SelectedItem = 1;
+                    }
+
+                    string esTipo = reader["percepcion"].ToString();
+                    if (esTipo == "true")
+                    {
+                        cbEsTipo.SelectedItem = 0;
+                    }
+                    else
+                    {
+                        cbEsTipo.SelectedItem = 1;
+                    }
                 }
                 else
                 {

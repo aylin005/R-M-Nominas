@@ -1,6 +1,6 @@
 ﻿namespace MAD_AAVD_proyecto
 {
-    partial class FormConceptosCatalogo
+    partial class CONCEPTOSCAT_DB_Tipo
     {
         /// <summary>
         /// Required designer variable.
@@ -39,21 +39,22 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.CONCEPTOSCAT_TB_Nombre = new System.Windows.Forms.TextBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CONCEPTOSCAT_CB_Tipo = new System.Windows.Forms.ComboBox();
+            this.CONCEPTOSCAT_CB_Fijo = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.CONCEPTOSCAT_TB_Cuota = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.CONCEPTOSCAT_TB_Porcentaje = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CONCEPTOSCAT_BTN_Registrar = new System.Windows.Forms.Button();
             this.ADMIN_DGV_Conceptos = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.CONCEPTOSCAT_BTN_Eliminar = new System.Windows.Forms.Button();
             this.CONCEPTOSCAT_BTN_Editar = new System.Windows.Forms.Button();
+            this.CONCEPTOSCAT_BTN_Limpiar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Conceptos)).BeginInit();
             this.panel6.SuspendLayout();
@@ -174,37 +175,37 @@
             this.CONCEPTOSCAT_TB_Nombre.Size = new System.Drawing.Size(192, 20);
             this.CONCEPTOSCAT_TB_Nombre.TabIndex = 54;
             // 
-            // comboBox9
+            // CONCEPTOSCAT_CB_Tipo
             // 
-            this.comboBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.comboBox9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox9.ForeColor = System.Drawing.SystemColors.Window;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Items.AddRange(new object[] {
+            this.CONCEPTOSCAT_CB_Tipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CONCEPTOSCAT_CB_Tipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.CONCEPTOSCAT_CB_Tipo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONCEPTOSCAT_CB_Tipo.ForeColor = System.Drawing.SystemColors.Window;
+            this.CONCEPTOSCAT_CB_Tipo.FormattingEnabled = true;
+            this.CONCEPTOSCAT_CB_Tipo.Items.AddRange(new object[] {
             "Percepción",
             "Deducción"});
-            this.comboBox9.Location = new System.Drawing.Point(375, 222);
-            this.comboBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(133, 21);
-            this.comboBox9.TabIndex = 56;
+            this.CONCEPTOSCAT_CB_Tipo.Location = new System.Drawing.Point(375, 222);
+            this.CONCEPTOSCAT_CB_Tipo.Margin = new System.Windows.Forms.Padding(2);
+            this.CONCEPTOSCAT_CB_Tipo.Name = "CONCEPTOSCAT_CB_Tipo";
+            this.CONCEPTOSCAT_CB_Tipo.Size = new System.Drawing.Size(133, 21);
+            this.CONCEPTOSCAT_CB_Tipo.TabIndex = 56;
             // 
-            // comboBox1
+            // CONCEPTOSCAT_CB_Fijo
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.CONCEPTOSCAT_CB_Fijo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CONCEPTOSCAT_CB_Fijo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.CONCEPTOSCAT_CB_Fijo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONCEPTOSCAT_CB_Fijo.ForeColor = System.Drawing.SystemColors.Window;
+            this.CONCEPTOSCAT_CB_Fijo.FormattingEnabled = true;
+            this.CONCEPTOSCAT_CB_Fijo.Items.AddRange(new object[] {
             "Sí",
             "No"});
-            this.comboBox1.Location = new System.Drawing.Point(622, 221);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(74, 21);
-            this.comboBox1.TabIndex = 57;
+            this.CONCEPTOSCAT_CB_Fijo.Location = new System.Drawing.Point(622, 221);
+            this.CONCEPTOSCAT_CB_Fijo.Margin = new System.Windows.Forms.Padding(2);
+            this.CONCEPTOSCAT_CB_Fijo.Name = "CONCEPTOSCAT_CB_Fijo";
+            this.CONCEPTOSCAT_CB_Fijo.Size = new System.Drawing.Size(74, 21);
+            this.CONCEPTOSCAT_CB_Fijo.TabIndex = 57;
             // 
             // panel3
             // 
@@ -227,6 +228,7 @@
             this.CONCEPTOSCAT_TB_Cuota.Name = "CONCEPTOSCAT_TB_Cuota";
             this.CONCEPTOSCAT_TB_Cuota.Size = new System.Drawing.Size(88, 20);
             this.CONCEPTOSCAT_TB_Cuota.TabIndex = 56;
+            this.CONCEPTOSCAT_TB_Cuota.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel4
             // 
@@ -249,7 +251,7 @@
             this.CONCEPTOSCAT_TB_Porcentaje.Name = "CONCEPTOSCAT_TB_Porcentaje";
             this.CONCEPTOSCAT_TB_Porcentaje.Size = new System.Drawing.Size(48, 20);
             this.CONCEPTOSCAT_TB_Porcentaje.TabIndex = 58;
-            this.CONCEPTOSCAT_TB_Porcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CONCEPTOSCAT_TB_Porcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
@@ -271,20 +273,21 @@
             this.label9.TabIndex = 61;
             this.label9.Text = "%";
             // 
-            // button1
+            // CONCEPTOSCAT_BTN_Registrar
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(458, 331);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 35);
-            this.button1.TabIndex = 62;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.CONCEPTOSCAT_BTN_Registrar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.CONCEPTOSCAT_BTN_Registrar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.CONCEPTOSCAT_BTN_Registrar.FlatAppearance.BorderSize = 0;
+            this.CONCEPTOSCAT_BTN_Registrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONCEPTOSCAT_BTN_Registrar.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_BTN_Registrar.Location = new System.Drawing.Point(458, 331);
+            this.CONCEPTOSCAT_BTN_Registrar.Margin = new System.Windows.Forms.Padding(2);
+            this.CONCEPTOSCAT_BTN_Registrar.Name = "CONCEPTOSCAT_BTN_Registrar";
+            this.CONCEPTOSCAT_BTN_Registrar.Size = new System.Drawing.Size(124, 35);
+            this.CONCEPTOSCAT_BTN_Registrar.TabIndex = 62;
+            this.CONCEPTOSCAT_BTN_Registrar.Text = "Registrar";
+            this.CONCEPTOSCAT_BTN_Registrar.UseVisualStyleBackColor = false;
+            this.CONCEPTOSCAT_BTN_Registrar.Click += new System.EventHandler(this.CONCEPTOSCAT_BTN_Registrar_Click);
             // 
             // ADMIN_DGV_Conceptos
             // 
@@ -349,6 +352,7 @@
             this.CONCEPTOSCAT_BTN_Eliminar.Text = "Eliminar";
             this.CONCEPTOSCAT_BTN_Eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CONCEPTOSCAT_BTN_Eliminar.UseVisualStyleBackColor = true;
+            this.CONCEPTOSCAT_BTN_Eliminar.Click += new System.EventHandler(this.CONCEPTOSCAT_BTN_Eliminar_Click);
             // 
             // CONCEPTOSCAT_BTN_Editar
             // 
@@ -366,26 +370,43 @@
             this.CONCEPTOSCAT_BTN_Editar.UseVisualStyleBackColor = true;
             this.CONCEPTOSCAT_BTN_Editar.Click += new System.EventHandler(this.CONCEPTOSCAT_BTN_Editar_Click);
             // 
-            // FormConceptosCatalogo
+            // CONCEPTOSCAT_BTN_Limpiar
+            // 
+            this.CONCEPTOSCAT_BTN_Limpiar.FlatAppearance.BorderSize = 0;
+            this.CONCEPTOSCAT_BTN_Limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONCEPTOSCAT_BTN_Limpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_BTN_Limpiar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.CONCEPTOSCAT_BTN_Limpiar.Location = new System.Drawing.Point(608, 339);
+            this.CONCEPTOSCAT_BTN_Limpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.CONCEPTOSCAT_BTN_Limpiar.Name = "CONCEPTOSCAT_BTN_Limpiar";
+            this.CONCEPTOSCAT_BTN_Limpiar.Size = new System.Drawing.Size(84, 26);
+            this.CONCEPTOSCAT_BTN_Limpiar.TabIndex = 71;
+            this.CONCEPTOSCAT_BTN_Limpiar.Text = "Limpiar";
+            this.CONCEPTOSCAT_BTN_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CONCEPTOSCAT_BTN_Limpiar.UseVisualStyleBackColor = true;
+            this.CONCEPTOSCAT_BTN_Limpiar.Click += new System.EventHandler(this.CONCEPTOSCAT_BTN_Limpiar_Click);
+            // 
+            // CONCEPTOSCAT_DB_Tipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);
+            this.Controls.Add(this.CONCEPTOSCAT_BTN_Limpiar);
             this.Controls.Add(this.CONCEPTOSCAT_BTN_Eliminar);
             this.Controls.Add(this.CONCEPTOSCAT_BTN_Editar);
             this.Controls.Add(this.ADMIN_DGV_Conceptos);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CONCEPTOSCAT_BTN_Registrar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.CONCEPTOSCAT_TB_Porcentaje);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.CONCEPTOSCAT_TB_Cuota);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.comboBox9);
+            this.Controls.Add(this.CONCEPTOSCAT_CB_Fijo);
+            this.Controls.Add(this.CONCEPTOSCAT_CB_Tipo);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.CONCEPTOSCAT_TB_Nombre);
             this.Controls.Add(this.label7);
@@ -398,7 +419,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormConceptosCatalogo";
+            this.Name = "CONCEPTOSCAT_DB_Tipo";
             this.Text = "FormConceptosCatalogo";
             this.Load += new System.EventHandler(this.FormConceptosCatalogo_Load);
             this.panel2.ResumeLayout(false);
@@ -422,20 +443,21 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox CONCEPTOSCAT_TB_Nombre;
-        private System.Windows.Forms.ComboBox comboBox9;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CONCEPTOSCAT_CB_Tipo;
+        private System.Windows.Forms.ComboBox CONCEPTOSCAT_CB_Fijo;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox CONCEPTOSCAT_TB_Cuota;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox CONCEPTOSCAT_TB_Porcentaje;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Registrar;
         private System.Windows.Forms.DataGridView ADMIN_DGV_Conceptos;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Eliminar;
         private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Editar;
+        private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Limpiar;
     }
 }
