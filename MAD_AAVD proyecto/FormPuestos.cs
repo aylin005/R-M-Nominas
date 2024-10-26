@@ -34,17 +34,12 @@ namespace MAD_AAVD_proyecto
             ADMIN_DGV_Puestos.DefaultCellStyle.ForeColor = Color.White;
             ADMIN_DGV_Puestos.DefaultCellStyle.BackColor = Color.Black;
 
-            //ADMIN_DGV_Puestos.Rows.Add(001, "Programador Junior","2.0"); //ejemplo
-            //ADMIN_DGV_Puestos.Rows.Add(002, "Programador Senior", "4.0");
-            //ADMIN_DGV_Puestos.Rows.Add(003, "Interno", "1.5");
-            //ADMIN_DGV_Puestos.Rows.Add(004, "Ayudante", "1.3");
-
             //////////////////ENLACE SQL//////////////////////
             if (DB_SQLServer) 
             {
                 var linkDB = new EnlaceDB();
                 DataTable TablaPuestos = new DataTable();
-                TablaPuestos = linkDB.get_Puestos();
+                TablaPuestos = linkDB.getTable("PUESTOS");
                 ADMIN_DGV_Puestos.DataSource = TablaPuestos;
             }
             ////////////////ENLACE CASSANDRA////////////////////

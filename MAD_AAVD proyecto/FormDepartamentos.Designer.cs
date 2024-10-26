@@ -38,16 +38,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DEPARTAMENTOS_TB_NombreDepto = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DEPARTAMENTOS_TB_Sueldo = new System.Windows.Forms.TextBox();
+            this.DEPARTAMENTOS_BTN_Registrar = new System.Windows.Forms.Button();
             this.ADMIN_DGV_Departamentos = new System.Windows.Forms.DataGridView();
-            this.NoDepartamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreDepartamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.LOGIN_BTN_exit = new System.Windows.Forms.Button();
+            this.DEPARTAMENTOS_BTN_Eliminar = new System.Windows.Forms.Button();
+            this.DEPARTAMENTOS_BTN_Editar = new System.Windows.Forms.Button();
+            this.DEPARTAMENTOS_BTN_Limpiar = new System.Windows.Forms.Button();
+            this.DEPARTAMENTOS_LBL_Edit = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Departamentos)).BeginInit();
@@ -160,17 +160,17 @@
             this.panel5.Size = new System.Drawing.Size(218, 2);
             this.panel5.TabIndex = 43;
             // 
-            // textBox1
+            // DEPARTAMENTOS_TB_NombreDepto
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(520, 184);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 20);
-            this.textBox1.TabIndex = 42;
+            this.DEPARTAMENTOS_TB_NombreDepto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.DEPARTAMENTOS_TB_NombreDepto.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DEPARTAMENTOS_TB_NombreDepto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_TB_NombreDepto.ForeColor = System.Drawing.SystemColors.Window;
+            this.DEPARTAMENTOS_TB_NombreDepto.Location = new System.Drawing.Point(520, 184);
+            this.DEPARTAMENTOS_TB_NombreDepto.Multiline = true;
+            this.DEPARTAMENTOS_TB_NombreDepto.Name = "DEPARTAMENTOS_TB_NombreDepto";
+            this.DEPARTAMENTOS_TB_NombreDepto.Size = new System.Drawing.Size(219, 20);
+            this.DEPARTAMENTOS_TB_NombreDepto.TabIndex = 42;
             // 
             // panel6
             // 
@@ -182,63 +182,50 @@
             this.panel6.Size = new System.Drawing.Size(71, 2);
             this.panel6.TabIndex = 45;
             // 
-            // textBox2
+            // DEPARTAMENTOS_TB_Sueldo
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(521, 239);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(72, 20);
-            this.textBox2.TabIndex = 44;
+            this.DEPARTAMENTOS_TB_Sueldo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.DEPARTAMENTOS_TB_Sueldo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DEPARTAMENTOS_TB_Sueldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_TB_Sueldo.ForeColor = System.Drawing.SystemColors.Window;
+            this.DEPARTAMENTOS_TB_Sueldo.Location = new System.Drawing.Point(521, 239);
+            this.DEPARTAMENTOS_TB_Sueldo.Multiline = true;
+            this.DEPARTAMENTOS_TB_Sueldo.Name = "DEPARTAMENTOS_TB_Sueldo";
+            this.DEPARTAMENTOS_TB_Sueldo.Size = new System.Drawing.Size(72, 20);
+            this.DEPARTAMENTOS_TB_Sueldo.TabIndex = 44;
             // 
-            // button1
+            // DEPARTAMENTOS_BTN_Registrar
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(445, 318);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 35);
-            this.button1.TabIndex = 47;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.DEPARTAMENTOS_BTN_Registrar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.DEPARTAMENTOS_BTN_Registrar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.DEPARTAMENTOS_BTN_Registrar.FlatAppearance.BorderSize = 0;
+            this.DEPARTAMENTOS_BTN_Registrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DEPARTAMENTOS_BTN_Registrar.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_BTN_Registrar.Location = new System.Drawing.Point(445, 317);
+            this.DEPARTAMENTOS_BTN_Registrar.Margin = new System.Windows.Forms.Padding(2);
+            this.DEPARTAMENTOS_BTN_Registrar.Name = "DEPARTAMENTOS_BTN_Registrar";
+            this.DEPARTAMENTOS_BTN_Registrar.Size = new System.Drawing.Size(124, 35);
+            this.DEPARTAMENTOS_BTN_Registrar.TabIndex = 47;
+            this.DEPARTAMENTOS_BTN_Registrar.Text = "Registrar";
+            this.DEPARTAMENTOS_BTN_Registrar.UseVisualStyleBackColor = false;
+            this.DEPARTAMENTOS_BTN_Registrar.Click += new System.EventHandler(this.DEPARTAMENTOS_BTN_Registrar_Click);
             // 
             // ADMIN_DGV_Departamentos
             // 
             this.ADMIN_DGV_Departamentos.AllowUserToAddRows = false;
             this.ADMIN_DGV_Departamentos.AllowUserToDeleteRows = false;
+            this.ADMIN_DGV_Departamentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ADMIN_DGV_Departamentos.BackgroundColor = System.Drawing.Color.Black;
             this.ADMIN_DGV_Departamentos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ADMIN_DGV_Departamentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ADMIN_DGV_Departamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ADMIN_DGV_Departamentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NoDepartamento,
-            this.NombreDepartamento});
             this.ADMIN_DGV_Departamentos.GridColor = System.Drawing.Color.DodgerBlue;
-            this.ADMIN_DGV_Departamentos.Location = new System.Drawing.Point(384, 432);
+            this.ADMIN_DGV_Departamentos.Location = new System.Drawing.Point(212, 436);
             this.ADMIN_DGV_Departamentos.Name = "ADMIN_DGV_Departamentos";
             this.ADMIN_DGV_Departamentos.ReadOnly = true;
-            this.ADMIN_DGV_Departamentos.Size = new System.Drawing.Size(242, 264);
+            this.ADMIN_DGV_Departamentos.Size = new System.Drawing.Size(580, 264);
             this.ADMIN_DGV_Departamentos.TabIndex = 48;
             this.ADMIN_DGV_Departamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // NoDepartamento
-            // 
-            this.NoDepartamento.HeaderText = "No.";
-            this.NoDepartamento.Name = "NoDepartamento";
-            this.NoDepartamento.ReadOnly = true;
-            // 
-            // NombreDepartamento
-            // 
-            this.NombreDepartamento.HeaderText = "Nombre";
-            this.NombreDepartamento.Name = "NombreDepartamento";
-            this.NombreDepartamento.ReadOnly = true;
             // 
             // label5
             // 
@@ -250,36 +237,68 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "$";
             // 
-            // button2
+            // DEPARTAMENTOS_BTN_Eliminar
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(643, 670);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 26);
-            this.button2.TabIndex = 69;
-            this.button2.Text = "Eliminar";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.DEPARTAMENTOS_BTN_Eliminar.FlatAppearance.BorderSize = 0;
+            this.DEPARTAMENTOS_BTN_Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DEPARTAMENTOS_BTN_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_BTN_Eliminar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.DEPARTAMENTOS_BTN_Eliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.DEPARTAMENTOS_BTN_Eliminar.Location = new System.Drawing.Point(810, 673);
+            this.DEPARTAMENTOS_BTN_Eliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.DEPARTAMENTOS_BTN_Eliminar.Name = "DEPARTAMENTOS_BTN_Eliminar";
+            this.DEPARTAMENTOS_BTN_Eliminar.Size = new System.Drawing.Size(96, 26);
+            this.DEPARTAMENTOS_BTN_Eliminar.TabIndex = 69;
+            this.DEPARTAMENTOS_BTN_Eliminar.Text = "Eliminar";
+            this.DEPARTAMENTOS_BTN_Eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DEPARTAMENTOS_BTN_Eliminar.UseVisualStyleBackColor = true;
+            this.DEPARTAMENTOS_BTN_Eliminar.Click += new System.EventHandler(this.DEPARTAMENTOS_BTN_Eliminar_Click);
             // 
-            // LOGIN_BTN_exit
+            // DEPARTAMENTOS_BTN_Editar
             // 
-            this.LOGIN_BTN_exit.FlatAppearance.BorderSize = 0;
-            this.LOGIN_BTN_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LOGIN_BTN_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOGIN_BTN_exit.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.LOGIN_BTN_exit.Location = new System.Drawing.Point(643, 631);
-            this.LOGIN_BTN_exit.Margin = new System.Windows.Forms.Padding(2);
-            this.LOGIN_BTN_exit.Name = "LOGIN_BTN_exit";
-            this.LOGIN_BTN_exit.Size = new System.Drawing.Size(70, 26);
-            this.LOGIN_BTN_exit.TabIndex = 68;
-            this.LOGIN_BTN_exit.Text = "Editar";
-            this.LOGIN_BTN_exit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LOGIN_BTN_exit.UseVisualStyleBackColor = true;
+            this.DEPARTAMENTOS_BTN_Editar.FlatAppearance.BorderSize = 0;
+            this.DEPARTAMENTOS_BTN_Editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DEPARTAMENTOS_BTN_Editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_BTN_Editar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.DEPARTAMENTOS_BTN_Editar.Location = new System.Drawing.Point(810, 630);
+            this.DEPARTAMENTOS_BTN_Editar.Margin = new System.Windows.Forms.Padding(2);
+            this.DEPARTAMENTOS_BTN_Editar.Name = "DEPARTAMENTOS_BTN_Editar";
+            this.DEPARTAMENTOS_BTN_Editar.Size = new System.Drawing.Size(70, 26);
+            this.DEPARTAMENTOS_BTN_Editar.TabIndex = 68;
+            this.DEPARTAMENTOS_BTN_Editar.Text = "Editar";
+            this.DEPARTAMENTOS_BTN_Editar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DEPARTAMENTOS_BTN_Editar.UseVisualStyleBackColor = true;
+            this.DEPARTAMENTOS_BTN_Editar.Click += new System.EventHandler(this.DEPARTAMENTOS_BTN_Editar_Click);
+            // 
+            // DEPARTAMENTOS_BTN_Limpiar
+            // 
+            this.DEPARTAMENTOS_BTN_Limpiar.FlatAppearance.BorderSize = 0;
+            this.DEPARTAMENTOS_BTN_Limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DEPARTAMENTOS_BTN_Limpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_BTN_Limpiar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.DEPARTAMENTOS_BTN_Limpiar.Location = new System.Drawing.Point(608, 326);
+            this.DEPARTAMENTOS_BTN_Limpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.DEPARTAMENTOS_BTN_Limpiar.Name = "DEPARTAMENTOS_BTN_Limpiar";
+            this.DEPARTAMENTOS_BTN_Limpiar.Size = new System.Drawing.Size(84, 26);
+            this.DEPARTAMENTOS_BTN_Limpiar.TabIndex = 70;
+            this.DEPARTAMENTOS_BTN_Limpiar.Text = "Limpiar";
+            this.DEPARTAMENTOS_BTN_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DEPARTAMENTOS_BTN_Limpiar.UseVisualStyleBackColor = true;
+            this.DEPARTAMENTOS_BTN_Limpiar.Click += new System.EventHandler(this.DEPARTAMENTOS_BTN_Limpiar_Click);
+            // 
+            // DEPARTAMENTOS_LBL_Edit
+            // 
+            this.DEPARTAMENTOS_LBL_Edit.AutoSize = true;
+            this.DEPARTAMENTOS_LBL_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_LBL_Edit.ForeColor = System.Drawing.Color.SkyBlue;
+            this.DEPARTAMENTOS_LBL_Edit.Location = new System.Drawing.Point(418, 150);
+            this.DEPARTAMENTOS_LBL_Edit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DEPARTAMENTOS_LBL_Edit.Name = "DEPARTAMENTOS_LBL_Edit";
+            this.DEPARTAMENTOS_LBL_Edit.Size = new System.Drawing.Size(191, 15);
+            this.DEPARTAMENTOS_LBL_Edit.TabIndex = 71;
+            this.DEPARTAMENTOS_LBL_Edit.Text = "EDITANDO DEPARTAMENTO";
+            this.DEPARTAMENTOS_LBL_Edit.Visible = false;
+            this.DEPARTAMENTOS_LBL_Edit.Click += new System.EventHandler(this.PUESTOS_LBL_Edit_Click);
             // 
             // FormDepartamentos
             // 
@@ -287,15 +306,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.LOGIN_BTN_exit);
+            this.Controls.Add(this.DEPARTAMENTOS_LBL_Edit);
+            this.Controls.Add(this.DEPARTAMENTOS_BTN_Limpiar);
+            this.Controls.Add(this.DEPARTAMENTOS_BTN_Eliminar);
+            this.Controls.Add(this.DEPARTAMENTOS_BTN_Editar);
             this.Controls.Add(this.ADMIN_DGV_Departamentos);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DEPARTAMENTOS_BTN_Registrar);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.DEPARTAMENTOS_TB_Sueldo);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DEPARTAMENTOS_TB_NombreDepto);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel2);
@@ -329,15 +350,15 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox DEPARTAMENTOS_TB_NombreDepto;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox DEPARTAMENTOS_TB_Sueldo;
+        private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Registrar;
         private System.Windows.Forms.DataGridView ADMIN_DGV_Departamentos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoDepartamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreDepartamento;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button LOGIN_BTN_exit;
+        private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Eliminar;
+        private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Editar;
+        private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Limpiar;
+        private System.Windows.Forms.Label DEPARTAMENTOS_LBL_Edit;
     }
 }

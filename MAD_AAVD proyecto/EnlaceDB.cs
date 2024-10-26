@@ -1,17 +1,7 @@
 ﻿/*
 Autor: Alejandro Villarreal
-
 LMAD
-
-PARA EL PROYECTO ES OBLIGATORIO EL USO DE ESTA CLASE, 
-EN EL SENTIDO DE QUE LOS DATOS DE CONEXION AL SERVIDOR ESTAN DEFINIDOS EN EL App.Config
-Y NO TENER ESOS DATOS EN CODIGO DURO DEL PROYECTO.
-
-NO SE PERMITE HARDCODE.
-
-LOS MÉTODOS QUE SE DEFINEN EN ESTA CLASE SON EJEMPLOS, PARA QUE SE BASEN Y USTEDES HAGAN LOS SUYOS PROPIOS
-Y DEFINAN Y PROGRAMEN TODOS LOS MÉTODOS QUE SEAN NECESARIOS PARA SU PROYECTO.
-
+PARA EL PROYECTO ES OBLIGATORIO EL USO DE ESTA CLASE, EN EL SENTIDO DE QUE LOS DATOS DE CONEXION AL SERVIDOR ESTAN DEFINIDOS EN EL App.Config Y NO TENER ESOS DATOS EN CODIGO DURO DEL PROYECTO.
 */
 using System;
 using System.Collections.Generic;
@@ -23,10 +13,6 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
 
-
-/*
-Se tiene que cambiar el namespace para el que usen en su proyecto
-*/
 namespace MAD_AAVD_proyecto
 {
     public class EnlaceDB
@@ -57,7 +43,6 @@ namespace MAD_AAVD_proyecto
 			tal como lo vimos en clase.
 			*/
             string cnn = ConfigurationManager.ConnectionStrings["MAD"].ToString(); 
-			// Cambiar Grupo01 por el que ustedes hayan definido en el App.Confif
             _conexion = new SqlConnection(cnn);
             _conexion.Open();
         }
@@ -103,29 +88,58 @@ namespace MAD_AAVD_proyecto
             return isValid;
         }
 
-        public DataTable get_Puestos()
+        //    public DataTable get_Puestos()
+        //    {
+        //        var msg = "";
+        //        DataTable tabla = new DataTable();
+        //        try
+        //        {
+        //            conectar();
+        //// Ejemplo de cómo ejecutar un query, 
+        //// PERO lo correcto es siempre usar SP para cualquier consulta a la base de datos
+        //            string qry = "Select * From PUESTOS";
+        //            _comandosql = new SqlCommand(qry, _conexion);
+        //            _comandosql.CommandType = CommandType.Text;
+        //		// Esta opción solo la podrían utilizar si hacen un EXEC al SP concatenando los parámetros.
+        //            _comandosql.CommandTimeout = 1200;
+
+        //            _adaptador.SelectCommand = _comandosql;
+        //            _adaptador.Fill(tabla);
+
+        //        }
+        //        catch (SqlException e)
+        //        {
+        //            msg = "Excepción de base de datos: \n";
+        //            msg += e.Message;
+        //            MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        //        }
+        //        finally
+        //        {
+        //            desconectar();
+        //        }
+
+        //        return tabla;
+        //    }
+        public DataTable getTable(string pTableName) // SOLO PARA MOSTRAR LOS DATOS REGISTRADOS -> es decir, si el usuario no ha filtrado nada
         {
-            var msg = "";
             DataTable tabla = new DataTable();
+            string msg = "Se han obtenido los datos de la tabla";
             try
             {
                 conectar();
-				// Ejemplo de cómo ejecutar un query, 
-				// PERO lo correcto es siempre usar SP para cualquier consulta a la base de datos
-                string qry = "Select * From PUESTOS";
+                string qry = "SELECT * FROM " + pTableName;
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.Text;
-						// Esta opción solo la podrían utilizar si hacen un EXEC al SP concatenando los parámetros.
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
 
+                MessageBox.Show(msg, "(!)", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException e)
             {
-                msg = "Excepción de base de datos: \n";
-                msg += e.Message;
+                msg = "(!) Hubo un error en la base de datos: \n" + e.Message;
                 MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             finally
@@ -136,8 +150,9 @@ namespace MAD_AAVD_proyecto
             return tabla;
         }
 
-		// Ejemplo de método para recibir una consulta en forma de tabla
-		// Cuando el SP ejecutará un SELECT
+
+        // Ejemplo de método para recibir una consulta en forma de tabla
+        // Cuando el SP ejecutará un SELECT
         public DataTable get_Deptos(string opc)
         {
             var msg = "";
@@ -172,47 +187,9 @@ namespace MAD_AAVD_proyecto
 
             return tabla;
         }
-		
-		// Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
-		// solo que ejecute ya sea un INSERT, UPDATE o DELETE
-        public bool Add_Deptos(string opc, string depto)
-        {
-            var msg = "";
-            var add = true;
-            try
-            {
-                conectar();
-                string qry = "sp_Gestiona_Deptos";
-                _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
-                _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@Opc", SqlDbType.Char, 1);
-                parametro1.Value = opc;
-                var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 20);
-                parametro2.Value = depto;
-
-                _adaptador.InsertCommand = _comandosql;
-				// También se tienen las propiedades del adaptador: UpdateCommand  y DeleteCommand
-                
-                _comandosql.ExecuteNonQuery();
-
-            }
-            catch (SqlException e)
-            {
-                add = false;
-                msg = "Excepción de base de datos: \n";
-                msg += e.Message;
-                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-            finally
-            {
-                desconectar();                
-            }
-
-            return add;
-        }
-
+        // Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
+        // solo que ejecute ya sea un INSERT, UPDATE o DELETE
         public bool GestionPuestos(string accion, Int16 noPuesto, string nombrePuesto, float nivelSalarial)
         {
             var msg = "";
@@ -264,6 +241,57 @@ namespace MAD_AAVD_proyecto
             return add;
         }
 
+        public bool GestionDeptos(string pOpcion, Int16 pNoDepto, string pNombreDepto, decimal pSueldoBase)
+        {
+            var msg = "";
+            var add = true;
+            try
+            {
+                conectar();
+                string qry = "sp_DEPARTAMENTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                // Parámetro obligatorio
+                var parameter1 = _comandosql.Parameters.Add("@Action", SqlDbType.Char, 1);
+                parameter1.Value = pOpcion;
+
+                // Solo agregar estos parámetros si la acción es "Insertar"
+                if (pOpcion == "I" || pOpcion == "U")
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@NombreDepto", SqlDbType.VarChar, 40);
+                    parameter2.Value = pNombreDepto ?? (object)DBNull.Value;  // Manejo de nulos
+
+                    var parameter3 = _comandosql.Parameters.Add("@SueldoBase", SqlDbType.Decimal, 5);
+                    parameter3.Value = pSueldoBase;
+                }
+
+                if (pOpcion == "D" || pOpcion == "U")
+                {
+                    var parameter4 = _comandosql.Parameters.Add("@NoDepto", SqlDbType.SmallInt, 1);
+                    parameter4.Value = pNoDepto;
+                }
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return add;
+        }
+
+        //******************* P A R A     S E L E C T S
         public void GetPuesto(Int16 noPuesto, TextBox txtNombrePuesto, TextBox txtNivelSalarial)
         {
             try
@@ -292,6 +320,48 @@ namespace MAD_AAVD_proyecto
                 else
                 {
                     MessageBox.Show("No se encontraron datos para el puesto especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                reader.Close(); // Cerramos el lector
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public void GetDepto(Int16 noDepto, TextBox txtNombreDepto, TextBox txtSueldoBase)
+        {
+            try
+            {
+                conectar(); // Asegúrate de que esta función establezca la conexión a la base de datos
+
+                string qry = "sp_DEPARTAMENTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                // Parámetros del procedimiento almacenado
+                var parameter1 = _comandosql.Parameters.Add("@Action", SqlDbType.Char, 1);
+                parameter1.Value = 'S';  // Acción 'S' para seleccionar
+                var parameter2 = _comandosql.Parameters.Add("@NoDepto", SqlDbType.SmallInt);
+                parameter2.Value = noDepto;
+
+                // Ejecutamos el comando y obtenemos los resultados
+                SqlDataReader reader = _comandosql.ExecuteReader();
+
+                if (reader.Read()) // Si hay datos, llenamos los TextBox
+                {
+                    txtNombreDepto.Text = reader["nombreDpto"].ToString();
+                    txtSueldoBase.Text = reader["sueldoBase"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para el departamento especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 reader.Close(); // Cerramos el lector
