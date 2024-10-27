@@ -81,7 +81,7 @@ namespace MAD_AAVD_proyecto
                     //Cargar los datos a los text box
                     var linkDB = new EnlaceDB();
                     //saber que concepto selecciono
-                    linkDB.GetConcepto(edit_noConcepto, CONCEPTOSCAT_TB_Nombre, CONCEPTOSCAT_TB_Cuota, CONCEPTOSCAT_TB_Porcentaje, CONCEPTOSCAT_CB_Fijo, CONCEPTOSCAT_CB_Tipo); //cambiar
+                    linkDB.GetConceptos(edit_noConcepto, CONCEPTOSCAT_TB_Nombre, CONCEPTOSCAT_TB_Cuota, CONCEPTOSCAT_TB_Porcentaje, CONCEPTOSCAT_CB_Fijo, CONCEPTOSCAT_CB_Tipo); //cambiar
 
                     edit_Concepto = true; //para que cuando registre se haga un update en vez de un insert
                     CONCEPTOSCAT_LBL_Titulo.Text = "Edición de conceptos ";
@@ -109,10 +109,13 @@ namespace MAD_AAVD_proyecto
                     //Eliminar de la base de datos
                     var linkDB = new EnlaceDB();
                     bool ok = false;
-                    ok = linkDB.GestionPuestos("D", noConcepto, null, 0.0f);
+                    ok = linkDB.GestionConceptos("D", noConcepto, "", 0.0M, 0.0M, false,false);
 
                     if (ok)
+                    {
                         MessageBox.Show("Se elimino de la BD");
+                    Recharge();
+                    }
                     else
                         MessageBox.Show("Error en el proceso");
                 }
@@ -181,8 +184,8 @@ namespace MAD_AAVD_proyecto
                     if (ok)
                     {
                         MessageBox.Show("Se guardo en la BD");
-                        Recharge();
                         Clean();
+                        Recharge();
                     }
                     else
                         MessageBox.Show("Error en el guardado");
@@ -250,16 +253,6 @@ namespace MAD_AAVD_proyecto
             return true;
         }
 
-        private bool CheckValues(string pTexto)
-        {
-            if (pTexto != "N/A")
-            {
-                return false;
-            }
-            string patron = @"^[0-9]+([.,][0-9]+)?$"; // Solo permite dígitos y un punto/coma
-            return Regex.IsMatch(pTexto, patron);
-        }
-
         private void Clean()
         {
             edit_Concepto = false;
@@ -269,6 +262,7 @@ namespace MAD_AAVD_proyecto
             CONCEPTOSCAT_TB_Porcentaje.Clear();
             CONCEPTOSCAT_CB_Tipo.SelectedIndex = 0;
             CONCEPTOSCAT_CB_Fijo.SelectedIndex = 0;
+
         }
 
         private void ADMIN_DGV_Conceptos_CellContentClick(object sender, DataGridViewCellEventArgs e)

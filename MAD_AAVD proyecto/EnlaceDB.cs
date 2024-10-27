@@ -315,10 +315,16 @@ namespace MAD_AAVD_proyecto
                     parameter2.Value = pNombre ?? (object)DBNull.Value;  // Manejo de nulos
 
                     var parameter3 = _comandosql.Parameters.Add("@pCuota", SqlDbType.Decimal, 5);
-                    parameter3.Value = pCuota;
+                    if (pCuota == 0)
+                        parameter3.Value = DBNull.Value;
+                    else
+                        parameter3.Value = pCuota;
 
                     var parameter4 = _comandosql.Parameters.Add("@pPorcentaje", SqlDbType.Decimal, 5);
-                    parameter4.Value = pPorcentaje;
+                    if (pPorcentaje == 0)
+                        parameter4.Value = DBNull.Value;
+                    else
+                        parameter4.Value = pPorcentaje;
 
                     var parameter6 = _comandosql.Parameters.Add("@pFijo", SqlDbType.Bit, 1);
                     parameter6.Value = pFijo;
@@ -436,7 +442,7 @@ namespace MAD_AAVD_proyecto
             }
         }
 
-        public void GetConcepto(Int16 noConcepto, TextBox txtNombreConcepto, TextBox txtCuota, TextBox txtPorcentaje, ComboBox cbEsFijo, ComboBox cbEsTipo)
+        public void GetConceptos(Int16 noConcepto, TextBox txtNombreConcepto, TextBox txtCuota, TextBox txtPorcentaje, ComboBox cbEsFijo, ComboBox cbEsTipo)
         {
             try
             {
@@ -446,69 +452,43 @@ namespace MAD_AAVD_proyecto
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                // Parámetros del procedimiento almacenado
                 var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
-                parameter1.Value = 'S';  // Acción 'S' para seleccionar
+                parameter1.Value = 'S';  
                 var parameter2 = _comandosql.Parameters.Add("@pNoConcepto", SqlDbType.SmallInt);
                 parameter2.Value = noConcepto;
 
-                // Ejecutamos el comando y obtenemos los resultados
                 SqlDataReader reader = _comandosql.ExecuteReader();
 
-                if (reader.Read()) // Si hay datos, llenamos los TextBox
+                if (reader.Read()) 
                 {
                     txtNombreConcepto.Text = reader["nombreConcepto"].ToString();
-                    string aux = reader["cuota"].ToString();
-                    if (aux == "")
-                    {
+                                        ////////
+                    bool esFijo = Convert.ToBoolean(reader["fijo"]);
+                    if (esFijo)
+                        cbEsFijo.SelectedIndex = 0;
+                    else
+                        cbEsFijo.SelectedIndex = 1;
+                    if (reader["cuota"] == DBNull.Value) //si es nulo
                         txtCuota.Text = "N/A";
-                    }
                     else
-                    {
-                        txtCuota.Text = aux;
-                    }
-
-                    aux = reader["porcentaje"].ToString();
-                    if (aux == "")
-                    {
+                        txtCuota.Text = reader["cuota"].ToString();
+                    ////////
+                    if (reader["porcentaje"] == DBNull.Value) //si es nulo
                         txtPorcentaje.Text = "N/A";
-                    }
                     else
-                    {
-                        float valueAux = float.Parse(aux, CultureInfo.InvariantCulture.NumberFormat);
-                        valueAux *= 100;
-                        txtPorcentaje.Text = valueAux.ToString();
-                    }
-                    //configurar para listbox
-
-                    string esFijo = reader["fijo"].ToString();
-
-
-                    if(esFijo == "true")
-                    {
-                        cbEsFijo.SelectedItem = 0;
-                    }
+                        txtPorcentaje.Text = (float.Parse(reader["porcentaje"].ToString(), CultureInfo.InvariantCulture) * 100).ToString(); //se traduce a numeros entendibless
+                    ////////
+                    bool esTipo = Convert.ToBoolean(reader["percepcion"]);
+                    if (esTipo)
+                        cbEsTipo.SelectedIndex = 0;
                     else
-                    {
-                        cbEsFijo.SelectedItem = 1;
-                    }
-
-                    string esTipo = reader["percepcion"].ToString();
-                    if (esTipo == "true")
-                    {
-                        cbEsTipo.SelectedItem = 0;
-                    }
-                    else
-                    {
-                        cbEsTipo.SelectedItem = 1;
-                    }
+                        cbEsTipo.SelectedIndex = 1;
                 }
                 else
                 {
-                    MessageBox.Show("No se encontraron datos para el departamento especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se encontraron datos para el concepto especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-                reader.Close(); // Cerramos el lector
+                reader.Close();
             }
             catch (SqlException ex)
             {
@@ -519,5 +499,6 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
+
     }
 }
