@@ -33,6 +33,8 @@ namespace MAD_AAVD_proyecto
             }
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         private static void conectar()
         {
             /*
@@ -47,11 +49,14 @@ namespace MAD_AAVD_proyecto
             _conexion = new SqlConnection(cnn);
             _conexion.Open();
         }
+
+        /// ******************************************************************************************************************************************************************************************************
         private static void desconectar()
         {
             _conexion.Close();
         }
 
+        /// ******************************************************************************************************************************************************************************************************
         public bool Autentificar(string us, string ps)
         {
             bool isValid = false;
@@ -89,6 +94,7 @@ namespace MAD_AAVD_proyecto
             return isValid;
         }
 
+        /// ******************************************************************************************************************************************************************************************************
         //    public DataTable get_Puestos()
         //    {
         //        var msg = "";
@@ -132,14 +138,21 @@ namespace MAD_AAVD_proyecto
                 if (pTableName != "EMPLEADOS")
                 {
                     qry = "SELECT * FROM " + pTableName;
-                    _comandosql = new SqlCommand(qry, _conexion);
-                    _comandosql.CommandType = CommandType.Text;
                 }
                 else
                 {
-                    _comandosql = new SqlCommand("sp_EMPLEADOS", _conexion);
-                    _comandosql.CommandType = CommandType.StoredProcedure;
+                     qry = @" 
+                      SELECT noEmpleado, 
+                      CONCAT(nombres, ' ', apellidoP, ' ', apellidoM) AS nombre,  nombreDpto, nombrePuesto, activo
+                      FROM HISTORIA_EMPLEOS
+                      JOIN EMPLEADOS ON EMPLEADOS.noEmpleado = HISTORIA_EMPLEOS.empleado
+                      JOIN DEPARTAMENTOS ON DEPARTAMENTOS.noDepto = HISTORIA_EMPLEOS.departamento
+                      JOIN PUESTOS ON PUESTOS.noPuesto = HISTORIA_EMPLEOS.puesto
+                      WHERE HISTORIA_EMPLEOS.fechaFin IS NULL;"; //esto estaba en un procedure, pero me trajo problemas de parametros y mejor lo quite aaa
+
                 }
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.Text;
                  _comandosql.CommandTimeout = 1200;
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
@@ -160,6 +173,7 @@ namespace MAD_AAVD_proyecto
             return tabla;
         }
 
+        /// ******************************************************************************************************************************************************************************************************
 
         // Ejemplo de método para recibir una consulta en forma de tabla
         // Cuando el SP ejecutará un SELECT
@@ -200,6 +214,9 @@ namespace MAD_AAVD_proyecto
 
         // Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
         // solo que ejecute ya sea un INSERT, UPDATE o DELETE
+
+        /// ******************************************************************************************************************************************************************************************************
+
         public bool GestionPuestos(string accion, Int16 noPuesto, string nombrePuesto, float nivelSalarial)
         {
             var msg = "";
@@ -250,6 +267,8 @@ namespace MAD_AAVD_proyecto
 
             return add;
         }
+
+        /// ******************************************************************************************************************************************************************************************************
 
         public bool GestionDeptos(string pOpcion, Int16 pNoDepto, string pNombreDepto, decimal pSueldoBase)
         {
@@ -365,6 +384,109 @@ namespace MAD_AAVD_proyecto
             }
             return add;
         }
+
+        /// ******************************************************************************************************************************************************************************************************
+        public bool GestionEmpleados(string pOpcion, Int16 noEmp, string pNom, string pApP, string pApM, string pPassword, string pCalleNo, string pCol,
+            string pMun, string pEst, string pCP, string pBanco, string pNoC, string pEmail, string pT1, string pT2, string pCURP, string pNSS, string pRFC,
+            string pDep, string pPuesto, DateTime pNac, DateTime pIni)
+        {
+            var msg = "";
+            var add = true;
+            try
+            {
+                conectar();
+                string qry = "sp_EMPLEADOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1); //action representa que haremos en el procedure
+                parameter1.Value = pOpcion;
+
+                if (pOpcion == "I" || pOpcion == "U")
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@pNombre", SqlDbType.VarChar, 30);
+                    parameter2.Value = pNom;
+                    var parameter3 = _comandosql.Parameters.Add("@pApellidoP", SqlDbType.VarChar, 30);
+                    parameter3.Value = pApP;
+                    var parameter4 = _comandosql.Parameters.Add("@pApellidoM", SqlDbType.VarChar, 30);
+                    parameter4.Value = pApM;
+                    var parameter5 = _comandosql.Parameters.Add("@pContrasena", SqlDbType.VarChar, 255);
+                    parameter5.Value = pPassword;
+
+                    var parameter6 = _comandosql.Parameters.Add("@pCalleNombre", SqlDbType.VarChar, 30);
+                    parameter6.Value = pCalleNo;
+                    var parameter7 = _comandosql.Parameters.Add("@pColonia", SqlDbType.VarChar, 30);
+                    parameter7.Value = pCol;
+                    var parameter8 = _comandosql.Parameters.Add("@pMunicipio", SqlDbType.Int, 8);
+                    parameter8.Value = pMun;
+                    var parameter9 = _comandosql.Parameters.Add("@pEstado", SqlDbType.Int, 8);
+                    parameter9.Value = pEst;
+                    var parameter10 = _comandosql.Parameters.Add("@pCodPos", SqlDbType.Int, 8);
+                    parameter10.Value = pCP;
+                    var parameter11 = _comandosql.Parameters.Add("@pBanco", SqlDbType.Int, 8);
+                    parameter11.Value = pBanco;
+                    var parameter12 = _comandosql.Parameters.Add("@pNumCuenta", SqlDbType.Int, 8);
+                    parameter12.Value = pNoC;
+
+                    var parameter13 = _comandosql.Parameters.Add("@pEmail", SqlDbType.VarChar, 100);
+                    if (pEmail == "No registrado")
+                        parameter13.Value = DBNull.Value;
+                    else
+                        parameter13.Value = pEmail;
+
+                    var parameter14 = _comandosql.Parameters.Add("@pTelefono1", SqlDbType.Int, 8);
+                    parameter14.Value = pT1;
+
+                    var parameter15 = _comandosql.Parameters.Add("@pTelefono2", SqlDbType.Int, 8);
+                    if (pT2 == "No registrado")
+                        parameter15.Value = DBNull.Value;
+                    else
+                        parameter15.Value = pT2;
+
+                    var parameter16 = _comandosql.Parameters.Add("@pCURP", SqlDbType.VarChar, 20);
+                    parameter16.Value = pCURP;
+                    var parameter17 = _comandosql.Parameters.Add("@pNSS", SqlDbType.VarChar, 15);
+                    parameter17.Value = pNSS;
+                    var parameter18 = _comandosql.Parameters.Add("@pRFC", SqlDbType.VarChar, 15);
+                    parameter18.Value = pRFC;
+
+                    var parameter19 = _comandosql.Parameters.Add("@pDep", SqlDbType.Int, 8);
+                    parameter19.Value = pDep;
+                    var parameter20 = _comandosql.Parameters.Add("@pPuesto", SqlDbType.Int, 8);
+                    parameter20.Value = pPuesto;
+                    var parameter21 = _comandosql.Parameters.Add("@pNacimiento", SqlDbType.Date, 3);
+                    parameter21.Value = pNac;
+                    var parameter22 = _comandosql.Parameters.Add("@pInicip", SqlDbType.Date, 3);
+                    parameter22.Value = pIni;
+
+                }
+
+                if (pOpcion == "D" || pOpcion == "U")
+                {
+                    var parameter5 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 1);
+                    parameter5.Value = noEmp;
+                }
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return add;
+        }
+
+
 
         //******************* P A R A     S E L E C T S
         public void GetPuesto(Int16 noPuesto, TextBox txtNombrePuesto, TextBox txtNivelSalarial)
@@ -501,6 +623,85 @@ namespace MAD_AAVD_proyecto
                 else
                 {
                     MessageBox.Show("No se encontraron datos para el concepto especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        /// ******************************************************************************************************************************************************************************************************
+
+        public void GetEmpleados(Int16 noEmpleado, TextBox txtNum, TextBox txtNom, TextBox txtApP, TextBox txtApM, TextBox txtContrasena, TextBox txtCalleNo, TextBox txtCol,
+            TextBox txtMun, TextBox txtEst, TextBox txtCP, TextBox txtBanco, TextBox txtNoC, TextBox txtEmail, TextBox txtT1, TextBox txtT2,
+            TextBox txtCURP, TextBox txtNSS, TextBox txtRFC,
+            ComboBox cbDep, ComboBox cbPuesto,
+            DateTimePicker dtpNac, DateTimePicker dtpIni)
+        {
+            try
+            {
+                conectar();
+                string qry = "sp_EMPLEADOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parameter1.Value = 'S';
+                var parameter2 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 2);
+                parameter2.Value = noEmpleado;
+
+                SqlDataReader reader = _comandosql.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    txtNom.Text = reader["noEmpleado"].ToString();
+                    txtNom.Text = reader["nombres"].ToString();
+                    txtApP.Text = reader["apellidoP"].ToString();
+                    txtApM.Text = reader["apellidoM"].ToString();
+                    txtContrasena.Text = reader["passwordHash"].ToString();
+                    txtCalleNo.Text = reader["calleNombre"].ToString();
+                    txtCol.Text = reader["colonia"].ToString();
+                    txtMun.Text = reader["nombreMunicipio"].ToString();
+                    txtEst.Text = reader["nombreEstado"].ToString();
+                    txtBanco.Text = reader["nombreBanco"].ToString();
+                    if (reader["codigoPostal"] == DBNull.Value) //si es nulo
+                        txtCP.Text = "No registrado";
+                    else
+                        txtCP.Text = reader["codigoPostal"].ToString();
+
+                    txtNoC.Text = reader["noCuenta"].ToString();
+
+                    if (reader["email"] == DBNull.Value) //si es nulo
+                        txtEmail.Text = "No registrado";
+                    else 
+                        txtEmail.Text = reader["email"].ToString();
+
+                    txtT1.Text = reader["telefono1"].ToString();
+
+                    if (reader["telefono2"] == DBNull.Value) //si es nulo
+                        txtT2.Text = "No registrado";
+                    else
+                        txtT2.Text = reader["telefono2"].ToString();
+
+                    txtCURP.Text = reader["curp"].ToString();
+                    txtNSS.Text = reader["nss"].ToString();
+                    txtRFC.Text = reader["rfc"].ToString();
+                    // cbDep.SelectedIndex = ConvertTo(int)reader["departamento"];
+                    // cbPuesto.SelectedIndex = ConvertTo(int)reader["puesto"];
+
+                    //dtpNac.Value = reader["fechaNacimiento"];
+                    //dtpIni.Value = reader["fechaInicio"];
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para el empleado especificado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 reader.Close();
             }

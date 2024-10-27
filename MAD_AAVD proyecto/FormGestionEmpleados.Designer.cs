@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
+            this.EMP_LBL_Titulo = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -105,22 +105,23 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.EMP_TB_NoEmpleado = new System.Windows.Forms.TextBox();
+            this.EMP_BTN_Limpiar = new System.Windows.Forms.Button();
             this.panel16.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EMP_DGV_Empleados)).BeginInit();
             this.SuspendLayout();
             // 
-            // label2
+            // EMP_LBL_Titulo
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label2.Location = new System.Drawing.Point(391, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(245, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Alta y cambios de empleado";
+            this.EMP_LBL_Titulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.EMP_LBL_Titulo.AutoSize = true;
+            this.EMP_LBL_Titulo.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EMP_LBL_Titulo.ForeColor = System.Drawing.Color.AliceBlue;
+            this.EMP_LBL_Titulo.Location = new System.Drawing.Point(391, 70);
+            this.EMP_LBL_Titulo.Name = "EMP_LBL_Titulo";
+            this.EMP_LBL_Titulo.Size = new System.Drawing.Size(245, 23);
+            this.EMP_LBL_Titulo.TabIndex = 1;
+            this.EMP_LBL_Titulo.Text = "Alta y cambios de empleado";
             // 
             // label3
             // 
@@ -941,6 +942,7 @@
             this.EMP_BTN_Editar.Text = "Editar";
             this.EMP_BTN_Editar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EMP_BTN_Editar.UseVisualStyleBackColor = true;
+            this.EMP_BTN_Editar.Click += new System.EventHandler(this.EMP_BTN_Editar_Click);
             // 
             // EMP_DTP_FiltroFecha
             // 
@@ -988,12 +990,29 @@
             this.EMP_TB_NoEmpleado.Size = new System.Drawing.Size(164, 20);
             this.EMP_TB_NoEmpleado.TabIndex = 104;
             // 
+            // EMP_BTN_Limpiar
+            // 
+            this.EMP_BTN_Limpiar.FlatAppearance.BorderSize = 0;
+            this.EMP_BTN_Limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EMP_BTN_Limpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EMP_BTN_Limpiar.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.EMP_BTN_Limpiar.Location = new System.Drawing.Point(591, 428);
+            this.EMP_BTN_Limpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.EMP_BTN_Limpiar.Name = "EMP_BTN_Limpiar";
+            this.EMP_BTN_Limpiar.Size = new System.Drawing.Size(84, 26);
+            this.EMP_BTN_Limpiar.TabIndex = 105;
+            this.EMP_BTN_Limpiar.Text = "Limpiar";
+            this.EMP_BTN_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.EMP_BTN_Limpiar.UseVisualStyleBackColor = true;
+            this.EMP_BTN_Limpiar.Click += new System.EventHandler(this.EMP_BTN_Limpiar_Click);
+            // 
             // FormGestionEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 640);
+            this.Controls.Add(this.EMP_BTN_Limpiar);
             this.Controls.Add(this.EMP_TB_NoEmpleado);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.EMP_DTP_FiltroFecha);
@@ -1040,7 +1059,7 @@
             this.Controls.Add(this.EMP_TB_Nombres);
             this.Controls.Add(this.EMP_CB_Puesto);
             this.Controls.Add(this.EMP_CB_Departamento);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.EMP_LBL_Titulo);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.EMP_BTN_Registrar);
             this.Controls.Add(this.label3);
@@ -1083,7 +1102,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label EMP_LBL_Titulo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -1160,5 +1179,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox EMP_TB_NoEmpleado;
+        private System.Windows.Forms.Button EMP_BTN_Limpiar;
     }
 }

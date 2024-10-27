@@ -14,6 +14,8 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormGestionEmpleados : Form
     {
+        public bool isEditingEmp = false;
+        public Int16 edit_noEmp = 0;
         public FormGestionEmpleados()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace MAD_AAVD_proyecto
             EMP_DTP_Fecha.Value = DateTime.Now;
             EMP_TB_CalleNo.Clear();
             EMP_TB_Colonia.Clear();
+            EMP_TB_Estado.Clear();
             EMP_TB_Municipio.Clear();
             EMP_TB_Cp.Clear();
             EMP_TB_Banco.Clear();
@@ -81,10 +84,52 @@ namespace MAD_AAVD_proyecto
                 //MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
             }
         }
-   
+
+        /// ******************************************************************************************************************************************************************************************************
+
+        private void EMP_BTN_Editar_Click(object sender, EventArgs e)
+        {
+            if (EMP_DGV_Empleados.CurrentRow != null)
+            {
+                if (DB_SQLServer)
+                {
+                    edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["noEmpleado"].Value.ToString());
+
+                    //Cargar los datos a los text box
+                    var linkDB = new EnlaceDB();
+                    linkDB.GetEmpleados(edit_noEmp, EMP_TB_NoEmpleado, EMP_TB_Nombres, EMP_TB_ApPaterno, EMP_TB_ApMaterno, EMP_TB_Contrasena,
+                        EMP_TB_CalleNo, EMP_TB_Colonia, EMP_TB_Municipio, EMP_TB_Estado, EMP_TB_Cp, EMP_TB_Banco, EMP_TB_NoCuenta, EMP_TB_Email, EMP_TB_Tel1, EMP_TB_Tel2,
+                        EMP_TB_Curp, EMP_TB_Nss, EMP_TB_Rfc, 
+                        EMP_CB_Departamento, EMP_CB_Puesto,
+                        EMP_DTP_Nacimiento, EMP_DTP_Fecha);
+
+                    isEditingEmp = true; //para que cuando registre se haga un update en vez de un insert
+                    EMP_LBL_Titulo.Text = "EDITANDO EL EMPLEADO no. " + edit_noEmp.ToString();
+                }
+                ///////////////////////////////////////////////////////////////////////
+                else if (DB_Cassandra)
+                {
+                    //aaaa
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.");
+            }
+        }
+
+        /// ******************************************************************************************************************************************************************************************************
+        private void EMP_BTN_Limpiar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// ******************************************************************************************************************************************************************************************************
+
         private void EMP_DGV_Empleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
     }
 }
