@@ -21,25 +21,68 @@ namespace MAD_AAVD_proyecto
 
         private void FormGestionEmpleados_Load(object sender, EventArgs e)
         {
-            
+            Reload();
         }
 
-        private void label27_Click(object sender, EventArgs e)
+        private void Reload()
         {
+            EMP_TB_NoEmpleado.Clear();
+            EMP_TB_Nombres.Clear();
+            EMP_TB_ApPaterno.Clear();
+            EMP_TB_ApMaterno.Clear();
+            EMP_TB_Contrasena.Clear();
+          //  EMP_CB_Departamento.SelectedIndex = 0;
+         //   EMP_CB_Puesto.SelectedIndex = 0;
+            EMP_DTP_Nacimiento.Value = DateTime.Now;
+            EMP_DTP_FiltroFecha.Value = DateTime.Now;
+            EMP_DTP_Fecha.Value = DateTime.Now;
+            EMP_TB_CalleNo.Clear();
+            EMP_TB_Colonia.Clear();
+            EMP_TB_Municipio.Clear();
+            EMP_TB_Cp.Clear();
+            EMP_TB_Banco.Clear();
+            EMP_TB_NoCuenta.Clear();
+            EMP_TB_Email.Clear();
+            EMP_TB_Tel1.Clear();
+            EMP_TB_Tel2.Clear();
+            EMP_TB_Curp.Clear();
+            EMP_TB_Nss.Clear();
+            EMP_TB_Rfc.Clear();
 
+            EMP_DGV_Empleados.DefaultCellStyle.ForeColor = Color.White;
+            EMP_DGV_Empleados.DefaultCellStyle.BackColor = Color.Black;
+
+            //////////////////ENLACE SQL//////////////////////
+            if (DB_SQLServer)
+            {
+                var linkDB = new EnlaceDB(); 
+                DataTable TablaEmpleados = new DataTable(); 
+                TablaEmpleados = linkDB.getTable("EMPLEADOS"); 
+                EMP_DGV_Empleados.DataSource = TablaEmpleados;
+            }
+            ////////////////ENLACE CASSANDRA////////////////////
+            else if (DB_Cassandra)
+            { 
+                //var stopwatch = new System.Diagnostics.Stopwatch();
+
+                //// Medir tiempo de la consulta a Cassandra
+                //stopwatch.Start();
+                //var linkCassandra = new EnlaceCassandra();
+                //List<Puestos> tabla = linkCassandra.Get_All();
+                //stopwatch.Stop();
+                //MessageBox.Show($"Tiempo de consulta a Cassandra: {stopwatch.ElapsedMilliseconds} ms");
+
+                //// Reiniciar el cronómetro
+                //stopwatch.Restart();
+
+                //// Medir tiempo de asignación al DataGridView
+                //ADMIN_DGV_Puestos.DataSource = tabla;
+                //stopwatch.Stop();
+                //MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
+            }
         }
-
-        private void label28_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+   
+        private void EMP_DGV_Empleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

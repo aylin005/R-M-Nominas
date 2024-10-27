@@ -43,7 +43,7 @@ namespace MAD_AAVD_proyecto
 			
 			tal como lo vimos en clase.
 			*/
-            string cnn = ConfigurationManager.ConnectionStrings["MAD"].ToString(); 
+            string cnn = ConfigurationManager.ConnectionStrings["MAD"].ToString();
             _conexion = new SqlConnection(cnn);
             _conexion.Open();
         }
@@ -71,13 +71,13 @@ namespace MAD_AAVD_proyecto
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);
 
-                if(_tabla.Rows.Count > 0)
+                if (_tabla.Rows.Count > 0)
                 {
                     isValid = true;
                 }
 
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 isValid = false;
             }
@@ -123,18 +123,27 @@ namespace MAD_AAVD_proyecto
         //    }
         public DataTable getTable(string pTableName) // SOLO PARA MOSTRAR LOS DATOS REGISTRADOS -> es decir, si el usuario no ha filtrado nada
         {
-            DataTable tabla = new DataTable();
             string msg = "Se han obtenido los datos de la tabla";
+            DataTable tabla = new DataTable();
             try
             {
                 conectar();
-                string qry = "SELECT * FROM " + pTableName;
-                _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.Text;
-                _comandosql.CommandTimeout = 1200;
-
+                string qry;
+                if (pTableName != "EMPLEADOS")
+                {
+                    qry = "SELECT * FROM " + pTableName;
+                    _comandosql = new SqlCommand(qry, _conexion);
+                    _comandosql.CommandType = CommandType.Text;
+                }
+                else
+                {
+                    _comandosql = new SqlCommand("sp_EMPLEADOS", _conexion);
+                    _comandosql.CommandType = CommandType.StoredProcedure;
+                }
+                 _comandosql.CommandTimeout = 1200;
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
+
 
                 MessageBox.Show(msg, "(!)", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -171,8 +180,8 @@ namespace MAD_AAVD_proyecto
 
 
                 _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla); 
-				// la ejecución del SP espera que regrese datos en formato tabla
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
 
             }
             catch (SqlException e)
@@ -457,13 +466,13 @@ namespace MAD_AAVD_proyecto
                 _comandosql.CommandTimeout = 1200;
 
                 var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
-                parameter1.Value = 'S';  
+                parameter1.Value = 'S';
                 var parameter2 = _comandosql.Parameters.Add("@pNoConcepto", SqlDbType.SmallInt);
                 parameter2.Value = noConcepto;
 
                 SqlDataReader reader = _comandosql.ExecuteReader();
 
-                if (reader.Read()) 
+                if (reader.Read())
                 {
                     txtNombreConcepto.Text = reader["nombreConcepto"].ToString();
                     ////////
