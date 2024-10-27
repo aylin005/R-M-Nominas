@@ -380,6 +380,7 @@
             this.EMP_BTN_Registrar.TabIndex = 46;
             this.EMP_BTN_Registrar.Text = "Registrar";
             this.EMP_BTN_Registrar.UseVisualStyleBackColor = false;
+            this.EMP_BTN_Registrar.Click += new System.EventHandler(this.EMP_BTN_Registrar_Click);
             // 
             // panel2
             // 

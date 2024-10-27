@@ -33,8 +33,6 @@ namespace MAD_AAVD_proyecto
             EMP_TB_ApPaterno.Clear();
             EMP_TB_ApMaterno.Clear();
             EMP_TB_Contrasena.Clear();
-          //  EMP_CB_Departamento.SelectedIndex = 0;
-         //   EMP_CB_Puesto.SelectedIndex = 0;
             EMP_DTP_Nacimiento.Value = DateTime.Now;
             EMP_DTP_FiltroFecha.Value = DateTime.Now;
             EMP_DTP_Fecha.Value = DateTime.Now;
@@ -62,6 +60,20 @@ namespace MAD_AAVD_proyecto
                 DataTable TablaEmpleados = new DataTable(); 
                 TablaEmpleados = linkDB.getTable("EMPLEADOS"); 
                 EMP_DGV_Empleados.DataSource = TablaEmpleados;
+
+                DataTable TablaDepartamentos = linkDB.getTable("DEPARTAMENTOS");
+                EMP_CB_Departamento.DataSource = TablaDepartamentos;
+                EMP_CB_Departamento.DisplayMember = "nombreDpto";  // dato
+                EMP_CB_Departamento.ValueMember = "noDepto";       // indice al que se relaciona el valor
+
+                DataTable TablaPuestos = linkDB.getTable("PUESTOS");
+                EMP_CB_Puesto.DataSource = TablaPuestos;
+                EMP_CB_Puesto.DisplayMember = "nombrePuesto"; 
+                EMP_CB_Puesto.ValueMember = "noPuesto";    
+
+                EMP_CB_Departamento.SelectedIndex= 0; //Aqui ya se selecciona
+                EMP_CB_Puesto.SelectedIndex = 0;
+
             }
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
@@ -121,10 +133,40 @@ namespace MAD_AAVD_proyecto
         /// ******************************************************************************************************************************************************************************************************
         private void EMP_BTN_Limpiar_Click(object sender, EventArgs e)
         {
+            EMP_TB_NoEmpleado.Clear();
+            EMP_TB_Nombres.Clear();
+            EMP_TB_ApPaterno.Clear();
+            EMP_TB_ApMaterno.Clear();
+            EMP_TB_Contrasena.Clear();
+            // EMP_CB_Departamento.SelectedIndex = 0;
+            //   EMP_CB_Puesto.SelectedIndex = 0;
+            EMP_DTP_Nacimiento.Value = DateTime.Now;
+            EMP_DTP_FiltroFecha.Value = DateTime.Now;
+            EMP_DTP_Fecha.Value = DateTime.Now;
+            EMP_TB_CalleNo.Clear();
+            EMP_TB_Colonia.Clear();
+            EMP_TB_Estado.Clear();
+            EMP_TB_Municipio.Clear();
+            EMP_TB_Cp.Clear();
+            EMP_TB_Banco.Clear();
+            EMP_TB_NoCuenta.Clear();
+            EMP_TB_Email.Clear();
+            EMP_TB_Tel1.Clear();
+            EMP_TB_Tel2.Clear();
+            EMP_TB_Curp.Clear();
+            EMP_TB_Nss.Clear();
+            EMP_TB_Rfc.Clear();
 
+            EMP_DGV_Empleados.DefaultCellStyle.ForeColor = Color.White;
+            EMP_DGV_Empleados.DefaultCellStyle.BackColor = Color.Black;
+            //Reload(); // -> para cuando se implemente lo de los edits
         }
 
         /// ******************************************************************************************************************************************************************************************************
+        private void EMP_BTN_Registrar_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void EMP_DGV_Empleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

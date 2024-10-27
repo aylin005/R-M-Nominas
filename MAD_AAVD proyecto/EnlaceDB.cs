@@ -693,8 +693,8 @@ namespace MAD_AAVD_proyecto
                     txtCURP.Text = reader["curp"].ToString();
                     txtNSS.Text = reader["nss"].ToString();
                     txtRFC.Text = reader["rfc"].ToString();
-                    // cbDep.SelectedIndex = ConvertTo(int)reader["departamento"];
-                    // cbPuesto.SelectedIndex = ConvertTo(int)reader["puesto"];
+                    cbDep.SelectedValue = Convert.ToInt16(reader["departamento"]); //aqui se usa value para relacionarlo al dato con que se guardo en el cb
+                    cbPuesto.SelectedValue = Convert.ToInt16(reader["puesto"]);
 
                     //dtpNac.Value = reader["fechaNacimiento"];
                     //dtpIni.Value = reader["fechaInicio"];
