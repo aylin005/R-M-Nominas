@@ -21,11 +21,14 @@ namespace MAD_AAVD_proyecto
             InitializeComponent();
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         private void FormConceptosCatalogo_Load(object sender, EventArgs e)
         {
             Recharge();
         }
 
+        /// ******************************************************************************************************************************************************************************************************
         private void Recharge()
         {
             ADMIN_DGV_Conceptos.DefaultCellStyle.ForeColor = Color.White;
@@ -68,12 +71,12 @@ namespace MAD_AAVD_proyecto
             }
         }
 
-
+        /// ******************************************************************************************************************************************************************************************************
         private void CONCEPTOSCAT_BTN_Editar_Click(object sender, EventArgs e)
         {
-            if (ADMIN_DGV_Conceptos.CurrentRow != null) //hay fila seleccionada
+            if (ADMIN_DGV_Conceptos.CurrentRow != null)
             {
-                ////////////////////////////////////////////////////////////////////////
+                ////////////S Q L 
                 if (DB_SQLServer)
                 {
                     edit_noConcepto = Int16.Parse(ADMIN_DGV_Conceptos.CurrentRow.Cells["noConcepto"].Value.ToString());
@@ -86,7 +89,7 @@ namespace MAD_AAVD_proyecto
                     edit_Concepto = true; //para que cuando registre se haga un update en vez de un insert
                     CONCEPTOSCAT_LBL_Titulo.Text = "Edición de conceptos ";
                 }
-                ///////////////////////////////////////////////////////////////////////
+                ////////////C A S S A N D R A, L A   D A M A   D E   L A S   B A S E S   D E   D A T O S
                 else if (DB_Cassandra)
                 {
                     //aaaa
@@ -98,18 +101,19 @@ namespace MAD_AAVD_proyecto
             }
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         private void CONCEPTOSCAT_BTN_Eliminar_Click(object sender, EventArgs e)
         {
             if (ADMIN_DGV_Conceptos.CurrentRow != null) //hay fila seleccionada
             {
-                ////////////////////////////////////////////////////////////////////////////////////
+                ////////////S Q L 
                 if (DB_SQLServer)
                 {
                     Int16 noConcepto = Int16.Parse(ADMIN_DGV_Conceptos.CurrentRow.Cells["noConcepto"].Value.ToString());
-                    //Eliminar de la base de datos
                     var linkDB = new EnlaceDB();
                     bool ok = false;
-                    ok = linkDB.GestionConceptos("D", noConcepto, "", 0.0M, 0.0M, false,false);
+                    ok = linkDB.GestionConceptos("D", noConcepto, "", 0.0M, 0.0M, false,false); //para definir un decimal usa una M, en lugar de una f : 0.0f -> 0.0M
 
                     if (ok)
                     {
@@ -119,7 +123,7 @@ namespace MAD_AAVD_proyecto
                     else
                         MessageBox.Show("Error en el proceso");
                 }
-                /////////////////////////////////////////////////////////////////////////////////////
+                ////////////C A S S A N D R A, L A   D A M A   D E   L A S   B A S E S   D E   D A T O S
                 else if (DB_Cassandra)
                 {
 
@@ -130,6 +134,9 @@ namespace MAD_AAVD_proyecto
                 MessageBox.Show("No hay ninguna fila seleccionada.");
             }
         }
+
+        /// ******************************************************************************************************************************************************************************************************
+
         private void CONCEPTOSCAT_BTN_Registrar_Click(object sender, EventArgs e)
         {
             string aux = CONCEPTOSCAT_TB_Cuota.Text.Trim();
@@ -137,7 +144,7 @@ namespace MAD_AAVD_proyecto
 
             if (CheckData(aux, aux2))
             {
-                ///////////////////////////SQL///////////////////////////////////////////
+                ////////////S Q L 
                 if (DB_SQLServer)
                 {
                     aux = CONCEPTOSCAT_TB_Cuota.Text.Trim();
@@ -145,9 +152,9 @@ namespace MAD_AAVD_proyecto
 
                     var nombreConcepto = CONCEPTOSCAT_TB_Nombre.Text;
                     decimal porcentaje = 0.0M;
-                    decimal cuota = 0.0M; //validar que sea mayor a 0
+                    decimal cuota = 0.0M; 
 
-                    if (aux != "N/A")
+                    if (aux != "N/A") //hay que asegurarnos de que sean datos númericos
                     {
                         cuota = decimal.Parse(CONCEPTOSCAT_TB_Cuota.Text);
                     }
@@ -156,11 +163,13 @@ namespace MAD_AAVD_proyecto
                         if (aux2 != "N/A")
                         {
                             porcentaje = decimal.Parse(CONCEPTOSCAT_TB_Porcentaje.Text);
-                            porcentaje /= 100;
+                            porcentaje /= 100; //se divide entre 100 para que se guarde así -> 25% -> 0.25 
                         }
                     }
-                    string auxTipo = CONCEPTOSCAT_CB_Tipo.Text;
+
+                    string auxTipo = CONCEPTOSCAT_CB_Tipo.Text; //se obtienen del CB
                     string auxFijo = CONCEPTOSCAT_CB_Fijo.Text;
+
                     bool isTipo, isFijo;
                     if (auxTipo == "Percepción")
                         isTipo = true;
@@ -174,9 +183,9 @@ namespace MAD_AAVD_proyecto
                     var linkDB = new EnlaceDB();
                     bool ok = false;
 
-                    if (!edit_Concepto) // si se va a hacer insert
+                    if (!edit_Concepto)
                         ok = linkDB.GestionConceptos("I", 0, nombreConcepto, cuota, porcentaje, isTipo, isFijo);
-                    else // si se esta modificando un puesto existente
+                    else
                     {
                         ok = linkDB.GestionConceptos("U", edit_noConcepto, nombreConcepto, cuota, porcentaje, isTipo, isFijo);
                         edit_Concepto = false;
@@ -184,7 +193,7 @@ namespace MAD_AAVD_proyecto
                     if (ok)
                     {
                         MessageBox.Show("Se guardo en la BD");
-                        Clean();
+                        Clean(); //actualizamos la tabla
                         Recharge();
                     }
                     else
@@ -193,8 +202,7 @@ namespace MAD_AAVD_proyecto
             }
         }
 
-
-
+        /// ******************************************************************************************************************************************************************************************************
 
         private void CONCEPTOSCAT_BTN_Limpiar_Click(object sender, EventArgs e)
         {
@@ -202,46 +210,41 @@ namespace MAD_AAVD_proyecto
             Clean();
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         private bool CheckData(string pAux, string pAux2)
         {
-            // Aseguramos que las casillas de cuota y porcentaje tengan "N/A" si están vacías
             if (string.IsNullOrWhiteSpace(pAux))
-                CONCEPTOSCAT_TB_Cuota.Text = "N/A";
+                CONCEPTOSCAT_TB_Cuota.Text = "N/A"; //si el usuario deja en blanco la casilla entonces le ponemos N/A -> No Aplica
             if (string.IsNullOrWhiteSpace(pAux2))
                 CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
 
 
-            pAux = CONCEPTOSCAT_TB_Cuota.Text.Trim();
+            pAux = CONCEPTOSCAT_TB_Cuota.Text.Trim(); //se actualizan, si no, marcaría error en las siguientes validaciones
             pAux2 = CONCEPTOSCAT_TB_Porcentaje.Text.Trim();
 
-            // Verificamos que todos los campos tengan valores
-            if (CONCEPTOSCAT_TB_Nombre.Text.Length == 0 ||
-                CONCEPTOSCAT_TB_Cuota.Text.Length == 0 ||
-                CONCEPTOSCAT_TB_Porcentaje.Text.Length == 0 || (pAux == "N/A" && pAux2 == "N/A"))
+            if (CONCEPTOSCAT_TB_Nombre.Text.Length == 0 || CONCEPTOSCAT_TB_Cuota.Text.Length == 0 || CONCEPTOSCAT_TB_Porcentaje.Text.Length == 0 || (pAux == "N/A" && pAux2 == "N/A"))
             {
                 MessageBox.Show("(!) ATENCIÓN: Llene todos los datos");
                 return false;
             }
 
-            // Validamos el porcentaje
-            if (CONCEPTOSCAT_TB_Porcentaje.Text != "N/A" &&
-                (!decimal.TryParse(CONCEPTOSCAT_TB_Porcentaje.Text, out decimal porcentaje) || porcentaje <= 0))
+            if (CONCEPTOSCAT_TB_Porcentaje.Text != "N/A" && (!decimal.TryParse(CONCEPTOSCAT_TB_Porcentaje.Text, out decimal porcentaje) || porcentaje <= 0))
+                //que no sea menor a 0, no lo he limitado a que no sea mayor a 100 por que no sé si esa validación sea necesaria
             {
                 MessageBox.Show("(!) ATENCIÓN: Ha ingresado un porcentaje inválido");
                 CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
                 return false;
             }
 
-            // Validamos la cuota
-            if (CONCEPTOSCAT_TB_Cuota.Text != "N/A" &&
-                (!decimal.TryParse(CONCEPTOSCAT_TB_Cuota.Text, out decimal cuota) || cuota <= 0))
+            if (CONCEPTOSCAT_TB_Cuota.Text != "N/A" && (!decimal.TryParse(CONCEPTOSCAT_TB_Cuota.Text, out decimal cuota) || cuota <= 0))
+                //que no sea menor a 0 | El tryParse valida si el numero es válido, si lo es, guarda el valor en cuota, si no se devuelve un false
             {
                 MessageBox.Show("(!) ATENCIÓN: Ha ingresado una cuota inválida");
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";
                 return false;
             }
 
-            // Verificamos que no se defina tanto cuota como porcentaje
             if (pAux != "N/A" && pAux2 != "N/A")
             {
                 CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
@@ -249,9 +252,10 @@ namespace MAD_AAVD_proyecto
                 MessageBox.Show("(!) ATENCIÓN: Solo puede definir un concepto como cuota o como porcentaje");
                 return false;
             }
-
             return true;
         }
+
+        /// ******************************************************************************************************************************************************************************************************
 
         private void Clean()
         {
@@ -264,6 +268,8 @@ namespace MAD_AAVD_proyecto
             CONCEPTOSCAT_CB_Fijo.SelectedIndex = 0;
 
         }
+
+        /// ******************************************************************************************************************************************************************************************************
 
         private void ADMIN_DGV_Conceptos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

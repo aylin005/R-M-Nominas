@@ -292,6 +292,8 @@ namespace MAD_AAVD_proyecto
             return add;
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         public bool GestionConceptos(string pOpcion, Int16 pNoConcepto, string pNombre, decimal pCuota, decimal pPorcentaje, bool pTipo, bool pFijo)
         {
             var msg = "";
@@ -304,11 +306,9 @@ namespace MAD_AAVD_proyecto
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                // Parámetro obligatorio
-                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1); //action representa que haremos en el procedure
                 parameter1.Value = pOpcion;
 
-                // Solo agregar estos parámetros si la acción es "Insertar"
                 if (pOpcion == "I" || pOpcion == "U")
                 {
                     var parameter2 = _comandosql.Parameters.Add("@pNombreConcepto", SqlDbType.VarChar, 50);
@@ -316,7 +316,7 @@ namespace MAD_AAVD_proyecto
 
                     var parameter3 = _comandosql.Parameters.Add("@pCuota", SqlDbType.Decimal, 5);
                     if (pCuota == 0)
-                        parameter3.Value = DBNull.Value;
+                        parameter3.Value = DBNull.Value; //para cuando lleve un nulo
                     else
                         parameter3.Value = pCuota;
 
@@ -400,6 +400,8 @@ namespace MAD_AAVD_proyecto
             }
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         public void GetDepto(Int16 noDepto, TextBox txtNombreDepto, TextBox txtSueldoBase)
         {
             try
@@ -442,6 +444,8 @@ namespace MAD_AAVD_proyecto
             }
         }
 
+        /// ******************************************************************************************************************************************************************************************************
+
         public void GetConceptos(Int16 noConcepto, TextBox txtNombreConcepto, TextBox txtCuota, TextBox txtPorcentaje, ComboBox cbEsFijo, ComboBox cbEsTipo)
         {
             try
@@ -462,12 +466,13 @@ namespace MAD_AAVD_proyecto
                 if (reader.Read()) 
                 {
                     txtNombreConcepto.Text = reader["nombreConcepto"].ToString();
-                                        ////////
+                    ////////
                     bool esFijo = Convert.ToBoolean(reader["fijo"]);
                     if (esFijo)
                         cbEsFijo.SelectedIndex = 0;
                     else
-                        cbEsFijo.SelectedIndex = 1;
+                        cbEsFijo.SelectedIndex = 1; //Seleccionamos en el CB la opcion que se guardó en la BD
+                    ////////
                     if (reader["cuota"] == DBNull.Value) //si es nulo
                         txtCuota.Text = "N/A";
                     else
