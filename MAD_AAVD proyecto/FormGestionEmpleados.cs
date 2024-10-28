@@ -56,17 +56,17 @@ namespace MAD_AAVD_proyecto
             //////////////////ENLACE SQL//////////////////////
             if (DB_SQLServer)
             {
-                var linkDB = new EnlaceDB(); 
-                DataTable TablaEmpleados = new DataTable(); 
-                TablaEmpleados = linkDB.getTable("EMPLEADOS"); 
+                var linkDB = new EnlaceDB();
+                DataTable TablaEmpleados = new DataTable();
+                TablaEmpleados = linkDB.GetEmpleados();
                 EMP_DGV_Empleados.DataSource = TablaEmpleados;
 
-                DataTable TablaDepartamentos = linkDB.getTable("DEPARTAMENTOS");
+                DataTable TablaDepartamentos = linkDB.GetDepto();
                 EMP_CB_Departamento.DataSource = TablaDepartamentos;
                 EMP_CB_Departamento.DisplayMember = "nombreDpto";  // dato
                 EMP_CB_Departamento.ValueMember = "noDepto";       // indice al que se relaciona el valor
 
-                DataTable TablaPuestos = linkDB.getTable("PUESTOS");
+                DataTable TablaPuestos = linkDB.GetPuesto();
                 EMP_CB_Puesto.DataSource = TablaPuestos;
                 EMP_CB_Puesto.DisplayMember = "nombrePuesto"; 
                 EMP_CB_Puesto.ValueMember = "noPuesto";    
@@ -78,22 +78,7 @@ namespace MAD_AAVD_proyecto
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
             { 
-                //var stopwatch = new System.Diagnostics.Stopwatch();
 
-                //// Medir tiempo de la consulta a Cassandra
-                //stopwatch.Start();
-                //var linkCassandra = new EnlaceCassandra();
-                //List<Puestos> tabla = linkCassandra.Get_All();
-                //stopwatch.Stop();
-                //MessageBox.Show($"Tiempo de consulta a Cassandra: {stopwatch.ElapsedMilliseconds} ms");
-
-                //// Reiniciar el cronómetro
-                //stopwatch.Restart();
-
-                //// Medir tiempo de asignación al DataGridView
-                //ADMIN_DGV_Puestos.DataSource = tabla;
-                //stopwatch.Stop();
-                //MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
             }
         }
 
