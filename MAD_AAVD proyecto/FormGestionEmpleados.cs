@@ -116,7 +116,7 @@ namespace MAD_AAVD_proyecto
                         EMP_DTP_Nacimiento, EMP_DTP_Fecha);
 
                     isEditingEmp = true; //para que cuando registre se haga un update en vez de un insert
-                    EMP_LBL_Titulo.Text = "EDITANDO EL EMPLEADO no. " + edit_noEmp.ToString();
+                    EMP_LBL_Titulo.Text = "EDITANDO EMPLEADO " + edit_noEmp.ToString();
                 }
                 ///////////////////////////////////////////////////////////////////////
                 else if (DB_Cassandra)

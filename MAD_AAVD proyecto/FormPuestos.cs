@@ -148,7 +148,7 @@ namespace MAD_AAVD_proyecto
             {
                 var linkDB = new EnlaceDB();
                 DataTable TablaPuestos = new DataTable();
-                TablaPuestos = linkDB.getTable("PUESTOS");
+                TablaPuestos = linkDB.GetPuesto(); //sin parametros trae toda la tabla
                 ADMIN_DGV_Puestos.DataSource = TablaPuestos;
             }
             ////////////////ENLACE CASSANDRA////////////////////

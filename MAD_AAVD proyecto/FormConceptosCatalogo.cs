@@ -25,11 +25,11 @@ namespace MAD_AAVD_proyecto
 
         private void FormConceptosCatalogo_Load(object sender, EventArgs e)
         {
-            Recharge();
+            Reload();
         }
 
         /// ******************************************************************************************************************************************************************************************************
-        private void Recharge()
+        private void Reload()
         {
             ADMIN_DGV_Conceptos.DefaultCellStyle.ForeColor = Color.White;
             ADMIN_DGV_Conceptos.DefaultCellStyle.BackColor = Color.Black;
@@ -43,11 +43,13 @@ namespace MAD_AAVD_proyecto
             {
                 var linkDB = new EnlaceDB(); //enlace temporal con la db
                 DataTable TablaConceptos = new DataTable(); //se crea una tabla
-                TablaConceptos = linkDB.getTable("CONCEPTOS"); //se acceden a los departamentos de la db y se guardan en la tabla creada
+                TablaConceptos = linkDB.GetConceptos(); //se acceden a los departamentos de la db y se guardan en la tabla creada
                 ADMIN_DGV_Conceptos.DataSource = TablaConceptos;
 
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";
                 CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
+                edit_Concepto = false;
+                CONCEPTOSCAT_LBL_Edit.Visible = false;
             }
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
@@ -87,7 +89,9 @@ namespace MAD_AAVD_proyecto
                     linkDB.GetConceptos(edit_noConcepto, CONCEPTOSCAT_TB_Nombre, CONCEPTOSCAT_TB_Cuota, CONCEPTOSCAT_TB_Porcentaje, CONCEPTOSCAT_CB_Fijo, CONCEPTOSCAT_CB_Tipo); //cambiar
 
                     edit_Concepto = true; //para que cuando registre se haga un update en vez de un insert
-                    CONCEPTOSCAT_LBL_Titulo.Text = "Edición de conceptos ";
+                    CONCEPTOSCAT_LBL_Edit.Visible = true;
+                    CONCEPTOSCAT_LBL_Edit.Text = "EDITANDO CONCEPTO " + edit_noConcepto.ToString();
+
                 }
                 ////////////C A S S A N D R A, L A   D A M A   D E   L A S   B A S E S   D E   D A T O S
                 else if (DB_Cassandra)
@@ -118,7 +122,7 @@ namespace MAD_AAVD_proyecto
                     if (ok)
                     {
                         MessageBox.Show("Se elimino de la BD");
-                    Recharge();
+                        Reload();
                     }
                     else
                         MessageBox.Show("Error en el proceso");
@@ -194,7 +198,7 @@ namespace MAD_AAVD_proyecto
                     {
                         MessageBox.Show("Se guardo en la BD");
                         Clean(); //actualizamos la tabla
-                        Recharge();
+                        Reload();
                     }
                     else
                         MessageBox.Show("Error en el guardado");
@@ -206,7 +210,7 @@ namespace MAD_AAVD_proyecto
 
         private void CONCEPTOSCAT_BTN_Limpiar_Click(object sender, EventArgs e)
         {
-            CONCEPTOSCAT_LBL_Titulo.Text = "Registrar nuevo concepto"; //Se deja de mostrar que se esta editando
+            //CONCEPTOSCAT_LBL_Titulo.Text = "Registrar nuevo concepto"; //Se deja de mostrar que se esta editando
             Clean();
         }
 
@@ -261,12 +265,12 @@ namespace MAD_AAVD_proyecto
         {
             edit_Concepto = false;
             edit_noConcepto = 0;
+            CONCEPTOSCAT_LBL_Edit.Visible = false;
             CONCEPTOSCAT_TB_Nombre.Clear();
-            CONCEPTOSCAT_TB_Cuota.Clear();
-            CONCEPTOSCAT_TB_Porcentaje.Clear();
+            CONCEPTOSCAT_TB_Cuota.Text = "N/A";
+            CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
             CONCEPTOSCAT_CB_Tipo.SelectedIndex = 0;
             CONCEPTOSCAT_CB_Fijo.SelectedIndex = 0;
-
         }
 
         /// ******************************************************************************************************************************************************************************************************
@@ -276,5 +280,9 @@ namespace MAD_AAVD_proyecto
 
         }
 
+        private void DEPARTAMENTOS_LBL_Edit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

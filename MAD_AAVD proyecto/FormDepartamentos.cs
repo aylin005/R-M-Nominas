@@ -45,16 +45,16 @@ namespace MAD_AAVD_proyecto
                 else if (DB_SQLServer)
                 {
                     var nombreDepto = DEPARTAMENTOS_TB_NombreDepto.Text;
-                    var saldoDepto = decimal.Parse(DEPARTAMENTOS_TB_Sueldo.Text);
+                    var sueldoDepto = decimal.Parse(DEPARTAMENTOS_TB_Sueldo.Text);
 
                     var linkDB = new EnlaceDB();
                     bool ok = false;
 
                     if (!edit_Depto) // si se va a hacer insert
-                        ok = linkDB.GestionDeptos("I", 0, nombreDepto, saldoDepto);
+                        ok = linkDB.GestionDeptos("I", 0, nombreDepto, sueldoDepto);
                     else
                     {
-                        ok = linkDB.GestionDeptos("U", edit_noDepto, nombreDepto, saldoDepto);
+                        ok = linkDB.GestionDeptos("U", edit_noDepto, nombreDepto, sueldoDepto);
                         edit_Depto = false;
                         DEPARTAMENTOS_LBL_Edit.Visible = false;
                     }
@@ -119,7 +119,7 @@ namespace MAD_AAVD_proyecto
                     linkDB.GetDepto(edit_noDepto, DEPARTAMENTOS_TB_NombreDepto, DEPARTAMENTOS_TB_Sueldo);
 
                     edit_Depto = true; //para que cuando registre se haga un update en vez de un insert
-                    DEPARTAMENTOS_LBL_Edit.Text = "EDITANDO EL DEPARTAMENTO no. " + edit_noDepto.ToString();
+                    DEPARTAMENTOS_LBL_Edit.Text = "EDITANDO DEPARTAMENTO " + edit_noDepto.ToString();
                     DEPARTAMENTOS_LBL_Edit.Visible = true;
                 }
                 ///////////////////////////////////////////////////////////////////////
@@ -160,7 +160,7 @@ namespace MAD_AAVD_proyecto
             {
                 var linkDB = new EnlaceDB(); //enlace temporal con la db
                 DataTable TablaDepartamentos = new DataTable(); //se crea una tabla
-                TablaDepartamentos = linkDB.getTable("DEPARTAMENTOS"); //se acceden a los departamentos de la db y se guardan en la tabla creada
+                TablaDepartamentos = linkDB.GetDepto(); //se acceden a los departamentos de la db y se guardan en la tabla creada
                 ADMIN_DGV_Departamentos.DataSource = TablaDepartamentos;
             }
             ////////////////ENLACE CASSANDRA////////////////////

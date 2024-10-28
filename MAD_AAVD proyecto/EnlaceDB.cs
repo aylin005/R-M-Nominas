@@ -128,7 +128,7 @@ namespace MAD_AAVD_proyecto
         //        return tabla;
         //    }
         public DataTable getTable(string pTableName) // SOLO PARA MOSTRAR LOS DATOS REGISTRADOS -> es decir, si el usuario no ha filtrado nada
-        {
+        {//NO podemos usar esta funcion porque seria hardcode, hay que hacerlo desde el sp
             string msg = "Se han obtenido los datos de la tabla";
             DataTable tabla = new DataTable();
             try
@@ -177,40 +177,40 @@ namespace MAD_AAVD_proyecto
 
         // Ejemplo de método para recibir una consulta en forma de tabla
         // Cuando el SP ejecutará un SELECT
-        public DataTable get_Deptos(string opc)
-        {
-            var msg = "";
-            DataTable tabla = new DataTable();
-            try
-            {
-                conectar();
-                string qry = "sp_Gestiona_Deptos";
-                _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
-                _comandosql.CommandTimeout = 1200;
+        //public DataTable get_Deptos(string opc)
+        //{
+        //    var msg = "";
+        //    DataTable tabla = new DataTable();
+        //    try
+        //    {
+        //        conectar();
+        //        string qry = "sp_Gestiona_Deptos";
+        //        _comandosql = new SqlCommand(qry, _conexion);
+        //        _comandosql.CommandType = CommandType.StoredProcedure;
+        //        _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@Opc", SqlDbType.Char, 1);
-                parametro1.Value = opc;
+        //        var parametro1 = _comandosql.Parameters.Add("@Opc", SqlDbType.Char, 1);
+        //        parametro1.Value = opc;
 
 
-                _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla);
-                // la ejecución del SP espera que regrese datos en formato tabla
+        //        _adaptador.SelectCommand = _comandosql;
+        //        _adaptador.Fill(tabla);
+        //        // la ejecución del SP espera que regrese datos en formato tabla
 
-            }
-            catch (SqlException e)
-            {
-                msg = "Excepción de base de datos: \n";
-                msg += e.Message;
-                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-            finally
-            {
-                desconectar();
-            }
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        msg = "Excepción de base de datos: \n";
+        //        msg += e.Message;
+        //        MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        //    }
+        //    finally
+        //    {
+        //        desconectar();
+        //    }
 
-            return tabla;
-        }
+        //    return tabla;
+        //}
 
         // Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
         // solo que ejecute ya sea un INSERT, UPDATE o DELETE
@@ -531,6 +531,39 @@ namespace MAD_AAVD_proyecto
             }
         }
 
+        public DataTable GetPuesto()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_PUESTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Action", SqlDbType.Char, 1);
+                parametro1.Value = 'G';
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
         /// ******************************************************************************************************************************************************************************************************
 
         public void GetDepto(Int16 noDepto, TextBox txtNombreDepto, TextBox txtSueldoBase)
@@ -573,6 +606,38 @@ namespace MAD_AAVD_proyecto
             {
                 desconectar();
             }
+        }
+        public DataTable GetDepto()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_DEPARTAMENTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Action", SqlDbType.Char, 1);
+                parametro1.Value = 'G';
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
         }
 
         /// ******************************************************************************************************************************************************************************************************
@@ -635,7 +700,38 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
+        public DataTable GetConceptos()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_CONCEPTOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
 
+                var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parametro1.Value = 'G';
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
         /// ******************************************************************************************************************************************************************************************************
 
         public void GetEmpleados(Int16 noEmpleado, TextBox txtNum, TextBox txtNom, TextBox txtApP, TextBox txtApM, TextBox txtContrasena, TextBox txtCalleNo, TextBox txtCol,
