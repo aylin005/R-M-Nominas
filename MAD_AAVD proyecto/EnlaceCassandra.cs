@@ -116,18 +116,80 @@ namespace MAD_AAVD_proyecto
 
         public List<Puestos> Get_All()
         {
-            //var statement = new SimpleStatement("SELECT * FROM PUESTOS").SetConsistencyLevel(ConsistencyLevel.One);
             string query = "SELECT noPuesto, nombrePuesto, nivelSalarial FROM PUESTOS;";
             conectar();
-
 
             IMapper mapper = new Mapper(_session);
             IEnumerable<Puestos> puestos = mapper.Fetch<Puestos>(query);
 
             desconectar();
             return puestos.ToList();
-
         }
+
+        public void InsertPuesto(bool edit, int noPuesto, string nombrePuesto, float nivelSalarial)
+        {
+            try
+            {
+                conectar();
+                string query = "";
+
+                if (!edit)
+                {
+                    query = "SELECT MAX(noPuesto) FROM PUESTOS;";
+                    IMapper mapper = new Mapper(_session);
+                    int lastPuestoNumber = mapper.Single<int>(query); // Devuelve el último número de puesto
+                    lastPuestoNumber++;
+
+                    query = "insert into PUESTOS(noPuesto, nombrePuesto, nivelSalarial) values({0},'{1}',{2}) IF NOT EXISTS;";
+                    query = string.Format(query, lastPuestoNumber, nombrePuesto, nivelSalarial);
+                }
+                else
+                {
+                    query = "UPDATE PUESTOS SET nombrePuesto = '{0}', nivelSalarial = {1} WHERE noPuesto={2} IF EXISTS;";
+                    query = string.Format(query, nombrePuesto, nivelSalarial, noPuesto);
+                }
+
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+        public void DeletePuesto(int noPuesto)
+        {
+            try
+            {
+                conectar();
+                string query = "DELETE FROM PUESTOS WHERE noPuesto = {0};";
+                query = string.Format(query, noPuesto);
+
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+        public Puestos Get_One(int noPuesto)
+        {
+            string query = "SELECT noPuesto, nombrePuesto, nivelSalarial FROM PUESTOS WHERE noPuesto = {0};";
+            query = string.Format(query, noPuesto);
+            conectar();
+            IMapper mapper = new Mapper(_session);
+            Puestos puesto = mapper.Single<Puestos>(query); //un solo resultado.
+            desconectar();
+            return puesto;
+        }
+
         public DataTable ToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);

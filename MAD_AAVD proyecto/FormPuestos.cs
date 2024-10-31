@@ -18,7 +18,6 @@ namespace MAD_AAVD_proyecto
         public bool edit_Puesto = false; //Variable para saber si se esta editando el puesto
         public Int16 edit_noPuesto = 0; // guarda el noPuesto al que se le va a hacer un update
 
-
         public FormPuestos()
         {
             InitializeComponent();
@@ -35,41 +34,49 @@ namespace MAD_AAVD_proyecto
 
             ///////////////////////////SQL///////////////////////////////////////////
             else
-            { 
+            {
                 if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)) || nivel <= 0)
                 {
                     MessageBox.Show("(!) Ingresó un nivel salarial incorrecto");
                 }
-                 else if (DB_SQLServer)
+                else if (DB_SQLServer)
+                {
+                    var nombrePuesto = PUESTOS_TB_Nombre.Text;
+                    var nivelPuesto = float.Parse(PUESTOS_TB_Nivel.Text);
+
+                    var linkDB = new EnlaceDB();
+                    bool ok = false;
+
+                    if (!edit_Puesto) // si se va a hacer insert
+                        ok = linkDB.GestionPuestos("I", 0, nombrePuesto, nivelPuesto);//noPuesto 0 porq no importa
+                    else // si se esta modificando un puesto existente
                     {
-                        var nombrePuesto = PUESTOS_TB_Nombre.Text;
-                        var nivelPuesto = float.Parse(PUESTOS_TB_Nivel.Text);
-
-                        var linkDB = new EnlaceDB();
-                        bool ok = false;
-
-                        if (!edit_Puesto) // si se va a hacer insert
-                            ok = linkDB.GestionPuestos("I", 0, nombrePuesto, nivelPuesto);//noPuesto 0 porq no importa
-                        else // si se esta modificando un puesto existente
-                        {
-                            ok = linkDB.GestionPuestos("U", edit_noPuesto, nombrePuesto, nivelPuesto);
-                            edit_Puesto = false;
-                            PUESTOS_LBL_Edit.Visible = false;
-                        }
-
-                        if (ok)
-                        {
-                            MessageBox.Show("Se guardo en la BD");
-                            Reload();
-                        }
-                        else
-                            MessageBox.Show("Error en el guardado");
+                        ok = linkDB.GestionPuestos("U", edit_noPuesto, nombrePuesto, nivelPuesto);
+                        edit_Puesto = false;
+                        PUESTOS_LBL_Edit.Visible = false;
                     }
-                    ////////////////////////////////ENLACE CASSANDRA///////////////////////////////
-                    else if (DB_Cassandra)
+
+                    if (ok)
                     {
-
+                        MessageBox.Show("Se guardo en la BD");
+                        Reload();
                     }
+                    else
+                        MessageBox.Show("Error en el guardado");
+                }
+                ////////////////////////////////ENLACE CASSANDRA///////////////////////////////
+                else if (DB_Cassandra)
+                {
+                    var nombrePuesto = PUESTOS_TB_Nombre.Text;
+                    var nivelPuesto = float.Parse(PUESTOS_TB_Nivel.Text);
+
+                    PUESTOS_LBL_Loading.Visible = true;
+                    var linkCassandra = new EnlaceCassandra();
+                    linkCassandra.InsertPuesto(edit_Puesto,edit_noPuesto,nombrePuesto,nivelPuesto);
+                    Reload();
+                    PUESTOS_LBL_Loading.Visible = false;
+                    edit_Puesto = false;
+                }
             }
         }
 
@@ -77,10 +84,10 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Puestos.CurrentRow != null) //hay fila seleccionada
             {
+                Int16 noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
                 ////////////////////////////////////////////////////////////////////////////////////
-                if(DB_SQLServer)
+                if (DB_SQLServer)
                 {
-                    Int16 noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
                     //Eliminar de la base de datos
                     var linkDB = new EnlaceDB();
                     bool ok = false;
@@ -97,7 +104,11 @@ namespace MAD_AAVD_proyecto
                 /////////////////////////////////////////////////////////////////////////////////////
                 else if (DB_Cassandra)
                 {
-
+                    var linkCassandra = new EnlaceCassandra();
+                    PUESTOS_LBL_Loading.Visible= true;
+                    linkCassandra.DeletePuesto(noPuesto);
+                    Reload();
+                    PUESTOS_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -110,11 +121,10 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Puestos.CurrentRow != null) //hay fila seleccionada
             {
+                edit_noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
                 ////////////////////////////////////////////////////////////////////////
-                if(DB_SQLServer)
+                if (DB_SQLServer)
                 {
-                    edit_noPuesto = Int16.Parse(ADMIN_DGV_Puestos.CurrentRow.Cells["noPuesto"].Value.ToString());
-
                     //Cargar los datos a los text box
                     var linkDB = new EnlaceDB();
                     linkDB.GetPuesto(edit_noPuesto, PUESTOS_TB_Nombre, PUESTOS_TB_Nivel);
@@ -126,7 +136,23 @@ namespace MAD_AAVD_proyecto
                 ///////////////////////////////////////////////////////////////////////
                 else if(DB_Cassandra)
                 {
-
+                    var linkCassandra = new EnlaceCassandra();
+                    PUESTOS_LBL_Loading.Visible = true;
+                    Puestos puesto = linkCassandra.Get_One(edit_noPuesto);
+                    
+                    if (puesto != null) // Verificar que el puesto existe
+                    {
+                        PUESTOS_TB_Nombre.Text = puesto.nombrePuesto;
+                        PUESTOS_TB_Nivel.Text = puesto.nivelSalarial.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Puesto no encontrado.");
+                    }
+                    edit_Puesto = true; //para que cuando registre se haga un update en vez de un insert
+                    PUESTOS_LBL_Edit.Text = "EDITANDO PUESTO " + edit_noPuesto.ToString();
+                    PUESTOS_LBL_Edit.Visible = true;
+                    PUESTOS_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -139,6 +165,7 @@ namespace MAD_AAVD_proyecto
         {
             PUESTOS_TB_Nombre.Clear();//Se limpian para que no se pueda agregar un nuevo campo con lo que se edito antes
             PUESTOS_TB_Nivel.Clear();
+            PUESTOS_LBL_Edit.Visible = false;
 
             ADMIN_DGV_Puestos.DefaultCellStyle.ForeColor = Color.White;
             ADMIN_DGV_Puestos.DefaultCellStyle.BackColor = Color.Black;
@@ -154,22 +181,10 @@ namespace MAD_AAVD_proyecto
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
             {
-                var stopwatch = new System.Diagnostics.Stopwatch();
-
-                // Medir tiempo de la consulta a Cassandra
-                stopwatch.Start();
                 var linkCassandra = new EnlaceCassandra();
                 List<Puestos> tabla = linkCassandra.Get_All();
-                stopwatch.Stop();
-                MessageBox.Show($"Tiempo de consulta a Cassandra: {stopwatch.ElapsedMilliseconds} ms");
-
-                // Reiniciar el cronómetro
-                stopwatch.Restart();
-
-                // Medir tiempo de asignación al DataGridView
                 ADMIN_DGV_Puestos.DataSource = tabla;
-                stopwatch.Stop();
-                MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
+                ADMIN_DGV_Puestos.Columns["noPuesto"].Visible = false;
             }
         }
 
@@ -184,6 +199,11 @@ namespace MAD_AAVD_proyecto
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void FormPuestos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+         
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -53,7 +54,10 @@ namespace MAD_AAVD_proyecto
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            //if(DB_Cassandra)
+            //{
+            //    var linkCassandra = new EnlaceCassandra();
+            //}
         }
 
         private void SM_Empleados_Click(object sender, EventArgs e)
