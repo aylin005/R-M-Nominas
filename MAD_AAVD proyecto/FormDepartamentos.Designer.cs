@@ -48,6 +48,7 @@
             this.DEPARTAMENTOS_BTN_Editar = new System.Windows.Forms.Button();
             this.DEPARTAMENTOS_BTN_Limpiar = new System.Windows.Forms.Button();
             this.DEPARTAMENTOS_LBL_Edit = new System.Windows.Forms.Label();
+            this.DEPARTAMENTOS_LBL_Loading = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Departamentos)).BeginInit();
@@ -164,7 +165,7 @@
             this.DEPARTAMENTOS_TB_NombreDepto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DEPARTAMENTOS_TB_NombreDepto.ForeColor = System.Drawing.SystemColors.Window;
             this.DEPARTAMENTOS_TB_NombreDepto.Location = new System.Drawing.Point(693, 226);
-            this.DEPARTAMENTOS_TB_NombreDepto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DEPARTAMENTOS_TB_NombreDepto.Margin = new System.Windows.Forms.Padding(4);
             this.DEPARTAMENTOS_TB_NombreDepto.Multiline = true;
             this.DEPARTAMENTOS_TB_NombreDepto.Name = "DEPARTAMENTOS_TB_NombreDepto";
             this.DEPARTAMENTOS_TB_NombreDepto.Size = new System.Drawing.Size(292, 25);
@@ -187,7 +188,7 @@
             this.DEPARTAMENTOS_TB_Sueldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DEPARTAMENTOS_TB_Sueldo.ForeColor = System.Drawing.SystemColors.Window;
             this.DEPARTAMENTOS_TB_Sueldo.Location = new System.Drawing.Point(695, 294);
-            this.DEPARTAMENTOS_TB_Sueldo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DEPARTAMENTOS_TB_Sueldo.Margin = new System.Windows.Forms.Padding(4);
             this.DEPARTAMENTOS_TB_Sueldo.Multiline = true;
             this.DEPARTAMENTOS_TB_Sueldo.Name = "DEPARTAMENTOS_TB_Sueldo";
             this.DEPARTAMENTOS_TB_Sueldo.Size = new System.Drawing.Size(96, 25);
@@ -220,7 +221,7 @@
             this.ADMIN_DGV_Departamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ADMIN_DGV_Departamentos.GridColor = System.Drawing.Color.DodgerBlue;
             this.ADMIN_DGV_Departamentos.Location = new System.Drawing.Point(283, 537);
-            this.ADMIN_DGV_Departamentos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ADMIN_DGV_Departamentos.Margin = new System.Windows.Forms.Padding(4);
             this.ADMIN_DGV_Departamentos.Name = "ADMIN_DGV_Departamentos";
             this.ADMIN_DGV_Departamentos.ReadOnly = true;
             this.ADMIN_DGV_Departamentos.RowHeadersWidth = 51;
@@ -301,12 +302,25 @@
             this.DEPARTAMENTOS_LBL_Edit.Visible = false;
             this.DEPARTAMENTOS_LBL_Edit.Click += new System.EventHandler(this.PUESTOS_LBL_Edit_Click);
             // 
+            // DEPARTAMENTOS_LBL_Loading
+            // 
+            this.DEPARTAMENTOS_LBL_Loading.AutoSize = true;
+            this.DEPARTAMENTOS_LBL_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEPARTAMENTOS_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
+            this.DEPARTAMENTOS_LBL_Loading.Location = new System.Drawing.Point(634, 95);
+            this.DEPARTAMENTOS_LBL_Loading.Name = "DEPARTAMENTOS_LBL_Loading";
+            this.DEPARTAMENTOS_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.DEPARTAMENTOS_LBL_Loading.TabIndex = 72;
+            this.DEPARTAMENTOS_LBL_Loading.Text = "Loading...";
+            this.DEPARTAMENTOS_LBL_Loading.Visible = false;
+            // 
             // FormDepartamentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1310, 872);
+            this.Controls.Add(this.DEPARTAMENTOS_LBL_Loading);
             this.Controls.Add(this.DEPARTAMENTOS_LBL_Edit);
             this.Controls.Add(this.DEPARTAMENTOS_BTN_Limpiar);
             this.Controls.Add(this.DEPARTAMENTOS_BTN_Eliminar);
@@ -361,5 +375,6 @@
         private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Editar;
         private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Limpiar;
         private System.Windows.Forms.Label DEPARTAMENTOS_LBL_Edit;
+        private System.Windows.Forms.Label DEPARTAMENTOS_LBL_Loading;
     }
 }

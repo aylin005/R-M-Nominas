@@ -9,6 +9,8 @@ using System.Configuration;
 using System.Windows.Forms;
 using System.Data;
 using System.Reflection;
+using System.Data.Common;
+using Newtonsoft.Json.Linq;
 
 
 namespace MAD_AAVD_proyecto
@@ -114,39 +116,83 @@ namespace MAD_AAVD_proyecto
         //    return users.ToList();
         //}
 
-        public List<Puestos> Get_All()
+        public List<T> Get_All<T>(string[] columnas, string nombreTabla)
         {
-            string query = "SELECT noPuesto, nombrePuesto, nivelSalarial FROM PUESTOS;";
+            string query = "SELECT ";
+            foreach (var columna in columnas)
+            {
+                query += columna + ", ";
+            }
+            query = query.Remove(query.Length - 2);
+            query += " FROM " + nombreTabla + ";";
             conectar();
 
             IMapper mapper = new Mapper(_session);
-            IEnumerable<Puestos> puestos = mapper.Fetch<Puestos>(query);
+            IEnumerable<T> table = mapper.Fetch<T>(query);
 
             desconectar();
-            return puestos.ToList();
+            return table.ToList();
         }
 
-        public void InsertPuesto(bool edit, int noPuesto, string nombrePuesto, float nivelSalarial)
-        {
+        public void Insert(bool edit, string nombreTabla, string[] columns, string[] values)//en values enviar strings entre ''
+        {//columns 0 debe ser el numero id
             try
             {
                 conectar();
                 string query = "";
-
+                //contar arreglos
+                int cantColumns = 0;
+                foreach(var column in columns)
+                {
+                    cantColumns++;
+                }
                 if (!edit)
                 {
-                    query = "SELECT MAX(noPuesto) FROM PUESTOS;";
-                    IMapper mapper = new Mapper(_session);
-                    int lastPuestoNumber = mapper.Single<int>(query); // Devuelve el último número de puesto
-                    lastPuestoNumber++;
+                    //query = "SELECT MAX({0}) FROM {1};";
+                    //query = string.Format(query, columns[0], nombreTabla);
+                    //IMapper mapper = new Mapper(_session);
+                    //int lastNumber = mapper.Single<int>(query); // Devuelve el último número de puesto
+                    //lastNumber++;
 
-                    query = "insert into PUESTOS(noPuesto, nombrePuesto, nivelSalarial) values({0},'{1}',{2}) IF NOT EXISTS;";
-                    query = string.Format(query, lastPuestoNumber, nombrePuesto, nivelSalarial);
+                    query = $"SELECT MAX({columns[0]}) FROM {nombreTabla};";
+                    conectar();
+                    IMapper mapper = new Mapper(_session);
+                    // int? para que acepte null en caso de que no haya resultados
+                    int? lastNumber = mapper.Single<int?>(query);
+                    desconectar();
+                    // Asigna 0 si lastNumber es null
+                    if(lastNumber == null)
+                        lastNumber = 0;
+
+                    query = "INSERT INTO {0}(";
+                    query = string.Format(query, nombreTabla);
+                    foreach (var column in columns)
+                    {
+                        query = query + column + ", ";
+                    }
+                    //eliminar el ultimo , 
+                    query = query.Remove(query.Length - 2);
+                    query = query + ") VALUES(" + lastNumber + ", ";
+
+                    for (int i = 0; i < cantColumns - 1; i++)
+                    {
+                        query = query + values[i + 1] + ", "; // se salta id porque ya se aplico
+                    }
+
+                    query = query.Remove(query.Length - 2);
+                    query = query + ") IF NOT EXISTS;";
                 }
                 else
                 {
-                    query = "UPDATE PUESTOS SET nombrePuesto = '{0}', nivelSalarial = {1} WHERE noPuesto={2} IF EXISTS;";
-                    query = string.Format(query, nombrePuesto, nivelSalarial, noPuesto);
+                    query = "UPDATE ";
+                    query = query + nombreTabla + " SET ";
+                    
+                    for (int i = 0; i < cantColumns - 1; i++)
+                    {
+                        query = query + columns[i + 1] + " = " + values[i + 1] + ", "; //se salta el id primero
+                    }
+                    query = query.Remove(query.Length - 2); //quita el ultimo ,
+                    query = query + " WHERE " + columns[0] + " = " + values[0] + " IF EXISTS;";
                 }
 
                 _session.Execute(query);
@@ -179,15 +225,21 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
-        public Puestos Get_One(int noPuesto)
+        public T Get_One<T>(string[]columnas, string nombreTabla, int noID) //template
         {
-            string query = "SELECT noPuesto, nombrePuesto, nivelSalarial FROM PUESTOS WHERE noPuesto = {0};";
-            query = string.Format(query, noPuesto);
+            string query = "SELECT ";
+            foreach (string column in columnas)
+            {
+                query += column + ", ";
+            }
+            query = query.Remove(query.Length - 2); //quita el ultimo ,
+            query += " FROM " + nombreTabla + " WHERE " + columnas[0] + " = " + noID + ";";
+
             conectar();
             IMapper mapper = new Mapper(_session);
-            Puestos puesto = mapper.Single<Puestos>(query); //un solo resultado.
+            T row = mapper.Single<T>(query); //un solo resultado.
             desconectar();
-            return puesto;
+            return row;
         }
 
         public DataTable ToDataTable<T>(List<T> items)

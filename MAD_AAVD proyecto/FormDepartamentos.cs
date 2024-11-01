@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static MAD_AAVD_proyecto.Globals;
 using System.Windows.Forms;
+using Cassandra.Mapping;
 
 namespace MAD_AAVD_proyecto
 {
@@ -15,6 +16,7 @@ namespace MAD_AAVD_proyecto
     {
         public bool edit_Depto = false; //Variable para saber si se esta editando el departamento
         public Int16 edit_noDepto = 0; // guarda el número del departamento al que se le va a hacer un update
+        public string[] columnas = { "noDepto", "nombreDpto", "sueldoBase" };
         public FormDepartamentos()
         {
             InitializeComponent();
@@ -67,6 +69,23 @@ namespace MAD_AAVD_proyecto
                     }
                     else
                         MessageBox.Show("Error en el guardado");
+                }
+                else if(DB_Cassandra)
+                {
+                    var nombreDepto = DEPARTAMENTOS_TB_NombreDepto.Text;
+                    var sueldoDepto = float.Parse(DEPARTAMENTOS_TB_Sueldo.Text);
+
+                    DEPARTAMENTOS_LBL_Loading.Visible = true;
+                    var linkCassandra = new EnlaceCassandra();
+
+                    string strNombreDepto = "'" + nombreDepto + "'"; //agregar comillas al nombre
+                    string[] values = { edit_noDepto.ToString(), strNombreDepto, sueldoDepto.ToString() };
+
+                    linkCassandra.Insert(edit_Depto, "DEPARTAMENTOS", columnas, values);
+
+                    Reload();
+                    DEPARTAMENTOS_LBL_Loading.Visible = false;
+                    edit_Depto = false;
                 }
             }
         }
@@ -125,7 +144,23 @@ namespace MAD_AAVD_proyecto
                 ///////////////////////////////////////////////////////////////////////
                 else if (DB_Cassandra)
                 {
-                    //aaaa
+                    var linkCassandra = new EnlaceCassandra();
+                    DEPARTAMENTOS_LBL_Loading.Visible = true;
+                    Departamentos departamento = linkCassandra.Get_One<Departamentos>(columnas, "DEPARTAMENTOS", edit_noDepto);
+
+                    if (departamento != null) // Verificar que el puesto existe
+                    {
+                        DEPARTAMENTOS_TB_NombreDepto.Text = departamento.nombreDpto;
+                        DEPARTAMENTOS_TB_Sueldo.Text = departamento.sueldoBase.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Departamento no encontrado.");
+                    }
+                    edit_Depto = true; //para que cuando registre se haga un update en vez de un insert
+                    DEPARTAMENTOS_LBL_Edit.Text = "EDITANDO DEPARTAMENTO " + edit_noDepto.ToString();
+                    DEPARTAMENTOS_LBL_Edit.Visible = true;
+                    DEPARTAMENTOS_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -166,22 +201,10 @@ namespace MAD_AAVD_proyecto
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
             { //q miedo Cassandra, la dama de las bases de datos
-                //var stopwatch = new System.Diagnostics.Stopwatch();
-
-                //// Medir tiempo de la consulta a Cassandra
-                //stopwatch.Start();
-                //var linkCassandra = new EnlaceCassandra();
-                //List<Puestos> tabla = linkCassandra.Get_All();
-                //stopwatch.Stop();
-                //MessageBox.Show($"Tiempo de consulta a Cassandra: {stopwatch.ElapsedMilliseconds} ms");
-
-                //// Reiniciar el cronómetro
-                //stopwatch.Restart();
-
-                //// Medir tiempo de asignación al DataGridView
-                //ADMIN_DGV_Puestos.DataSource = tabla;
-                //stopwatch.Stop();
-                //MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
+                var linkCassandra = new EnlaceCassandra();
+                List<Departamentos> tabla = linkCassandra.Get_All<Departamentos>(columnas, "DEPARTAMENTOS");
+                ADMIN_DGV_Departamentos.DataSource = tabla;
+                ADMIN_DGV_Departamentos.Columns["noDepto"].Visible = false;
             }
         }
 

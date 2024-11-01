@@ -13,4 +13,11 @@ namespace MAD_AAVD_proyecto
         public float nivelSalarial { get; set; }
 
     }
+
+    public class Departamentos
+    {
+        public int noDepto { get; set; }
+        public string nombreDpto { get; set; } 
+        public float  sueldoBase { get; set; }
+    }
 }

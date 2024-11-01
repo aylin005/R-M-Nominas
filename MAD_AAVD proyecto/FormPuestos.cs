@@ -17,7 +17,7 @@ namespace MAD_AAVD_proyecto
     {
         public bool edit_Puesto = false; //Variable para saber si se esta editando el puesto
         public Int16 edit_noPuesto = 0; // guarda el noPuesto al que se le va a hacer un update
-
+        public string[] columnas = { "noPuesto", "nombrePuesto", "nivelSalarial" };
         public FormPuestos()
         {
             InitializeComponent();
@@ -72,7 +72,12 @@ namespace MAD_AAVD_proyecto
 
                     PUESTOS_LBL_Loading.Visible = true;
                     var linkCassandra = new EnlaceCassandra();
-                    linkCassandra.InsertPuesto(edit_Puesto,edit_noPuesto,nombrePuesto,nivelPuesto);
+
+                    string strNombrePuesto = "'" + nombrePuesto + "'"; //agregar comillas al nombre
+                    string[] values = { edit_noPuesto.ToString(), strNombrePuesto, nivelPuesto.ToString() };
+
+                    linkCassandra.Insert(edit_Puesto, "PUESTOS", columnas, values);
+
                     Reload();
                     PUESTOS_LBL_Loading.Visible = false;
                     edit_Puesto = false;
@@ -138,7 +143,7 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     PUESTOS_LBL_Loading.Visible = true;
-                    Puestos puesto = linkCassandra.Get_One(edit_noPuesto);
+                    Puestos puesto = linkCassandra.Get_One<Puestos>(columnas, "PUESTOS", edit_noPuesto);
                     
                     if (puesto != null) // Verificar que el puesto existe
                     {
@@ -182,7 +187,7 @@ namespace MAD_AAVD_proyecto
             else if (DB_Cassandra)
             {
                 var linkCassandra = new EnlaceCassandra();
-                List<Puestos> tabla = linkCassandra.Get_All();
+                List<Puestos> tabla = linkCassandra.Get_All<Puestos>(columnas, "PUESTOS");
                 ADMIN_DGV_Puestos.DataSource = tabla;
                 ADMIN_DGV_Puestos.Columns["noPuesto"].Visible = false;
             }
