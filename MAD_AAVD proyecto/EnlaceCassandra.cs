@@ -148,24 +148,18 @@ namespace MAD_AAVD_proyecto
                 }
                 if (!edit)
                 {
-                    //query = "SELECT MAX({0}) FROM {1};";
-                    //query = string.Format(query, columns[0], nombreTabla);
-                    //IMapper mapper = new Mapper(_session);
-                    //int lastNumber = mapper.Single<int>(query); // Devuelve el último número de puesto
-                    //lastNumber++;
-
                     query = $"SELECT MAX({columns[0]}) FROM {nombreTabla};";
-                    conectar();
                     IMapper mapper = new Mapper(_session);
                     // int? para que acepte null en caso de que no haya resultados
                     int? lastNumber = mapper.Single<int?>(query);
-                    desconectar();
+                    
                     // Asigna 0 si lastNumber es null
-                    if(lastNumber == null)
-                        lastNumber = 0;
+                    if (lastNumber == null)
+                        lastNumber = 1;
+                    else
+                        lastNumber++;
 
-                    query = "INSERT INTO {0}(";
-                    query = string.Format(query, nombreTabla);
+                    query = $"INSERT INTO {nombreTabla}(";
                     foreach (var column in columns)
                     {
                         query = query + column + ", ";
@@ -206,13 +200,12 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
-        public void DeletePuesto(int noPuesto)
+        public void Delete(string nombreTabla, string [] columnas, int noID)
         {
             try
             {
                 conectar();
-                string query = "DELETE FROM PUESTOS WHERE noPuesto = {0};";
-                query = string.Format(query, noPuesto);
+                string query = $"DELETE FROM {nombreTabla} WHERE {columnas[0]} = {noID};";
 
                 _session.Execute(query);
             }

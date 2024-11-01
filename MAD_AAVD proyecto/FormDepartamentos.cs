@@ -78,7 +78,7 @@ namespace MAD_AAVD_proyecto
                     DEPARTAMENTOS_LBL_Loading.Visible = true;
                     var linkCassandra = new EnlaceCassandra();
 
-                    string strNombreDepto = "'" + nombreDepto + "'"; //agregar comillas al nombre
+                    string strNombreDepto =$"'{nombreDepto}'"; //agregar comillas al nombre
                     string[] values = { edit_noDepto.ToString(), strNombreDepto, sueldoDepto.ToString() };
 
                     linkCassandra.Insert(edit_Depto, "DEPARTAMENTOS", columnas, values);
@@ -96,9 +96,9 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Departamentos.CurrentRow != null) 
             {
+                Int16 noDepto = Int16.Parse(ADMIN_DGV_Departamentos.CurrentRow.Cells["noDepto"].Value.ToString());
                 if (DB_SQLServer)
                 {
-                    Int16 noDepto = Int16.Parse(ADMIN_DGV_Departamentos.CurrentRow.Cells["noDepto"].Value.ToString());
                     //Eliminar de la base de datos
                     var linkDB = new EnlaceDB();
                     bool ok = false;
@@ -114,7 +114,11 @@ namespace MAD_AAVD_proyecto
                 }
                 else if (DB_Cassandra)
                 {
-
+                    var linkCassandra = new EnlaceCassandra();
+                    DEPARTAMENTOS_LBL_Loading.Visible = true;
+                    linkCassandra.Delete("DEPARTAMENTOS", columnas, noDepto);
+                    Reload();
+                    DEPARTAMENTOS_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -129,10 +133,10 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Departamentos.CurrentRow != null)
             {
+                edit_noDepto = Int16.Parse(ADMIN_DGV_Departamentos.CurrentRow.Cells["noDepto"].Value.ToString());
+
                 if (DB_SQLServer)
                 {
-                    edit_noDepto = Int16.Parse(ADMIN_DGV_Departamentos.CurrentRow.Cells["noDepto"].Value.ToString());
-
                     //Cargar los datos a los text box
                     var linkDB = new EnlaceDB();
                     linkDB.GetDepto(edit_noDepto, DEPARTAMENTOS_TB_NombreDepto, DEPARTAMENTOS_TB_Sueldo);
@@ -186,6 +190,7 @@ namespace MAD_AAVD_proyecto
         {
             DEPARTAMENTOS_TB_NombreDepto.Clear();
             DEPARTAMENTOS_TB_Sueldo.Clear();
+            DEPARTAMENTOS_LBL_Edit.Visible = false;
 
             ADMIN_DGV_Departamentos.DefaultCellStyle.ForeColor = Color.White;
             ADMIN_DGV_Departamentos.DefaultCellStyle.BackColor = Color.Black;
