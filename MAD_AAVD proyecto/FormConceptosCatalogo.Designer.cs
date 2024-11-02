@@ -56,6 +56,7 @@
             this.CONCEPTOSCAT_BTN_Editar = new System.Windows.Forms.Button();
             this.CONCEPTOSCAT_BTN_Limpiar = new System.Windows.Forms.Button();
             this.CONCEPTOSCAT_LBL_Edit = new System.Windows.Forms.Label();
+            this.CONCEPTOSCAT_LBL_Loading = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Conceptos)).BeginInit();
             this.panel6.SuspendLayout();
@@ -66,7 +67,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(428, 17);
+            this.label1.Location = new System.Drawing.Point(431, 17);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(500, 57);
@@ -176,7 +177,7 @@
             this.CONCEPTOSCAT_TB_Nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CONCEPTOSCAT_TB_Nombre.ForeColor = System.Drawing.SystemColors.Window;
             this.CONCEPTOSCAT_TB_Nombre.Location = new System.Drawing.Point(677, 192);
-            this.CONCEPTOSCAT_TB_Nombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPTOSCAT_TB_Nombre.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPTOSCAT_TB_Nombre.Multiline = true;
             this.CONCEPTOSCAT_TB_Nombre.Name = "CONCEPTOSCAT_TB_Nombre";
             this.CONCEPTOSCAT_TB_Nombre.Size = new System.Drawing.Size(256, 25);
@@ -231,7 +232,7 @@
             this.CONCEPTOSCAT_TB_Cuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CONCEPTOSCAT_TB_Cuota.ForeColor = System.Drawing.SystemColors.Window;
             this.CONCEPTOSCAT_TB_Cuota.Location = new System.Drawing.Point(531, 345);
-            this.CONCEPTOSCAT_TB_Cuota.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPTOSCAT_TB_Cuota.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPTOSCAT_TB_Cuota.Multiline = true;
             this.CONCEPTOSCAT_TB_Cuota.Name = "CONCEPTOSCAT_TB_Cuota";
             this.CONCEPTOSCAT_TB_Cuota.Size = new System.Drawing.Size(117, 25);
@@ -255,7 +256,7 @@
             this.CONCEPTOSCAT_TB_Porcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CONCEPTOSCAT_TB_Porcentaje.ForeColor = System.Drawing.SystemColors.Window;
             this.CONCEPTOSCAT_TB_Porcentaje.Location = new System.Drawing.Point(835, 345);
-            this.CONCEPTOSCAT_TB_Porcentaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPTOSCAT_TB_Porcentaje.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPTOSCAT_TB_Porcentaje.Multiline = true;
             this.CONCEPTOSCAT_TB_Porcentaje.Name = "CONCEPTOSCAT_TB_Porcentaje";
             this.CONCEPTOSCAT_TB_Porcentaje.Size = new System.Drawing.Size(64, 25);
@@ -310,7 +311,7 @@
             this.ADMIN_DGV_Conceptos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ADMIN_DGV_Conceptos.GridColor = System.Drawing.Color.DodgerBlue;
             this.ADMIN_DGV_Conceptos.Location = new System.Drawing.Point(127, 534);
-            this.ADMIN_DGV_Conceptos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ADMIN_DGV_Conceptos.Margin = new System.Windows.Forms.Padding(4);
             this.ADMIN_DGV_Conceptos.Name = "ADMIN_DGV_Conceptos";
             this.ADMIN_DGV_Conceptos.ReadOnly = true;
             this.ADMIN_DGV_Conceptos.RowHeadersWidth = 51;
@@ -411,12 +412,25 @@
             this.CONCEPTOSCAT_LBL_Edit.Visible = false;
             this.CONCEPTOSCAT_LBL_Edit.Click += new System.EventHandler(this.DEPARTAMENTOS_LBL_Edit_Click);
             // 
+            // CONCEPTOSCAT_LBL_Loading
+            // 
+            this.CONCEPTOSCAT_LBL_Loading.AutoSize = true;
+            this.CONCEPTOSCAT_LBL_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPTOSCAT_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
+            this.CONCEPTOSCAT_LBL_Loading.Location = new System.Drawing.Point(646, 84);
+            this.CONCEPTOSCAT_LBL_Loading.Name = "CONCEPTOSCAT_LBL_Loading";
+            this.CONCEPTOSCAT_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.CONCEPTOSCAT_LBL_Loading.TabIndex = 73;
+            this.CONCEPTOSCAT_LBL_Loading.Text = "Loading...";
+            this.CONCEPTOSCAT_LBL_Loading.Visible = false;
+            // 
             // CONCEPTOSCAT_DB_Tipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.CONCEPTOSCAT_LBL_Loading);
             this.Controls.Add(this.CONCEPTOSCAT_LBL_Edit);
             this.Controls.Add(this.CONCEPTOSCAT_BTN_Limpiar);
             this.Controls.Add(this.CONCEPTOSCAT_BTN_Eliminar);
@@ -445,7 +459,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CONCEPTOSCAT_DB_Tipo";
             this.Text = "FormConceptosCatalogo";
             this.Load += new System.EventHandler(this.FormConceptosCatalogo_Load);
@@ -487,5 +501,6 @@
         private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Editar;
         private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Limpiar;
         private System.Windows.Forms.Label CONCEPTOSCAT_LBL_Edit;
+        private System.Windows.Forms.Label CONCEPTOSCAT_LBL_Loading;
     }
 }

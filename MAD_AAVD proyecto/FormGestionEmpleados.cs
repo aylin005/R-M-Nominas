@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Cassandra.Mapping;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -89,8 +91,19 @@ namespace MAD_AAVD_proyecto
             }
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
-            { 
+            {
+                var linkCassandra = new EnlaceCassandra();
+                string[] columnasDepto = { "noDepto", "nombreDpto"};
+                List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
+                EMP_CB_Departamento.DataSource = listaDepartamentos;
+                EMP_CB_Departamento.DisplayMember = "nombreDpto";
+                EMP_CB_Departamento.ValueMember = "noDepto";
 
+                string[] columnasPuestos = { "noPuesto", "nombrePuesto" };
+                List<Departamentos> listaPuestos = linkCassandra.Get_All<Departamentos>(columnasPuestos, "PUESTOS");
+                EMP_CB_Departamento.DataSource = listaPuestos;
+                EMP_CB_Departamento.DisplayMember = "nombrePuesto";
+                EMP_CB_Departamento.ValueMember = "noPuesto";
             }
         }
 

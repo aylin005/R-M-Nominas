@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cassandra.Mapping;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace MAD_AAVD_proyecto
     {
         public bool edit_Concepto = false; //Variable para saber si se esta editando el departamento
         public Int16 edit_noConcepto = 0; // guarda el número del departamento al que se le va a hacer un update
+        string[] columnas = {"noConcepto","nombreConcepto","cuota","porcentaje", "fijo", "percepcion" };
         public CONCEPTOSCAT_DB_Tipo()
         {
             InitializeComponent();
@@ -54,22 +56,15 @@ namespace MAD_AAVD_proyecto
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
             {
-                //var stopwatch = new System.Diagnostics.Stopwatch();
+                var linkCassandra = new EnlaceCassandra();
+                List<Conceptos> tabla = linkCassandra.Get_All<Conceptos>(columnas, "CONCEPTOS");
+                ADMIN_DGV_Conceptos.DataSource = tabla;
+                ADMIN_DGV_Conceptos.Columns["noConcepto"].Visible = false;
 
-                //// Medir tiempo de la consulta a Cassandra
-                //stopwatch.Start();
-                //var linkCassandra = new EnlaceCassandra();
-                //List<Puestos> tabla = linkCassandra.Get_All();
-                //stopwatch.Stop();
-                //MessageBox.Show($"Tiempo de consulta a Cassandra: {stopwatch.ElapsedMilliseconds} ms");
-
-                //// Reiniciar el cronómetro
-                //stopwatch.Restart();
-
-                //// Medir tiempo de asignación al DataGridView
-                //ADMIN_DGV_Puestos.DataSource = tabla;
-                //stopwatch.Stop();
-                //MessageBox.Show($"Tiempo de asignación al DataGridView: {stopwatch.ElapsedMilliseconds} ms");
+                CONCEPTOSCAT_TB_Cuota.Text = "N/A";
+                CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
+                edit_Concepto = false;
+                CONCEPTOSCAT_LBL_Edit.Visible = false;
             }
         }
 
@@ -78,11 +73,10 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Conceptos.CurrentRow != null)
             {
+                edit_noConcepto = Int16.Parse(ADMIN_DGV_Conceptos.CurrentRow.Cells["noConcepto"].Value.ToString());
                 ////////////S Q L 
                 if (DB_SQLServer)
                 {
-                    edit_noConcepto = Int16.Parse(ADMIN_DGV_Conceptos.CurrentRow.Cells["noConcepto"].Value.ToString());
-
                     //Cargar los datos a los text box
                     var linkDB = new EnlaceDB();
                     //saber que concepto selecciono
@@ -96,7 +90,34 @@ namespace MAD_AAVD_proyecto
                 ////////////C A S S A N D R A, L A   D A M A   D E   L A S   B A S E S   D E   D A T O S
                 else if (DB_Cassandra)
                 {
-                    //aaaa
+                    var linkCassandra = new EnlaceCassandra();
+                    CONCEPTOSCAT_LBL_Loading.Visible = true;
+                    Conceptos concepto = linkCassandra.Get_One<Conceptos>(columnas, "CONCEPTOS", edit_noConcepto);
+
+                    if (concepto != null) // Verificar que el puesto existe
+                    {
+                        CONCEPTOSCAT_TB_Nombre.Text = concepto.nombreConcepto;
+                        CONCEPTOSCAT_CB_Tipo.SelectedIndex = Convert.ToInt32(concepto.percepcion);
+                        CONCEPTOSCAT_CB_Fijo.SelectedIndex = Convert.ToInt32(concepto.fijo);
+                        if(concepto.porcentaje > 0)
+                        {
+                            CONCEPTOSCAT_TB_Porcentaje.Text = concepto.porcentaje.ToString();
+                            CONCEPTOSCAT_TB_Cuota.Text = "N/A";
+                        }
+                        else if(concepto.cuota > 0)
+                        {
+                            CONCEPTOSCAT_TB_Cuota.Text = concepto.cuota.ToString();
+                            CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Concepto no encontrado.");
+                    }
+                    edit_Concepto = true; //para que cuando registre se haga un update en vez de un insert
+                    CONCEPTOSCAT_LBL_Edit.Text = "EDITANDO CONCEPTO " + edit_noConcepto.ToString();
+                    CONCEPTOSCAT_LBL_Edit.Visible = true;
+                    CONCEPTOSCAT_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -111,10 +132,10 @@ namespace MAD_AAVD_proyecto
         {
             if (ADMIN_DGV_Conceptos.CurrentRow != null) //hay fila seleccionada
             {
+                Int16 noConcepto = Int16.Parse(ADMIN_DGV_Conceptos.CurrentRow.Cells["noConcepto"].Value.ToString());
                 ////////////S Q L 
                 if (DB_SQLServer)
                 {
-                    Int16 noConcepto = Int16.Parse(ADMIN_DGV_Conceptos.CurrentRow.Cells["noConcepto"].Value.ToString());
                     var linkDB = new EnlaceDB();
                     bool ok = false;
                     ok = linkDB.GestionConceptos("D", noConcepto, "", 0.0M, 0.0M, false,false); //para definir un decimal usa una M, en lugar de una f : 0.0f -> 0.0M
@@ -130,7 +151,11 @@ namespace MAD_AAVD_proyecto
                 ////////////C A S S A N D R A, L A   D A M A   D E   L A S   B A S E S   D E   D A T O S
                 else if (DB_Cassandra)
                 {
-
+                    var linkCassandra = new EnlaceCassandra();
+                    CONCEPTOSCAT_LBL_Loading.Visible = true;
+                    linkCassandra.Delete("CONCEPTOS", columnas, noConcepto);
+                    Reload();
+                    CONCEPTOSCAT_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -148,42 +173,42 @@ namespace MAD_AAVD_proyecto
 
             if (CheckData(aux, aux2))
             {
+                aux = CONCEPTOSCAT_TB_Cuota.Text.Trim();
+                aux2 = CONCEPTOSCAT_TB_Porcentaje.Text.Trim();
+
+                var nombreConcepto = CONCEPTOSCAT_TB_Nombre.Text;
+                decimal porcentaje = 0.0M;
+                decimal cuota = 0.0M;
+
+                if (aux != "N/A") //hay que asegurarnos de que sean datos númericos
+                {
+                    cuota = decimal.Parse(CONCEPTOSCAT_TB_Cuota.Text);
+                }
+                else
+                {
+                    if (aux2 != "N/A")
+                    {
+                        porcentaje = decimal.Parse(CONCEPTOSCAT_TB_Porcentaje.Text);
+                        porcentaje /= 100; //se divide entre 100 para que se guarde así -> 25% -> 0.25 
+                    }
+                }
+
+                string auxTipo = CONCEPTOSCAT_CB_Tipo.Text; //se obtienen del CB
+                string auxFijo = CONCEPTOSCAT_CB_Fijo.Text;
+
+                bool isTipo, isFijo;
+                if (auxTipo == "Percepción")
+                    isTipo = true;
+                else
+                    isTipo = false;
+                if (auxFijo == "Sí")
+                    isFijo = true;
+                else
+                    isFijo = false;
+
                 ////////////S Q L 
                 if (DB_SQLServer)
                 {
-                    aux = CONCEPTOSCAT_TB_Cuota.Text.Trim();
-                    aux2 = CONCEPTOSCAT_TB_Porcentaje.Text.Trim();
-
-                    var nombreConcepto = CONCEPTOSCAT_TB_Nombre.Text;
-                    decimal porcentaje = 0.0M;
-                    decimal cuota = 0.0M; 
-
-                    if (aux != "N/A") //hay que asegurarnos de que sean datos númericos
-                    {
-                        cuota = decimal.Parse(CONCEPTOSCAT_TB_Cuota.Text);
-                    }
-                    else
-                    {
-                        if (aux2 != "N/A")
-                        {
-                            porcentaje = decimal.Parse(CONCEPTOSCAT_TB_Porcentaje.Text);
-                            porcentaje /= 100; //se divide entre 100 para que se guarde así -> 25% -> 0.25 
-                        }
-                    }
-
-                    string auxTipo = CONCEPTOSCAT_CB_Tipo.Text; //se obtienen del CB
-                    string auxFijo = CONCEPTOSCAT_CB_Fijo.Text;
-
-                    bool isTipo, isFijo;
-                    if (auxTipo == "Percepción")
-                        isTipo = true;
-                    else
-                        isTipo = false;
-                    if (auxFijo == "Sí")
-                        isFijo = true;
-                    else
-                        isFijo = false;
-
                     var linkDB = new EnlaceDB();
                     bool ok = false;
 
@@ -202,6 +227,25 @@ namespace MAD_AAVD_proyecto
                     }
                     else
                         MessageBox.Show("Error en el guardado");
+                }
+                else if(DB_Cassandra)
+                {
+                    CONCEPTOSCAT_LBL_Loading.Visible = true;
+                    var linkCassandra = new EnlaceCassandra();
+
+                    string strNombre = $"'{nombreConcepto}'"; //agregar comillas al nombre
+                    string[] values = { edit_noConcepto.ToString(), strNombre, cuota.ToString(), porcentaje.ToString(), isFijo.ToString(), isTipo.ToString() };
+                    
+                    if (cuota == 0)
+                        values[2] = "null";
+                    else if(porcentaje == 0)
+                        values[3] = "null";
+
+                    linkCassandra.Insert(edit_Concepto, "CONCEPTOS", columnas, values);
+                    Clean();
+                    Reload();
+                    CONCEPTOSCAT_LBL_Loading.Visible = false;
+                    edit_Concepto = false;
                 }
             }
         }
