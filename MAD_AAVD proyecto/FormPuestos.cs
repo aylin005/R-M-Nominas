@@ -17,7 +17,8 @@ namespace MAD_AAVD_proyecto
     {
         public bool edit_Puesto = false; //Variable para saber si se esta editando el puesto
         public Int16 edit_noPuesto = 0; // guarda el noPuesto al que se le va a hacer un update
-        public string[] columnas = { "noPuesto", "nombrePuesto", "nivelSalarial" };
+        public string[] primaryKey = { "noPuesto" };
+        public string[] columnas = { "nombrePuesto", "nivelSalarial" };
         public FormPuestos()
         {
             InitializeComponent();
@@ -74,9 +75,10 @@ namespace MAD_AAVD_proyecto
                     var linkCassandra = new EnlaceCassandra();
 
                     string strNombrePuesto = "'" + nombrePuesto + "'"; //agregar comillas al nombre
-                    string[] values = { edit_noPuesto.ToString(), strNombrePuesto, nivelPuesto.ToString() };
+                    string[] pkValues = { edit_noPuesto.ToString()};
+                    string[] values = { strNombrePuesto, nivelPuesto.ToString() };
 
-                    linkCassandra.Insert(edit_Puesto, "PUESTOS", columnas, values);
+                    linkCassandra.Insert(edit_Puesto, "PUESTOS", primaryKey, pkValues, columnas, values);
 
                     Reload();
                     PUESTOS_LBL_Loading.Visible = false;
@@ -143,7 +145,8 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     PUESTOS_LBL_Loading.Visible = true;
-                    Puestos puesto = linkCassandra.Get_One<Puestos>(columnas, "PUESTOS", edit_noPuesto);
+                    string[] pkValues = { edit_noPuesto.ToString() };
+                    Puestos puesto = linkCassandra.Get_One<Puestos>(primaryKey, columnas, "PUESTOS", pkValues);
                     
                     if (puesto != null) // Verificar que el puesto existe
                     {
@@ -187,6 +190,8 @@ namespace MAD_AAVD_proyecto
             else if (DB_Cassandra)
             {
                 var linkCassandra = new EnlaceCassandra();
+
+                string[] columnas = { "noPuesto", "nombrePuesto", "nivelSalarial" };
                 List<Puestos> tabla = linkCassandra.Get_All<Puestos>(columnas, "PUESTOS");
                 ADMIN_DGV_Puestos.DataSource = tabla;
                 ADMIN_DGV_Puestos.Columns["noPuesto"].Visible = false;

@@ -1,4 +1,5 @@
 ﻿using Cassandra.Mapping;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,11 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormGestionEmpleados : Form
     {
-        public bool isEditingEmp = false;
+        public bool edit_Emp = false;
         public Int16 edit_noEmp = 0;
+
+        string[] primaryKey = { "noEmpleado", "fechaInicio", "departamento", "puesto", "salarioDiario" };
+
         public FormGestionEmpleados()
         {
             InitializeComponent();
@@ -93,17 +97,40 @@ namespace MAD_AAVD_proyecto
             else if (DB_Cassandra)
             {
                 var linkCassandra = new EnlaceCassandra();
+                //COMBOBOX DEPARTAMENTOS
                 string[] columnasDepto = { "noDepto", "nombreDpto"};
                 List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
                 EMP_CB_Departamento.DataSource = listaDepartamentos;
                 EMP_CB_Departamento.DisplayMember = "nombreDpto";
                 EMP_CB_Departamento.ValueMember = "noDepto";
 
+                //COMBOBOX PUESTOS
                 string[] columnasPuestos = { "noPuesto", "nombrePuesto" };
-                List<Departamentos> listaPuestos = linkCassandra.Get_All<Departamentos>(columnasPuestos, "PUESTOS");
-                EMP_CB_Departamento.DataSource = listaPuestos;
-                EMP_CB_Departamento.DisplayMember = "nombrePuesto";
-                EMP_CB_Departamento.ValueMember = "noPuesto";
+                List<Puestos> listaPuestos = linkCassandra.Get_All<Puestos>(columnasPuestos, "PUESTOS");
+                EMP_CB_Puesto.DataSource = listaPuestos;
+                EMP_CB_Puesto.DisplayMember = "nombrePuesto";
+                EMP_CB_Puesto.ValueMember = "noPuesto";
+
+                string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
+                List<Empleados> tabla = linkCassandra.Get_All<Empleados>(columnasTablaEmp, "EMPLEADOS");
+                EMP_DGV_Empleados.DataSource = tabla;
+                EMP_DGV_Empleados.Columns["contrasena"].Visible = false;
+                EMP_DGV_Empleados.Columns["fechaNacimiento"].Visible = false;
+                EMP_DGV_Empleados.Columns["curp"].Visible = false;
+                EMP_DGV_Empleados.Columns["rfc"].Visible = false;
+                EMP_DGV_Empleados.Columns["nss"].Visible = false;
+                EMP_DGV_Empleados.Columns["calleNo"].Visible = false;
+                EMP_DGV_Empleados.Columns["colonia"].Visible = false;
+                EMP_DGV_Empleados.Columns["municipio"].Visible = false;
+                EMP_DGV_Empleados.Columns["estado"].Visible = false;
+                EMP_DGV_Empleados.Columns["cp"].Visible = false;
+                EMP_DGV_Empleados.Columns["colonia"].Visible = false;
+                EMP_DGV_Empleados.Columns["banco"].Visible = false;
+                EMP_DGV_Empleados.Columns["noCuenta"].Visible = false;
+                EMP_DGV_Empleados.Columns["email"].Visible = false;
+                EMP_DGV_Empleados.Columns["telefonos"].Visible = false;
+                EMP_DGV_Empleados.Columns["salarioDiario"].Visible = false;
+                EMP_DGV_Empleados.Columns["fechaBaja"].Visible = false;
             }
         }
 
@@ -113,10 +140,10 @@ namespace MAD_AAVD_proyecto
         {
             if (EMP_DGV_Empleados.CurrentRow != null)
             {
+                edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["noEmpleado"].Value.ToString());
+                string fechaInicio = "'" + EMP_DGV_Empleados.CurrentRow.Cells["fechaInicio"].Value.ToString() + "'";
                 if (DB_SQLServer)
                 {
-                    edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["noEmpleado"].Value.ToString());
-
                     ////Cargar los datos a los text box
                     //var linkDB = new EnlaceDB();
                     //linkDB.GetEmpleados(edit_noEmp, EMP_TB_NoEmpleado, EMP_TB_Nombres, EMP_TB_ApPaterno, EMP_TB_ApMaterno, EMP_TB_Contrasena,
@@ -131,7 +158,28 @@ namespace MAD_AAVD_proyecto
                 ///////////////////////////////////////////////////////////////////////
                 else if (DB_Cassandra)
                 {
-                    //aaaa
+                    var linkCassandra = new EnlaceCassandra();
+                    EMP_LBL_Loading.Visible = true;
+
+                    string[] pkValues = { edit_noEmp.ToString(), fechaInicio};
+                    string[] primaryKey = { "noEmpleado", "fechaInicio"}; //columnas de la condicion WHERE
+                    string[] columnas = { "nombres", "apPaterno", "apMaterno", "departamento", "puesto"};//SELECT
+                    Empleados empleado = linkCassandra.Get_One<Empleados>(primaryKey, columnas, "EMPLEADOS", pkValues, 2);
+
+                    //Asignacion de valores a los TextBox
+                    EMP_TB_NoEmpleado.Text = empleado.noEmpleado.ToString();
+                    EMP_TB_Nombres.Text = empleado.nombres;
+                    EMP_TB_ApPaterno.Text = empleado.apPaterno;
+                    EMP_TB_ApMaterno.Text = empleado.apMaterno;
+                    EMP_CB_Departamento.Text = empleado.departamento;
+                    EMP_CB_Puesto.Text = empleado.puesto;
+                    EMP_DTP_Fecha.Text = empleado.fechaInicio.ToString();
+
+
+                    edit_Emp = true; //para que cuando registre se haga un update en vez de un insert
+                    EMP_LBL_Edit.Text = "EDITANDO EMPLEADO " + edit_noEmp.ToString();
+                    EMP_LBL_Edit.Visible = true;
+                    EMP_LBL_Loading.Visible = false;
                 }
             }
             else
@@ -143,15 +191,55 @@ namespace MAD_AAVD_proyecto
         /// ******************************************************************************************************************************************************************************************************
         private void EMP_BTN_Limpiar_Click(object sender, EventArgs e)
         {
+            ClearAll();
+        }
+
+        /// ******************************************************************************************************************************************************************************************************
+        private void EMP_BTN_Registrar_Click(object sender, EventArgs e)
+        {
+            string nombres = "'" + EMP_TB_Nombres.Text + "'";
+            string apPaterno = "'"+ EMP_TB_ApPaterno.Text + "'";
+            string apMaterno = "'" + EMP_TB_ApMaterno.Text + "'";
+            string departamento = "'" + EMP_CB_Departamento.Text + "'";
+            string puesto = "'" + EMP_CB_Puesto.Text + "'";
+            string fechaInicio = "'" + EMP_DTP_Fecha.Value.ToString("yyyy-MM-dd") + "'";
+
+            if(DB_SQLServer)
+            {
+
+            }
+            else if (DB_Cassandra)
+            {
+                var linkCassandra = new EnlaceCassandra();
+
+                //CALCULAR SALARIO DIARIO
+                string[] pkValues = { edit_noEmp.ToString(), fechaInicio, departamento, puesto, "350.00" };
+                string[] columnas = { "nombres", "apPaterno", "apMaterno" };
+                string[] values = { nombres, apPaterno, apMaterno };
+                
+                linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
+                ClearAll();
+                Reload();
+                edit_Emp = false;
+            }
+
+        }
+
+        private void EMP_DGV_Empleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ClearAll()
+        {
+            EMP_LBL_Edit.Visible = false;
             EMP_TB_NoEmpleado.Clear();
             EMP_TB_Nombres.Clear();
             EMP_TB_ApPaterno.Clear();
             EMP_TB_ApMaterno.Clear();
             EMP_TB_Contrasena.Clear();
-            // EMP_CB_Departamento.SelectedIndex = 0;
-            //   EMP_CB_Puesto.SelectedIndex = 0;
             EMP_DTP_Nacimiento.Value = DateTime.Now;
-            EMP_DTP_FiltroFecha.Value = DateTime.Now;
+            //EMP_DTP_FiltroFecha.Value = DateTime.Now;
             EMP_DTP_Fecha.Value = DateTime.Now;
             EMP_TB_CalleNo.Clear();
             EMP_TB_Colonia.Clear();
@@ -167,18 +255,6 @@ namespace MAD_AAVD_proyecto
 
             EMP_DGV_Empleados.DefaultCellStyle.ForeColor = Color.White;
             EMP_DGV_Empleados.DefaultCellStyle.BackColor = Color.Black;
-            //Reload(); // -> para cuando se implemente lo de los edits
-        }
-
-        /// ******************************************************************************************************************************************************************************************************
-        private void EMP_BTN_Registrar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EMP_DGV_Empleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
     }

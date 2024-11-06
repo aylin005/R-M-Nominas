@@ -16,7 +16,8 @@ namespace MAD_AAVD_proyecto
     {
         public bool edit_Depto = false; //Variable para saber si se esta editando el departamento
         public Int16 edit_noDepto = 0; // guarda el número del departamento al que se le va a hacer un update
-        public string[] columnas = { "noDepto", "nombreDpto", "sueldoBase" };
+        public string[] primaryKey = { "noDepto" };
+        public string[] columnas = { "nombreDpto", "sueldoBase" };
         public FormDepartamentos()
         {
             InitializeComponent();
@@ -79,9 +80,10 @@ namespace MAD_AAVD_proyecto
                     var linkCassandra = new EnlaceCassandra();
 
                     string strNombreDepto =$"'{nombreDepto}'"; //agregar comillas al nombre
-                    string[] values = { edit_noDepto.ToString(), strNombreDepto, sueldoDepto.ToString() };
+                    string[] pkValues = { edit_noDepto.ToString()};
+                    string[] values = { strNombreDepto, sueldoDepto.ToString() };
 
-                    linkCassandra.Insert(edit_Depto, "DEPARTAMENTOS", columnas, values);
+                    linkCassandra.Insert(edit_Depto, "DEPARTAMENTOS", primaryKey, pkValues, columnas, values);
 
                     Reload();
                     DEPARTAMENTOS_LBL_Loading.Visible = false;
@@ -150,7 +152,8 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     DEPARTAMENTOS_LBL_Loading.Visible = true;
-                    Departamentos departamento = linkCassandra.Get_One<Departamentos>(columnas, "DEPARTAMENTOS", edit_noDepto);
+                    string[] pkValues = { edit_noDepto.ToString() };
+                    Departamentos departamento = linkCassandra.Get_One<Departamentos>(primaryKey,columnas,"DEPARTAMENTOS", pkValues);
 
                     if (departamento != null) // Verificar que el puesto existe
                     {
@@ -207,6 +210,8 @@ namespace MAD_AAVD_proyecto
             else if (DB_Cassandra)
             { //q miedo Cassandra, la dama de las bases de datos
                 var linkCassandra = new EnlaceCassandra();
+                
+                string[] columnas = { "noDepto", "nombreDpto", "sueldoBase" };
                 List<Departamentos> tabla = linkCassandra.Get_All<Departamentos>(columnas, "DEPARTAMENTOS");
                 ADMIN_DGV_Departamentos.DataSource = tabla;
                 ADMIN_DGV_Departamentos.Columns["noDepto"].Visible = false;

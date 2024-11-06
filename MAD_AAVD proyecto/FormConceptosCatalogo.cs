@@ -17,7 +17,8 @@ namespace MAD_AAVD_proyecto
     {
         public bool edit_Concepto = false; //Variable para saber si se esta editando el departamento
         public Int16 edit_noConcepto = 0; // guarda el número del departamento al que se le va a hacer un update
-        string[] columnas = {"noConcepto","nombreConcepto","cuota","porcentaje", "fijo", "percepcion" };
+        string[] primaryKey = { "noConcepto" };
+        string[] columnas = {"nombreConcepto","cuota","porcentaje", "fijo", "percepcion" };
         public CONCEPTOSCAT_DB_Tipo()
         {
             InitializeComponent();
@@ -57,6 +58,8 @@ namespace MAD_AAVD_proyecto
             else if (DB_Cassandra)
             {
                 var linkCassandra = new EnlaceCassandra();
+
+                string[] columnas = { "noConcepto", "nombreConcepto", "cuota", "porcentaje", "fijo", "percepcion" };
                 List<Conceptos> tabla = linkCassandra.Get_All<Conceptos>(columnas, "CONCEPTOS");
                 ADMIN_DGV_Conceptos.DataSource = tabla;
                 ADMIN_DGV_Conceptos.Columns["noConcepto"].Visible = false;
@@ -92,7 +95,8 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     CONCEPTOSCAT_LBL_Loading.Visible = true;
-                    Conceptos concepto = linkCassandra.Get_One<Conceptos>(columnas, "CONCEPTOS", edit_noConcepto);
+                    string[] pkValues = { edit_noConcepto.ToString() };
+                    Conceptos concepto = linkCassandra.Get_One<Conceptos>(primaryKey,columnas,"CONCEPTOS", pkValues);
 
                     if (concepto != null) // Verificar que el puesto existe
                     {
@@ -234,14 +238,15 @@ namespace MAD_AAVD_proyecto
                     var linkCassandra = new EnlaceCassandra();
 
                     string strNombre = $"'{nombreConcepto}'"; //agregar comillas al nombre
-                    string[] values = { edit_noConcepto.ToString(), strNombre, cuota.ToString(), porcentaje.ToString(), isFijo.ToString(), isTipo.ToString() };
+                    string[] pkValues = { edit_noConcepto.ToString() };
+                    string[] values = { strNombre, cuota.ToString(), porcentaje.ToString(), isFijo.ToString(), isTipo.ToString() };
                     
                     if (cuota == 0)
                         values[2] = "null";
                     else if(porcentaje == 0)
                         values[3] = "null";
 
-                    linkCassandra.Insert(edit_Concepto, "CONCEPTOS", columnas, values);
+                    linkCassandra.Insert(edit_Concepto, "CONCEPTOS", primaryKey, pkValues, columnas, values);
                     Clean();
                     Reload();
                     CONCEPTOSCAT_LBL_Loading.Visible = false;

@@ -104,6 +104,8 @@
             this.EMP_BTN_Limpiar = new System.Windows.Forms.Button();
             this.EMP_CB_ESTADO = new System.Windows.Forms.ComboBox();
             this.EMP_CB_Municipio = new System.Windows.Forms.ComboBox();
+            this.EMP_LBL_Loading = new System.Windows.Forms.Label();
+            this.EMP_LBL_Edit = new System.Windows.Forms.Label();
             this.panel16.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EMP_DGV_Empleados)).BeginInit();
@@ -115,7 +117,7 @@
             this.EMP_LBL_Titulo.AutoSize = true;
             this.EMP_LBL_Titulo.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_LBL_Titulo.ForeColor = System.Drawing.Color.AliceBlue;
-            this.EMP_LBL_Titulo.Location = new System.Drawing.Point(521, 86);
+            this.EMP_LBL_Titulo.Location = new System.Drawing.Point(521, 95);
             this.EMP_LBL_Titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EMP_LBL_Titulo.Name = "EMP_LBL_Titulo";
             this.EMP_LBL_Titulo.Size = new System.Drawing.Size(315, 29);
@@ -249,7 +251,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(601, 145);
+            this.label14.Location = new System.Drawing.Point(601, 166);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(176, 25);
@@ -261,7 +263,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(477, 280);
+            this.label15.Location = new System.Drawing.Point(477, 292);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(164, 25);
@@ -273,7 +275,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(477, 326);
+            this.label16.Location = new System.Drawing.Point(477, 338);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(93, 25);
@@ -285,7 +287,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(479, 237);
+            this.label17.Location = new System.Drawing.Point(479, 249);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(111, 25);
@@ -297,7 +299,7 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(478, 187);
+            this.label18.Location = new System.Drawing.Point(478, 199);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(86, 25);
@@ -309,7 +311,7 @@
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(477, 373);
+            this.label19.Location = new System.Drawing.Point(477, 385);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(152, 25);
@@ -406,7 +408,7 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel2.Location = new System.Drawing.Point(0, 102);
+            this.panel2.Location = new System.Drawing.Point(0, 109);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1309, 4);
@@ -446,7 +448,7 @@
             this.EMP_TB_Nombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Nombres.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Nombres.Location = new System.Drawing.Point(237, 177);
-            this.EMP_TB_Nombres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Nombres.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Nombres.Multiline = true;
             this.EMP_TB_Nombres.Name = "EMP_TB_Nombres";
             this.EMP_TB_Nombres.Size = new System.Drawing.Size(219, 25);
@@ -469,7 +471,7 @@
             this.EMP_TB_ApPaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_ApPaterno.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_ApPaterno.Location = new System.Drawing.Point(237, 224);
-            this.EMP_TB_ApPaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_ApPaterno.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_ApPaterno.Multiline = true;
             this.EMP_TB_ApPaterno.Name = "EMP_TB_ApPaterno";
             this.EMP_TB_ApPaterno.Size = new System.Drawing.Size(221, 25);
@@ -482,7 +484,7 @@
             this.EMP_TB_ApMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_ApMaterno.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_ApMaterno.Location = new System.Drawing.Point(241, 272);
-            this.EMP_TB_ApMaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_ApMaterno.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_ApMaterno.Multiline = true;
             this.EMP_TB_ApMaterno.Name = "EMP_TB_ApMaterno";
             this.EMP_TB_ApMaterno.Size = new System.Drawing.Size(219, 25);
@@ -495,7 +497,7 @@
             this.EMP_TB_Contrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Contrasena.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Contrasena.Location = new System.Drawing.Point(237, 317);
-            this.EMP_TB_Contrasena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Contrasena.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Contrasena.Multiline = true;
             this.EMP_TB_Contrasena.Name = "EMP_TB_Contrasena";
             this.EMP_TB_Contrasena.Size = new System.Drawing.Size(219, 25);
@@ -547,7 +549,7 @@
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel7.Location = new System.Drawing.Point(661, 399);
+            this.panel7.Location = new System.Drawing.Point(661, 411);
             this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(216, 2);
@@ -559,8 +561,8 @@
             this.EMP_TB_Colonia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_TB_Colonia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Colonia.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMP_TB_Colonia.Location = new System.Drawing.Point(663, 324);
-            this.EMP_TB_Colonia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Colonia.Location = new System.Drawing.Point(663, 336);
+            this.EMP_TB_Colonia.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Colonia.Multiline = true;
             this.EMP_TB_Colonia.Name = "EMP_TB_Colonia";
             this.EMP_TB_Colonia.Size = new System.Drawing.Size(221, 25);
@@ -570,7 +572,7 @@
             // 
             this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel10.Location = new System.Drawing.Point(661, 351);
+            this.panel10.Location = new System.Drawing.Point(661, 363);
             this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(216, 2);
@@ -582,8 +584,8 @@
             this.EMP_TB_CalleNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_TB_CalleNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_CalleNo.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMP_TB_CalleNo.Location = new System.Drawing.Point(663, 278);
-            this.EMP_TB_CalleNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_CalleNo.Location = new System.Drawing.Point(663, 290);
+            this.EMP_TB_CalleNo.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_CalleNo.Multiline = true;
             this.EMP_TB_CalleNo.Name = "EMP_TB_CalleNo";
             this.EMP_TB_CalleNo.Size = new System.Drawing.Size(219, 25);
@@ -593,7 +595,7 @@
             // 
             this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel11.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel11.Location = new System.Drawing.Point(661, 309);
+            this.panel11.Location = new System.Drawing.Point(661, 321);
             this.panel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(216, 2);
@@ -605,8 +607,8 @@
             this.EMP_TB_Cp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_TB_Cp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Cp.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMP_TB_Cp.Location = new System.Drawing.Point(663, 370);
-            this.EMP_TB_Cp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Cp.Location = new System.Drawing.Point(663, 382);
+            this.EMP_TB_Cp.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Cp.Multiline = true;
             this.EMP_TB_Cp.Name = "EMP_TB_Cp";
             this.EMP_TB_Cp.Size = new System.Drawing.Size(219, 25);
@@ -649,7 +651,7 @@
             this.EMP_TB_Tel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Tel1.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Tel1.Location = new System.Drawing.Point(1077, 283);
-            this.EMP_TB_Tel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Tel1.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Tel1.Multiline = true;
             this.EMP_TB_Tel1.Name = "EMP_TB_Tel1";
             this.EMP_TB_Tel1.Size = new System.Drawing.Size(219, 25);
@@ -662,7 +664,7 @@
             this.EMP_TB_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Email.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Email.Location = new System.Drawing.Point(1077, 236);
-            this.EMP_TB_Email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Email.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Email.Multiline = true;
             this.EMP_TB_Email.Name = "EMP_TB_Email";
             this.EMP_TB_Email.Size = new System.Drawing.Size(219, 25);
@@ -675,7 +677,7 @@
             this.EMP_TB_NoCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_NoCuenta.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_NoCuenta.Location = new System.Drawing.Point(1077, 191);
-            this.EMP_TB_NoCuenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_NoCuenta.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_NoCuenta.Multiline = true;
             this.EMP_TB_NoCuenta.Name = "EMP_TB_NoCuenta";
             this.EMP_TB_NoCuenta.Size = new System.Drawing.Size(221, 25);
@@ -698,7 +700,7 @@
             this.EMP_TB_Banco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Banco.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Banco.Location = new System.Drawing.Point(1077, 148);
-            this.EMP_TB_Banco.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Banco.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Banco.Multiline = true;
             this.EMP_TB_Banco.Name = "EMP_TB_Banco";
             this.EMP_TB_Banco.Size = new System.Drawing.Size(219, 25);
@@ -733,7 +735,7 @@
             this.textBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox17.ForeColor = System.Drawing.SystemColors.Window;
             this.textBox17.Location = new System.Drawing.Point(1, 17);
-            this.textBox17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(4);
             this.textBox17.Multiline = true;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(219, 25);
@@ -766,7 +768,7 @@
             this.EMP_TB_Nss.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Nss.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Nss.Location = new System.Drawing.Point(1077, 427);
-            this.EMP_TB_Nss.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Nss.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Nss.Multiline = true;
             this.EMP_TB_Nss.Name = "EMP_TB_Nss";
             this.EMP_TB_Nss.Size = new System.Drawing.Size(219, 25);
@@ -779,7 +781,7 @@
             this.EMP_TB_Curp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Curp.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Curp.Location = new System.Drawing.Point(1077, 381);
-            this.EMP_TB_Curp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Curp.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Curp.Multiline = true;
             this.EMP_TB_Curp.Name = "EMP_TB_Curp";
             this.EMP_TB_Curp.Size = new System.Drawing.Size(219, 25);
@@ -792,7 +794,7 @@
             this.EMP_TB_Tel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Tel2.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Tel2.Location = new System.Drawing.Point(1077, 333);
-            this.EMP_TB_Tel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Tel2.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Tel2.Multiline = true;
             this.EMP_TB_Tel2.Name = "EMP_TB_Tel2";
             this.EMP_TB_Tel2.Size = new System.Drawing.Size(221, 25);
@@ -827,7 +829,7 @@
             this.textBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox18.ForeColor = System.Drawing.SystemColors.Window;
             this.textBox18.Location = new System.Drawing.Point(1, 17);
-            this.textBox18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(4);
             this.textBox18.Multiline = true;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(219, 25);
@@ -840,7 +842,7 @@
             this.EMP_TB_Rfc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Rfc.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Rfc.Location = new System.Drawing.Point(1077, 475);
-            this.EMP_TB_Rfc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_Rfc.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Rfc.Multiline = true;
             this.EMP_TB_Rfc.Name = "EMP_TB_Rfc";
             this.EMP_TB_Rfc.Size = new System.Drawing.Size(219, 25);
@@ -853,7 +855,7 @@
             this.EMP_DTP_Nacimiento.CustomFormat = "dd/MMM/yyyy";
             this.EMP_DTP_Nacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.EMP_DTP_Nacimiento.Location = new System.Drawing.Point(259, 471);
-            this.EMP_DTP_Nacimiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_DTP_Nacimiento.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_DTP_Nacimiento.Name = "EMP_DTP_Nacimiento";
             this.EMP_DTP_Nacimiento.Size = new System.Drawing.Size(192, 22);
             this.EMP_DTP_Nacimiento.TabIndex = 15;
@@ -889,7 +891,7 @@
             this.EMP_DTP_Fecha.CustomFormat = "dd/MMM/yyyy";
             this.EMP_DTP_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.EMP_DTP_Fecha.Location = new System.Drawing.Point(637, 454);
-            this.EMP_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_DTP_Fecha.Name = "EMP_DTP_Fecha";
             this.EMP_DTP_Fecha.Size = new System.Drawing.Size(160, 22);
             this.EMP_DTP_Fecha.TabIndex = 94;
@@ -904,12 +906,12 @@
             this.EMP_DGV_Empleados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_DGV_Empleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.EMP_DGV_Empleados.GridColor = System.Drawing.Color.DodgerBlue;
-            this.EMP_DGV_Empleados.Location = new System.Drawing.Point(-3, 613);
-            this.EMP_DGV_Empleados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_DGV_Empleados.Location = new System.Drawing.Point(0, 613);
+            this.EMP_DGV_Empleados.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_DGV_Empleados.Name = "EMP_DGV_Empleados";
             this.EMP_DGV_Empleados.ReadOnly = true;
             this.EMP_DGV_Empleados.RowHeadersWidth = 51;
-            this.EMP_DGV_Empleados.Size = new System.Drawing.Size(1102, 250);
+            this.EMP_DGV_Empleados.Size = new System.Drawing.Size(1099, 250);
             this.EMP_DGV_Empleados.TabIndex = 98;
             this.EMP_DGV_Empleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EMP_DGV_Empleados_CellContentClick);
             // 
@@ -952,7 +954,7 @@
             this.EMP_DTP_FiltroFecha.CustomFormat = "dd/MMM/yyyy";
             this.EMP_DTP_FiltroFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.EMP_DTP_FiltroFecha.Location = new System.Drawing.Point(1128, 679);
-            this.EMP_DTP_FiltroFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_DTP_FiltroFecha.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_DTP_FiltroFecha.Name = "EMP_DTP_FiltroFecha";
             this.EMP_DTP_FiltroFecha.Size = new System.Drawing.Size(152, 22);
             this.EMP_DTP_FiltroFecha.TabIndex = 102;
@@ -988,7 +990,7 @@
             this.EMP_TB_NoEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_NoEmpleado.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_NoEmpleado.Location = new System.Drawing.Point(236, 135);
-            this.EMP_TB_NoEmpleado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EMP_TB_NoEmpleado.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_NoEmpleado.Multiline = true;
             this.EMP_TB_NoEmpleado.Name = "EMP_TB_NoEmpleado";
             this.EMP_TB_NoEmpleado.ReadOnly = true;
@@ -1019,7 +1021,7 @@
             this.EMP_CB_ESTADO.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_CB_ESTADO.FormattingEnabled = true;
             this.EMP_CB_ESTADO.ItemHeight = 16;
-            this.EMP_CB_ESTADO.Location = new System.Drawing.Point(661, 187);
+            this.EMP_CB_ESTADO.Location = new System.Drawing.Point(661, 199);
             this.EMP_CB_ESTADO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_CB_ESTADO.Name = "EMP_CB_ESTADO";
             this.EMP_CB_ESTADO.Size = new System.Drawing.Size(215, 24);
@@ -1033,11 +1035,35 @@
             this.EMP_CB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_CB_Municipio.FormattingEnabled = true;
             this.EMP_CB_Municipio.ItemHeight = 16;
-            this.EMP_CB_Municipio.Location = new System.Drawing.Point(661, 238);
+            this.EMP_CB_Municipio.Location = new System.Drawing.Point(661, 250);
             this.EMP_CB_Municipio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_CB_Municipio.Name = "EMP_CB_Municipio";
             this.EMP_CB_Municipio.Size = new System.Drawing.Size(215, 24);
             this.EMP_CB_Municipio.TabIndex = 107;
+            // 
+            // EMP_LBL_Loading
+            // 
+            this.EMP_LBL_Loading.AutoSize = true;
+            this.EMP_LBL_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EMP_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
+            this.EMP_LBL_Loading.Location = new System.Drawing.Point(634, 72);
+            this.EMP_LBL_Loading.Name = "EMP_LBL_Loading";
+            this.EMP_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.EMP_LBL_Loading.TabIndex = 108;
+            this.EMP_LBL_Loading.Text = "Loading...";
+            this.EMP_LBL_Loading.Visible = false;
+            // 
+            // EMP_LBL_Edit
+            // 
+            this.EMP_LBL_Edit.AutoSize = true;
+            this.EMP_LBL_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EMP_LBL_Edit.ForeColor = System.Drawing.Color.SkyBlue;
+            this.EMP_LBL_Edit.Location = new System.Drawing.Point(577, 134);
+            this.EMP_LBL_Edit.Name = "EMP_LBL_Edit";
+            this.EMP_LBL_Edit.Size = new System.Drawing.Size(188, 18);
+            this.EMP_LBL_Edit.TabIndex = 109;
+            this.EMP_LBL_Edit.Text = "EDITANDO EMPLEADO";
+            this.EMP_LBL_Edit.Visible = false;
             // 
             // FormGestionEmpleados
             // 
@@ -1045,6 +1071,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.EMP_LBL_Edit);
+            this.Controls.Add(this.EMP_LBL_Loading);
             this.Controls.Add(this.EMP_CB_Municipio);
             this.Controls.Add(this.EMP_CB_ESTADO);
             this.Controls.Add(this.EMP_BTN_Limpiar);
@@ -1119,7 +1147,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormGestionEmpleados";
             this.Text = "GestionEmpleados";
             this.Load += new System.EventHandler(this.FormGestionEmpleados_Load);
@@ -1210,5 +1238,7 @@
         private System.Windows.Forms.Button EMP_BTN_Limpiar;
         private System.Windows.Forms.ComboBox EMP_CB_ESTADO;
         private System.Windows.Forms.ComboBox EMP_CB_Municipio;
+        private System.Windows.Forms.Label EMP_LBL_Loading;
+        private System.Windows.Forms.Label EMP_LBL_Edit;
     }
 }
