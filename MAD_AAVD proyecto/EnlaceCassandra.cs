@@ -11,6 +11,7 @@ using System.Data;
 using System.Reflection;
 using System.Data.Common;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 
 namespace MAD_AAVD_proyecto
@@ -204,17 +205,26 @@ namespace MAD_AAVD_proyecto
             return row;
         }
 
-        public List<T> FilterDate<T>(string[] columnas, string nombreTabla, string date)
+        public List<T> FilterDate<T>(string[] columnas, string nombreTabla, DateTime date)
         {
-            DateTime date2;
-            
+            // Establecer el día en 1 para el mes actual
+            DateTime auxDate1 = new DateTime(date.Year, date.Month, 1);
+
+            // Aumentar un mes y establecer el día en 1 para el mes siguiente
+            DateTime auxDate2 = auxDate1.AddMonths(1);
+
+            // Convertir ambas fechas a string en el formato de Cassandra
+            string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string date2 = auxDate2.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+
             string query = "SELECT ";
             foreach (var columna in columnas)
             {
                 query += columna + ", ";
             }
             query = query.Remove(query.Length - 2);
-            query += " FROM " + nombreTabla + ";";
+            query += " FROM " + nombreTabla + " WHERE fechaInicio>= '" + date1 + "' AND fechaInicio < '" + date2 + "' ALLOW FILTERING;";
             conectar();
 
             IMapper mapper = new Mapper(_session);

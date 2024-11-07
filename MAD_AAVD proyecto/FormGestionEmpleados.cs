@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography; //PARA HASH
 
 using static MAD_AAVD_proyecto.Globals; //Agregar a cada archivo para no tener que escribir Globals.
 
@@ -40,7 +41,7 @@ namespace MAD_AAVD_proyecto
             EMP_TB_ApMaterno.Clear();
             EMP_TB_Contrasena.Clear();
             EMP_DTP_Nacimiento.Value = DateTime.Now;
-            EMP_DTP_FiltroFecha.Value = DateTime.Now;
+            //EMP_DTP_FiltroFecha.Value = DateTime.Now;
             EMP_DTP_Fecha.Value = DateTime.Now;
             EMP_TB_CalleNo.Clear();
             EMP_TB_Colonia.Clear();
@@ -112,25 +113,10 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_Puesto.ValueMember = "noPuesto";
 
                 string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
-                List<Empleados> tabla = linkCassandra.Get_All<Empleados>(columnasTablaEmp, "EMPLEADOS");
+                //List<Empleados> tabla = linkCassandra.Get_All<Empleados>(columnasTablaEmp, "EMPLEADOS");
+                List<Empleados> tabla = linkCassandra.FilterDate<Empleados>(columnasTablaEmp, "EMPLEADOS", EMP_DTP_FiltroFecha.Value);
                 EMP_DGV_Empleados.DataSource = tabla;
-                EMP_DGV_Empleados.Columns["contrasena"].Visible = false;
-                EMP_DGV_Empleados.Columns["fechaNacimiento"].Visible = false;
-                EMP_DGV_Empleados.Columns["curp"].Visible = false;
-                EMP_DGV_Empleados.Columns["rfc"].Visible = false;
-                EMP_DGV_Empleados.Columns["nss"].Visible = false;
-                EMP_DGV_Empleados.Columns["calleNo"].Visible = false;
-                EMP_DGV_Empleados.Columns["colonia"].Visible = false;
-                EMP_DGV_Empleados.Columns["municipio"].Visible = false;
-                EMP_DGV_Empleados.Columns["estado"].Visible = false;
-                EMP_DGV_Empleados.Columns["cp"].Visible = false;
-                EMP_DGV_Empleados.Columns["colonia"].Visible = false;
-                EMP_DGV_Empleados.Columns["banco"].Visible = false;
-                EMP_DGV_Empleados.Columns["noCuenta"].Visible = false;
-                EMP_DGV_Empleados.Columns["email"].Visible = false;
-                EMP_DGV_Empleados.Columns["telefonos"].Visible = false;
-                EMP_DGV_Empleados.Columns["salarioDiario"].Visible = false;
-                EMP_DGV_Empleados.Columns["fechaBaja"].Visible = false;
+                HideUnnecessaryColumns();
             }
         }
 
@@ -141,7 +127,7 @@ namespace MAD_AAVD_proyecto
             if (EMP_DGV_Empleados.CurrentRow != null)
             {
                 edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["noEmpleado"].Value.ToString());
-                string fechaInicio = "'" + EMP_DGV_Empleados.CurrentRow.Cells["fechaInicio"].Value.ToString() + "'";
+                string fechaInicio = $"'{EMP_DGV_Empleados.CurrentRow.Cells["fechaInicio"].Value.ToString()}'";
                 if (DB_SQLServer)
                 {
                     ////Cargar los datos a los text box
@@ -197,14 +183,39 @@ namespace MAD_AAVD_proyecto
         /// ******************************************************************************************************************************************************************************************************
         private void EMP_BTN_Registrar_Click(object sender, EventArgs e)
         {
-            string nombres = "'" + EMP_TB_Nombres.Text + "'";
-            string apPaterno = "'"+ EMP_TB_ApPaterno.Text + "'";
-            string apMaterno = "'" + EMP_TB_ApMaterno.Text + "'";
-            string departamento = "'" + EMP_CB_Departamento.Text + "'";
-            string puesto = "'" + EMP_CB_Puesto.Text + "'";
-            string fechaInicio = "'" + EMP_DTP_Fecha.Value.ToString("yyyy-MM-dd") + "'";
+            string nombres = $"'{EMP_TB_Nombres.Text}'";
+            string apPaterno = $"'{EMP_TB_ApPaterno.Text}'";
+            string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
+            string departamento = $"'{EMP_CB_Departamento.Text}'";
+            string puesto = $"'{EMP_CB_Puesto.Text}'";
+            string contrasena = EMP_TB_Contrasena.Text; // Se guardara como HASH
+            string fechaNacimiento = $"'{EMP_DTP_Nacimiento.Value.ToString("yyyy-MM-dd")}'";
 
-            if(DB_SQLServer)
+            string calleNo = $"'{EMP_TB_CalleNo.Text}'";
+            string colonia = $"'{EMP_TB_Colonia.Text}'";
+            string cp = $"'{EMP_TB_Cp.Text}'";
+
+            string banco = $"'{EMP_TB_Banco.Text}'";
+            string noCuenta = EMP_TB_NoCuenta.Text;
+            string email = $"'{EMP_TB_Email.Text}'";
+            string tel1 = $"'{EMP_TB_Tel1.Text}'";
+            string tel2 = $"'{EMP_TB_Tel2.Text}'";
+            string curp = $"'{EMP_TB_Curp.Text}'";
+            string nss = $"'{EMP_TB_Nss.Text}'";
+            string rfc = $"'{EMP_TB_Rfc.Text}'";
+
+            //CONVERTIR CONTRASEÑA A HASH
+            string hashPassword;
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                string hash= GetHash(sha256Hash, contrasena);
+                hashPassword = hash;
+                Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
+            }
+            hashPassword = $"'{hashPassword}'";
+            string fechaInicio = $"'{EMP_DTP_Fecha.Value.ToString("yyyy-MM-dd")}'";
+
+            if (DB_SQLServer)
             {
 
             }
@@ -213,9 +224,25 @@ namespace MAD_AAVD_proyecto
                 var linkCassandra = new EnlaceCassandra();
 
                 //CALCULAR SALARIO DIARIO
-                string[] pkValues = { edit_noEmp.ToString(), fechaInicio, departamento, puesto, "350.00" };
-                string[] columnas = { "nombres", "apPaterno", "apMaterno" };
-                string[] values = { nombres, apPaterno, apMaterno };
+                //Sueldo Base
+                string noDepto = EMP_CB_Departamento.SelectedValue.ToString();
+                string[] primaryKeyDepto = { "noDepto" }; string[] columnasDepto = { "sueldoBase" };
+                string[] pkValuesDepto = { noDepto.ToString() };
+                Departamentos auxDepto = linkCassandra.Get_One<Departamentos>(primaryKeyDepto, columnasDepto, "DEPARTAMENTOS", pkValuesDepto);
+
+                //Nivel Salarial
+                string noPuesto= EMP_CB_Puesto.SelectedValue.ToString();
+                string[] primaryKeyPuesto = { "noPuesto" }; string[] columnasPuesto = { "nivelSalarial" };
+                string[] pkValuesPuesto = { noPuesto.ToString() };
+                Puestos auxPuesto = linkCassandra.Get_One<Puestos>(primaryKeyPuesto, columnasPuesto, "PUESTOS", pkValuesPuesto);
+
+                //SALARIO DIARIO
+                float salarioDiario = auxDepto.sueldoBase * auxPuesto.nivelSalarial;
+
+                //INSERTAR TODO EN LA TABLA
+                string[] pkValues = { edit_noEmp.ToString(), fechaInicio, departamento, puesto, salarioDiario.ToString() };
+                string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "cp", "banco", "noCuenta", "email"};
+                string[] values = { nombres, apPaterno, apMaterno, hashPassword, fechaNacimiento, curp, rfc, nss, calleNo, colonia, cp, banco, noCuenta, email };
                 
                 linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
                 ClearAll();
@@ -255,6 +282,62 @@ namespace MAD_AAVD_proyecto
 
             EMP_DGV_Empleados.DefaultCellStyle.ForeColor = Color.White;
             EMP_DGV_Empleados.DefaultCellStyle.BackColor = Color.Black;
+        }
+
+        private void EMP_DTP_FiltroFecha_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void HideUnnecessaryColumns()
+        {
+            EMP_DGV_Empleados.Columns["contrasena"].Visible = false;
+            EMP_DGV_Empleados.Columns["fechaNacimiento"].Visible = false;
+            EMP_DGV_Empleados.Columns["curp"].Visible = false;
+            EMP_DGV_Empleados.Columns["rfc"].Visible = false;
+            EMP_DGV_Empleados.Columns["nss"].Visible = false;
+            EMP_DGV_Empleados.Columns["calleNo"].Visible = false;
+            EMP_DGV_Empleados.Columns["colonia"].Visible = false;
+            EMP_DGV_Empleados.Columns["municipio"].Visible = false;
+            EMP_DGV_Empleados.Columns["estado"].Visible = false;
+            EMP_DGV_Empleados.Columns["cp"].Visible = false;
+            EMP_DGV_Empleados.Columns["colonia"].Visible = false;
+            EMP_DGV_Empleados.Columns["banco"].Visible = false;
+            EMP_DGV_Empleados.Columns["noCuenta"].Visible = false;
+            EMP_DGV_Empleados.Columns["email"].Visible = false;
+            EMP_DGV_Empleados.Columns["telefonos"].Visible = false;
+            EMP_DGV_Empleados.Columns["salarioDiario"].Visible = false;
+            EMP_DGV_Empleados.Columns["fechaBaja"].Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (DB_SQLServer)
+            {
+
+            }
+            else if (DB_Cassandra)
+            {
+                var linkCassandra = new EnlaceCassandra();
+                string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
+                List<Empleados> tabla = linkCassandra.FilterDate<Empleados>(columnasTablaEmp, "EMPLEADOS", EMP_DTP_FiltroFecha.Value);
+
+                EMP_DGV_Empleados.DataSource = tabla;
+
+                // Ocultar columnas no necesarias
+                HideUnnecessaryColumns();
+            }
+
+        }
+
+        private static string GetHash(HashAlgorithm hashAlgorithm, string input)
+        {
+            byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var sBuilder = new StringBuilder();
+            foreach (byte b in data)
+            {
+                sBuilder.Append(b.ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
 
     }

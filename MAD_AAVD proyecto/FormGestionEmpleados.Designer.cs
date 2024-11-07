@@ -106,6 +106,7 @@
             this.EMP_CB_Municipio = new System.Windows.Forms.ComboBox();
             this.EMP_LBL_Loading = new System.Windows.Forms.Label();
             this.EMP_LBL_Edit = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel16.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EMP_DGV_Empleados)).BeginInit();
@@ -958,18 +959,19 @@
             this.EMP_DTP_FiltroFecha.Name = "EMP_DTP_FiltroFecha";
             this.EMP_DTP_FiltroFecha.Size = new System.Drawing.Size(152, 22);
             this.EMP_DTP_FiltroFecha.TabIndex = 102;
+            this.EMP_DTP_FiltroFecha.ValueChanged += new System.EventHandler(this.EMP_DTP_FiltroFecha_ValueChanged);
             // 
             // label25
             // 
             this.label25.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(1140, 641);
+            this.label25.Location = new System.Drawing.Point(1112, 639);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(133, 25);
+            this.label25.Size = new System.Drawing.Size(176, 25);
             this.label25.TabIndex = 101;
-            this.label25.Text = "Filtrar fecha:";
+            this.label25.Text = "Filtrar mes inicio:";
             // 
             // label26
             // 
@@ -1065,12 +1067,29 @@
             this.EMP_LBL_Edit.Text = "EDITANDO EMPLEADO";
             this.EMP_LBL_Edit.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Bahnschrift", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1161, 710);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 32);
+            this.button1.TabIndex = 110;
+            this.button1.Text = "Filtrar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormGestionEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.EMP_LBL_Edit);
             this.Controls.Add(this.EMP_LBL_Loading);
             this.Controls.Add(this.EMP_CB_Municipio);
@@ -1240,5 +1259,6 @@
         private System.Windows.Forms.ComboBox EMP_CB_Municipio;
         private System.Windows.Forms.Label EMP_LBL_Loading;
         private System.Windows.Forms.Label EMP_LBL_Edit;
+        private System.Windows.Forms.Button button1;
     }
 }
