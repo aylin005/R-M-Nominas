@@ -107,6 +107,10 @@
             this.EMP_LBL_Loading = new System.Windows.Forms.Label();
             this.EMP_LBL_Edit = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.EMP_TB_Municipio = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.EMP_TB_Estado = new System.Windows.Forms.TextBox();
             this.panel16.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EMP_DGV_Empleados)).BeginInit();
@@ -499,9 +503,9 @@
             this.EMP_TB_Contrasena.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_TB_Contrasena.Location = new System.Drawing.Point(237, 317);
             this.EMP_TB_Contrasena.Margin = new System.Windows.Forms.Padding(4);
-            this.EMP_TB_Contrasena.Multiline = true;
             this.EMP_TB_Contrasena.Name = "EMP_TB_Contrasena";
-            this.EMP_TB_Contrasena.Size = new System.Drawing.Size(219, 25);
+            this.EMP_TB_Contrasena.PasswordChar = '*';
+            this.EMP_TB_Contrasena.Size = new System.Drawing.Size(219, 23);
             this.EMP_TB_Contrasena.TabIndex = 9;
             // 
             // label6
@@ -931,6 +935,7 @@
             this.EMP_BTN_Baja.Text = "Dar de baja";
             this.EMP_BTN_Baja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EMP_BTN_Baja.UseVisualStyleBackColor = true;
+            this.EMP_BTN_Baja.Click += new System.EventHandler(this.EMP_BTN_Baja_Click);
             // 
             // EMP_BTN_Editar
             // 
@@ -1023,7 +1028,7 @@
             this.EMP_CB_ESTADO.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_CB_ESTADO.FormattingEnabled = true;
             this.EMP_CB_ESTADO.ItemHeight = 16;
-            this.EMP_CB_ESTADO.Location = new System.Drawing.Point(661, 199);
+            this.EMP_CB_ESTADO.Location = new System.Drawing.Point(661, 200);
             this.EMP_CB_ESTADO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_CB_ESTADO.Name = "EMP_CB_ESTADO";
             this.EMP_CB_ESTADO.Size = new System.Drawing.Size(215, 24);
@@ -1037,7 +1042,7 @@
             this.EMP_CB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
             this.EMP_CB_Municipio.FormattingEnabled = true;
             this.EMP_CB_Municipio.ItemHeight = 16;
-            this.EMP_CB_Municipio.Location = new System.Drawing.Point(661, 250);
+            this.EMP_CB_Municipio.Location = new System.Drawing.Point(661, 251);
             this.EMP_CB_Municipio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_CB_Municipio.Name = "EMP_CB_Municipio";
             this.EMP_CB_Municipio.Size = new System.Drawing.Size(215, 24);
@@ -1083,14 +1088,64 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel8.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel8.Location = new System.Drawing.Point(661, 231);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(216, 2);
+            this.panel8.TabIndex = 76;
+            // 
+            // EMP_TB_Municipio
+            // 
+            this.EMP_TB_Municipio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EMP_TB_Municipio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EMP_TB_Municipio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EMP_TB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMP_TB_Municipio.Location = new System.Drawing.Point(663, 247);
+            this.EMP_TB_Municipio.Margin = new System.Windows.Forms.Padding(4);
+            this.EMP_TB_Municipio.Multiline = true;
+            this.EMP_TB_Municipio.Name = "EMP_TB_Municipio";
+            this.EMP_TB_Municipio.Size = new System.Drawing.Size(221, 25);
+            this.EMP_TB_Municipio.TabIndex = 74;
+            // 
+            // panel9
+            // 
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel9.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel9.Location = new System.Drawing.Point(661, 274);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(216, 2);
+            this.panel9.TabIndex = 75;
+            // 
+            // EMP_TB_Estado
+            // 
+            this.EMP_TB_Estado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EMP_TB_Estado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EMP_TB_Estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EMP_TB_Estado.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMP_TB_Estado.Location = new System.Drawing.Point(663, 201);
+            this.EMP_TB_Estado.Margin = new System.Windows.Forms.Padding(4);
+            this.EMP_TB_Estado.Multiline = true;
+            this.EMP_TB_Estado.Name = "EMP_TB_Estado";
+            this.EMP_TB_Estado.Size = new System.Drawing.Size(219, 25);
+            this.EMP_TB_Estado.TabIndex = 73;
+            // 
             // FormGestionEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.EMP_TB_Municipio);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel9);
             this.Controls.Add(this.EMP_LBL_Edit);
+            this.Controls.Add(this.EMP_TB_Estado);
             this.Controls.Add(this.EMP_LBL_Loading);
             this.Controls.Add(this.EMP_CB_Municipio);
             this.Controls.Add(this.EMP_CB_ESTADO);
@@ -1260,5 +1315,9 @@
         private System.Windows.Forms.Label EMP_LBL_Loading;
         private System.Windows.Forms.Label EMP_LBL_Edit;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox EMP_TB_Municipio;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.TextBox EMP_TB_Estado;
     }
 }

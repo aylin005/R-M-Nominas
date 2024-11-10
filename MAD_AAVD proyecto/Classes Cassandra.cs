@@ -54,7 +54,7 @@ namespace MAD_AAVD_proyecto
         public string banco { get; set; }
         public int noCuenta { get; set; }
         public string email { get; set; }
-        public HashSet<int> telefonos { get; set; }
+        public HashSet<string> telefonos { get; set; }
         public Cassandra.LocalDate fechaInicio { get; set; }
         public decimal salarioDiario { get; set; }
         public Cassandra.LocalDate fechaBaja { get; set; }

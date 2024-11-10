@@ -12,6 +12,8 @@ using System.Reflection;
 using System.Data.Common;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Collections;
 
 
 namespace MAD_AAVD_proyecto
@@ -159,6 +161,7 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
+       
         public void Delete(string nombreTabla, string [] columnas, int noID)
         {
             try
@@ -205,6 +208,25 @@ namespace MAD_AAVD_proyecto
             return row;
         }
 
+        public void EmpDarBaja(string fechaBaja, int noEmpleado, string fechaInicio, string departamento, string puesto, string salarioDiario)
+        {
+            string query = $"UPDATE EMPLEADOS SET fechaBaja = '{fechaBaja}' " +
+                $"WHERE noEmpleado = {noEmpleado} AND fechaInicio = '{fechaInicio}' AND departamento = '{departamento}'" +
+                $" AND puesto = '{puesto}' AND salarioDiario = {salarioDiario};";
+            try
+            {
+                conectar();
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
         public List<T> FilterDate<T>(string[] columnas, string nombreTabla, DateTime date)
         {
             // Establecer el día en 1 para el mes actual
@@ -232,6 +254,23 @@ namespace MAD_AAVD_proyecto
 
             desconectar();
             return table.ToList();
+        }
+
+        public Empleados LastPuesto<Empleados>(string[] columnas, string noEmpleado)
+        {
+            string query = "SELECT ";
+            foreach (var columna in columnas)
+            {
+                query += columna + ", ";
+            }
+            query = query.Remove(query.Length - 2);
+            query += $" FROM EMPLEADOS WHERE noEmpleado = {noEmpleado} ORDER BY fechaInicio DESC LIMIT 1";
+
+            conectar();
+            IMapper mapper = new Mapper(_session);
+            Empleados row = mapper.Single<Empleados>(query); //un solo resultado.
+            desconectar();
+            return row;
         }
     }
 }

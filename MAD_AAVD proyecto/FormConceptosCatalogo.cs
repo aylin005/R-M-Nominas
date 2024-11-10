@@ -157,7 +157,7 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     CONCEPTOSCAT_LBL_Loading.Visible = true;
-                    linkCassandra.Delete("CONCEPTOS", columnas, noConcepto);
+                    linkCassandra.Delete("CONCEPTOS", primaryKey, noConcepto);
                     Reload();
                     CONCEPTOSCAT_LBL_Loading.Visible = false;
                 }
