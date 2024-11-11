@@ -94,39 +94,7 @@ namespace MAD_AAVD_proyecto
             return isValid;
         }
 
-        /// ******************************************************************************************************************************************************************************************************
-        //    public DataTable get_Puestos()
-        //    {
-        //        var msg = "";
-        //        DataTable tabla = new DataTable();
-        //        try
-        //        {
-        //            conectar();
-        //// Ejemplo de cómo ejecutar un query, 
-        //// PERO lo correcto es siempre usar SP para cualquier consulta a la base de datos
-        //            string qry = "Select * From PUESTOS";
-        //            _comandosql = new SqlCommand(qry, _conexion);
-        //            _comandosql.CommandType = CommandType.Text;
-        //		// Esta opción solo la podrían utilizar si hacen un EXEC al SP concatenando los parámetros.
-        //            _comandosql.CommandTimeout = 1200;
-
-        //            _adaptador.SelectCommand = _comandosql;
-        //            _adaptador.Fill(tabla);
-
-        //        }
-        //        catch (SqlException e)
-        //        {
-        //            msg = "Excepción de base de datos: \n";
-        //            msg += e.Message;
-        //            MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-        //        }
-        //        finally
-        //        {
-        //            desconectar();
-        //        }
-
-        //        return tabla;
-        //    }
+     
         public DataTable getTable(string pTableName) // SOLO PARA MOSTRAR LOS DATOS REGISTRADOS -> es decir, si el usuario no ha filtrado nada
         {//NO podemos usar esta funcion porque seria hardcode, hay que hacerlo desde el sp
             string msg = "Se han obtenido los datos de la tabla";
