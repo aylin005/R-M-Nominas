@@ -771,9 +771,9 @@ namespace MAD_AAVD_proyecto
         /// ******************************************************************************************************************************************************************************************************
 
         public void GetEmpleados(Int16 noEmpleado, TextBox txtNum, TextBox txtNom, TextBox txtApP, TextBox txtApM, TextBox txtContrasena, TextBox txtCalleNo, TextBox txtCol,
-            TextBox txtMun, TextBox txtEst, TextBox txtCP, TextBox txtBanco, TextBox txtNoC, TextBox txtEmail, TextBox txtT1, TextBox txtT2,
+            TextBox txtCP, TextBox txtNoC, TextBox txtEmail, TextBox txtT1, TextBox txtT2,
             TextBox txtCURP, TextBox txtNSS, TextBox txtRFC,
-            ComboBox cbDep, ComboBox cbPuesto,
+            ComboBox cbDep, ComboBox cbPuesto, ComboBox cbBanco, ComboBox cbMun, ComboBox cbEst,
             DateTimePicker dtpNac, DateTimePicker dtpIni)
         {
             try
@@ -800,9 +800,6 @@ namespace MAD_AAVD_proyecto
                     txtContrasena.Text = reader["passwordHash"].ToString();
                     txtCalleNo.Text = reader["calleNombre"].ToString();
                     txtCol.Text = reader["colonia"].ToString();
-                    txtMun.Text = reader["nombreMunicipio"].ToString();
-                    txtEst.Text = reader["nombreEstado"].ToString();
-                    txtBanco.Text = reader["nombreBanco"].ToString();
                     if (reader["codigoPostal"] == DBNull.Value) //si es nulo
                         txtCP.Text = "No registrado";
                     else
@@ -825,11 +822,15 @@ namespace MAD_AAVD_proyecto
                     txtCURP.Text = reader["curp"].ToString();
                     txtNSS.Text = reader["nss"].ToString();
                     txtRFC.Text = reader["rfc"].ToString();
-                    cbDep.SelectedValue = Convert.ToInt16(reader["departamento"]); //aqui se usa value para relacionarlo al dato con que se guardo en el cb
-                    cbPuesto.SelectedValue = Convert.ToInt16(reader["puesto"]);
+                    cbDep.SelectedValue = Convert.ToInt16(reader["idDepartamento"]); //aqui se usa value para relacionarlo al dato con que se guardo en el cb
+                    cbPuesto.SelectedValue = Convert.ToInt16(reader["idPuesto"]);
+                    cbMun.SelectedValue = Convert.ToInt16(reader["idMunicipio"].ToString());
+                    cbEst.SelectedValue = Convert.ToInt16(reader["idEstado"].ToString());
+                    cbBanco.SelectedValue = Convert.ToInt16(reader["idBanco"].ToString());
 
-                    //dtpNac.Value = reader["fechaNacimiento"];
-                    //dtpIni.Value = reader["fechaInicio"];
+
+                    dtpNac.Value = Convert.ToDateTime(reader["fechaNacimiento"]); //no sé si vaya a ocasionar problemas
+                    dtpIni.Value = Convert.ToDateTime(reader["fechaInicio"]);
                 }
                 else
                 {
