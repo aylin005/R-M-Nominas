@@ -356,7 +356,7 @@ namespace MAD_AAVD_proyecto
         /// ******************************************************************************************************************************************************************************************************
         public bool GestionEmpleados(string pOpcion, Int16 noEmp, string pNom, string pApP, string pApM, string pPassword, string pCalleNo, string pCol,
             string pMun, string pEst, string pCP, string pBanco, string pNoC, string pEmail, string pT1, string pT2, string pCURP, string pNSS, string pRFC,
-            string pDep, string pPuesto, DateTime pNac, DateTime pIni)
+            string pDep, string pPuesto, DateTime pNac, DateTime pIngreso, DateTime pInicio, DateTime pBaja) //DateTime pFiltro)
         {
             var msg = "";
             var add = true;
@@ -371,30 +371,32 @@ namespace MAD_AAVD_proyecto
                 var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1); //action representa que haremos en el procedure
                 parameter1.Value = pOpcion;
 
-                if (pOpcion == "I" || pOpcion == "U")
+                if (pOpcion == "I")
                 {
-                    var parameter2 = _comandosql.Parameters.Add("@pNombre", SqlDbType.VarChar, 30);
+                    var parameter2 = _comandosql.Parameters.Add("@pNombres", SqlDbType.VarChar, 30);
                     parameter2.Value = pNom;
                     var parameter3 = _comandosql.Parameters.Add("@pApellidoP", SqlDbType.VarChar, 30);
                     parameter3.Value = pApP;
                     var parameter4 = _comandosql.Parameters.Add("@pApellidoM", SqlDbType.VarChar, 30);
                     parameter4.Value = pApM;
-                    var parameter5 = _comandosql.Parameters.Add("@pContrasena", SqlDbType.VarChar, 255);
+                    var parameter5 = _comandosql.Parameters.Add("@pPasswordHash", SqlDbType.VarChar, 255);
                     parameter5.Value = pPassword;
+                    
+                    /////
 
                     var parameter6 = _comandosql.Parameters.Add("@pCalleNombre", SqlDbType.VarChar, 30);
                     parameter6.Value = pCalleNo;
                     var parameter7 = _comandosql.Parameters.Add("@pColonia", SqlDbType.VarChar, 30);
                     parameter7.Value = pCol;
-                    var parameter8 = _comandosql.Parameters.Add("@pMunicipio", SqlDbType.Int, 8);
+                    var parameter8 = _comandosql.Parameters.Add("@pIdMunicipio", SqlDbType.Int, 8);
                     parameter8.Value = pMun;
-                    var parameter9 = _comandosql.Parameters.Add("@pEstado", SqlDbType.Int, 8);
+                    var parameter9 = _comandosql.Parameters.Add("@pIdEstado", SqlDbType.Int, 8);
                     parameter9.Value = pEst;
-                    var parameter10 = _comandosql.Parameters.Add("@pCodPos", SqlDbType.Int, 8);
+                    var parameter10 = _comandosql.Parameters.Add("@pCodPostal", SqlDbType.VarChar, 6);
                     parameter10.Value = pCP;
-                    var parameter11 = _comandosql.Parameters.Add("@pBanco", SqlDbType.Int, 8);
+                    var parameter11 = _comandosql.Parameters.Add("@pIdBanco", SqlDbType.Int, 8);
                     parameter11.Value = pBanco;
-                    var parameter12 = _comandosql.Parameters.Add("@pNumCuenta", SqlDbType.Int, 8);
+                    var parameter12 = _comandosql.Parameters.Add("@pNoCuenta", SqlDbType.Int, 8);
                     parameter12.Value = pNoC;
 
                     var parameter13 = _comandosql.Parameters.Add("@pEmail", SqlDbType.VarChar, 100);
@@ -403,37 +405,103 @@ namespace MAD_AAVD_proyecto
                     else
                         parameter13.Value = pEmail;
 
-                    var parameter14 = _comandosql.Parameters.Add("@pTelefono1", SqlDbType.Int, 8);
+                    var parameter14 = _comandosql.Parameters.Add("@pTelefono1", SqlDbType.BigInt, 8);
                     parameter14.Value = pT1;
 
-                    var parameter15 = _comandosql.Parameters.Add("@pTelefono2", SqlDbType.Int, 8);
+                    var parameter15 = _comandosql.Parameters.Add("@pTelefono2", SqlDbType.BigInt, 8);
                     if (pT2 == "No registrado")
                         parameter15.Value = DBNull.Value;
                     else
                         parameter15.Value = pT2;
-
+                    ///
                     var parameter16 = _comandosql.Parameters.Add("@pCURP", SqlDbType.VarChar, 20);
                     parameter16.Value = pCURP;
-                    var parameter17 = _comandosql.Parameters.Add("@pNSS", SqlDbType.VarChar, 15);
+                    var parameter17 = _comandosql.Parameters.Add("@pNss", SqlDbType.VarChar, 15);
                     parameter17.Value = pNSS;
-                    var parameter18 = _comandosql.Parameters.Add("@pRFC", SqlDbType.VarChar, 15);
+                    var parameter18 = _comandosql.Parameters.Add("@pRfc", SqlDbType.VarChar, 15);
                     parameter18.Value = pRFC;
-
-                    var parameter19 = _comandosql.Parameters.Add("@pDep", SqlDbType.Int, 8);
+                    ///
+                    var parameter19 = _comandosql.Parameters.Add("@pIdDepartamento", SqlDbType.SmallInt, 4);
                     parameter19.Value = pDep;
-                    var parameter20 = _comandosql.Parameters.Add("@pPuesto", SqlDbType.Int, 8);
+                    var parameter20 = _comandosql.Parameters.Add("@pIdPuesto", SqlDbType.Int, 8);
                     parameter20.Value = pPuesto;
-                    var parameter21 = _comandosql.Parameters.Add("@pNacimiento", SqlDbType.Date, 3);
+                    var parameter21 = _comandosql.Parameters.Add("@pFechaNacimiento", SqlDbType.Date, 3);
                     parameter21.Value = pNac;
-                    var parameter22 = _comandosql.Parameters.Add("@pInicip", SqlDbType.Date, 3);
-                    parameter22.Value = pIni;
+                    var parameter22 = _comandosql.Parameters.Add("@pFechaIngreso", SqlDbType.Date, 3);
+                    parameter22.Value = pIngreso;
+                }
+                if (pOpcion == "U")
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@pNombres", SqlDbType.VarChar, 30);
+                    parameter2.Value = pNom;
+                    var parameter3 = _comandosql.Parameters.Add("@pApellidoP", SqlDbType.VarChar, 30);
+                    parameter3.Value = pApP;
+                    var parameter4 = _comandosql.Parameters.Add("@pApellidoM", SqlDbType.VarChar, 30);
+                    parameter4.Value = pApM;
+                    var parameter5 = _comandosql.Parameters.Add("@pPasswordHash", SqlDbType.VarChar, 255);
+                    parameter5.Value = pPassword;
 
+                    /////
+
+                    var parameter6 = _comandosql.Parameters.Add("@pCalleNombre", SqlDbType.VarChar, 30);
+                    parameter6.Value = pCalleNo;
+                    var parameter7 = _comandosql.Parameters.Add("@pColonia", SqlDbType.VarChar, 30);
+                    parameter7.Value = pCol;
+                    var parameter8 = _comandosql.Parameters.Add("@pIdMunicipio", SqlDbType.Int, 8);
+                    parameter8.Value = pMun;
+                    var parameter9 = _comandosql.Parameters.Add("@pIdEstado", SqlDbType.Int, 8);
+                    parameter9.Value = pEst;
+                    var parameter10 = _comandosql.Parameters.Add("@pCodPostal", SqlDbType.VarChar, 6);
+                    parameter10.Value = pCP;
+                    var parameter11 = _comandosql.Parameters.Add("@pIdBanco", SqlDbType.Int, 8);
+                    parameter11.Value = pBanco;
+                    var parameter12 = _comandosql.Parameters.Add("@pNoCuenta", SqlDbType.Int, 8);
+                    parameter12.Value = pNoC;
+
+                    var parameter13 = _comandosql.Parameters.Add("@pEmail", SqlDbType.VarChar, 100);
+                    if (pEmail == "No registrado")
+                        parameter13.Value = DBNull.Value;
+                    else
+                        parameter13.Value = pEmail;
+
+                    var parameter14 = _comandosql.Parameters.Add("@pTelefono1", SqlDbType.BigInt, 8);
+                    parameter14.Value = pT1;
+
+                    var parameter15 = _comandosql.Parameters.Add("@pTelefono2", SqlDbType.BigInt, 8);
+                    if (pT2 == "No registrado")
+                        parameter15.Value = DBNull.Value;
+                    else
+                        parameter15.Value = pT2;
+                    ///
+                    var parameter16 = _comandosql.Parameters.Add("@pCURP", SqlDbType.VarChar, 20);
+                    parameter16.Value = pCURP;
+                    var parameter17 = _comandosql.Parameters.Add("@pNss", SqlDbType.VarChar, 15);
+                    parameter17.Value = pNSS;
+                    var parameter18 = _comandosql.Parameters.Add("@pRfc", SqlDbType.VarChar, 15);
+                    parameter18.Value = pRFC;
+                    ///
+                    var parameter19 = _comandosql.Parameters.Add("@pIdDepartamento", SqlDbType.SmallInt, 4);
+                    parameter19.Value = pDep;
+                    var parameter20 = _comandosql.Parameters.Add("@pIdPuesto", SqlDbType.Int, 8);
+                    parameter20.Value = pPuesto;
+                    var parameter21 = _comandosql.Parameters.Add("@pFechaNacimiento", SqlDbType.Date, 3);
+                    parameter21.Value = pNac;
+                    var parameter22 = _comandosql.Parameters.Add("@pFechaIngreso", SqlDbType.Date, 3);
+                    parameter22.Value = pIngreso;
+                    var parameter23 = _comandosql.Parameters.Add("@pFechaInicio", SqlDbType.Date, 3);
+                    parameter23.Value = pInicio;
+                    var parameter25 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 1);
+                    parameter25.Value = noEmp;
+                    //var parameter25 = _comandosql.Parameters.Add("@pFechaFiltro", SqlDbType.Date, 3);
+                    //parameter25.Value = pFiltro;
                 }
 
-                if (pOpcion == "D" || pOpcion == "U")
+                if (pOpcion == "B")
                 {
                     var parameter5 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 1);
                     parameter5.Value = noEmp;
+                    var parameter6 = _comandosql.Parameters.Add("@pFechaBaja", SqlDbType.Date, 3);
+                    parameter6.Value = pBaja;
                 }
 
                 _adaptador.InsertCommand = _comandosql;
