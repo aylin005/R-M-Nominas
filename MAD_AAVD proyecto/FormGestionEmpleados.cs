@@ -202,23 +202,34 @@ namespace MAD_AAVD_proyecto
                 string nombres = $"'{EMP_TB_Nombres.Text}'";
                 string apPaterno = $"'{EMP_TB_ApPaterno.Text}'";
                 string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
-                string departamento = $"'{EMP_CB_Departamento.Text}'";
-                string puesto = $"'{EMP_CB_Puesto.Text}'";
+                string cDepartamento = $"'{EMP_CB_Departamento.Text}'";
+                string cPuesto = $"'{EMP_CB_Puesto.Text}'";
+                int departamento = int.Parse(EMP_CB_Departamento.Text);
+                int puesto = int.Parse(EMP_CB_Puesto.Text);
                 string contrasena = EMP_TB_Contrasena.Text; // Se guardara como HASH
-                string fechaNacimiento = $"'{EMP_DTP_Nacimiento.Value.ToString("yyyy-MM-dd")}'";
+                DateTime fechaNacimiento = EMP_DTP_Nacimiento.Value;
 
                 string calleNo = $"'{EMP_TB_CalleNo.Text}'";
                 string colonia = $"'{EMP_TB_Colonia.Text}'";
+
+                string cEstado = $"'{EMP_TB_Estado.Text}'";
+                string cMunicipio = $"'{EMP_TB_Municipio.Text}'";
+                int estado = int.Parse(EMP_CB_ESTADO.Text);
+                int municipio = int.Parse(EMP_CB_Municipio.Text);
+
                 string cp = $"'{EMP_TB_Cp.Text}'";
 
-                string banco = $"'{EMP_TB_Banco.Text}'";
-                string noCuenta = EMP_TB_NoCuenta.Text;
+                string cBanco = $"'{EMP_TB_Banco.Text}'";
+                int banco = int.Parse(EMP_TB_Banco.Text);
+                string cNoCuenta = EMP_TB_NoCuenta.Text;
+                int noCuenta = int.Parse(EMP_TB_NoCuenta.Text);
                 string email = $"'{EMP_TB_Email.Text}'";
-                string tel1 = $"'{EMP_TB_Tel1.Text}'";
-                string tel2 = $"'{EMP_TB_Tel2.Text}'";
+                Int64 tel1 = Int64.Parse(EMP_TB_Tel1.Text);
+                Int64 tel2 = Int64.Parse(EMP_TB_Tel2.Text);
                 string curp = $"'{EMP_TB_Curp.Text}'";
                 string nss = $"'{EMP_TB_Nss.Text}'";
                 string rfc = $"'{EMP_TB_Rfc.Text}'";
+                DateTime fecha = EMP_DTP_Fecha.Value;
 
                 //CONVERTIR CONTRASEÑA A HASH
                 string hashPassword;
@@ -230,38 +241,52 @@ namespace MAD_AAVD_proyecto
                 }
                 hashPassword = $"'{hashPassword}'";
                 
-                string fechaInicio = EMP_DTP_Fecha.Value.ToString("yyyy-MM-dd");
-                Cassandra.LocalDate parsedFechaInicio = Cassandra.LocalDate.Parse(fechaInicio);
+                
 
                 if (DB_SQLServer)
                 {
+                    var linkDB = new EnlaceDB();
+                    bool ok = false;
 
+                    if (!edit_Emp)
+                        ok = linkDB.GestionEmpleados("I", 0, nombres, apPaterno, apMaterno, hashPassword, calleNo, colonia, municipio, estado, cp,
+                            banco, noCuenta, email, tel1, tel2, curp, nss, rfc, departamento, puesto, fechaNacimiento, fecha);
+                    else
+                    {
+                        ok = linkDB.GestionEmpleados("U", edit_noEmp, nombres, apPaterno, apMaterno, hashPassword, calleNo, colonia, municipio, estado, cp,
+                            banco, noCuenta, email, tel1, tel2, curp, nss, rfc, departamento, puesto, fechaNacimiento, fecha);
+                    }
+                    if (ok)
+                    {
+                        MessageBox.Show("Se guardo en la BD");
+                        ClearAll(); //actualizamos la tabla
+                        Reload();
+                    }
+                    else
+                        MessageBox.Show("Error en el guardado");
                 }
                 else if (DB_Cassandra)
                 {
                     var linkCassandra = new EnlaceCassandra();
                     bool continueRegister = true;
+                    string fechaInicio = EMP_DTP_Fecha.Value.ToString("yyyy-MM-dd");
+                    Cassandra.LocalDate parsedFechaInicio = Cassandra.LocalDate.Parse(fechaInicio);
 
-                    if(edit_Emp) //VALIDAR CAMBIOS DE PUESTOS
+                    if (edit_Emp) //VALIDAR CAMBIOS DE PUESTOS
                     {
                         string[] auxColumnas = { "departamento", "puesto", "fechaInicio" };
                         Empleados lastPuesto = linkCassandra.LastPuesto<Empleados>(auxColumnas, edit_noEmp.ToString());
 
-                        //Esta cambiando de puesto
-                        //if((lastPuesto.departamento != departamento || lastPuesto.puesto != puesto) && (lastPuesto.fechaInicio.ToString() < strFechaInicio))
-                        //{
-                        //    continueRegister = true;
-                        //}
-                        // Convierte Cassandra.LocalDate a DateTime y establece el día a 1
+                       
                         DateTime fechaInicioLastPuesto = new DateTime(lastPuesto.fechaInicio.Year, lastPuesto.fechaInicio.Month, 1);
                         DateTime fechaInicioParsed = new DateTime(parsedFechaInicio.Year, parsedFechaInicio.Month, 1);
 
                         // Realiza la comparación
-                        if ((lastPuesto.departamento != departamento || lastPuesto.puesto != puesto) && fechaInicioLastPuesto < fechaInicioParsed)
+                        if ((lastPuesto.departamento != cDepartamento || lastPuesto.puesto != cPuesto) && fechaInicioLastPuesto < fechaInicioParsed)
                         {
                             continueRegister = true;
                         }
-                        else if(lastPuesto.departamento == departamento && lastPuesto.puesto == puesto && fechaInicioLastPuesto != fechaInicioParsed)
+                        else if(lastPuesto.departamento == cDepartamento && lastPuesto.puesto == cPuesto && fechaInicioLastPuesto != fechaInicioParsed)
                         {
                             continueRegister = false;
                             MessageBox.Show("No se puede hacer el cambio de puesto que seleccionó");
@@ -276,8 +301,7 @@ namespace MAD_AAVD_proyecto
                     if(continueRegister)
                     {
                         //DATOS FALTANTES
-                        string estado = $"'{EMP_TB_Estado.Text}'";
-                        string municipio = $"'{EMP_TB_Municipio.Text}'";
+
                         string telefono1 = EMP_TB_Tel1.Text;
                         string telefono2 = EMP_TB_Tel2.Text;
 
@@ -286,6 +310,7 @@ namespace MAD_AAVD_proyecto
                             telefonos = "{'" + telefono1 + "', '" + telefono2 + "'}";
                         else
                             telefonos = "{'" + telefono1 + "'}";
+                        string cfechaNacimiento = $"'{EMP_DTP_Nacimiento.Value.ToString("yyyy-MM-dd")}'";
 
                         EMP_LBL_Loading.Visible = true;
                         ////////CALCULAR SALARIO DIARIO/////////
@@ -306,9 +331,9 @@ namespace MAD_AAVD_proyecto
 
                         string auxFechaInicio = $"'{parsedFechaInicio.ToString()}'";
                         ////////INSERTAR TODO EN LA TABLA////////////
-                        string[] pkValues = { edit_noEmp.ToString(), auxFechaInicio, departamento, puesto, salarioDiario.ToString() };
+                        string[] pkValues = { edit_noEmp.ToString(), auxFechaInicio, cDepartamento, cPuesto, salarioDiario.ToString() };
                         string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos" };
-                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, fechaNacimiento, curp, rfc, nss, calleNo, colonia, municipio, estado, cp, banco, noCuenta, email, telefonos };
+                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos };
 
                         linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
                         ClearAll();
