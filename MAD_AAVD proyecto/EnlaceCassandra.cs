@@ -14,6 +14,8 @@ using Newtonsoft.Json.Linq;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Collections;
+using static System.Collections.Specialized.BitVector32;
+using Microsoft.Win32;
 
 
 namespace MAD_AAVD_proyecto
@@ -210,7 +212,7 @@ namespace MAD_AAVD_proyecto
 
         public void EmpDarBaja(string fechaBaja, int noEmpleado, string fechaInicio, string departamento, string puesto, string salarioDiario)
         {
-            string query = $"UPDATE EMPLEADOS SET fechaBaja = '{fechaBaja}' " +
+            string query = $"UPDATE EMPLEADOS SET fechaBaja = '{fechaBaja}', activo = FALSE " +
                 $"WHERE noEmpleado = {noEmpleado} AND fechaInicio = '{fechaInicio}' AND departamento = '{departamento}'" +
                 $" AND puesto = '{puesto}' AND salarioDiario = {salarioDiario};";
             try
@@ -254,6 +256,100 @@ namespace MAD_AAVD_proyecto
 
             desconectar();
             return table.ToList();
+        }
+
+        public List<Empleados> FilterEmpleados(DateTime date, bool withDep = false, string departamento = "", string puesto = "")
+        {
+            var finalList = new List<Empleados>(); // Tabla final del filtro
+                                                   // Dia ultimo del mes seleccionado
+            DateTime auxDate1 = new DateTime(date.Year, date.Month, 1);
+            auxDate1 = auxDate1.AddMonths(1).AddDays(-1);
+
+            // Convertir ambas fechas a string en el formato de Cassandra
+            string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            // Ejecutamos primera consulta
+            string query = $"SELECT noEmpleado FROM Empleados GROUP BY noEmpleado ALLOW FILTERING;";
+            conectar();
+            IMapper mapper = new Mapper(_session);
+
+            IEnumerable<Empleados> tableEmpleados = mapper.Fetch<Empleados>(query);
+            var empleados = tableEmpleados.ToList(); // Guarda la última fecha de inicio antes de la seleccionada por cada empleado
+
+            if (!withDep)//Para tabla de empleados en la pantalla de empleados
+            {
+                // Bucle para realizar la segunda consulta para cada resultado de la primera consulta
+                foreach (var registro in empleados)
+                {
+                    // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio " +
+                        $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
+
+                    Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
+
+                    // Agregar el resultado a la lista final si se encontró un registro
+                    if (empleado != null)
+                    {
+                        finalList.Add(empleado);
+                    }
+                }
+            }
+            else if(withDep)//para CB de empleados en la pantalla aplicar conceptos
+            {
+                foreach (var registro in empleados)
+                {
+                    // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio " +
+                        $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND departamento = '{departamento}' AND puesto = '{puesto}' " +
+                        $"AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
+
+                    Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
+
+                    // Agregar el resultado a la lista final si se encontró un registro
+                    if (empleado != null)
+                    {
+                        finalList.Add(empleado);
+                    }
+                }
+            }
+
+            
+            desconectar();
+            return finalList; // Guarda el último puesto de cada empleado para la fecha seleccionada
+        }
+
+        public List<Empleados> ObtenerUltimoPuestoPorFecha(string[] columnas, DateTime date)
+        {
+            DateTime auxDate1 = new DateTime(date.Year, date.Month, 1);
+            string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            var linkCassandra = new EnlaceCassandra();
+            string query = $"SELECT ";
+
+            foreach (var column in columnas)
+            {
+                query += column + ", ";
+            }
+            query = query.Remove(query.Length - 2);
+            query += $"FROM EMPLEADOS WHERE fechaInicio <= '{date1}' ALLOW FILTERING;";
+            conectar();
+            // Ejecutar la consulta
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Empleados> empleados = mapper.Fetch<Empleados>(query);
+
+            // Agrupar por noEmpleado y tomar el primer registro de cada grupo (el más reciente)
+            var ultimosPuestos = new List<Empleados>();
+            foreach (var grupoEmpleado in empleados.GroupBy(e => e.noEmpleado))
+            {
+                var ultimoPuesto = grupoEmpleado
+                    .OrderByDescending(e => e.fechaInicio) // Orden descendente por fechaInicio
+                    .FirstOrDefault(); // Tomar el primer registro (último puesto)
+
+                if (ultimoPuesto != null)
+                    ultimosPuestos.Add(ultimoPuesto);
+            }
+            desconectar();
+            return ultimosPuestos;
         }
 
         public Empleados LastPuesto<Empleados>(string[] columnas, string noEmpleado)

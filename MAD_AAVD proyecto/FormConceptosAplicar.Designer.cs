@@ -87,7 +87,7 @@
             this.CONCEPAPLICAR_RB_Departamento.AutoSize = true;
             this.CONCEPAPLICAR_RB_Departamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.CONCEPAPLICAR_RB_Departamento.Location = new System.Drawing.Point(460, 267);
-            this.CONCEPAPLICAR_RB_Departamento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_RB_Departamento.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_RB_Departamento.Name = "CONCEPAPLICAR_RB_Departamento";
             this.CONCEPAPLICAR_RB_Departamento.Size = new System.Drawing.Size(168, 29);
             this.CONCEPAPLICAR_RB_Departamento.TabIndex = 48;
@@ -101,7 +101,7 @@
             this.CONCEPAPLICAR_RB_Empleado.AutoSize = true;
             this.CONCEPAPLICAR_RB_Empleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.CONCEPAPLICAR_RB_Empleado.Location = new System.Drawing.Point(692, 267);
-            this.CONCEPAPLICAR_RB_Empleado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_RB_Empleado.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_RB_Empleado.Name = "CONCEPAPLICAR_RB_Empleado";
             this.CONCEPAPLICAR_RB_Empleado.Size = new System.Drawing.Size(129, 29);
             this.CONCEPAPLICAR_RB_Empleado.TabIndex = 49;
@@ -133,7 +133,7 @@
             this.CONCEPAPLICAR_DTP_Fecha.CustomFormat = "dd/MMM/yyyy";
             this.CONCEPAPLICAR_DTP_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.CONCEPAPLICAR_DTP_Fecha.Location = new System.Drawing.Point(631, 596);
-            this.CONCEPAPLICAR_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_DTP_Fecha.Name = "CONCEPAPLICAR_DTP_Fecha";
             this.CONCEPAPLICAR_DTP_Fecha.Size = new System.Drawing.Size(135, 22);
             this.CONCEPAPLICAR_DTP_Fecha.TabIndex = 62;
@@ -144,7 +144,7 @@
             this.CONCEPAPLICAR_Panel_Departamento.Controls.Add(this.label10);
             this.CONCEPAPLICAR_Panel_Departamento.Controls.Add(this.CONCEPAPLICAR_CB_Departamentos);
             this.CONCEPAPLICAR_Panel_Departamento.Location = new System.Drawing.Point(368, 326);
-            this.CONCEPAPLICAR_Panel_Departamento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_Panel_Departamento.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_Panel_Departamento.Name = "CONCEPAPLICAR_Panel_Departamento";
             this.CONCEPAPLICAR_Panel_Departamento.Size = new System.Drawing.Size(279, 150);
             this.CONCEPAPLICAR_Panel_Departamento.TabIndex = 63;
@@ -168,7 +168,7 @@
             this.CONCEPAPLICAR_CB_Departamentos.ForeColor = System.Drawing.Color.AliceBlue;
             this.CONCEPAPLICAR_CB_Departamentos.FormattingEnabled = true;
             this.CONCEPAPLICAR_CB_Departamentos.Location = new System.Drawing.Point(67, 68);
-            this.CONCEPAPLICAR_CB_Departamentos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_CB_Departamentos.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_CB_Departamentos.Name = "CONCEPAPLICAR_CB_Departamentos";
             this.CONCEPAPLICAR_CB_Departamentos.Size = new System.Drawing.Size(160, 24);
             this.CONCEPAPLICAR_CB_Departamentos.TabIndex = 0;
@@ -188,7 +188,7 @@
             this.CONCEPAPLICAR_Panel_Empleado.Controls.Add(this.label4);
             this.CONCEPAPLICAR_Panel_Empleado.Controls.Add(this.CONCEPAPLICAR_TB_NoEmp);
             this.CONCEPAPLICAR_Panel_Empleado.Location = new System.Drawing.Point(649, 326);
-            this.CONCEPAPLICAR_Panel_Empleado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_Panel_Empleado.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_Panel_Empleado.Name = "CONCEPAPLICAR_Panel_Empleado";
             this.CONCEPAPLICAR_Panel_Empleado.Size = new System.Drawing.Size(368, 236);
             this.CONCEPAPLICAR_Panel_Empleado.TabIndex = 64;
@@ -200,10 +200,11 @@
             this.CONCEPAPLICAR_CB_Emp.ForeColor = System.Drawing.Color.AliceBlue;
             this.CONCEPAPLICAR_CB_Emp.FormattingEnabled = true;
             this.CONCEPAPLICAR_CB_Emp.Location = new System.Drawing.Point(151, 190);
-            this.CONCEPAPLICAR_CB_Emp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_CB_Emp.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_CB_Emp.Name = "CONCEPAPLICAR_CB_Emp";
             this.CONCEPAPLICAR_CB_Emp.Size = new System.Drawing.Size(200, 24);
             this.CONCEPAPLICAR_CB_Emp.TabIndex = 10;
+            this.CONCEPAPLICAR_CB_Emp.SelectedIndexChanged += new System.EventHandler(this.CONCEPAPLICAR_CB_Emp_SelectedItemChanged);
             // 
             // CONCEPAPLICAR_CB_EmpPuesto
             // 
@@ -212,10 +213,11 @@
             this.CONCEPAPLICAR_CB_EmpPuesto.ForeColor = System.Drawing.Color.AliceBlue;
             this.CONCEPAPLICAR_CB_EmpPuesto.FormattingEnabled = true;
             this.CONCEPAPLICAR_CB_EmpPuesto.Location = new System.Drawing.Point(151, 116);
-            this.CONCEPAPLICAR_CB_EmpPuesto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_CB_EmpPuesto.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_CB_EmpPuesto.Name = "CONCEPAPLICAR_CB_EmpPuesto";
             this.CONCEPAPLICAR_CB_EmpPuesto.Size = new System.Drawing.Size(200, 24);
             this.CONCEPAPLICAR_CB_EmpPuesto.TabIndex = 9;
+            this.CONCEPAPLICAR_CB_EmpPuesto.SelectedIndexChanged += new System.EventHandler(this.CONCEPAPLICAR_CB_EmpPuesto_SelectedIndexChanged);
             // 
             // CONCEPAPLICAR_CB_EmpDepto
             // 
@@ -224,17 +226,18 @@
             this.CONCEPAPLICAR_CB_EmpDepto.ForeColor = System.Drawing.Color.AliceBlue;
             this.CONCEPAPLICAR_CB_EmpDepto.FormattingEnabled = true;
             this.CONCEPAPLICAR_CB_EmpDepto.Location = new System.Drawing.Point(151, 80);
-            this.CONCEPAPLICAR_CB_EmpDepto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_CB_EmpDepto.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_CB_EmpDepto.Name = "CONCEPAPLICAR_CB_EmpDepto";
             this.CONCEPAPLICAR_CB_EmpDepto.Size = new System.Drawing.Size(200, 24);
             this.CONCEPAPLICAR_CB_EmpDepto.TabIndex = 8;
+            this.CONCEPAPLICAR_CB_EmpDepto.SelectedIndexChanged += new System.EventHandler(this.CONCEPAPLICAR_CB_EmpDepto_SelectedIndexChanged);
             // 
             // CONCEPAPLICAR_DTP_EmpFecha
             // 
             this.CONCEPAPLICAR_DTP_EmpFecha.CustomFormat = "dd/MMM/yyyy";
             this.CONCEPAPLICAR_DTP_EmpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.CONCEPAPLICAR_DTP_EmpFecha.Location = new System.Drawing.Point(151, 153);
-            this.CONCEPAPLICAR_DTP_EmpFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_DTP_EmpFecha.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_DTP_EmpFecha.Name = "CONCEPAPLICAR_DTP_EmpFecha";
             this.CONCEPAPLICAR_DTP_EmpFecha.Size = new System.Drawing.Size(123, 22);
             this.CONCEPAPLICAR_DTP_EmpFecha.TabIndex = 7;
@@ -317,7 +320,7 @@
             this.CONCEPAPLICAR_TB_NoEmp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CONCEPAPLICAR_TB_NoEmp.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.CONCEPAPLICAR_TB_NoEmp.Location = new System.Drawing.Point(175, 20);
-            this.CONCEPAPLICAR_TB_NoEmp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CONCEPAPLICAR_TB_NoEmp.Margin = new System.Windows.Forms.Padding(4);
             this.CONCEPAPLICAR_TB_NoEmp.Name = "CONCEPAPLICAR_TB_NoEmp";
             this.CONCEPAPLICAR_TB_NoEmp.Size = new System.Drawing.Size(54, 22);
             this.CONCEPAPLICAR_TB_NoEmp.TabIndex = 0;
@@ -388,7 +391,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormConceptosAplicar";
             this.Text = "FormConceptosAplicar";
             this.Load += new System.EventHandler(this.FormConceptosAplicar_Load);

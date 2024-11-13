@@ -272,7 +272,7 @@
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(164, 25);
-            this.label15.TabIndex = 16;
+            this.label15.TabIndex = 20;
             this.label15.Text = "Calle y número:";
             // 
             // label16
@@ -284,7 +284,7 @@
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(93, 25);
-            this.label16.TabIndex = 18;
+            this.label16.TabIndex = 22;
             this.label16.Text = "Colonia:";
             // 
             // label17
@@ -296,7 +296,7 @@
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(111, 25);
-            this.label17.TabIndex = 20;
+            this.label17.TabIndex = 18;
             this.label17.Text = "Municipio:";
             // 
             // label18
@@ -308,7 +308,7 @@
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(86, 25);
-            this.label18.TabIndex = 22;
+            this.label18.TabIndex = 16;
             this.label18.Text = "Estado:";
             // 
             // label19
@@ -404,7 +404,7 @@
             this.EMP_BTN_Registrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_BTN_Registrar.Name = "EMP_BTN_Registrar";
             this.EMP_BTN_Registrar.Size = new System.Drawing.Size(165, 43);
-            this.EMP_BTN_Registrar.TabIndex = 46;
+            this.EMP_BTN_Registrar.TabIndex = 44;
             this.EMP_BTN_Registrar.Text = "Registrar";
             this.EMP_BTN_Registrar.UseVisualStyleBackColor = false;
             this.EMP_BTN_Registrar.Click += new System.EventHandler(this.EMP_BTN_Registrar_Click);
@@ -571,7 +571,7 @@
             this.EMP_TB_Colonia.Multiline = true;
             this.EMP_TB_Colonia.Name = "EMP_TB_Colonia";
             this.EMP_TB_Colonia.Size = new System.Drawing.Size(221, 25);
-            this.EMP_TB_Colonia.TabIndex = 19;
+            this.EMP_TB_Colonia.TabIndex = 23;
             // 
             // panel10
             // 
@@ -594,7 +594,7 @@
             this.EMP_TB_CalleNo.Multiline = true;
             this.EMP_TB_CalleNo.Name = "EMP_TB_CalleNo";
             this.EMP_TB_CalleNo.Size = new System.Drawing.Size(219, 25);
-            this.EMP_TB_CalleNo.TabIndex = 17;
+            this.EMP_TB_CalleNo.TabIndex = 21;
             // 
             // panel11
             // 
@@ -886,20 +886,20 @@
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(79, 25);
-            this.label29.TabIndex = 93;
+            this.label29.TabIndex = 42;
             this.label29.Text = "Fecha:";
             // 
             // EMP_DTP_Fecha
             // 
             this.EMP_DTP_Fecha.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.EMP_DTP_Fecha.CalendarTitleForeColor = System.Drawing.SystemColors.Window;
-            this.EMP_DTP_Fecha.CustomFormat = "dd/MMM/yyyy";
+            this.EMP_DTP_Fecha.CustomFormat = "01/MMM/yyyy";
             this.EMP_DTP_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.EMP_DTP_Fecha.Location = new System.Drawing.Point(637, 454);
             this.EMP_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_DTP_Fecha.Name = "EMP_DTP_Fecha";
             this.EMP_DTP_Fecha.Size = new System.Drawing.Size(160, 22);
-            this.EMP_DTP_Fecha.TabIndex = 94;
+            this.EMP_DTP_Fecha.TabIndex = 43;
             // 
             // EMP_DGV_Empleados
             // 
@@ -931,7 +931,7 @@
             this.EMP_BTN_Baja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_BTN_Baja.Name = "EMP_BTN_Baja";
             this.EMP_BTN_Baja.Size = new System.Drawing.Size(149, 32);
-            this.EMP_BTN_Baja.TabIndex = 100;
+            this.EMP_BTN_Baja.TabIndex = 49;
             this.EMP_BTN_Baja.Text = "Dar de baja";
             this.EMP_BTN_Baja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EMP_BTN_Baja.UseVisualStyleBackColor = true;
@@ -947,7 +947,7 @@
             this.EMP_BTN_Editar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_BTN_Editar.Name = "EMP_BTN_Editar";
             this.EMP_BTN_Editar.Size = new System.Drawing.Size(93, 32);
-            this.EMP_BTN_Editar.TabIndex = 99;
+            this.EMP_BTN_Editar.TabIndex = 48;
             this.EMP_BTN_Editar.Text = "Editar";
             this.EMP_BTN_Editar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EMP_BTN_Editar.UseVisualStyleBackColor = true;
@@ -957,26 +957,26 @@
             // 
             this.EMP_DTP_FiltroFecha.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.EMP_DTP_FiltroFecha.CalendarTitleForeColor = System.Drawing.SystemColors.Window;
-            this.EMP_DTP_FiltroFecha.CustomFormat = "dd/MMM/yyyy";
+            this.EMP_DTP_FiltroFecha.CustomFormat = "MMM/yyyy";
             this.EMP_DTP_FiltroFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.EMP_DTP_FiltroFecha.Location = new System.Drawing.Point(1128, 679);
             this.EMP_DTP_FiltroFecha.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_DTP_FiltroFecha.Name = "EMP_DTP_FiltroFecha";
             this.EMP_DTP_FiltroFecha.Size = new System.Drawing.Size(152, 22);
-            this.EMP_DTP_FiltroFecha.TabIndex = 102;
+            this.EMP_DTP_FiltroFecha.TabIndex = 46;
             this.EMP_DTP_FiltroFecha.ValueChanged += new System.EventHandler(this.EMP_DTP_FiltroFecha_ValueChanged);
             // 
             // label25
             // 
             this.label25.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(1112, 639);
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(1099, 640);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(176, 25);
+            this.label25.Size = new System.Drawing.Size(199, 20);
             this.label25.TabIndex = 101;
-            this.label25.Text = "Filtrar mes inicio:";
+            this.label25.Text = "Empleados activos en:";
             // 
             // label26
             // 
@@ -1014,7 +1014,7 @@
             this.EMP_BTN_Limpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EMP_BTN_Limpiar.Name = "EMP_BTN_Limpiar";
             this.EMP_BTN_Limpiar.Size = new System.Drawing.Size(112, 32);
-            this.EMP_BTN_Limpiar.TabIndex = 105;
+            this.EMP_BTN_Limpiar.TabIndex = 45;
             this.EMP_BTN_Limpiar.Text = "Limpiar";
             this.EMP_BTN_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EMP_BTN_Limpiar.UseVisualStyleBackColor = true;
@@ -1079,11 +1079,11 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Bahnschrift", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1161, 710);
+            this.button1.Location = new System.Drawing.Point(1161, 711);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 32);
-            this.button1.TabIndex = 110;
+            this.button1.TabIndex = 47;
             this.button1.Text = "Filtrar";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -1109,7 +1109,7 @@
             this.EMP_TB_Municipio.Multiline = true;
             this.EMP_TB_Municipio.Name = "EMP_TB_Municipio";
             this.EMP_TB_Municipio.Size = new System.Drawing.Size(221, 25);
-            this.EMP_TB_Municipio.TabIndex = 74;
+            this.EMP_TB_Municipio.TabIndex = 19;
             // 
             // panel9
             // 
@@ -1132,7 +1132,7 @@
             this.EMP_TB_Estado.Multiline = true;
             this.EMP_TB_Estado.Name = "EMP_TB_Estado";
             this.EMP_TB_Estado.Size = new System.Drawing.Size(219, 25);
-            this.EMP_TB_Estado.TabIndex = 73;
+            this.EMP_TB_Estado.TabIndex = 17;
             // 
             // FormGestionEmpleados
             // 

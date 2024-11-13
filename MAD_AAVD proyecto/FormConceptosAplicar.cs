@@ -66,5 +66,34 @@ namespace MAD_AAVD_proyecto
 
             Reload();
         }
+
+        private void ActualizarCBEmp()
+        {
+            CONCEPAPLICAR_CB_Emp.Text = "";
+
+            var linkCassandra = new EnlaceCassandra();
+
+            List<Empleados> listaEmpleados = linkCassandra.FilterEmpleados(CONCEPAPLICAR_DTP_EmpFecha.Value, true, CONCEPAPLICAR_CB_EmpDepto.Text, CONCEPAPLICAR_CB_EmpPuesto.Text);
+            CONCEPAPLICAR_CB_Emp.DataSource = listaEmpleados;
+            CONCEPAPLICAR_CB_Emp.DisplayMember = "nombres";
+            CONCEPAPLICAR_CB_Emp.ValueMember = "noEmpleado";
+
+            CONCEPAPLICAR_CB_Emp.SelectedItem = 0;
+        }
+        private void CONCEPAPLICAR_CB_EmpPuesto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarCBEmp();
+        }
+
+        private void CONCEPAPLICAR_CB_EmpDepto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarCBEmp();
+        }
+
+        private void CONCEPAPLICAR_CB_Emp_SelectedItemChanged(object sender, EventArgs e)
+        {
+            //Escribir numero de empleado
+            CONCEPAPLICAR_TB_NoEmp.Text = CONCEPAPLICAR_CB_Emp.SelectedValue.ToString();
+        }
     }
 }

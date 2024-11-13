@@ -130,7 +130,8 @@ namespace MAD_AAVD_proyecto
 
                 string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
                 //List<Empleados> tabla = linkCassandra.Get_All<Empleados>(columnasTablaEmp, "EMPLEADOS");
-                List<Empleados> tabla = linkCassandra.FilterDate<Empleados>(columnasTablaEmp, "EMPLEADOS", EMP_DTP_FiltroFecha.Value);
+                //List<Empleados> tabla = linkCassandra.FilterDate<Empleados>(columnasTablaEmp, "EMPLEADOS", EMP_DTP_FiltroFecha.Value);
+                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
                 EMP_DGV_Empleados.DataSource = tabla;
                 HideUnnecessaryColumns();
             }
@@ -204,28 +205,16 @@ namespace MAD_AAVD_proyecto
                 string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
                 string cDepartamento = $"'{EMP_CB_Departamento.Text}'";
                 string cPuesto = $"'{EMP_CB_Puesto.Text}'";
-                int departamento = int.Parse(EMP_CB_Departamento.Text);
-                int puesto = int.Parse(EMP_CB_Puesto.Text);
                 string contrasena = EMP_TB_Contrasena.Text; // Se guardara como HASH
                 DateTime fechaNacimiento = EMP_DTP_Nacimiento.Value;
-
                 string calleNo = $"'{EMP_TB_CalleNo.Text}'";
                 string colonia = $"'{EMP_TB_Colonia.Text}'";
-
                 string cEstado = $"'{EMP_TB_Estado.Text}'";
                 string cMunicipio = $"'{EMP_TB_Municipio.Text}'";
-                int estado = int.Parse(EMP_CB_ESTADO.Text);
-                int municipio = int.Parse(EMP_CB_Municipio.Text);
-
                 string cp = $"'{EMP_TB_Cp.Text}'";
-
                 string cBanco = $"'{EMP_TB_Banco.Text}'";
-                int banco = int.Parse(EMP_TB_Banco.Text);
                 string cNoCuenta = EMP_TB_NoCuenta.Text;
-                int noCuenta = int.Parse(EMP_TB_NoCuenta.Text);
                 string email = $"'{EMP_TB_Email.Text}'";
-                Int64 tel1 = Int64.Parse(EMP_TB_Tel1.Text);
-                Int64 tel2 = Int64.Parse(EMP_TB_Tel2.Text);
                 string curp = $"'{EMP_TB_Curp.Text}'";
                 string nss = $"'{EMP_TB_Nss.Text}'";
                 string rfc = $"'{EMP_TB_Rfc.Text}'";
@@ -240,11 +229,19 @@ namespace MAD_AAVD_proyecto
                     Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
                 }
                 hashPassword = $"'{hashPassword}'";
-                
-                
+
 
                 if (DB_SQLServer)
                 {
+                    int banco = int.Parse(EMP_TB_Banco.Text);
+                    int estado = int.Parse(EMP_CB_ESTADO.Text);
+                    int municipio = int.Parse(EMP_CB_Municipio.Text);
+                    int departamento = int.Parse(EMP_CB_Departamento.Text);
+                    int puesto = int.Parse(EMP_CB_Puesto.Text);
+                    Int64 tel1 = Int64.Parse(EMP_TB_Tel1.Text);
+                    Int64 tel2 = Int64.Parse(EMP_TB_Tel2.Text);
+                    int noCuenta = int.Parse(EMP_TB_NoCuenta.Text);
+
                     var linkDB = new EnlaceDB();
                     bool ok = false;
 
@@ -269,8 +266,10 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     bool continueRegister = true;
-                    string fechaInicio = EMP_DTP_Fecha.Value.ToString("yyyy-MM-dd");
-                    Cassandra.LocalDate parsedFechaInicio = Cassandra.LocalDate.Parse(fechaInicio);
+                    DateTime fechaInicio = EMP_DTP_Fecha.Value;
+                    DateTime auxDate1 = new DateTime(fechaInicio.Year, fechaInicio.Month, 1);
+                    string date = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    Cassandra.LocalDate parsedFechaInicio = Cassandra.LocalDate.Parse(date);
 
                     if (edit_Emp) //VALIDAR CAMBIOS DE PUESTOS
                     {
@@ -332,8 +331,8 @@ namespace MAD_AAVD_proyecto
                         string auxFechaInicio = $"'{parsedFechaInicio.ToString()}'";
                         ////////INSERTAR TODO EN LA TABLA////////////
                         string[] pkValues = { edit_noEmp.ToString(), auxFechaInicio, cDepartamento, cPuesto, salarioDiario.ToString() };
-                        string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos" };
-                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos };
+                        string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos", "activo" };
+                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos,"TRUE" };
 
                         linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
                         ClearAll();
@@ -449,7 +448,7 @@ namespace MAD_AAVD_proyecto
             {
                 var linkCassandra = new EnlaceCassandra();
                 string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
-                List<Empleados> tabla = linkCassandra.FilterDate<Empleados>(columnasTablaEmp, "EMPLEADOS", EMP_DTP_FiltroFecha.Value);
+                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
 
                 EMP_DGV_Empleados.DataSource = tabla;
 
