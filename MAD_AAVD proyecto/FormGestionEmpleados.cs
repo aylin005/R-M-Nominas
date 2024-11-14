@@ -129,8 +129,6 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_Puesto.ValueMember = "noPuesto";
 
                 string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
-                //List<Empleados> tabla = linkCassandra.Get_All<Empleados>(columnasTablaEmp, "EMPLEADOS");
-                //List<Empleados> tabla = linkCassandra.FilterDate<Empleados>(columnasTablaEmp, "EMPLEADOS", EMP_DTP_FiltroFecha.Value);
                 List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
                 EMP_DGV_Empleados.DataSource = tabla;
                 HideUnnecessaryColumns();

@@ -25,15 +25,38 @@ namespace MAD_AAVD_proyecto
             //COMBOBOX DEPARTAMENTOS
             string[] columnasDepto = { "noDepto", "nombreDpto" };
             List<Departamentos> listaDeptos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
-            CONCEPAPLICAR_CB_Departamentos.DataSource = listaDeptos;
-            CONCEPAPLICAR_CB_Departamentos.DisplayMember = "nombreDpto";
-            CONCEPAPLICAR_CB_Departamentos.ValueMember = "noDepto";
+            RGN_CB_Departamento.DataSource = listaDeptos;
+            RGN_CB_Departamento.DisplayMember = "nombreDpto";
+            RGN_CB_Departamento.ValueMember = "noDepto";
 
-            CONCEPAPLICAR_CB_EmpDepto.DataSource = listaDeptos;
-            CONCEPAPLICAR_CB_EmpDepto.DisplayMember = "nombreDpto";
-            CONCEPAPLICAR_CB_EmpDepto.ValueMember = "noDepto";
+            RGN_CB_Departamento.DataSource = listaDeptos;
+            RGN_CB_Departamento.DisplayMember = "nombreDpto";
+            RGN_CB_Departamento.ValueMember = "noDepto";
+
+            List<Empleados> tabla = linkCassandra.FilterEmpleados(RGN_DTP_FiltroFecha.Value);
+            RGN_DGV_Reporte.DataSource = tabla;
+            RGN_DGV_Reporte.Columns.Add("Edad", "Edad");
+            HideUnnecessaryColumns();
         }
 
-
+        private void HideUnnecessaryColumns()
+        {
+            RGN_DGV_Reporte.Columns["contrasena"].Visible = false;
+            RGN_DGV_Reporte.Columns["fechaNacimiento"].Visible = false;
+            RGN_DGV_Reporte.Columns["curp"].Visible = false;
+            RGN_DGV_Reporte.Columns["rfc"].Visible = false;
+            RGN_DGV_Reporte.Columns["nss"].Visible = false;
+            RGN_DGV_Reporte.Columns["calleNo"].Visible = false;
+            RGN_DGV_Reporte .Columns["colonia"].Visible = false;
+            RGN_DGV_Reporte.Columns["municipio"].Visible = false;
+            RGN_DGV_Reporte.Columns["estado"].Visible = false;
+            RGN_DGV_Reporte.Columns["cp"].Visible = false;
+            RGN_DGV_Reporte.Columns["colonia"].Visible = false;
+            RGN_DGV_Reporte.Columns["banco"].Visible = false;
+            RGN_DGV_Reporte.Columns["noCuenta"].Visible = false;
+            RGN_DGV_Reporte.Columns["email"].Visible = false;
+            RGN_DGV_Reporte.Columns["telefonos"].Visible = false;
+            RGN_DGV_Reporte.Columns["fechaBaja"].Visible = false;
+        }
     }
 }
