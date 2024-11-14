@@ -328,11 +328,11 @@ namespace MAD_AAVD_proyecto
                         //SALARIO DIARIO
                         float salarioDiario = auxDepto.sueldoBase * auxPuesto.nivelSalarial;
 
-                        string auxFechaInicio = $"'{parsedFechaInicio.ToString()}'";
+                        string auxFechaInicio = $"'{parsedFechaInicio}'";
                         ////////INSERTAR TODO EN LA TABLA////////////
                         string[] pkValues = { edit_noEmp.ToString(), auxFechaInicio, cDepartamento, cPuesto, salarioDiario.ToString() };
-                        string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos", "activo" };
-                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos,"TRUE" };
+                        string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos", "activo", "fechaIngreso" };
+                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos,"TRUE", auxFechaInicio };
 
                         linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
                         ClearAll();

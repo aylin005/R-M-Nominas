@@ -56,7 +56,37 @@ namespace MAD_AAVD_proyecto
         public string email { get; set; }
         public HashSet<string> telefonos { get; set; }
         public Cassandra.LocalDate fechaInicio { get; set; }
+        public Cassandra.LocalDate fechaIngreso { get; set; }
         public decimal salarioDiario { get; set; }
         public Cassandra.LocalDate fechaBaja { get; set; }
+    }
+
+    public class Recibos
+    {
+        string idRecibo {  get; set; }
+        int noEmpleado { get; set; }
+        Cassandra.LocalDate mesRecibo { get; set; }
+        string nombreEmpleado { get; set; }
+        string departamento { get; set; }
+        string puesto { get; set; }
+        decimal salarioDiario { get; set; }
+        string banco { get; set; }
+        string noCuenta { get; set; }
+        Cassandra.LocalDate fechaAlta { get; set; }
+        Cassandra.LocalDate inicioPeriodo { get; set; }
+        Cassandra.LocalDate finPeriodo { get; set; }
+        Cassandra.LocalDate fechaPago { get; set; }
+        string nss { get; set; }
+        string rfc { get; set; }
+        string curp { get; set; }
+        int diasTrabajados { get; set; }
+        decimal totalPercepciones { get; set; }
+        decimal totalDeducciones { get; set; }
+        decimal total { get; set; }
+        string totalLetra { get; set; }
+        bool generado { get; set; }
+        int noConcepto { get; set; }
+        string nombreConcepto { get; set; }
+        decimal cantConcepto { get; set; }
     }
 }

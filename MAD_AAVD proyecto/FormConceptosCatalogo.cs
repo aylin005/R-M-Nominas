@@ -205,6 +205,7 @@ namespace MAD_AAVD_proyecto
                     isTipo = true;
                 else
                     isTipo = false;
+
                 if (auxFijo == "Sí")
                     isFijo = true;
                 else
@@ -239,12 +240,12 @@ namespace MAD_AAVD_proyecto
 
                     string strNombre = $"'{nombreConcepto}'"; //agregar comillas al nombre
                     string[] pkValues = { edit_noConcepto.ToString() };
-                    string[] values = { strNombre, cuota.ToString(), porcentaje.ToString(), isFijo.ToString(), isTipo.ToString() };
+                    string[] values = { strNombre, cuota.ToString(), ((float)porcentaje).ToString(), isFijo.ToString(), isTipo.ToString() };
                     
                     if (cuota == 0)
-                        values[2] = "null";
+                        values[1] = "null";
                     else if(porcentaje == 0)
-                        values[3] = "null";
+                        values[2] = "null";
 
                     linkCassandra.Insert(edit_Concepto, "CONCEPTOS", primaryKey, pkValues, columnas, values);
                     Clean();

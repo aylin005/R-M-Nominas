@@ -164,6 +164,54 @@ namespace MAD_AAVD_proyecto
             }
         }
        
+        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha)
+        {
+            DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
+            int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+            DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
+
+            string fechaConcepto = fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string inicioPeriodo = auxInicio.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string finPeriodo = auxFin.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            //Concatenar nombre del empleado
+            string nombreEmpleado = $"{empleado.nombres} {empleado.apPaterno} {empleado.apMaterno}";
+
+            //Obtener cantidad del concepto
+            float cantConcepto;
+
+            if (concepto.cuota != 0)
+            {
+                cantConcepto = concepto.cuota;
+            }
+            else
+            {//calcular porcentaje
+                cantConcepto = (float)empleado.salarioDiario * (concepto.porcentaje);
+            }
+            
+            try
+            {
+                conectar();
+                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, nombreConcepto, cantConcepto, fechaConcepto, " +
+                    $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp)";
+
+                query += $"VALUES(uuid(), {empleado.noEmpleado}, '{finPeriodo}', {concepto.noConcepto}, '{concepto.nombreConcepto}', {cantConcepto}, '{fechaConcepto}'," +
+                    $" '{nombreEmpleado}', '{empleado.departamento}', '{empleado.puesto}', {empleado.salarioDiario}, '{empleado.banco}', '{empleado.noCuenta}', '{empleado.fechaIngreso}', " +
+                    $"'{inicioPeriodo}', '{finPeriodo}', '{empleado.nss}', '{empleado.rfc}', '{empleado.curp}')";
+                IMapper mapper = new Mapper(_session);
+
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                MessageBox.Show("Insertado exitosamente");
+                desconectar();
+            }
+        }
         public void Delete(string nombreTabla, string [] columnas, int noID)
         {
             try
@@ -229,7 +277,7 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
-        public List<T> FilterDate<T>(string[] columnas, string nombreTabla, DateTime date)
+        public Recibos BuscarRecibo(string[] columnas, int noEmp, DateTime date)
         {
             // Establecer el día en 1 para el mes actual
             DateTime auxDate1 = new DateTime(date.Year, date.Month, 1);
@@ -248,14 +296,14 @@ namespace MAD_AAVD_proyecto
                 query += columna + ", ";
             }
             query = query.Remove(query.Length - 2);
-            query += " FROM " + nombreTabla + " WHERE fechaInicio>= '" + date1 + "' AND fechaInicio < '" + date2 + "' ALLOW FILTERING;";
+            query += " FROM RECIBOS WHERE noEmpleado = " + noEmp + " mesRecibo>= '" + date1 + "' AND mesRecibo < '" + date2 + "' ALLOW FILTERING;";
             conectar();
 
             IMapper mapper = new Mapper(_session);
-            IEnumerable<T> table = mapper.Fetch<T>(query);
+            Recibos recibo = mapper.FirstOrDefault<Recibos>(query);
 
             desconectar();
-            return table.ToList();
+            return recibo;
         }
 
         public List<Empleados> FilterEmpleados(DateTime date, bool withDep = false, string departamento = "", string puesto = "")
@@ -282,7 +330,7 @@ namespace MAD_AAVD_proyecto
                 foreach (var registro in empleados)
                 {
                     // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
-                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio " +
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso " +
                         $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
 
                     Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
@@ -312,10 +360,30 @@ namespace MAD_AAVD_proyecto
                     }
                 }
             }
-
-            
             desconectar();
             return finalList; // Guarda el último puesto de cada empleado para la fecha seleccionada
+        }
+
+        public List<Empleados> FilterEmpByDepto (DateTime fecha, string departamento)
+        {
+            // Dia ultimo del mes seleccionado
+            DateTime auxDate1 = new DateTime(fecha.Year, fecha.Month, 1);
+            auxDate1 = auxDate1.AddMonths(1).AddDays(-1);
+
+            // Convertir ambas fechas a string en el formato de Cassandra
+            string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            
+            // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
+
+            string query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, curp, rfc, nss, banco, noCuenta, salarioDiario, departamento, puesto " +
+                $"FROM Empleados WHERE fechaInicio <= '{date1}' AND departamento = '{departamento}'" +
+                $"AND activo = TRUE ALLOW FILTERING;";
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Empleados> finalList = mapper.Fetch<Empleados>(query);
+
+            desconectar();
+            return finalList.ToList(); // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
 
         public List<Empleados> ObtenerUltimoPuestoPorFecha(string[] columnas, DateTime date)
@@ -367,6 +435,38 @@ namespace MAD_AAVD_proyecto
             Empleados row = mapper.Single<Empleados>(query); //un solo resultado.
             desconectar();
             return row;
+        }
+
+        public Empleados LastPuesto2<Empleados>(string[] columnas, string noEmpleado, DateTime date) //Obtiene el puesto activo en cierta fecha
+        { //REVISAR LO DE ACTIVO
+            string date1 = date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            string query = "SELECT ";
+            foreach (var columna in columnas)
+            {
+                query += columna + ", ";
+            }
+            query = query.Remove(query.Length - 2);
+            query += $" FROM EMPLEADOS WHERE noEmpleado = {noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE ORDER BY fechaInicio DESC LIMIT 1 ALLOW FILTERING";
+
+            conectar();
+            IMapper mapper = new Mapper(_session);
+            Empleados row = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
+            desconectar();
+            return row;
+        }
+
+        public List<Conceptos> GetConceptosNoFijos()
+        {
+            string query = "SELECT noConcepto, nombreConcepto, cuota, porcentaje, percepcion, fijo FROM CONCEPTOS WHERE fijo = FALSE ALLOW FILTERING";
+            conectar();
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Conceptos> table = mapper.Fetch<Conceptos>(query);
+
+            desconectar();
+            return table.ToList();
+
         }
     }
 }

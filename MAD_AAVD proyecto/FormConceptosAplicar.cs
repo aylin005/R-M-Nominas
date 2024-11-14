@@ -12,6 +12,9 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormConceptosAplicar : Form
     {
+        bool aplicarEmp = false;
+        bool aplicarDepto = false;
+        public List<Conceptos> listaConceptos;
         public FormConceptosAplicar()
         {
             InitializeComponent();
@@ -22,8 +25,7 @@ namespace MAD_AAVD_proyecto
             
             var linkCassandra = new EnlaceCassandra();
             //COMBOBOX CONCEPTOS
-            string[] columnasConcepto = { "noConcepto", "nombreConcepto" };
-            List<Conceptos> listaConceptos = linkCassandra.Get_All<Conceptos>(columnasConcepto, "CONCEPTOS");
+            listaConceptos = linkCassandra.GetConceptosNoFijos();
             CONCEPAPLICAR_CB_Conceptos.DataSource = listaConceptos;
             CONCEPAPLICAR_CB_Conceptos.DisplayMember = "nombreConcepto";
             CONCEPAPLICAR_CB_Conceptos.ValueMember = "noConcepto";
@@ -51,12 +53,16 @@ namespace MAD_AAVD_proyecto
         {
             CONCEPAPLICAR_Panel_Departamento.Visible = true;
             CONCEPAPLICAR_Panel_Empleado.Visible = false;
+
+            aplicarDepto = true;
         }
 
         private void CONCEPAPLICAR_RB_Empleado_CheckedChanged(object sender, EventArgs e)
         {
             CONCEPAPLICAR_Panel_Empleado.Visible = true;
             CONCEPAPLICAR_Panel_Departamento.Visible = false;
+
+            aplicarEmp = true;
         }
 
         private void FormConceptosAplicar_Load(object sender, EventArgs e)
@@ -95,5 +101,59 @@ namespace MAD_AAVD_proyecto
             //Escribir numero de empleado
             CONCEPAPLICAR_TB_NoEmp.Text = CONCEPAPLICAR_CB_Emp.SelectedValue.ToString();
         }
+
+        private void CONCEPAPLICAR_BTN_Registrar_Click(object sender, EventArgs e)
+        {
+            string noEmp = CONCEPAPLICAR_TB_NoEmp.Text;
+            var linkCassandra = new EnlaceCassandra();
+
+            if (aplicarEmp)
+            {
+                if (noEmp != null)
+                {
+                    CONCEPAPLICAR_LBL_Loading.Visible = true;
+                    //1. Obtener Empleado en el puesto activo durante esa fecha
+                    string[] columnas = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "curp", "rfc", "nss", "banco", "noCuenta", "salarioDiario", "departamento", "puesto", "fechaIngreso" };
+                    Empleados empleado = linkCassandra.LastPuesto2<Empleados>(columnas, noEmp, CONCEPAPLICAR_DTP_Fecha.Value);
+
+                    aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                    CONCEPAPLICAR_LBL_Loading.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un empleado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (aplicarDepto)
+            {
+                CONCEPAPLICAR_LBL_Loading.Visible = true;
+                //Obtener empleados
+                //Por cada empleado llamar aplicarEmp
+                List<Empleados> empleadosDepto = linkCassandra.FilterEmpByDepto(CONCEPAPLICAR_DTP_Fecha.Value, CONCEPAPLICAR_CB_Departamentos.Text);
+                foreach(var empleado in empleadosDepto)
+                {
+                    aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                }
+                CONCEPAPLICAR_LBL_Loading.Visible = false;
+            }
+        
+
+        }
+
+        private void aplicarCpEmp(Empleados empleado, string noConcepto, DateTime fecha)
+        {
+            var linkCassandra = new EnlaceCassandra();
+
+            if (empleado != null)
+            {
+                //2. Se trae el concepto a insertar de la lista que ya se trajo para hacer más rápido el proceso
+                Conceptos concepto = listaConceptos[int.Parse(noConcepto)-1]; //Índice del comboBox
+
+                //3. Insertar en recibo
+                linkCassandra.InsertRecibo(empleado, concepto, fecha);
+            }
+            
+        }
+
     }
 }

@@ -53,6 +53,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CONCEPAPLICAR_BTN_Registrar = new System.Windows.Forms.Button();
+            this.CONCEPAPLICAR_LBL_Loading = new System.Windows.Forms.Label();
             this.CONCEPAPLICAR_Panel_Departamento.SuspendLayout();
             this.CONCEPAPLICAR_Panel_Empleado.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -371,6 +372,19 @@
             this.CONCEPAPLICAR_BTN_Registrar.TabIndex = 67;
             this.CONCEPAPLICAR_BTN_Registrar.Text = "Registrar";
             this.CONCEPAPLICAR_BTN_Registrar.UseVisualStyleBackColor = false;
+            this.CONCEPAPLICAR_BTN_Registrar.Click += new System.EventHandler(this.CONCEPAPLICAR_BTN_Registrar_Click);
+            // 
+            // CONCEPAPLICAR_LBL_Loading
+            // 
+            this.CONCEPAPLICAR_LBL_Loading.AutoSize = true;
+            this.CONCEPAPLICAR_LBL_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONCEPAPLICAR_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
+            this.CONCEPAPLICAR_LBL_Loading.Location = new System.Drawing.Point(613, 104);
+            this.CONCEPAPLICAR_LBL_Loading.Name = "CONCEPAPLICAR_LBL_Loading";
+            this.CONCEPAPLICAR_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.CONCEPAPLICAR_LBL_Loading.TabIndex = 109;
+            this.CONCEPAPLICAR_LBL_Loading.Text = "Loading...";
+            this.CONCEPAPLICAR_LBL_Loading.Visible = false;
             // 
             // FormConceptosAplicar
             // 
@@ -378,6 +392,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.CONCEPAPLICAR_LBL_Loading);
             this.Controls.Add(this.CONCEPAPLICAR_BTN_Registrar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
@@ -432,5 +447,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button CONCEPAPLICAR_BTN_Registrar;
+        private System.Windows.Forms.Label CONCEPAPLICAR_LBL_Loading;
     }
 }
