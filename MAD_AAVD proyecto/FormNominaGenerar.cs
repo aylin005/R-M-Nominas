@@ -38,8 +38,10 @@ namespace MAD_AAVD_proyecto
         private void GREPORTE_BTN_generate_Click(object sender, EventArgs e)
         {
             var linkCassandra = new EnlaceCassandra();
-            
+            linkCassandra.conectar();
+
             //Revisar si se generó el recibo del mes anterior
+            DateTime fecha = GREPORTE_DTP_date.Value; //Revisar valor que trae
             DateTime mesAnterior = GREPORTE_DTP_date.Value.AddMonths(-1);
             string[] primaryKey = { "year", "month" }; string[] columnas = primaryKey;
             string[] pkValues = { mesAnterior.Year.ToString(), (mesAnterior.Month).ToString() };
@@ -47,24 +49,37 @@ namespace MAD_AAVD_proyecto
             if(nominaMesAnterior != null )
             {
                 //Obtener empleados activos en ese mes
-
+                List<Empleados> empleados = linkCassandra.FilterEmpleados(fecha, false, false, "", "", false);
                 //Obtener conceptos fijos
+                List<Conceptos> conceptos = linkCassandra.GetConceptos(true, false);
 
                 //Insertar en recibos (Por cada uno)
+                foreach( Empleados emp in empleados )
+                {
+                    foreach(Conceptos concepto in conceptos)
+                    {
+                        linkCassandra.InsertRecibo(emp, concepto, fecha, false);
+                    }
+
+                    //*Obtener lista de percepciones y lista de deducciones*
+                    //Buscar recibo
+                    Recibos recibo = linkCassandra.BuscarRecibo(columnas, emp.noEmpleado, fecha); //?
+                        //Traer lista de todos sus conceptos
+                        //Dividir la lista en lista de percepciones y lista de deducciones
+                        //Calcular total percepciones y total deducciones
+                        //Calcular total final
+                        //Calcular total con letra
+                        //Insertar todo a recibo
+                }
+
+                //Guardar registro de la nomina generada
+                //Mostrar tabla con la info
             }
             else
             {
                 MessageBox.Show("No se ha generado la nómina del mes anterior", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            
-            //Insertar conceptos fijos al recibo
-            //Obtener lista de percepciones y lista de deducciones
-            //Calcular total percepciones y total deducciones
-            //Calcular total final
-            //Calcular total con letra
-            //Insertar todo a recibo
-            //Mostrar tabla con la info
+            linkCassandra.desconectar();
         }
     }
 }

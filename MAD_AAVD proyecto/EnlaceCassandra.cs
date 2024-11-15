@@ -27,7 +27,7 @@ namespace MAD_AAVD_proyecto
         static private Cluster _cluster;
         static private ISession _session;
 
-        private static void conectar()
+        public void conectar()
         {
             _dbServer = ConfigurationManager.AppSettings["Cluster"].ToString();
             _dbKeySpace = ConfigurationManager.AppSettings["KeySpace"].ToString();
@@ -52,7 +52,7 @@ namespace MAD_AAVD_proyecto
             _session = _cluster.Connect("keyspace3");
         }
 
-        private static void desconectar()
+        public void desconectar()
         {
             _cluster.Dispose();
         }
@@ -164,7 +164,7 @@ namespace MAD_AAVD_proyecto
             }
         }
        
-        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha)
+        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha, bool withConectar = true)
         {
             DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
             int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
@@ -191,7 +191,8 @@ namespace MAD_AAVD_proyecto
             
             try
             {
-                conectar();
+                if(withConectar)
+                    conectar();
                 string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, nombreConcepto, cantConcepto, fechaConcepto, " +
                     $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp)";
 
@@ -209,7 +210,8 @@ namespace MAD_AAVD_proyecto
             finally
             {
                 MessageBox.Show("Insertado exitosamente");
-                desconectar();
+                if(withConectar)
+                    desconectar();
             }
         }
         public void Delete(string nombreTabla, string [] columnas, int noID)
@@ -306,7 +308,7 @@ namespace MAD_AAVD_proyecto
             return recibo;
         }
 
-        public List<Empleados> FilterEmpleados(DateTime date, bool withPuesto = false, bool withDepto = false, string departamento = "", string puesto = "")
+        public List<Empleados> FilterEmpleados(DateTime date, bool withPuesto = false, bool withDepto = false, string departamento = "", string puesto = "", bool withConectar =  true)
         {
             var finalList = new List<Empleados>(); // Tabla final del filtro
                                                    // Dia ultimo del mes seleccionado
@@ -318,7 +320,8 @@ namespace MAD_AAVD_proyecto
 
             // Ejecutamos primera consulta
             string query = $"SELECT noEmpleado FROM Empleados GROUP BY noEmpleado ALLOW FILTERING;";
-            conectar();
+            if(withConectar)
+                conectar();
             IMapper mapper = new Mapper(_session);
 
             IEnumerable<Empleados> tableEmpleados = mapper.Fetch<Empleados>(query);
@@ -330,7 +333,7 @@ namespace MAD_AAVD_proyecto
                 foreach (var registro in empleados)
                 {
                     // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
-                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso " +
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, crup, salarioDiario, banco, noCuenta " +
                         $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
 
                     Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
@@ -378,7 +381,8 @@ namespace MAD_AAVD_proyecto
                     }
                 }
             }
-            desconectar();
+            if(withConectar)
+                desconectar();
             return finalList; // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
 
@@ -474,15 +478,22 @@ namespace MAD_AAVD_proyecto
             return row;
         }
 
-        public List<Conceptos> GetConceptosNoFijos()
+        public List<Conceptos> GetConceptos(bool fijo = false, bool withConectar = true)
         {
-            string query = "SELECT noConcepto, nombreConcepto, cuota, porcentaje, percepcion, fijo FROM CONCEPTOS WHERE fijo = FALSE ALLOW FILTERING";
-            conectar();
+            string query;
+            if(!fijo)
+                query = "SELECT noConcepto, nombreConcepto, cuota, porcentaje, percepcion, fijo FROM CONCEPTOS WHERE fijo = FALSE ALLOW FILTERING";
+            else
+                query = "SELECT noConcepto, nombreConcepto, cuota, porcentaje, percepcion, fijo FROM CONCEPTOS WHERE fijo = TRUE ALLOW FILTERING";
+
+            if(withConectar)
+                conectar();
 
             IMapper mapper = new Mapper(_session);
             IEnumerable<Conceptos> table = mapper.Fetch<Conceptos>(query);
 
-            desconectar();
+            if(withConectar)
+                desconectar();
             return table.ToList();
 
         }
