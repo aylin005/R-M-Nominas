@@ -28,33 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.HDCOUNTER_Title = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.RGN_BTN_Filtrar = new System.Windows.Forms.Button();
-            this.RGN_DTP_FiltroFecha = new System.Windows.Forms.DateTimePicker();
-            this.RGN_DGV_Reporte = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.RGN_CB_Departamento = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.RGN_BTN_Filtrar = new System.Windows.Forms.Button();
+            this.RGN_DTP_FiltroFecha = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.RGN_CB_Departamento = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.RGN_LBL_Loading = new System.Windows.Forms.Label();
+            this.RGN_DGV_Reporte = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RGN_DGV_Reporte)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RGN_DGV_Reporte)).BeginInit();
             this.SuspendLayout();
             // 
             // HDCOUNTER_Title
@@ -69,7 +73,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(389, 11);
+            this.label1.Location = new System.Drawing.Point(391, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(608, 57);
             this.label1.TabIndex = 2;
@@ -83,11 +87,118 @@
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(-2, 158);
+            this.panel2.Location = new System.Drawing.Point(-2, 157);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1309, 2);
+            this.panel2.Size = new System.Drawing.Size(1312, 2);
             this.panel2.TabIndex = 67;
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel7.Controls.Add(this.panel8);
+            this.panel7.Controls.Add(this.panel10);
+            this.panel7.Controls.Add(this.panel12);
+            this.panel7.Location = new System.Drawing.Point(0, -20);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1312, 2);
+            this.panel7.TabIndex = 70;
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel8.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel8.Controls.Add(this.panel9);
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1312, 2);
+            this.panel8.TabIndex = 69;
+            // 
+            // panel9
+            // 
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel9.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel9.Location = new System.Drawing.Point(0, 222);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1312, 2);
+            this.panel9.TabIndex = 40;
+            // 
+            // panel10
+            // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel10.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Location = new System.Drawing.Point(0, -60);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1312, 2);
+            this.panel10.TabIndex = 68;
+            // 
+            // panel11
+            // 
+            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel11.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel11.Location = new System.Drawing.Point(0, 222);
+            this.panel11.Margin = new System.Windows.Forms.Padding(2);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1312, 2);
+            this.panel11.TabIndex = 40;
+            // 
+            // panel12
+            // 
+            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel12.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel12.Location = new System.Drawing.Point(0, 222);
+            this.panel12.Margin = new System.Windows.Forms.Padding(2);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(1312, 2);
+            this.panel12.TabIndex = 40;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1312, 2);
+            this.panel5.TabIndex = 69;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel6.Location = new System.Drawing.Point(0, 222);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1312, 2);
+            this.panel6.TabIndex = 40;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Location = new System.Drawing.Point(0, -60);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1312, 2);
+            this.panel3.TabIndex = 68;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel4.Location = new System.Drawing.Point(0, 222);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1312, 2);
+            this.panel4.TabIndex = 40;
             // 
             // panel1
             // 
@@ -96,11 +207,12 @@
             this.panel1.Location = new System.Drawing.Point(0, 222);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1309, 2);
+            this.panel1.Size = new System.Drawing.Size(1312, 2);
             this.panel1.TabIndex = 40;
             // 
             // RGN_BTN_Filtrar
             // 
+            this.RGN_BTN_Filtrar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.RGN_BTN_Filtrar.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.RGN_BTN_Filtrar.FlatAppearance.BorderSize = 0;
             this.RGN_BTN_Filtrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -114,34 +226,25 @@
             this.RGN_BTN_Filtrar.TabIndex = 68;
             this.RGN_BTN_Filtrar.Text = "Filtrar";
             this.RGN_BTN_Filtrar.UseVisualStyleBackColor = false;
+            this.RGN_BTN_Filtrar.Click += new System.EventHandler(this.RGN_BTN_Filtrar_Click);
             // 
             // RGN_DTP_FiltroFecha
             // 
+            this.RGN_DTP_FiltroFecha.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.RGN_DTP_FiltroFecha.CustomFormat = "dd/MMM/yyyy";
             this.RGN_DTP_FiltroFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.RGN_DTP_FiltroFecha.Location = new System.Drawing.Point(353, 115);
             this.RGN_DTP_FiltroFecha.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RGN_DTP_FiltroFecha.MaxDate = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);
+            this.RGN_DTP_FiltroFecha.MaxDate = new System.DateTime(2080, 9, 22, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.MinDate = new System.DateTime(1924, 9, 22, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.Name = "RGN_DTP_FiltroFecha";
             this.RGN_DTP_FiltroFecha.Size = new System.Drawing.Size(143, 22);
             this.RGN_DTP_FiltroFecha.TabIndex = 70;
-            this.RGN_DTP_FiltroFecha.Value = new System.DateTime(2024, 9, 22, 0, 0, 0, 0);
-            // 
-            // RGN_DGV_Reporte
-            // 
-            this.RGN_DGV_Reporte.BackgroundColor = System.Drawing.Color.Black;
-            this.RGN_DGV_Reporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RGN_DGV_Reporte.GridColor = System.Drawing.SystemColors.MenuHighlight;
-            this.RGN_DGV_Reporte.Location = new System.Drawing.Point(49, 177);
-            this.RGN_DGV_Reporte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RGN_DGV_Reporte.Name = "RGN_DGV_Reporte";
-            this.RGN_DGV_Reporte.RowHeadersWidth = 51;
-            this.RGN_DGV_Reporte.Size = new System.Drawing.Size(1210, 655);
-            this.RGN_DGV_Reporte.TabIndex = 71;
+            this.RGN_DTP_FiltroFecha.Value = new System.DateTime(2024, 11, 14, 0, 0, 0, 0);
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -159,6 +262,7 @@
             // 
             // RGN_CB_Departamento
             // 
+            this.RGN_CB_Departamento.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.RGN_CB_Departamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
             this.RGN_CB_Departamento.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.RGN_CB_Departamento.FormattingEnabled = true;
@@ -174,6 +278,7 @@
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -189,123 +294,74 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // panel3
+            // RGN_LBL_Loading
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(0, -60);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1309, 2);
-            this.panel3.TabIndex = 68;
+            this.RGN_LBL_Loading.AutoSize = true;
+            this.RGN_LBL_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RGN_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
+            this.RGN_LBL_Loading.Location = new System.Drawing.Point(640, 77);
+            this.RGN_LBL_Loading.Name = "RGN_LBL_Loading";
+            this.RGN_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.RGN_LBL_Loading.TabIndex = 109;
+            this.RGN_LBL_Loading.Text = "Loading...";
+            this.RGN_LBL_Loading.Visible = false;
             // 
-            // panel4
+            // RGN_DGV_Reporte
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel4.Location = new System.Drawing.Point(0, 222);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1309, 2);
-            this.panel4.TabIndex = 40;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1309, 2);
-            this.panel5.TabIndex = 69;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel6.Location = new System.Drawing.Point(0, 222);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1309, 2);
-            this.panel6.TabIndex = 40;
-            // 
-            // panel7
-            // 
-            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel7.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Controls.Add(this.panel10);
-            this.panel7.Controls.Add(this.panel12);
-            this.panel7.Location = new System.Drawing.Point(0, -20);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1309, 2);
-            this.panel7.TabIndex = 70;
-            // 
-            // panel8
-            // 
-            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel8.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1309, 2);
-            this.panel8.TabIndex = 69;
-            // 
-            // panel9
-            // 
-            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel9.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel9.Location = new System.Drawing.Point(0, 222);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1309, 2);
-            this.panel9.TabIndex = 40;
-            // 
-            // panel10
-            // 
-            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel10.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel10.Controls.Add(this.panel11);
-            this.panel10.Location = new System.Drawing.Point(0, -60);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1309, 2);
-            this.panel10.TabIndex = 68;
-            // 
-            // panel11
-            // 
-            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel11.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel11.Location = new System.Drawing.Point(0, 222);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1309, 2);
-            this.panel11.TabIndex = 40;
-            // 
-            // panel12
-            // 
-            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel12.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel12.Location = new System.Drawing.Point(0, 222);
-            this.panel12.Margin = new System.Windows.Forms.Padding(2);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1309, 2);
-            this.panel12.TabIndex = 40;
+            this.RGN_DGV_Reporte.AllowUserToAddRows = false;
+            this.RGN_DGV_Reporte.AllowUserToDeleteRows = false;
+            this.RGN_DGV_Reporte.AllowUserToOrderColumns = true;
+            this.RGN_DGV_Reporte.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RGN_DGV_Reporte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.RGN_DGV_Reporte.BackgroundColor = System.Drawing.Color.Black;
+            this.RGN_DGV_Reporte.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RGN_DGV_Reporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.RGN_DGV_Reporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.RGN_DGV_Reporte.DefaultCellStyle = dataGridViewCellStyle2;
+            this.RGN_DGV_Reporte.GridColor = System.Drawing.Color.DodgerBlue;
+            this.RGN_DGV_Reporte.Location = new System.Drawing.Point(28, 179);
+            this.RGN_DGV_Reporte.Margin = new System.Windows.Forms.Padding(0);
+            this.RGN_DGV_Reporte.Name = "RGN_DGV_Reporte";
+            this.RGN_DGV_Reporte.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RGN_DGV_Reporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.RGN_DGV_Reporte.RowHeadersWidth = 51;
+            this.RGN_DGV_Reporte.Size = new System.Drawing.Size(1244, 645);
+            this.RGN_DGV_Reporte.TabIndex = 110;
             // 
             // FormEmployReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.ClientSize = new System.Drawing.Size(1310, 872);
+            this.Controls.Add(this.RGN_DGV_Reporte);
+            this.Controls.Add(this.RGN_LBL_Loading);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.RGN_CB_Departamento);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.RGN_DGV_Reporte);
             this.Controls.Add(this.RGN_DTP_FiltroFecha);
             this.Controls.Add(this.RGN_BTN_Filtrar);
             this.Controls.Add(this.panel2);
@@ -319,12 +375,12 @@
             this.Text = "FormEmployReport";
             this.Load += new System.EventHandler(this.FormEmployReport_Load);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RGN_DGV_Reporte)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RGN_DGV_Reporte)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,7 +394,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button RGN_BTN_Filtrar;
         private System.Windows.Forms.DateTimePicker RGN_DTP_FiltroFecha;
-        private System.Windows.Forms.DataGridView RGN_DGV_Reporte;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox RGN_CB_Departamento;
         private System.Windows.Forms.Button button2;
@@ -352,5 +407,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label RGN_LBL_Loading;
+        private System.Windows.Forms.DataGridView RGN_DGV_Reporte;
     }
 }

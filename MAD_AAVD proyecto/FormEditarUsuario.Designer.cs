@@ -29,35 +29,32 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.EDITEMP_DTP_FechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Tel1 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Tel2 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Email = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_NoCuenta = new System.Windows.Forms.TextBox();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Banco = new System.Windows.Forms.TextBox();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Cp = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Estado = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Municipio = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Password = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Colonia = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_ApMaterno = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_ApPaterno = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_CalleNo = new System.Windows.Forms.TextBox();
+            this.EDITEMP_TB_Nombres = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -77,8 +74,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
+            this.EDITEMP_BTN_Guardar = new System.Windows.Forms.Button();
+            this.EDITEMP_TB_NoEmp = new System.Windows.Forms.TextBox();
+            this.EDITEMP_LBL_Loading = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -86,338 +84,327 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(327, 14);
+            this.label1.Location = new System.Drawing.Point(436, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(349, 45);
+            this.label1.Size = new System.Drawing.Size(442, 57);
             this.label1.TabIndex = 4;
             this.label1.Text = "Datos del empleado";
             // 
-            // dateTimePicker1
+            // EDITEMP_DTP_FechaNacimiento
             // 
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.SystemColors.Window;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(194, 458);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(145, 20);
-            this.dateTimePicker1.TabIndex = 107;
+            this.EDITEMP_DTP_FechaNacimiento.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_DTP_FechaNacimiento.CalendarTitleForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_DTP_FechaNacimiento.Enabled = false;
+            this.EDITEMP_DTP_FechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.EDITEMP_DTP_FechaNacimiento.Location = new System.Drawing.Point(259, 564);
+            this.EDITEMP_DTP_FechaNacimiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_DTP_FechaNacimiento.Name = "EDITEMP_DTP_FechaNacimiento";
+            this.EDITEMP_DTP_FechaNacimiento.Size = new System.Drawing.Size(158, 22);
+            this.EDITEMP_DTP_FechaNacimiento.TabIndex = 107;
             // 
             // panel12
             // 
             this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel12.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel12.Location = new System.Drawing.Point(794, 432);
-            this.panel12.Margin = new System.Windows.Forms.Padding(2);
+            this.panel12.Location = new System.Drawing.Point(1059, 532);
+            this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(162, 2);
+            this.panel12.Size = new System.Drawing.Size(216, 2);
             this.panel12.TabIndex = 148;
             // 
             // panel18
             // 
             this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel18.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel18.Location = new System.Drawing.Point(791, 482);
-            this.panel18.Margin = new System.Windows.Forms.Padding(2);
+            this.panel18.Location = new System.Drawing.Point(1055, 593);
+            this.panel18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(162, 2);
+            this.panel18.Size = new System.Drawing.Size(216, 2);
             this.panel18.TabIndex = 153;
             // 
             // panel13
             // 
             this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel13.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel13.Location = new System.Drawing.Point(794, 372);
-            this.panel13.Margin = new System.Windows.Forms.Padding(2);
+            this.panel13.Location = new System.Drawing.Point(1059, 458);
+            this.panel13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(162, 2);
+            this.panel13.Size = new System.Drawing.Size(216, 2);
             this.panel13.TabIndex = 149;
             // 
             // panel14
             // 
             this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel14.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel14.Location = new System.Drawing.Point(794, 310);
-            this.panel14.Margin = new System.Windows.Forms.Padding(2);
+            this.panel14.Location = new System.Drawing.Point(1059, 382);
+            this.panel14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(162, 2);
+            this.panel14.Size = new System.Drawing.Size(216, 2);
             this.panel14.TabIndex = 150;
             // 
-            // textBox6
+            // EDITEMP_TB_Tel1
             // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox6.Location = new System.Drawing.Point(795, 409);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(164, 20);
-            this.textBox6.TabIndex = 125;
+            this.EDITEMP_TB_Tel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Tel1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Tel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Tel1.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Tel1.Location = new System.Drawing.Point(1060, 503);
+            this.EDITEMP_TB_Tel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Tel1.Multiline = true;
+            this.EDITEMP_TB_Tel1.Name = "EDITEMP_TB_Tel1";
+            this.EDITEMP_TB_Tel1.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Tel1.TabIndex = 125;
             // 
-            // textBox11
+            // EDITEMP_TB_Tel2
             // 
-            this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox11.Location = new System.Drawing.Point(792, 460);
-            this.textBox11.Multiline = true;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(166, 20);
-            this.textBox11.TabIndex = 127;
+            this.EDITEMP_TB_Tel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Tel2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Tel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Tel2.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Tel2.Location = new System.Drawing.Point(1050, 565);
+            this.EDITEMP_TB_Tel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Tel2.Multiline = true;
+            this.EDITEMP_TB_Tel2.Name = "EDITEMP_TB_Tel2";
+            this.EDITEMP_TB_Tel2.Size = new System.Drawing.Size(221, 25);
+            this.EDITEMP_TB_Tel2.TabIndex = 127;
             // 
-            // textBox7
+            // EDITEMP_TB_Email
             // 
-            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox7.Location = new System.Drawing.Point(795, 350);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(164, 20);
-            this.textBox7.TabIndex = 123;
+            this.EDITEMP_TB_Email.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Email.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Email.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Email.Location = new System.Drawing.Point(1060, 431);
+            this.EDITEMP_TB_Email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Email.Multiline = true;
+            this.EDITEMP_TB_Email.Name = "EDITEMP_TB_Email";
+            this.EDITEMP_TB_Email.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Email.TabIndex = 123;
             // 
-            // textBox8
+            // EDITEMP_TB_NoCuenta
             // 
-            this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox8.Location = new System.Drawing.Point(795, 287);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(166, 20);
-            this.textBox8.TabIndex = 121;
+            this.EDITEMP_TB_NoCuenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_NoCuenta.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_NoCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_NoCuenta.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_NoCuenta.Location = new System.Drawing.Point(1060, 353);
+            this.EDITEMP_TB_NoCuenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_NoCuenta.Multiline = true;
+            this.EDITEMP_TB_NoCuenta.Name = "EDITEMP_TB_NoCuenta";
+            this.EDITEMP_TB_NoCuenta.Size = new System.Drawing.Size(221, 25);
+            this.EDITEMP_TB_NoCuenta.TabIndex = 121;
             // 
             // panel15
             // 
             this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel15.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel15.Location = new System.Drawing.Point(794, 251);
-            this.panel15.Margin = new System.Windows.Forms.Padding(2);
+            this.panel15.Location = new System.Drawing.Point(1059, 309);
+            this.panel15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(162, 2);
+            this.panel15.Size = new System.Drawing.Size(216, 2);
             this.panel15.TabIndex = 147;
             // 
-            // textBox9
+            // EDITEMP_TB_Banco
             // 
-            this.textBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox9.Location = new System.Drawing.Point(795, 227);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(164, 20);
-            this.textBox9.TabIndex = 119;
+            this.EDITEMP_TB_Banco.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Banco.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Banco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Banco.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Banco.Location = new System.Drawing.Point(1060, 279);
+            this.EDITEMP_TB_Banco.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Banco.Multiline = true;
+            this.EDITEMP_TB_Banco.Name = "EDITEMP_TB_Banco";
+            this.EDITEMP_TB_Banco.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Banco.TabIndex = 119;
             // 
             // panel11
             // 
             this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel11.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel11.Location = new System.Drawing.Point(491, 482);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2);
+            this.panel11.Location = new System.Drawing.Point(655, 593);
+            this.panel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(162, 2);
+            this.panel11.Size = new System.Drawing.Size(216, 2);
             this.panel11.TabIndex = 146;
             // 
-            // textBox16
+            // EDITEMP_TB_Cp
             // 
-            this.textBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox16.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox16.Location = new System.Drawing.Point(492, 460);
-            this.textBox16.Multiline = true;
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(164, 20);
-            this.textBox16.TabIndex = 117;
+            this.EDITEMP_TB_Cp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Cp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Cp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Cp.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Cp.Location = new System.Drawing.Point(656, 566);
+            this.EDITEMP_TB_Cp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Cp.Multiline = true;
+            this.EDITEMP_TB_Cp.Name = "EDITEMP_TB_Cp";
+            this.EDITEMP_TB_Cp.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Cp.TabIndex = 117;
             // 
             // panel7
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel7.Location = new System.Drawing.Point(494, 429);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Location = new System.Drawing.Point(659, 528);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(162, 2);
+            this.panel7.Size = new System.Drawing.Size(216, 2);
             this.panel7.TabIndex = 143;
             // 
             // panel8
             // 
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel8.Location = new System.Drawing.Point(491, 374);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2);
+            this.panel8.Location = new System.Drawing.Point(655, 460);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(162, 2);
+            this.panel8.Size = new System.Drawing.Size(216, 2);
             this.panel8.TabIndex = 144;
             // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel6.Location = new System.Drawing.Point(171, 421);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Location = new System.Drawing.Point(228, 521);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(162, 2);
+            this.panel6.Size = new System.Drawing.Size(216, 2);
             this.panel6.TabIndex = 136;
             // 
             // panel9
             // 
             this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel9.Location = new System.Drawing.Point(491, 309);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2);
+            this.panel9.Location = new System.Drawing.Point(655, 380);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(162, 2);
+            this.panel9.Size = new System.Drawing.Size(216, 2);
             this.panel9.TabIndex = 145;
             // 
-            // panel5
+            // EDITEMP_TB_Estado
             // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel5.Location = new System.Drawing.Point(171, 367);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(162, 2);
-            this.panel5.TabIndex = 135;
+            this.EDITEMP_TB_Estado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Estado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Estado.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Estado.Location = new System.Drawing.Point(660, 500);
+            this.EDITEMP_TB_Estado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Estado.Multiline = true;
+            this.EDITEMP_TB_Estado.Name = "EDITEMP_TB_Estado";
+            this.EDITEMP_TB_Estado.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Estado.TabIndex = 115;
             // 
-            // textBox12
+            // EDITEMP_TB_Municipio
             // 
-            this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox12.Location = new System.Drawing.Point(495, 406);
-            this.textBox12.Multiline = true;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(164, 20);
-            this.textBox12.TabIndex = 115;
+            this.EDITEMP_TB_Municipio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Municipio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Municipio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Municipio.Location = new System.Drawing.Point(656, 432);
+            this.EDITEMP_TB_Municipio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Municipio.Multiline = true;
+            this.EDITEMP_TB_Municipio.Name = "EDITEMP_TB_Municipio";
+            this.EDITEMP_TB_Municipio.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Municipio.TabIndex = 113;
             // 
-            // panel4
+            // EDITEMP_TB_Password
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel4.Location = new System.Drawing.Point(171, 310);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(162, 2);
-            this.panel4.TabIndex = 134;
+            this.EDITEMP_TB_Password.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Password.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Password.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Password.Location = new System.Drawing.Point(229, 493);
+            this.EDITEMP_TB_Password.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Password.Multiline = true;
+            this.EDITEMP_TB_Password.Name = "EDITEMP_TB_Password";
+            this.EDITEMP_TB_Password.PasswordChar = '*';
+            this.EDITEMP_TB_Password.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Password.TabIndex = 100;
             // 
-            // textBox13
+            // EDITEMP_TB_Colonia
             // 
-            this.textBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox13.Location = new System.Drawing.Point(492, 351);
-            this.textBox13.Multiline = true;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(164, 20);
-            this.textBox13.TabIndex = 113;
+            this.EDITEMP_TB_Colonia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Colonia.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Colonia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Colonia.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Colonia.Location = new System.Drawing.Point(656, 353);
+            this.EDITEMP_TB_Colonia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Colonia.Multiline = true;
+            this.EDITEMP_TB_Colonia.Name = "EDITEMP_TB_Colonia";
+            this.EDITEMP_TB_Colonia.Size = new System.Drawing.Size(221, 25);
+            this.EDITEMP_TB_Colonia.TabIndex = 111;
             // 
-            // textBox4
+            // EDITEMP_TB_ApMaterno
             // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox4.Location = new System.Drawing.Point(172, 398);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(164, 20);
-            this.textBox4.TabIndex = 100;
-            // 
-            // textBox14
-            // 
-            this.textBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox14.Location = new System.Drawing.Point(492, 287);
-            this.textBox14.Multiline = true;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(166, 20);
-            this.textBox14.TabIndex = 111;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox3.Location = new System.Drawing.Point(172, 344);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(164, 20);
-            this.textBox3.TabIndex = 98;
+            this.EDITEMP_TB_ApMaterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_ApMaterno.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_ApMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_ApMaterno.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_ApMaterno.Location = new System.Drawing.Point(229, 431);
+            this.EDITEMP_TB_ApMaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_ApMaterno.Multiline = true;
+            this.EDITEMP_TB_ApMaterno.Name = "EDITEMP_TB_ApMaterno";
+            this.EDITEMP_TB_ApMaterno.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_ApMaterno.TabIndex = 98;
             // 
             // panel10
             // 
             this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel10.Location = new System.Drawing.Point(491, 252);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2);
+            this.panel10.Location = new System.Drawing.Point(655, 310);
+            this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(162, 2);
+            this.panel10.Size = new System.Drawing.Size(216, 2);
             this.panel10.TabIndex = 142;
             // 
-            // textBox2
+            // EDITEMP_TB_ApPaterno
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(172, 286);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(166, 20);
-            this.textBox2.TabIndex = 96;
+            this.EDITEMP_TB_ApPaterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_ApPaterno.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_ApPaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_ApPaterno.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_ApPaterno.Location = new System.Drawing.Point(229, 360);
+            this.EDITEMP_TB_ApPaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_ApPaterno.Multiline = true;
+            this.EDITEMP_TB_ApPaterno.Name = "EDITEMP_TB_ApPaterno";
+            this.EDITEMP_TB_ApPaterno.Size = new System.Drawing.Size(221, 25);
+            this.EDITEMP_TB_ApPaterno.TabIndex = 96;
             // 
-            // textBox15
+            // EDITEMP_TB_CalleNo
             // 
-            this.textBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox15.Location = new System.Drawing.Point(492, 228);
-            this.textBox15.Multiline = true;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(164, 20);
-            this.textBox15.TabIndex = 109;
+            this.EDITEMP_TB_CalleNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_CalleNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_CalleNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_CalleNo.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_CalleNo.Location = new System.Drawing.Point(656, 281);
+            this.EDITEMP_TB_CalleNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_CalleNo.Multiline = true;
+            this.EDITEMP_TB_CalleNo.Name = "EDITEMP_TB_CalleNo";
+            this.EDITEMP_TB_CalleNo.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_CalleNo.TabIndex = 109;
             // 
-            // panel3
+            // EDITEMP_TB_Nombres
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel3.Location = new System.Drawing.Point(171, 254);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(162, 2);
-            this.panel3.TabIndex = 131;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(172, 230);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 20);
-            this.textBox1.TabIndex = 94;
+            this.EDITEMP_TB_Nombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_Nombres.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_Nombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_Nombres.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_Nombres.Location = new System.Drawing.Point(229, 283);
+            this.EDITEMP_TB_Nombres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Nombres.Multiline = true;
+            this.EDITEMP_TB_Nombres.Name = "EDITEMP_TB_Nombres";
+            this.EDITEMP_TB_Nombres.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_Nombres.TabIndex = 94;
             // 
             // label24
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(662, 462);
+            this.label24.Location = new System.Drawing.Point(883, 569);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(99, 20);
+            this.label24.Size = new System.Drawing.Size(122, 25);
             this.label24.TabIndex = 126;
             this.label24.Text = "Teléfono 2:";
             // 
@@ -426,9 +413,10 @@
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(665, 409);
+            this.label23.Location = new System.Drawing.Point(887, 503);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(99, 20);
+            this.label23.Size = new System.Drawing.Size(122, 25);
             this.label23.TabIndex = 124;
             this.label23.Text = "Teléfono 1:";
             // 
@@ -437,9 +425,10 @@
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(665, 351);
+            this.label22.Location = new System.Drawing.Point(887, 432);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(58, 20);
+            this.label22.Size = new System.Drawing.Size(72, 25);
             this.label22.TabIndex = 122;
             this.label22.Text = "Email:";
             // 
@@ -448,9 +437,10 @@
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(665, 289);
+            this.label21.Location = new System.Drawing.Point(887, 356);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(126, 20);
+            this.label21.Size = new System.Drawing.Size(153, 25);
             this.label21.TabIndex = 120;
             this.label21.Text = "No. de cuenta:";
             // 
@@ -459,9 +449,10 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(665, 230);
+            this.label20.Location = new System.Drawing.Point(887, 283);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(65, 20);
+            this.label20.Size = new System.Drawing.Size(80, 25);
             this.label20.TabIndex = 118;
             this.label20.Text = "Banco:";
             // 
@@ -470,9 +461,10 @@
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(353, 462);
+            this.label19.Location = new System.Drawing.Point(471, 569);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(124, 20);
+            this.label19.Size = new System.Drawing.Size(152, 25);
             this.label19.TabIndex = 116;
             this.label19.Text = "Código postal:";
             // 
@@ -481,9 +473,10 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(356, 409);
+            this.label18.Location = new System.Drawing.Point(475, 503);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(71, 20);
+            this.label18.Size = new System.Drawing.Size(86, 25);
             this.label18.TabIndex = 114;
             this.label18.Text = "Estado:";
             // 
@@ -492,9 +485,10 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(353, 351);
+            this.label17.Location = new System.Drawing.Point(471, 432);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(89, 20);
+            this.label17.Size = new System.Drawing.Size(111, 25);
             this.label17.TabIndex = 112;
             this.label17.Text = "Municipio:";
             // 
@@ -503,9 +497,10 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(353, 289);
+            this.label16.Location = new System.Drawing.Point(471, 356);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(74, 20);
+            this.label16.Size = new System.Drawing.Size(93, 25);
             this.label16.TabIndex = 110;
             this.label16.Text = "Colonia:";
             // 
@@ -514,9 +509,10 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(353, 229);
+            this.label15.Location = new System.Drawing.Point(471, 282);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(132, 20);
+            this.label15.Size = new System.Drawing.Size(164, 25);
             this.label15.TabIndex = 108;
             this.label15.Text = "Calle y número:";
             // 
@@ -525,9 +521,10 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(446, 186);
+            this.label14.Location = new System.Drawing.Point(595, 229);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(142, 20);
+            this.label14.Size = new System.Drawing.Size(176, 25);
             this.label14.TabIndex = 104;
             this.label14.Text = "Datos de domicilio:";
             // 
@@ -536,9 +533,10 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 459);
+            this.label10.Location = new System.Drawing.Point(8, 565);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(181, 20);
+            this.label10.Size = new System.Drawing.Size(219, 25);
             this.label10.TabIndex = 106;
             this.label10.Text = "Fecha de nacimiento:";
             // 
@@ -547,9 +545,10 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 402);
+            this.label7.Location = new System.Drawing.Point(8, 495);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 20);
+            this.label7.Size = new System.Drawing.Size(131, 25);
             this.label7.TabIndex = 99;
             this.label7.Text = "Contraseña:";
             // 
@@ -558,9 +557,10 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 349);
+            this.label6.Location = new System.Drawing.Point(8, 430);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(149, 20);
+            this.label6.Size = new System.Drawing.Size(182, 25);
             this.label6.TabIndex = 97;
             this.label6.Text = "Apellido Materno:";
             // 
@@ -569,9 +569,10 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 291);
+            this.label5.Location = new System.Drawing.Point(8, 358);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 20);
+            this.label5.Size = new System.Drawing.Size(178, 25);
             this.label5.TabIndex = 95;
             this.label5.Text = "Apellido Paterno:";
             // 
@@ -580,9 +581,10 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 229);
+            this.label4.Location = new System.Drawing.Point(8, 282);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 20);
+            this.label4.Size = new System.Drawing.Size(121, 25);
             this.label4.TabIndex = 93;
             this.label4.Text = "Nombre(s):";
             // 
@@ -591,9 +593,10 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 169);
+            this.label2.Location = new System.Drawing.Point(8, 208);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 20);
+            this.label2.Size = new System.Drawing.Size(154, 25);
             this.label2.TabIndex = 154;
             this.label2.Text = "No. Empleado:";
             // 
@@ -603,9 +606,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label3.Location = new System.Drawing.Point(391, 83);
+            this.label3.Location = new System.Drawing.Point(521, 102);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 23);
+            this.label3.Size = new System.Drawing.Size(270, 29);
             this.label3.TabIndex = 155;
             this.label3.Text = "Editar y ver información";
             // 
@@ -613,78 +617,91 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel2.Location = new System.Drawing.Point(0, 94);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(0, 116);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(982, 3);
+            this.panel2.Size = new System.Drawing.Size(1309, 4);
             this.panel2.TabIndex = 156;
             // 
-            // button1
+            // EDITEMP_BTN_Guardar
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(430, 537);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 35);
-            this.button1.TabIndex = 157;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.EDITEMP_BTN_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.EDITEMP_BTN_Guardar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.EDITEMP_BTN_Guardar.FlatAppearance.BorderSize = 0;
+            this.EDITEMP_BTN_Guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EDITEMP_BTN_Guardar.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_BTN_Guardar.Location = new System.Drawing.Point(573, 661);
+            this.EDITEMP_BTN_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EDITEMP_BTN_Guardar.Name = "EDITEMP_BTN_Guardar";
+            this.EDITEMP_BTN_Guardar.Size = new System.Drawing.Size(165, 43);
+            this.EDITEMP_BTN_Guardar.TabIndex = 157;
+            this.EDITEMP_BTN_Guardar.Text = "Guardar";
+            this.EDITEMP_BTN_Guardar.UseVisualStyleBackColor = false;
+            this.EDITEMP_BTN_Guardar.Click += new System.EventHandler(this.EDITEMP_BTN_Guardar_Click);
             // 
-            // label8
+            // EDITEMP_TB_NoEmp
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(168, 169);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 20);
-            this.label8.TabIndex = 158;
-            this.label8.Text = "00123";
+            this.EDITEMP_TB_NoEmp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_TB_NoEmp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EDITEMP_TB_NoEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_TB_NoEmp.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_TB_NoEmp.Location = new System.Drawing.Point(231, 210);
+            this.EDITEMP_TB_NoEmp.Margin = new System.Windows.Forms.Padding(4);
+            this.EDITEMP_TB_NoEmp.Multiline = true;
+            this.EDITEMP_TB_NoEmp.Name = "EDITEMP_TB_NoEmp";
+            this.EDITEMP_TB_NoEmp.Size = new System.Drawing.Size(219, 25);
+            this.EDITEMP_TB_NoEmp.TabIndex = 159;
+            // 
+            // EDITEMP_LBL_Loading
+            // 
+            this.EDITEMP_LBL_Loading.AutoSize = true;
+            this.EDITEMP_LBL_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDITEMP_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
+            this.EDITEMP_LBL_Loading.Location = new System.Drawing.Point(597, 159);
+            this.EDITEMP_LBL_Loading.Name = "EDITEMP_LBL_Loading";
+            this.EDITEMP_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.EDITEMP_LBL_Loading.TabIndex = 160;
+            this.EDITEMP_LBL_Loading.Text = "Loading...";
+            this.EDITEMP_LBL_Loading.Visible = false;
             // 
             // FormEditarUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(965, 670);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1287, 825);
+            this.Controls.Add(this.EDITEMP_LBL_Loading);
+            this.Controls.Add(this.EDITEMP_TB_NoEmp);
+            this.Controls.Add(this.EDITEMP_BTN_Guardar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.EDITEMP_DTP_FechaNacimiento);
             this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel18);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.panel14);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.EDITEMP_TB_Tel1);
+            this.Controls.Add(this.EDITEMP_TB_Tel2);
+            this.Controls.Add(this.EDITEMP_TB_Email);
+            this.Controls.Add(this.EDITEMP_TB_NoCuenta);
             this.Controls.Add(this.panel15);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.EDITEMP_TB_Banco);
             this.Controls.Add(this.panel11);
-            this.Controls.Add(this.textBox16);
+            this.Controls.Add(this.EDITEMP_TB_Cp);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox14);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.EDITEMP_TB_Estado);
+            this.Controls.Add(this.EDITEMP_TB_Municipio);
+            this.Controls.Add(this.EDITEMP_TB_Password);
+            this.Controls.Add(this.EDITEMP_TB_Colonia);
+            this.Controls.Add(this.EDITEMP_TB_ApMaterno);
             this.Controls.Add(this.panel10);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox15);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.EDITEMP_TB_ApPaterno);
+            this.Controls.Add(this.EDITEMP_TB_CalleNo);
+            this.Controls.Add(this.EDITEMP_TB_Nombres);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
@@ -704,8 +721,10 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormEditarUsuario";
             this.Text = "FormEditarUsuario";
+            this.Load += new System.EventHandler(this.FormEditarUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -714,35 +733,32 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker EDITEMP_DTP_FechaNacimiento;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Tel1;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Tel2;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Email;
+        private System.Windows.Forms.TextBox EDITEMP_TB_NoCuenta;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Banco;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Cp;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Estado;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Municipio;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Password;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Colonia;
+        private System.Windows.Forms.TextBox EDITEMP_TB_ApMaterno;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox EDITEMP_TB_ApPaterno;
+        private System.Windows.Forms.TextBox EDITEMP_TB_CalleNo;
+        private System.Windows.Forms.TextBox EDITEMP_TB_Nombres;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
@@ -762,7 +778,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button EDITEMP_BTN_Guardar;
+        private System.Windows.Forms.TextBox EDITEMP_TB_NoEmp;
+        private System.Windows.Forms.Label EDITEMP_LBL_Loading;
     }
 }

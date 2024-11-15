@@ -306,7 +306,7 @@ namespace MAD_AAVD_proyecto
             return recibo;
         }
 
-        public List<Empleados> FilterEmpleados(DateTime date, bool withDep = false, string departamento = "", string puesto = "")
+        public List<Empleados> FilterEmpleados(DateTime date, bool withPuesto = false, bool withDepto = false, string departamento = "", string puesto = "")
         {
             var finalList = new List<Empleados>(); // Tabla final del filtro
                                                    // Dia ultimo del mes seleccionado
@@ -324,7 +324,7 @@ namespace MAD_AAVD_proyecto
             IEnumerable<Empleados> tableEmpleados = mapper.Fetch<Empleados>(query);
             var empleados = tableEmpleados.ToList(); // Guarda la última fecha de inicio antes de la seleccionada por cada empleado
 
-            if (!withDep)//Para tabla de empleados en la pantalla de empleados
+            if (!withPuesto && !withDepto)//Para tabla de empleados en la pantalla de empleados
             {
                 // Bucle para realizar la segunda consulta para cada resultado de la primera consulta
                 foreach (var registro in empleados)
@@ -342,13 +342,31 @@ namespace MAD_AAVD_proyecto
                     }
                 }
             }
-            else if(withDep)//para CB de empleados en la pantalla aplicar conceptos
+            else if(withPuesto)//para CB de empleados en la pantalla aplicar conceptos
             {
                 foreach (var registro in empleados)
                 {
                     // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
                     query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio " +
                         $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND departamento = '{departamento}' AND puesto = '{puesto}' " +
+                        $"AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
+
+                    Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
+
+                    // Agregar el resultado a la lista final si se encontró un registro
+                    if (empleado != null)
+                    {
+                        finalList.Add(empleado);
+                    }
+                }
+            }
+            else if(withDepto) //Para reporte general de nomina
+            {
+                foreach (var registro in empleados)
+                {
+                    // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, salarioDiario, fechaNacimiento " +
+                        $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND departamento = '{departamento}' " +
                         $"AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
 
                     Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado

@@ -456,7 +456,7 @@ namespace MAD_AAVD_proyecto
 
         }
 
-        private static string GetHash(HashAlgorithm hashAlgorithm, string input)
+        public static string GetHash(HashAlgorithm hashAlgorithm, string input)
         {
             byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
             var sBuilder = new StringBuilder();

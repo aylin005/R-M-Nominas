@@ -19,7 +19,10 @@ namespace MAD_AAVD_proyecto
 
         private void FormEmployReport_Load(object sender, EventArgs e)
         {
-            RGN_DGV_Reporte.DefaultCellStyle.ForeColor = Color.Black;
+            RGN_DGV_Reporte.DefaultCellStyle.ForeColor = Color.White;
+            RGN_DGV_Reporte.DefaultCellStyle.BackColor = Color.Black;
+
+            RGN_LBL_Loading.Visible = true;
 
             var linkCassandra = new EnlaceCassandra();
             //COMBOBOX DEPARTAMENTOS
@@ -33,10 +36,10 @@ namespace MAD_AAVD_proyecto
             RGN_CB_Departamento.DisplayMember = "nombreDpto";
             RGN_CB_Departamento.ValueMember = "noDepto";
 
-            List<Empleados> tabla = linkCassandra.FilterEmpleados(RGN_DTP_FiltroFecha.Value);
-            RGN_DGV_Reporte.DataSource = tabla;
             RGN_DGV_Reporte.Columns.Add("Edad", "Edad");
-            HideUnnecessaryColumns();
+            LoadTablaReporte();
+            
+            RGN_LBL_Loading.Visible = false;
         }
 
         private void HideUnnecessaryColumns()
@@ -57,6 +60,44 @@ namespace MAD_AAVD_proyecto
             RGN_DGV_Reporte.Columns["email"].Visible = false;
             RGN_DGV_Reporte.Columns["telefonos"].Visible = false;
             RGN_DGV_Reporte.Columns["fechaBaja"].Visible = false;
+            RGN_DGV_Reporte.Columns["fechaInicio"].Visible = false;
+        }
+
+        private void RGN_BTN_Filtrar_Click(object sender, EventArgs e)
+        {
+            LoadTablaReporte();
+        }
+
+        private void LoadTablaReporte()
+        {
+            RGN_LBL_Loading.Visible = true;
+            DateTime fechaFiltro = RGN_DTP_FiltroFecha.Value;
+            string departamento = RGN_CB_Departamento.Text;
+
+            var linkCassandra = new EnlaceCassandra();
+
+            List<Empleados> tablaReporte = linkCassandra.FilterEmpleados(fechaFiltro, false, true, departamento);
+            RGN_DGV_Reporte.DataSource = tablaReporte;
+            HideUnnecessaryColumns();
+
+            foreach (DataGridViewRow row in RGN_DGV_Reporte.Rows)
+            {
+                if (row.Cells["fechaNacimiento"].Value is Cassandra.LocalDate localDate)
+                {
+                    // Convierte LocalDate a DateTime
+                    DateTime fechaNacimiento = new DateTime(localDate.Year, localDate.Month, localDate.Day);
+                    int edad = DateTime.Now.Year - fechaNacimiento.Year;
+
+                    // Ajuste si no ha cumplido años este año
+                    if (DateTime.Now.DayOfYear < fechaNacimiento.DayOfYear)
+                        edad--;
+
+                    // Insertar la edad en la columna
+                    row.Cells["Edad"].Value = edad;
+                }
+            }
+            RGN_DGV_Reporte.Columns["Edad"].DisplayIndex = RGN_DGV_Reporte.Columns.Count - 1; //Reacomoda columna Edad para aparecer al final
+            RGN_LBL_Loading.Visible = false;
         }
     }
 }
