@@ -53,7 +53,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(275, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(392, 45);
+            this.label1.Size = new System.Drawing.Size(494, 57);
             this.label1.TabIndex = 5;
             this.label1.Text = "Generación de nómina";
             // 
@@ -84,7 +84,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(124, 158);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(262, 20);
+            this.label2.Size = new System.Drawing.Size(318, 25);
             this.label2.TabIndex = 68;
             this.label2.Text = "Ingrese el mes y año a calcular:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -97,7 +97,7 @@
             this.GREPORTE_DTP_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.GREPORTE_DTP_date.Location = new System.Drawing.Point(208, 185);
             this.GREPORTE_DTP_date.Name = "GREPORTE_DTP_date";
-            this.GREPORTE_DTP_date.Size = new System.Drawing.Size(83, 22);
+            this.GREPORTE_DTP_date.Size = new System.Drawing.Size(117, 26);
             this.GREPORTE_DTP_date.TabIndex = 69;
             this.GREPORTE_DTP_date.ValueChanged += new System.EventHandler(this.GREPORTE_DTP_date_ValueChanged);
             // 
@@ -114,6 +114,7 @@
             this.GREPORTE_BTN_generate.TabIndex = 70;
             this.GREPORTE_BTN_generate.Text = "Generar";
             this.GREPORTE_BTN_generate.UseVisualStyleBackColor = false;
+            this.GREPORTE_BTN_generate.Click += new System.EventHandler(this.GREPORTE_BTN_generate_Click);
             // 
             // GREPORTE_DGV_table
             // 
@@ -129,25 +130,30 @@
             this.GREPORTE_DGV_table.GridColor = System.Drawing.Color.DodgerBlue;
             this.GREPORTE_DGV_table.Location = new System.Drawing.Point(36, 244);
             this.GREPORTE_DGV_table.Name = "GREPORTE_DGV_table";
+            this.GREPORTE_DGV_table.RowHeadersWidth = 51;
             this.GREPORTE_DGV_table.Size = new System.Drawing.Size(890, 427);
             this.GREPORTE_DGV_table.TabIndex = 72;
             // 
             // numEmploy
             // 
             this.numEmploy.HeaderText = "No. Empleado";
+            this.numEmploy.MinimumWidth = 6;
             this.numEmploy.Name = "numEmploy";
             this.numEmploy.ReadOnly = true;
+            this.numEmploy.Width = 125;
             // 
             // nameEmploy
             // 
             this.nameEmploy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameEmploy.HeaderText = "Nombre ";
+            this.nameEmploy.MinimumWidth = 6;
             this.nameEmploy.Name = "nameEmploy";
             this.nameEmploy.ReadOnly = true;
             // 
             // date
             // 
             this.date.HeaderText = "Fecha";
+            this.date.MinimumWidth = 6;
             this.date.Name = "date";
             this.date.ReadOnly = true;
             this.date.Width = 70;
@@ -155,26 +161,30 @@
             // salaryResult
             // 
             this.salaryResult.HeaderText = "Cantidad a depositar";
+            this.salaryResult.MinimumWidth = 6;
             this.salaryResult.Name = "salaryResult";
             this.salaryResult.ReadOnly = true;
+            this.salaryResult.Width = 125;
             // 
             // bank
             // 
             this.bank.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.bank.HeaderText = "Banco en que se depositará";
+            this.bank.MinimumWidth = 6;
             this.bank.Name = "bank";
             this.bank.ReadOnly = true;
             // 
             // accountNum
             // 
             this.accountNum.HeaderText = "No. Cuenta";
+            this.accountNum.MinimumWidth = 6;
             this.accountNum.Name = "accountNum";
             this.accountNum.ReadOnly = true;
             this.accountNum.Width = 70;
             // 
             // FormNominaGenerar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);

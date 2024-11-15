@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -63,30 +64,36 @@ namespace MAD_AAVD_proyecto
 
     public class Recibos
     {
-        string idRecibo {  get; set; }
-        int noEmpleado { get; set; }
-        Cassandra.LocalDate mesRecibo { get; set; }
-        string nombreEmpleado { get; set; }
-        string departamento { get; set; }
-        string puesto { get; set; }
-        decimal salarioDiario { get; set; }
-        string banco { get; set; }
-        string noCuenta { get; set; }
-        Cassandra.LocalDate fechaAlta { get; set; }
-        Cassandra.LocalDate inicioPeriodo { get; set; }
-        Cassandra.LocalDate finPeriodo { get; set; }
-        Cassandra.LocalDate fechaPago { get; set; }
-        string nss { get; set; }
-        string rfc { get; set; }
-        string curp { get; set; }
-        int diasTrabajados { get; set; }
-        decimal totalPercepciones { get; set; }
-        decimal totalDeducciones { get; set; }
-        decimal total { get; set; }
-        string totalLetra { get; set; }
-        bool generado { get; set; }
-        int noConcepto { get; set; }
-        string nombreConcepto { get; set; }
-        decimal cantConcepto { get; set; }
+        public string idRecibo {  get; set; }
+        public int noEmpleado { get; set; }
+        public Cassandra.LocalDate mesRecibo { get; set; }
+        public string nombreEmpleado { get; set; }
+        public string departamento { get; set; }
+        public string puesto { get; set; }
+        public decimal salarioDiario { get; set; }
+        public string banco { get; set; }
+        public string noCuenta { get; set; }
+        public Cassandra.LocalDate fechaAlta { get; set; }
+        public Cassandra.LocalDate inicioPeriodo { get; set; }
+        public Cassandra.LocalDate finPeriodo { get; set; }
+        public Cassandra.LocalDate fechaPago { get; set; }
+        public string nss { get; set; }
+        public string rfc { get; set; }
+        public string curp { get; set; }
+        public int diasTrabajados { get; set; }
+        public decimal totalPercepciones { get; set; }
+        public decimal totalDeducciones { get; set; }
+        public decimal total { get; set; }
+        public string totalLetra { get; set; }
+        public bool generado { get; set; }
+        public int noConcepto { get; set; }
+        public string nombreConcepto { get; set; }
+        public decimal cantConcepto { get; set; }
+    }
+
+    public class RegistroNominas
+    {
+        public int year { get; set; }
+        public int month { get; set; }
     }
 }

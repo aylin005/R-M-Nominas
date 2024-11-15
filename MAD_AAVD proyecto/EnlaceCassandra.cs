@@ -253,7 +253,7 @@ namespace MAD_AAVD_proyecto
 
             conectar();
             IMapper mapper = new Mapper(_session);
-            T row = mapper.Single<T>(query); //un solo resultado.
+            T row = mapper.FirstOrDefault<T>(query); //un solo resultado.
             desconectar();
             return row;
         }
