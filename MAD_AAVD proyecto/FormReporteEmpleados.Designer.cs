@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.HDCOUNTER_Title = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -75,7 +72,7 @@
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(391, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(608, 57);
+            this.label1.Size = new System.Drawing.Size(481, 45);
             this.label1.TabIndex = 2;
             this.label1.Text = "Reporte General de Nómina";
             // 
@@ -238,9 +235,10 @@
             this.RGN_DTP_FiltroFecha.MaxDate = new System.DateTime(2080, 9, 22, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.MinDate = new System.DateTime(1924, 9, 22, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.Name = "RGN_DTP_FiltroFecha";
-            this.RGN_DTP_FiltroFecha.Size = new System.Drawing.Size(143, 22);
+            this.RGN_DTP_FiltroFecha.Size = new System.Drawing.Size(143, 19);
             this.RGN_DTP_FiltroFecha.TabIndex = 70;
             this.RGN_DTP_FiltroFecha.Value = new System.DateTime(2024, 11, 14, 0, 0, 0, 0);
+            this.RGN_DTP_FiltroFecha.ValueChanged += new System.EventHandler(this.RGN_DTP_FiltroFecha_ValueChanged);
             // 
             // button1
             // 
@@ -273,7 +271,7 @@
             this.RGN_CB_Departamento.Location = new System.Drawing.Point(687, 114);
             this.RGN_CB_Departamento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RGN_CB_Departamento.Name = "RGN_CB_Departamento";
-            this.RGN_CB_Departamento.Size = new System.Drawing.Size(192, 24);
+            this.RGN_CB_Departamento.Size = new System.Drawing.Size(192, 21);
             this.RGN_CB_Departamento.TabIndex = 73;
             // 
             // button2
@@ -301,10 +299,11 @@
             this.RGN_LBL_Loading.ForeColor = System.Drawing.Color.SkyBlue;
             this.RGN_LBL_Loading.Location = new System.Drawing.Point(640, 77);
             this.RGN_LBL_Loading.Name = "RGN_LBL_Loading";
-            this.RGN_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.RGN_LBL_Loading.Size = new System.Drawing.Size(71, 15);
             this.RGN_LBL_Loading.TabIndex = 109;
             this.RGN_LBL_Loading.Text = "Loading...";
             this.RGN_LBL_Loading.Visible = false;
+            this.RGN_LBL_Loading.Click += new System.EventHandler(this.RGN_LBL_Loading_Click);
             // 
             // RGN_DGV_Reporte
             // 
@@ -317,46 +316,22 @@
             this.RGN_DGV_Reporte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.RGN_DGV_Reporte.BackgroundColor = System.Drawing.Color.Black;
             this.RGN_DGV_Reporte.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RGN_DGV_Reporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.RGN_DGV_Reporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RGN_DGV_Reporte.DefaultCellStyle = dataGridViewCellStyle2;
             this.RGN_DGV_Reporte.GridColor = System.Drawing.Color.DodgerBlue;
             this.RGN_DGV_Reporte.Location = new System.Drawing.Point(28, 179);
             this.RGN_DGV_Reporte.Margin = new System.Windows.Forms.Padding(0);
             this.RGN_DGV_Reporte.Name = "RGN_DGV_Reporte";
             this.RGN_DGV_Reporte.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RGN_DGV_Reporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.RGN_DGV_Reporte.RowHeadersWidth = 51;
             this.RGN_DGV_Reporte.Size = new System.Drawing.Size(1244, 645);
             this.RGN_DGV_Reporte.TabIndex = 110;
             // 
             // FormEmployReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(1310, 872);
+            this.ClientSize = new System.Drawing.Size(1310, 749);
             this.Controls.Add(this.RGN_DGV_Reporte);
             this.Controls.Add(this.RGN_LBL_Loading);
             this.Controls.Add(this.button2);

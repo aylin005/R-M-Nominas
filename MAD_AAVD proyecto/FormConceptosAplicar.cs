@@ -155,5 +155,9 @@ namespace MAD_AAVD_proyecto
             
         }
 
+        private void CONCEPAPLICAR_CB_Conceptos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

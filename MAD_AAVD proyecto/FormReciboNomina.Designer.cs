@@ -223,6 +223,7 @@
             this.GREPORTE_DTP_date.Name = "GREPORTE_DTP_date";
             this.GREPORTE_DTP_date.Size = new System.Drawing.Size(83, 20);
             this.GREPORTE_DTP_date.TabIndex = 71;
+            this.GREPORTE_DTP_date.ValueChanged += new System.EventHandler(this.GREPORTE_DTP_date_ValueChanged);
             // 
             // label4
             // 

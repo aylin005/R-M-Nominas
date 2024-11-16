@@ -50,5 +50,10 @@ namespace MAD_AAVD_proyecto
             RECIBO_TXT_NoTel.Text = noTel;
             RECIBO_TXT_Email.Text = email;
         }
+
+        private void GREPORTE_DTP_date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

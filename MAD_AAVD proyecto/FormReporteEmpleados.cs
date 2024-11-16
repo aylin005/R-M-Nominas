@@ -99,5 +99,15 @@ namespace MAD_AAVD_proyecto
             RGN_DGV_Reporte.Columns["Edad"].DisplayIndex = RGN_DGV_Reporte.Columns.Count - 1; //Reacomoda columna Edad para aparecer al final
             RGN_LBL_Loading.Visible = false;
         }
+
+        private void RGN_LBL_Loading_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RGN_DTP_FiltroFecha_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
