@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static MAD_AAVD_proyecto.Globals;
+
 namespace MAD_AAVD_proyecto
 {
     public partial class FormReciboNomina : Form
@@ -39,11 +41,14 @@ namespace MAD_AAVD_proyecto
             lastIndex = RECIBO_DGV_Deducciones.Rows.Count - 1; //esto es por si agregas mas
             RECIBO_DGV_Deducciones.Rows[lastIndex].DefaultCellStyle.ForeColor = Color.RoyalBlue;
             RECIBO_DGV_Deducciones.Rows[lastIndex].Cells[2].Value = "$120.00"; //estas son para los totales
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            /////
+            ///
+            RECIBO_TXT_RazonSocial.Text = companyName;
+            RECIBO_TXT_RegistroPatronal.Text = RP;
+            RECIBO_TXT_RFC.Text = RFC;
+            RECIBO_TXT_DomicilioFiscal.Text = DF;
+            RECIBO_TXT_NoTel.Text = noTel;
+            RECIBO_TXT_Email.Text = email;
         }
     }
 }

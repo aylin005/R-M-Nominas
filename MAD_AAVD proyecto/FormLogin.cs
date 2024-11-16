@@ -44,7 +44,7 @@ namespace MAD_AAVD_proyecto
         {
             if (DB_Cassandra || DB_SQLServer) //si se selecciono una base de datos entra
             {
-                if (LOGIN_TB_username.Text == "admin" && LOGIN_TB_password.Text == "1111") //Para pruebas admin
+                if (LOGIN_TB_username.Text == adminUser && LOGIN_TB_password.Text == adminPassword) //Para pruebas admin
                 {
                     this.Hide();
                     new FormAdmin().ShowDialog();
@@ -55,6 +55,7 @@ namespace MAD_AAVD_proyecto
                     this.Hide();
                     new FormUsuario().ShowDialog();
                     this.Close();
+                    //mandar el usuario validado
                 }
                 else
                 {

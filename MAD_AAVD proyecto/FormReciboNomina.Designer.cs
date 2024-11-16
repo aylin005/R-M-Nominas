@@ -44,7 +44,7 @@
             this.GREPORTE_DTP_date = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.RECIBO_TXT_RazonSocial = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -64,10 +64,11 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.RECIBO_TXT_RFC = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -77,12 +78,16 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
+            this.RECIBO_TXT_RegistroPatronal = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
+            this.RECIBO_TXT_DomicilioFiscal = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.RECIBO_TXT_NoTel = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.RECIBO_TXT_Email = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RECIBO_DGV_Percepciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RECIBO_DGV_Deducciones)).BeginInit();
             this.panel5.SuspendLayout();
@@ -239,17 +244,17 @@
             this.panel3.Size = new System.Drawing.Size(982, 3);
             this.panel3.TabIndex = 72;
             // 
-            // label5
+            // RECIBO_TXT_RazonSocial
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Bahnschrift", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label5.Location = new System.Drawing.Point(34, 141);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 27);
-            this.label5.TabIndex = 73;
-            this.label5.Text = "CGBot SA de CV";
+            this.RECIBO_TXT_RazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TXT_RazonSocial.AutoSize = true;
+            this.RECIBO_TXT_RazonSocial.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TXT_RazonSocial.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TXT_RazonSocial.Location = new System.Drawing.Point(26, 136);
+            this.RECIBO_TXT_RazonSocial.Name = "RECIBO_TXT_RazonSocial";
+            this.RECIBO_TXT_RazonSocial.Size = new System.Drawing.Size(47, 23);
+            this.RECIBO_TXT_RazonSocial.TabIndex = 73;
+            this.RECIBO_TXT_RazonSocial.Text = "nom";
             // 
             // label6
             // 
@@ -257,7 +262,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.LightBlue;
-            this.label6.Location = new System.Drawing.Point(671, 136);
+            this.label6.Location = new System.Drawing.Point(584, 136);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 19);
             this.label6.TabIndex = 74;
@@ -268,13 +273,12 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.LightBlue;
-            this.label7.Location = new System.Drawing.Point(800, 136);
+            this.label7.ForeColor = System.Drawing.Color.AliceBlue;
+            this.label7.Location = new System.Drawing.Point(271, 7);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(119, 19);
             this.label7.TabIndex = 75;
             this.label7.Text = "Fecha de pago:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
@@ -449,6 +453,8 @@
             this.panel5.Controls.Add(this.label34);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label22);
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.label33);
             this.panel5.Location = new System.Drawing.Point(0, 180);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
@@ -474,11 +480,23 @@
             this.label22.BackColor = System.Drawing.Color.DodgerBlue;
             this.label22.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label22.Location = new System.Drawing.Point(183, 7);
+            this.label22.Location = new System.Drawing.Point(18, 7);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(138, 19);
             this.label22.TabIndex = 90;
             this.label22.Text = "Recibo de nómina";
+            // 
+            // label33
+            // 
+            this.label33.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.ForeColor = System.Drawing.Color.AliceBlue;
+            this.label33.Location = new System.Drawing.Point(396, 10);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(146, 16);
+            this.label33.TabIndex = 103;
+            this.label33.Text = "30/sep/2024 11:00:00 PM";
             // 
             // label23
             // 
@@ -516,17 +534,17 @@
             this.label25.TabIndex = 93;
             this.label25.Text = "CUPU800825569";
             // 
-            // label26
+            // RECIBO_TXT_RFC
             // 
-            this.label26.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label26.Location = new System.Drawing.Point(636, 155);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(106, 16);
-            this.label26.TabIndex = 94;
-            this.label26.Text = "ABC 680524 P-76";
+            this.RECIBO_TXT_RFC.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TXT_RFC.AutoSize = true;
+            this.RECIBO_TXT_RFC.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TXT_RFC.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TXT_RFC.Location = new System.Drawing.Point(554, 157);
+            this.RECIBO_TXT_RFC.Name = "RECIBO_TXT_RFC";
+            this.RECIBO_TXT_RFC.Size = new System.Drawing.Size(106, 16);
+            this.RECIBO_TXT_RFC.TabIndex = 94;
+            this.RECIBO_TXT_RFC.Text = "ABC 680524 P-76";
             // 
             // label27
             // 
@@ -630,29 +648,17 @@
             this.label32.TabIndex = 102;
             this.label32.Text = "14/mar/2024";
             // 
-            // label33
+            // RECIBO_TXT_RegistroPatronal
             // 
-            this.label33.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label33.Location = new System.Drawing.Point(786, 155);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(146, 16);
-            this.label33.TabIndex = 103;
-            this.label33.Text = "30/sep/2024 11:00:00 PM";
-            // 
-            // label35
-            // 
-            this.label35.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.AliceBlue;
-            this.label35.Location = new System.Drawing.Point(526, 155);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(31, 16);
-            this.label35.TabIndex = 105;
-            this.label35.Text = "Y52:";
+            this.RECIBO_TXT_RegistroPatronal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TXT_RegistroPatronal.AutoSize = true;
+            this.RECIBO_TXT_RegistroPatronal.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TXT_RegistroPatronal.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TXT_RegistroPatronal.Location = new System.Drawing.Point(447, 157);
+            this.RECIBO_TXT_RegistroPatronal.Name = "RECIBO_TXT_RegistroPatronal";
+            this.RECIBO_TXT_RegistroPatronal.Size = new System.Drawing.Size(31, 16);
+            this.RECIBO_TXT_RegistroPatronal.TabIndex = 105;
+            this.RECIBO_TXT_RegistroPatronal.Text = "Y52:";
             // 
             // label36
             // 
@@ -660,7 +666,7 @@
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.ForeColor = System.Drawing.Color.LightBlue;
-            this.label36.Location = new System.Drawing.Point(473, 136);
+            this.label36.Location = new System.Drawing.Point(398, 136);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(140, 19);
             this.label36.TabIndex = 104;
@@ -702,18 +708,82 @@
             this.label38.TabIndex = 108;
             this.label38.Text = "aaa";
             // 
+            // RECIBO_TXT_DomicilioFiscal
+            // 
+            this.RECIBO_TXT_DomicilioFiscal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TXT_DomicilioFiscal.AutoSize = true;
+            this.RECIBO_TXT_DomicilioFiscal.Font = new System.Drawing.Font("Bahnschrift Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TXT_DomicilioFiscal.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TXT_DomicilioFiscal.Location = new System.Drawing.Point(28, 161);
+            this.RECIBO_TXT_DomicilioFiscal.Name = "RECIBO_TXT_DomicilioFiscal";
+            this.RECIBO_TXT_DomicilioFiscal.Size = new System.Drawing.Size(28, 13);
+            this.RECIBO_TXT_DomicilioFiscal.TabIndex = 109;
+            this.RECIBO_TXT_DomicilioFiscal.Text = "nom";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.LightBlue;
+            this.label5.Location = new System.Drawing.Point(695, 134);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(115, 19);
+            this.label5.TabIndex = 110;
+            this.label5.Text = "No. Telefónico:";
+            // 
+            // RECIBO_TXT_NoTel
+            // 
+            this.RECIBO_TXT_NoTel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TXT_NoTel.AutoSize = true;
+            this.RECIBO_TXT_NoTel.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TXT_NoTel.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TXT_NoTel.Location = new System.Drawing.Point(812, 136);
+            this.RECIBO_TXT_NoTel.Name = "RECIBO_TXT_NoTel";
+            this.RECIBO_TXT_NoTel.Size = new System.Drawing.Size(106, 16);
+            this.RECIBO_TXT_NoTel.TabIndex = 111;
+            this.RECIBO_TXT_NoTel.Text = "ABC 680524 P-76";
+            // 
+            // label35
+            // 
+            this.label35.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.LightBlue;
+            this.label35.Location = new System.Drawing.Point(696, 155);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(54, 19);
+            this.label35.TabIndex = 112;
+            this.label35.Text = "email:";
+            // 
+            // RECIBO_TXT_Email
+            // 
+            this.RECIBO_TXT_Email.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TXT_Email.AutoSize = true;
+            this.RECIBO_TXT_Email.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TXT_Email.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TXT_Email.Location = new System.Drawing.Point(756, 157);
+            this.RECIBO_TXT_Email.Name = "RECIBO_TXT_Email";
+            this.RECIBO_TXT_Email.Size = new System.Drawing.Size(106, 16);
+            this.RECIBO_TXT_Email.TabIndex = 113;
+            this.RECIBO_TXT_Email.Text = "ABC 680524 P-76";
+            // 
             // FormReciboNomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(965, 670);
+            this.Controls.Add(this.RECIBO_TXT_Email);
+            this.Controls.Add(this.label35);
+            this.Controls.Add(this.RECIBO_TXT_NoTel);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.RECIBO_TXT_DomicilioFiscal);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label37);
-            this.Controls.Add(this.label35);
+            this.Controls.Add(this.RECIBO_TXT_RegistroPatronal);
             this.Controls.Add(this.label36);
-            this.Controls.Add(this.label33);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel8);
@@ -723,7 +793,7 @@
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
-            this.Controls.Add(this.label26);
+            this.Controls.Add(this.RECIBO_TXT_RFC);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
@@ -741,9 +811,8 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.RECIBO_TXT_RazonSocial);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.GREPORTE_DTP_date);
             this.Controls.Add(this.label4);
@@ -786,7 +855,7 @@
         private System.Windows.Forms.DateTimePicker GREPORTE_DTP_date;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label RECIBO_TXT_RazonSocial;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -808,7 +877,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label RECIBO_TXT_RFC;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
@@ -820,10 +889,15 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label RECIBO_TXT_RegistroPatronal;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label RECIBO_TXT_DomicilioFiscal;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label RECIBO_TXT_NoTel;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label RECIBO_TXT_Email;
     }
 }
