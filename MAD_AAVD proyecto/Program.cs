@@ -16,6 +16,8 @@ namespace MAD_AAVD_proyecto
         public static bool DB_Cassandra {get;set;}
         public static bool DB_SQLServer {get;set;}
 
+        public static bool isUserOnDB = false;
+
         //company data
         public static string companyName = ConfigurationManager.AppSettings["RazonSocial"];
         public static string RP = ConfigurationManager.AppSettings["RegistroPatronal"];

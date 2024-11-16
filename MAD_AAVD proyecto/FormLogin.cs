@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,39 +26,51 @@ namespace MAD_AAVD_proyecto
             DB_SQLServer = false;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inicioSesion_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LOGIN_BTN_login_Click(object sender, EventArgs e)
         {
             if (DB_Cassandra || DB_SQLServer) //si se selecciono una base de datos entra
             {
+                bool checker = false; //si existe
+
+                string aux = LOGIN_TB_password.Text;
+                string hashPassword;
+                using (SHA256 sha256Hash = SHA256.Create())
+                {
+                    string hash = FormGestionEmpleados.GetHash(sha256Hash, aux);
+                    hashPassword = hash;
+                }
+                hashPassword = $"'{hashPassword}'";
+
+                int auxUser = Int32.Parse(LOGIN_TB_username.Text);
+
                 if (LOGIN_TB_username.Text == adminUser && LOGIN_TB_password.Text == adminPassword) //Para pruebas admin
                 {
                     this.Hide();
                     new FormAdmin().ShowDialog();
                     this.Close();
                 }
-                else if (LOGIN_TB_username.Text == "empleado" && LOGIN_TB_password.Text == "1111") //Para pruebas empleado
-                {
-                    this.Hide();
-                    new FormUsuario().ShowDialog();
-                    this.Close();
-                    //mandar el usuario validado
-                }
                 else
+                {
+                    if (!DB_Cassandra && DB_SQLServer)
+                    {
+                        var linkDB = new EnlaceDB();
+                        checker = linkDB.CheckDB(hashPassword, auxUser);
+                        if (checker == true) //Para pruebas empleado
+                        {
+                            this.Hide();
+                            new FormUsuario().ShowDialog();
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        if (DB_Cassandra && !DB_SQLServer)
+                        {
+
+                        }
+                    }
+                }
+                if(checker == false)
                 {
                     MessageBox.Show("Usuario o contraseña incorrecta");
                     LOGIN_TB_username.Clear();

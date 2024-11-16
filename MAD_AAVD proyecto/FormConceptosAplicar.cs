@@ -25,7 +25,7 @@ namespace MAD_AAVD_proyecto
             
             var linkCassandra = new EnlaceCassandra();
             //COMBOBOX CONCEPTOS
-            listaConceptos = linkCassandra.GetConceptosNoFijos();
+            //listaConceptos = linkCassandra.GetConceptosNoFijos();
             CONCEPAPLICAR_CB_Conceptos.DataSource = listaConceptos;
             CONCEPAPLICAR_CB_Conceptos.DisplayMember = "nombreConcepto";
             CONCEPAPLICAR_CB_Conceptos.ValueMember = "noConcepto";

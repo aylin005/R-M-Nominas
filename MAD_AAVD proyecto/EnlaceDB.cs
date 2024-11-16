@@ -924,5 +924,42 @@ namespace MAD_AAVD_proyecto
 
             return tabla;
         }
+
+        /// ******* L O G     I N ***********************************************************************************************************************************************************************
+
+        public bool CheckDB(string pPassword, int pUser)
+        {
+            bool resultado = false;
+            try
+            {
+                conectar();
+
+                string qry = "sp_CheckLogIn";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parameter1 = _comandosql.Parameters.Add("@pUser", SqlDbType.Int, 4);
+                parameter1.Value = pUser;
+                var parameter2 = _comandosql.Parameters.Add("@pPassword", SqlDbType.VarChar, 255);
+                parameter2.Value = pPassword;
+
+                SqlDataReader reader = _comandosql.ExecuteReader();
+
+                if (reader.Read())
+                    resultado = (bool)reader["isConnected"];
+                else
+                    resultado = false;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return resultado;
+        }
     }
 }

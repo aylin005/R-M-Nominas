@@ -34,7 +34,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LOGIN_BTN_login = new System.Windows.Forms.Button();
-            this.LOGIN_TB_username = new System.Windows.Forms.TextBox();
             this.LOGIN_TB_password = new System.Windows.Forms.TextBox();
             this.inicioSesion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.LOGIN_BTN_Cassandra = new System.Windows.Forms.Button();
             this.LOGIN_BTN_Sql = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.LOGIN_TB_username = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -70,7 +70,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // panel1
             // 
@@ -100,23 +99,10 @@
             this.LOGIN_BTN_login.Margin = new System.Windows.Forms.Padding(2);
             this.LOGIN_BTN_login.Name = "LOGIN_BTN_login";
             this.LOGIN_BTN_login.Size = new System.Drawing.Size(306, 34);
-            this.LOGIN_BTN_login.TabIndex = 4;
+            this.LOGIN_BTN_login.TabIndex = 5;
             this.LOGIN_BTN_login.Text = "INGRESAR";
             this.LOGIN_BTN_login.UseVisualStyleBackColor = false;
             this.LOGIN_BTN_login.Click += new System.EventHandler(this.LOGIN_BTN_login_Click);
-            // 
-            // LOGIN_TB_username
-            // 
-            this.LOGIN_TB_username.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.LOGIN_TB_username.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LOGIN_TB_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOGIN_TB_username.ForeColor = System.Drawing.Color.White;
-            this.LOGIN_TB_username.Location = new System.Drawing.Point(72, 217);
-            this.LOGIN_TB_username.Margin = new System.Windows.Forms.Padding(2);
-            this.LOGIN_TB_username.Multiline = true;
-            this.LOGIN_TB_username.Name = "LOGIN_TB_username";
-            this.LOGIN_TB_username.Size = new System.Drawing.Size(260, 25);
-            this.LOGIN_TB_username.TabIndex = 2;
             // 
             // LOGIN_TB_password
             // 
@@ -130,7 +116,7 @@
             this.LOGIN_TB_password.Name = "LOGIN_TB_password";
             this.LOGIN_TB_password.PasswordChar = '*';
             this.LOGIN_TB_password.Size = new System.Drawing.Size(260, 25);
-            this.LOGIN_TB_password.TabIndex = 3;
+            this.LOGIN_TB_password.TabIndex = 2;
             // 
             // inicioSesion
             // 
@@ -141,9 +127,8 @@
             this.inicioSesion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.inicioSesion.Name = "inicioSesion";
             this.inicioSesion.Size = new System.Drawing.Size(206, 29);
-            this.inicioSesion.TabIndex = 1;
+            this.inicioSesion.TabIndex = 10;
             this.inicioSesion.Text = "INICIO DE SESIÓN";
-            this.inicioSesion.Click += new System.EventHandler(this.inicioSesion_Click);
             // 
             // label1
             // 
@@ -189,7 +174,7 @@
             this.LOGIN_BTN_exit.Margin = new System.Windows.Forms.Padding(2);
             this.LOGIN_BTN_exit.Name = "LOGIN_BTN_exit";
             this.LOGIN_BTN_exit.Size = new System.Drawing.Size(60, 26);
-            this.LOGIN_BTN_exit.TabIndex = 5;
+            this.LOGIN_BTN_exit.TabIndex = 6;
             this.LOGIN_BTN_exit.Text = "Salir";
             this.LOGIN_BTN_exit.UseVisualStyleBackColor = true;
             this.LOGIN_BTN_exit.Click += new System.EventHandler(this.LOGIN_BTN_exit_Click);
@@ -204,7 +189,7 @@
             this.LOGIN_BTN_Cassandra.Margin = new System.Windows.Forms.Padding(80);
             this.LOGIN_BTN_Cassandra.Name = "LOGIN_BTN_Cassandra";
             this.LOGIN_BTN_Cassandra.Size = new System.Drawing.Size(86, 55);
-            this.LOGIN_BTN_Cassandra.TabIndex = 10;
+            this.LOGIN_BTN_Cassandra.TabIndex = 3;
             this.LOGIN_BTN_Cassandra.UseVisualStyleBackColor = true;
             this.LOGIN_BTN_Cassandra.Click += new System.EventHandler(this.LOGIN_BTN_Cassandra_Click);
             // 
@@ -219,7 +204,7 @@
             this.LOGIN_BTN_Sql.Margin = new System.Windows.Forms.Padding(80);
             this.LOGIN_BTN_Sql.Name = "LOGIN_BTN_Sql";
             this.LOGIN_BTN_Sql.Size = new System.Drawing.Size(86, 55);
-            this.LOGIN_BTN_Sql.TabIndex = 11;
+            this.LOGIN_BTN_Sql.TabIndex = 4;
             this.LOGIN_BTN_Sql.UseVisualStyleBackColor = false;
             this.LOGIN_BTN_Sql.Click += new System.EventHandler(this.LOGIN_BTN_Sql_Click);
             // 
@@ -232,8 +217,22 @@
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(197, 18);
-            this.label2.TabIndex = 12;
+            this.label2.TabIndex = 10;
             this.label2.Text = "Seleccione la base de datos:";
+            // 
+            // LOGIN_TB_username
+            // 
+            this.LOGIN_TB_username.AsciiOnly = true;
+            this.LOGIN_TB_username.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.LOGIN_TB_username.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LOGIN_TB_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.LOGIN_TB_username.ForeColor = System.Drawing.Color.White;
+            this.LOGIN_TB_username.Location = new System.Drawing.Point(74, 217);
+            this.LOGIN_TB_username.Mask = "00000000";
+            this.LOGIN_TB_username.Name = "LOGIN_TB_username";
+            this.LOGIN_TB_username.PromptChar = ' ';
+            this.LOGIN_TB_username.Size = new System.Drawing.Size(260, 19);
+            this.LOGIN_TB_username.TabIndex = 1;
             // 
             // Login
             // 
@@ -241,6 +240,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(362, 537);
+            this.Controls.Add(this.LOGIN_TB_username);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.LOGIN_BTN_Sql);
             this.Controls.Add(this.LOGIN_BTN_Cassandra);
@@ -250,7 +250,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inicioSesion);
             this.Controls.Add(this.LOGIN_TB_password);
-            this.Controls.Add(this.LOGIN_TB_username);
             this.Controls.Add(this.LOGIN_BTN_login);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -277,7 +276,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button LOGIN_BTN_login;
-        private System.Windows.Forms.TextBox LOGIN_TB_username;
         private System.Windows.Forms.TextBox LOGIN_TB_password;
         private System.Windows.Forms.Label inicioSesion;
         private System.Windows.Forms.Label label1;
@@ -287,6 +285,7 @@
         private System.Windows.Forms.Button LOGIN_BTN_Cassandra;
         private System.Windows.Forms.Button LOGIN_BTN_Sql;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox LOGIN_TB_username;
     }
 }
 
