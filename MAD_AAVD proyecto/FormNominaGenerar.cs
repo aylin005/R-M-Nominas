@@ -60,16 +60,20 @@ namespace MAD_AAVD_proyecto
                     {
                         linkCassandra.InsertRecibo(emp, concepto, fecha, false);
                     }
-
+                    //********REVISAR LO DE CONCEPTOS***********
                     //*Obtener lista de percepciones y lista de deducciones*
-                    //Buscar recibo
-                    Recibos recibo = linkCassandra.BuscarRecibo(columnas, emp.noEmpleado, fecha); //?
-                        //Traer lista de todos sus conceptos
-                        //Dividir la lista en lista de percepciones y lista de deducciones
-                        //Calcular total percepciones y total deducciones
-                        //Calcular total final
-                        //Calcular total con letra
-                        //Insertar todo a recibo
+                    //Traer lista de todos sus conceptos
+                    List<Conceptos> conceptosRecibo = linkCassandra.getConceptosRecibo(emp.noEmpleado, fecha, false);
+                    //Dividir la lista en lista de percepciones y lista de deducciones
+                    List<Conceptos> percepciones = conceptosRecibo.Where(c => c.percepcion).ToList();//Usando LINQ de .NET Language Integrated Query
+                    List<Conceptos> deducciones = conceptosRecibo.Where(c => !c.percepcion).ToList();
+                    //Calcular total percepciones y total deducciones
+                    float totalPercepciones = percepciones.Sum(p => p.cuota);
+                    float totalDeducciones= deducciones.Sum(d => d.cuota);
+                    //Calcular total final
+                    float total = totalPercepciones - totalDeducciones;
+                    //Calcular total con letra
+                    //Insertar todo a recibo
                 }
 
                 //Guardar registro de la nomina generada

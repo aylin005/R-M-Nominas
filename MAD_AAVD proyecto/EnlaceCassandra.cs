@@ -214,6 +214,29 @@ namespace MAD_AAVD_proyecto
                     desconectar();
             }
         }
+        public List<Conceptos> getConceptosRecibo(int noEmp, DateTime fecha, bool withConectar)
+        {
+            //Traer todos los conceptos del recibo
+            // Dia ultimo del mes seleccionado
+            DateTime auxDate1 = new DateTime(fecha.Year, fecha.Month, 1);
+            auxDate1 = auxDate1.AddMonths(1).AddDays(-1);
+
+            // Convertir ambas fechas a string en el formato de Cassandra
+            string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+
+            string query = $"SELECT noConcepto, nombreConcepto, cantConcepto FROM RECIBOS " +
+                $"WHERE noEmpleado = {noEmp} AND mesRecibo = '{date1}';";
+            if(withConectar)
+                conectar();
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Conceptos> finalList = mapper.Fetch<Conceptos>(query);
+
+            if(withConectar)
+                desconectar();
+
+            return finalList.ToList(); // Guarda el último puesto de cada empleado para la fecha seleccionada
+        }
         public void Delete(string nombreTabla, string [] columnas, int noID)
         {
             try
@@ -401,6 +424,7 @@ namespace MAD_AAVD_proyecto
                 $"FROM Empleados WHERE fechaInicio <= '{date1}' AND departamento = '{departamento}'" +
                 $"AND activo = TRUE ALLOW FILTERING;";
 
+            conectar();
             IMapper mapper = new Mapper(_session);
             IEnumerable<Empleados> finalList = mapper.Fetch<Empleados>(query);
 
