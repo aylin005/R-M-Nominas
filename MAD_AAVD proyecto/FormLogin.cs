@@ -39,11 +39,10 @@ namespace MAD_AAVD_proyecto
                     string hash = FormGestionEmpleados.GetHash(sha256Hash, aux);
                     hashPassword = hash;
                 }
-                hashPassword = $"'{hashPassword}'";
 
                 int auxUser = Int32.Parse(LOGIN_TB_username.Text);
 
-                if (LOGIN_TB_username.Text == adminUser && LOGIN_TB_password.Text == adminPassword) //Para pruebas admin
+                if (LOGIN_TB_username.Text == adminUser && LOGIN_TB_password.Text == adminPassword)
                 {
                     this.Hide();
                     new FormAdmin().ShowDialog();
@@ -51,31 +50,31 @@ namespace MAD_AAVD_proyecto
                 }
                 else
                 {
-                    if (!DB_Cassandra && DB_SQLServer)
+                    if (DB_SQLServer)
                     {
                         var linkDB = new EnlaceDB();
                         checker = linkDB.CheckDB(hashPassword, auxUser);
-                        if (checker == true) //Para pruebas empleado
-                        {
-                            this.Hide();
-                            new FormUsuario().ShowDialog();
-                            this.Close();
-                        }
+                        
+                    }
+                    else if (DB_Cassandra)
+                    {
+                        var linkCassandra = new EnlaceCassandra();
+                        checker = linkCassandra.Autenticar(auxUser.ToString(), hashPassword);
+                    }
+
+                    if (checker) //Para pruebas empleado
+                    {
+                        this.Hide();
+                        new FormUsuario().ShowDialog();
+                        this.Close();
                     }
                     else
                     {
-                        if (DB_Cassandra && !DB_SQLServer)
-                        {
-
-                        }
+                        MessageBox.Show("Usuario o contraseña incorrecta");
+                        LOGIN_TB_username.Clear();
+                        LOGIN_TB_password.Clear();
+                        LOGIN_TB_username.Focus();
                     }
-                }
-                if(checker == false)
-                {
-                    MessageBox.Show("Usuario o contraseña incorrecta");
-                    LOGIN_TB_username.Clear();
-                    LOGIN_TB_password.Clear();
-                    LOGIN_TB_username.Focus();
                 }
             }
             else//si no se selecciono una base de datos no entra

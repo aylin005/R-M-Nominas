@@ -218,6 +218,7 @@ namespace MAD_AAVD_proyecto
                 string rfc = $"'{EMP_TB_Rfc.Text}'";
                 DateTime fecha = EMP_DTP_Fecha.Value;
 
+                //Detectar si ya es hash******
                 //CONVERTIR CONTRASEÑA A HASH
                 string hashPassword;
                 using (SHA256 sha256Hash = SHA256.Create())

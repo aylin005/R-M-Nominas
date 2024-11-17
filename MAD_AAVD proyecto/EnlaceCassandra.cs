@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 using System.Collections;
 using static System.Collections.Specialized.BitVector32;
 using Microsoft.Win32;
-
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -55,6 +55,23 @@ namespace MAD_AAVD_proyecto
         public void desconectar()
         {
             _cluster.Dispose();
+        }
+
+        public bool Autenticar(string username, string password)
+        {
+            string query = $"SELECT noEmpleado, contrasena FROM EMPLEADOS WHERE noEmpleado = {username} AND contrasena = '{password}' ALLOW FILTERING;";
+            conectar();
+            IMapper mapper = new Mapper(_session);
+            Empleados emp = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
+            desconectar();
+            if (emp != null)
+            {
+                activeUser = emp.noEmpleado;
+                return true;
+            }
+            else
+                return false;
+            
         }
 
         public List<T> Get_All<T>(string[] columnas, string nombreTabla)
@@ -214,7 +231,7 @@ namespace MAD_AAVD_proyecto
                     desconectar();
             }
         }
-        public List<Conceptos> getConceptosRecibo(int noEmp, DateTime fecha, bool withConectar)
+        public List<Conceptos> getConceptosRecibo(int noEmp, DateTime fecha, bool withConectar = true)
         {
             //Traer todos los conceptos del recibo
             // Dia ultimo del mes seleccionado
@@ -356,7 +373,7 @@ namespace MAD_AAVD_proyecto
                 foreach (var registro in empleados)
                 {
                     // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
-                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, crup, salarioDiario, banco, noCuenta " +
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, curp, salarioDiario, banco, noCuenta " +
                         $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
 
                     Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
@@ -478,7 +495,7 @@ namespace MAD_AAVD_proyecto
 
             conectar();
             IMapper mapper = new Mapper(_session);
-            Empleados row = mapper.Single<Empleados>(query); //un solo resultado.
+            Empleados row = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
             desconectar();
             return row;
         }

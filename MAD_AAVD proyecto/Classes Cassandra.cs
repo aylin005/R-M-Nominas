@@ -28,8 +28,8 @@ namespace MAD_AAVD_proyecto
     {
         public int noConcepto { get; set; }
         public string nombreConcepto { get; set; }
-        public float cuota { get; set; }
-        public float porcentaje { get; set; }
+        public decimal cuota { get; set; }
+        public decimal porcentaje { get; set; }
         public bool fijo { get; set; }
         public bool percepcion { get; set; }
     }

@@ -18,6 +18,8 @@ namespace MAD_AAVD_proyecto
 
         public static bool isUserOnDB = false;
 
+        public static int activeUser = -1;
+
         //company data
         public static string companyName = ConfigurationManager.AppSettings["RazonSocial"];
         public static string RP = ConfigurationManager.AppSettings["RegistroPatronal"];
