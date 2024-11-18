@@ -195,7 +195,7 @@ namespace MAD_AAVD_proyecto
             string nombreEmpleado = $"{empleado.nombres} {empleado.apPaterno} {empleado.apMaterno}";
 
             //Obtener cantidad del concepto
-            float cantConcepto;
+            decimal cantConcepto;
 
             if (concepto.cuota != 0)
             {
@@ -203,7 +203,7 @@ namespace MAD_AAVD_proyecto
             }
             else
             {//calcular porcentaje
-                cantConcepto = (float)empleado.salarioDiario * (concepto.porcentaje);
+                cantConcepto = empleado.salarioDiario * (concepto.porcentaje);
             }
             
             try
@@ -425,7 +425,48 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             return finalList; // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
+        public bool cerrarRecibo(Empleados emp, DateTime fecha, int diasTrabajados, decimal sueldoBruto, 
+            decimal totalP, decimal totalD, decimal total, string totalLetra, bool withConectar)
+        {
+            DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
+            int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+            DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
 
+            string fechaConcepto = fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string inicioPeriodo = auxInicio.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string finPeriodo = auxFin.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            //Concatenar nombre del empleado
+            string nombreEmpleado = $"{emp.nombres} {emp.apPaterno} {emp.apMaterno}";
+
+            try
+            {
+                if (withConectar)
+                    conectar();
+                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, nombreConcepto, cantConcepto, fechaConcepto, " +
+                    $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp" +
+                    $",diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalLetra, generado)";
+
+                query += $"VALUES(uuid(), {emp.noEmpleado}, '{finPeriodo}', 0, 'SALARIO', {sueldoBruto}, '{fechaConcepto}'," +
+                    $" '{nombreEmpleado}', '{emp.departamento}', '{emp.puesto}', {emp.salarioDiario}, '{emp.banco}', '{emp.noCuenta}', '{emp.fechaIngreso}', " +
+                    $"'{inicioPeriodo}', '{finPeriodo}', '{emp.nss}', '{emp.rfc}', '{emp.curp}', {diasTrabajados}, {sueldoBruto}, {totalP}, {totalD}," +
+                    $"{total}, '{totalLetra}', TRUE)";
+                IMapper mapper = new Mapper(_session);
+
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                //MessageBox.Show("Insertado exitosamente");
+                if (withConectar)
+                    desconectar();
+            }
+            return false; 
+        }
         public List<Empleados> FilterEmpByDepto (DateTime fecha, string departamento)
         {
             // Dia ultimo del mes seleccionado

@@ -130,6 +130,7 @@
             this.GREPORTE_DGV_table.GridColor = System.Drawing.Color.DodgerBlue;
             this.GREPORTE_DGV_table.Location = new System.Drawing.Point(36, 244);
             this.GREPORTE_DGV_table.Name = "GREPORTE_DGV_table";
+            this.GREPORTE_DGV_table.ReadOnly = true;
             this.GREPORTE_DGV_table.RowHeadersWidth = 51;
             this.GREPORTE_DGV_table.Size = new System.Drawing.Size(890, 427);
             this.GREPORTE_DGV_table.TabIndex = 72;

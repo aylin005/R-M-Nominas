@@ -62,7 +62,6 @@ namespace MAD_AAVD_proyecto
                     {
                         linkCassandra.InsertRecibo(emp, concepto, fecha, false);
                     }
-                    //********REVISAR LO DE CONCEPTOS***********
                     //*Obtener lista de percepciones y lista de deducciones*
                     //Traer lista de todos sus conceptos
                     List<Conceptos> conceptosRecibo = linkCassandra.getConceptosRecibo(emp.noEmpleado, fecha, false);
@@ -85,10 +84,12 @@ namespace MAD_AAVD_proyecto
                     decimal total = sueldoBruto + totalPercepciones - totalDeducciones;
                     //Calcular total con letra
                     string totalConLetra = NumeroALetras(total);
-                    //Insertar todo a recibo
+                    //Insertar todo a recibo (Agrega el sueldo Bruto como concepto y en la CK de SALARIO se encuentran todos los datos del recibo finalizado)
+                    linkCassandra.cerrarRecibo(emp, fecha, diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalConLetra, false);
                     //Insertar datos en el DGV
-                }
 
+                }
+                MessageBox.Show("Nómina generada exitosamente", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //Guardar registro de la nomina generada
             }
             else
