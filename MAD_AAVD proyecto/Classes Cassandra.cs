@@ -32,6 +32,8 @@ namespace MAD_AAVD_proyecto
         public decimal porcentaje { get; set; }
         public bool fijo { get; set; }
         public bool percepcion { get; set; }
+
+        public decimal cantConcepto { get; set; }
     }
 
     public class  Empleados

@@ -27,7 +27,7 @@ namespace MAD_AAVD_proyecto
         static private Cluster _cluster;
         static private ISession _session;
 
-        public void conectar()
+        public static void conectar()
         {
             _dbServer = ConfigurationManager.AppSettings["Cluster"].ToString();
             _dbKeySpace = ConfigurationManager.AppSettings["KeySpace"].ToString();
@@ -52,7 +52,7 @@ namespace MAD_AAVD_proyecto
             _session = _cluster.Connect("keyspace3");
         }
 
-        public void desconectar()
+        public static void desconectar()
         {
             _cluster.Dispose();
         }
@@ -74,7 +74,7 @@ namespace MAD_AAVD_proyecto
             
         }
 
-        public List<T> Get_All<T>(string[] columnas, string nombreTabla)
+        public List<T> Get_All<T>(string[] columnas, string nombreTabla, bool withConnect = true)
         {
             string query = "SELECT ";
             foreach (var columna in columnas)
@@ -83,20 +83,23 @@ namespace MAD_AAVD_proyecto
             }
             query = query.Remove(query.Length - 2);
             query += " FROM " + nombreTabla + ";";
-            conectar();
+            if(withConnect)
+                conectar();
 
             IMapper mapper = new Mapper(_session);
             IEnumerable<T> table = mapper.Fetch<T>(query);
 
-            desconectar();
+            if (withConnect)
+                desconectar();
             return table.ToList();
         }
 
-        public void Insert(bool edit, string nombreTabla, string[] primaryKey , string[] pkValues, string[] columns, string[] values)//en values enviar strings entre ''
+        public void Insert(bool edit, string nombreTabla, string[] primaryKey , string[] pkValues, string[] columns, string[] values, bool withConnect = true)//en values enviar strings entre ''
         {
             try
             {
-                conectar();
+                if(withConnect)
+                    conectar();
                 string query = "";
                 
                 //contar arreglos
@@ -177,10 +180,35 @@ namespace MAD_AAVD_proyecto
             }
             finally
             {
-                desconectar();
+                if (withConnect)
+                    desconectar();
             }
         }
        
+        public void InsertFechaNomina (DateTime fecha, bool withConectar = true)
+        {
+            int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+            DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
+
+            string query = $"INSERT INTO REGISTRO_NOMINAS (year, month) VALUES ({auxFin.Year},{auxFin.Month})";
+
+            try
+            {
+                if (withConectar)
+                    conectar();
+                IMapper mapper = new Mapper(_session);
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (withConectar)
+                    desconectar();
+            }
+        }
         public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha, bool withConectar = true)
         {
             DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
@@ -426,7 +454,7 @@ namespace MAD_AAVD_proyecto
             return finalList; // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
         public bool cerrarRecibo(Empleados emp, DateTime fecha, int diasTrabajados, decimal sueldoBruto, 
-            decimal totalP, decimal totalD, decimal total, string totalLetra, bool withConectar)
+            decimal totalP, decimal totalD, decimal total, string totalLetra, bool withConectar = true)
         {
             DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
             int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
@@ -467,7 +495,7 @@ namespace MAD_AAVD_proyecto
             }
             return false; 
         }
-        public List<Empleados> FilterEmpByDepto (DateTime fecha, string departamento)
+        public List<Empleados> FilterEmpByDepto (DateTime fecha, string departamento, bool withConnect = true)
         {
             // Dia ultimo del mes seleccionado
             DateTime auxDate1 = new DateTime(fecha.Year, fecha.Month, 1);
@@ -478,15 +506,17 @@ namespace MAD_AAVD_proyecto
             
             // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
 
-            string query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, curp, rfc, nss, banco, noCuenta, salarioDiario, departamento, puesto " +
+            string query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, curp, rfc, nss, banco, noCuenta, salarioDiario, departamento, puesto, fechaIngreso " +
                 $"FROM Empleados WHERE fechaInicio <= '{date1}' AND departamento = '{departamento}'" +
                 $"AND activo = TRUE ALLOW FILTERING;";
 
-            conectar();
+            if (withConnect)
+                conectar();
             IMapper mapper = new Mapper(_session);
             IEnumerable<Empleados> finalList = mapper.Fetch<Empleados>(query);
 
-            desconectar();
+            if (withConnect)
+                desconectar();
             return finalList.ToList(); // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
 
@@ -541,7 +571,7 @@ namespace MAD_AAVD_proyecto
             return row;
         }
 
-        public Empleados LastPuesto2<Empleados>(string[] columnas, string noEmpleado, DateTime date) //Obtiene el puesto activo en cierta fecha
+        public Empleados LastPuesto2<Empleados>(string[] columnas, string noEmpleado, DateTime date, bool withConnect = true) //Obtiene el puesto activo en cierta fecha
         { //REVISAR LO DE ACTIVO
             string date1 = date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
@@ -553,10 +583,12 @@ namespace MAD_AAVD_proyecto
             query = query.Remove(query.Length - 2);
             query += $" FROM EMPLEADOS WHERE noEmpleado = {noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE ORDER BY fechaInicio DESC LIMIT 1 ALLOW FILTERING";
 
-            conectar();
+            if(withConnect)
+                conectar();
             IMapper mapper = new Mapper(_session);
             Empleados row = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
-            desconectar();
+            if (withConnect)
+                desconectar();
             return row;
         }
 

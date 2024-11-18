@@ -24,8 +24,9 @@ namespace MAD_AAVD_proyecto
         {
             
             var linkCassandra = new EnlaceCassandra();
+            //EnlaceCassandra.conectar();
             //COMBOBOX CONCEPTOS
-            //listaConceptos = linkCassandra.GetConceptosNoFijos();
+            listaConceptos = linkCassandra.GetConceptos(false);
             CONCEPAPLICAR_CB_Conceptos.DataSource = listaConceptos;
             CONCEPAPLICAR_CB_Conceptos.DisplayMember = "nombreConcepto";
             CONCEPAPLICAR_CB_Conceptos.ValueMember = "noConcepto";
@@ -47,7 +48,7 @@ namespace MAD_AAVD_proyecto
             CONCEPAPLICAR_CB_EmpPuesto.DataSource = listaPuestos;
             CONCEPAPLICAR_CB_EmpPuesto.DisplayMember = "nombrePuesto";
             CONCEPAPLICAR_CB_EmpPuesto.ValueMember = "noPuesto";
-
+            //EnlaceCassandra.desconectar();
         }
         private void CONCEPAPLICAR_RB_Departamento_CheckedChanged(object sender, EventArgs e)
         {
@@ -111,6 +112,7 @@ namespace MAD_AAVD_proyecto
             {
                 if (noEmp != null)
                 {
+                    //EnlaceCassandra.conectar();
                     CONCEPAPLICAR_LBL_Loading.Visible = true;
                     //1. Obtener Empleado en el puesto activo durante esa fecha
                     string[] columnas = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "curp", "rfc", "nss", "banco", "noCuenta", "salarioDiario", "departamento", "puesto", "fechaIngreso" };
@@ -118,6 +120,7 @@ namespace MAD_AAVD_proyecto
 
                     aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
                     CONCEPAPLICAR_LBL_Loading.Visible = false;
+                    //EnlaceCassandra.desconectar();
                 }
                 else
                 {
@@ -126,6 +129,7 @@ namespace MAD_AAVD_proyecto
             }
             else if (aplicarDepto)
             {
+                //EnlaceCassandra.conectar();
                 CONCEPAPLICAR_LBL_Loading.Visible = true;
                 //Obtener empleados
                 //Por cada empleado llamar aplicarEmp
@@ -135,6 +139,7 @@ namespace MAD_AAVD_proyecto
                     aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
                 }
                 CONCEPAPLICAR_LBL_Loading.Visible = false;
+                //EnlaceCassandra.desconectar();
             }
         
 

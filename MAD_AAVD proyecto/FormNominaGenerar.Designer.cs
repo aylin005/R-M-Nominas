@@ -118,6 +118,7 @@
             // 
             // GREPORTE_DGV_table
             // 
+            this.GREPORTE_DGV_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.GREPORTE_DGV_table.BackgroundColor = System.Drawing.Color.Black;
             this.GREPORTE_DGV_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GREPORTE_DGV_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -141,7 +142,7 @@
             this.numEmploy.MinimumWidth = 6;
             this.numEmploy.Name = "numEmploy";
             this.numEmploy.ReadOnly = true;
-            this.numEmploy.Width = 125;
+            this.numEmploy.Width = 130;
             // 
             // nameEmploy
             // 
@@ -157,7 +158,7 @@
             this.date.MinimumWidth = 6;
             this.date.Name = "date";
             this.date.ReadOnly = true;
-            this.date.Width = 70;
+            this.date.Width = 84;
             // 
             // salaryResult
             // 
@@ -165,12 +166,12 @@
             this.salaryResult.MinimumWidth = 6;
             this.salaryResult.Name = "salaryResult";
             this.salaryResult.ReadOnly = true;
-            this.salaryResult.Width = 125;
+            this.salaryResult.Width = 175;
             // 
             // bank
             // 
             this.bank.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.bank.HeaderText = "Banco en que se depositará";
+            this.bank.HeaderText = "Banco";
             this.bank.MinimumWidth = 6;
             this.bank.Name = "bank";
             this.bank.ReadOnly = true;
@@ -181,7 +182,7 @@
             this.accountNum.MinimumWidth = 6;
             this.accountNum.Name = "accountNum";
             this.accountNum.ReadOnly = true;
-            this.accountNum.Width = 70;
+            this.accountNum.Width = 111;
             // 
             // FormNominaGenerar
             // 

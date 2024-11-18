@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,74 +33,127 @@ namespace MAD_AAVD_proyecto
         {
             GREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.White;
             GREPORTE_DGV_table.DefaultCellStyle.BackColor = Color.Black;
-
+            GREPORTE_DGV_table.Rows.Clear();
             //Agregar columna cantidad a depositar ?
         }
 
         private void GREPORTE_BTN_generate_Click(object sender, EventArgs e)
         {
+            GREPORTE_DGV_table.Rows.Clear();
             var linkCassandra = new EnlaceCassandra();
-            linkCassandra.conectar();
+            //EnlaceCassandra.conectar();
+
+            DateTime fecha = GREPORTE_DTP_date.Value; //Revisar valor que trae
+
+            int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+            DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
 
             //Revisar si se generó el recibo del mes anterior
-            DateTime fecha = GREPORTE_DTP_date.Value; //Revisar valor que trae
+
             DateTime mesAnterior = GREPORTE_DTP_date.Value.AddMonths(-1);
             string[] primaryKey = { "year", "month" }; string[] columnas = primaryKey;
             string[] pkValues = { mesAnterior.Year.ToString(), (mesAnterior.Month).ToString() };
-            RegistroNominas nominaMesAnterior = linkCassandra.Get_One<RegistroNominas>(primaryKey, columnas, "REGISTRO_NOMINAS", pkValues,2);
-            if(nominaMesAnterior != null )
-            {
-                //Obtener empleados activos en ese mes
-                List<Empleados> empleados = linkCassandra.FilterEmpleados(fecha, false, false, "", "", false);
-                //Obtener conceptos fijos
-                List<Conceptos> conceptos = linkCassandra.GetConceptos(true, false);
-                
+            
+            // Obtener la lista de nóminas generadas
+            List<RegistroNominas> nominasGeneradas = linkCassandra.Get_All<RegistroNominas>(columnas, "REGISTRO_NOMINAS");
 
-                //Insertar en recibos (Por cada uno)
-                foreach( Empleados emp in empleados )
+            // Verificar si la lista contiene datos
+            if (nominasGeneradas != null && nominasGeneradas.Count > 0)
+            {
+                // Ordenar por año y mes en orden descendente
+                RegistroNominas ultimaNomina = nominasGeneradas
+                    .OrderByDescending(n => n.year)
+                    .ThenByDescending(n => n.month)
+                    .FirstOrDefault();
+
+                if (ultimaNomina != null)
                 {
-                    foreach(Conceptos concepto in conceptos)
+                    // Convertir el año y mes a un objeto DateTime
+                    DateTime fechaUltimaNomina = new DateTime(ultimaNomina.year, ultimaNomina.month, 1);
+
+                    // Comparar con la nueva fecha seleccionada
+                    DateTime nuevaFecha = GREPORTE_DTP_date.Value;
+                    DateTime primerDiaNuevoMes = new DateTime(nuevaFecha.Year, nuevaFecha.Month, 1);
+
+                    // Verificar si la nueva fecha es el mes siguiente de la última nómina
+                    DateTime mesSiguiente = fechaUltimaNomina.AddMonths(1);
+                    if (primerDiaNuevoMes == mesSiguiente) //Se puede generar la nomina
                     {
-                        linkCassandra.InsertRecibo(emp, concepto, fecha, false);
+                        generarNomina(fecha, auxFin);
                     }
-                    //*Obtener lista de percepciones y lista de deducciones*
-                    //Traer lista de todos sus conceptos
-                    List<Conceptos> conceptosRecibo = linkCassandra.getConceptosRecibo(emp.noEmpleado, fecha, false);
-                    //Dividir la lista en lista de percepciones y lista de deducciones
-                    List<Conceptos> percepciones = conceptosRecibo.Where(c => c.percepcion).ToList();//Usando LINQ de .NET Language Integrated Query
-                    List<Conceptos> deducciones = conceptosRecibo.Where(c => !c.percepcion).ToList();
-
-                    //Obtener días trabajados
-                    int daysInMonth = DateTime.DaysInMonth(fecha.Year, fecha.Month);
-                    //"FALTA" puede ser parte del nombre, por ejemplo: "FALTA INJUSTIFICADA"
-                    int faltas = deducciones.Count(d => d.nombreConcepto.IndexOf("FALTA", StringComparison.OrdinalIgnoreCase) >= 0);
-                    int diasTrabajados = daysInMonth - faltas;
-
-                    //Calcular total percepciones y total deducciones
-                    decimal totalPercepciones = percepciones.Sum(p => p.cuota);
-                    decimal totalDeducciones= deducciones.Sum(d => d.cuota);
-                    //Agregar el SUELDO BURTO
-                    decimal sueldoBruto = emp.salarioDiario * diasTrabajados;
-                    //Calcular total final
-                    decimal total = sueldoBruto + totalPercepciones - totalDeducciones;
-                    //Calcular total con letra
-                    string totalConLetra = NumeroALetras(total);
-                    //Insertar todo a recibo (Agrega el sueldo Bruto como concepto y en la CK de SALARIO se encuentran todos los datos del recibo finalizado)
-                    linkCassandra.cerrarRecibo(emp, fecha, diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalConLetra, false);
-                    //Insertar datos en el DGV
-
+                    else
+                    {
+                        MessageBox.Show("Primero genere la nómina del mes anterior", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                MessageBox.Show("Nómina generada exitosamente", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //Guardar registro de la nomina generada
+                else
+                {
+                    MessageBox.Show("No se encontró una última nómina válida.");
+                }
             }
-            else
+            else // no hay nominas registradas
             {
-                MessageBox.Show("No se ha generado la nómina del mes anterior", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                generarNomina(fecha, auxFin);
             }
-            linkCassandra.desconectar();
+        }
+        //EnlaceCassandra.desconectar();
+
+        private void generarNomina(DateTime fecha, DateTime auxFin)
+        {
+            var linkCassandra = new EnlaceCassandra();
+            //Obtener empleados activos en ese mes
+            List<Empleados> empleados = linkCassandra.FilterEmpleados(fecha, false, false, "", "");
+            //Obtener conceptos fijos
+            List<Conceptos> conceptos = linkCassandra.GetConceptos(true);
+
+
+            //Insertar en recibos (Por cada uno)
+            foreach (Empleados emp in empleados)
+            {
+                foreach (Conceptos concepto in conceptos)
+                {
+                    linkCassandra.InsertRecibo(emp, concepto, fecha);
+                }
+                //*Obtener lista de percepciones y lista de deducciones*
+                //Traer lista de todos sus conceptos
+                List<Conceptos> conceptosRecibo = linkCassandra.getConceptosRecibo(emp.noEmpleado, fecha);
+                //Dividir la lista en lista de percepciones y lista de deducciones
+                List<Conceptos> percepciones = conceptosRecibo.Where(c => c.percepcion).ToList();//Usando LINQ de .NET Language Integrated Query
+                List<Conceptos> deducciones = conceptosRecibo.Where(c => !c.percepcion).ToList();
+
+                //Obtener días trabajados
+                int daysInMonth = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+                //"FALTA" puede ser parte del nombre, por ejemplo: "FALTA INJUSTIFICADA"
+                int faltas = deducciones.Count(d => d.nombreConcepto.IndexOf("FALTA", StringComparison.OrdinalIgnoreCase) >= 0);
+                int diasTrabajados = daysInMonth - faltas;
+
+                //Calcular total percepciones y total deducciones
+                decimal totalPercepciones = percepciones.Sum(p => p.cantConcepto);
+                decimal totalDeducciones = deducciones.Sum(d => d.cantConcepto);////
+                //Agregar el SUELDO BURTO
+                decimal sueldoBruto = emp.salarioDiario * diasTrabajados;
+                //Calcular total final
+                decimal total = sueldoBruto + totalPercepciones - totalDeducciones;
+                //Calcular total con letra
+                string totalConLetra = total.NumeroALetras();
+                //Insertar todo a recibo (Agrega el sueldo Bruto como concepto y en la CK de SALARIO se encuentran todos los datos del recibo finalizado)
+                linkCassandra.cerrarRecibo(emp, fecha, diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalConLetra);
+                //Insertar datos en el DGV
+                string nombreCompleto = $"{emp.nombres} {emp.apPaterno} {emp.apMaterno}";
+                GREPORTE_DGV_table.Rows.Add(emp.noEmpleado, nombreCompleto, auxFin.ToShortDateString(), total, emp.banco, emp.noCuenta);
+            }
+            MessageBox.Show("Nómina generada exitosamente", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //Guardar registro de la nomina generada
+            string[] auxPrimaryKey = { "year", "month" }; string[] auxPkValues = { $"{fecha.Year}", $"{fecha.Month}" };
+            string[] columns = { }; string[] values = { }; //Vacias porque no se necesitan
+            linkCassandra.InsertFechaNomina(fecha);
         }
 
+    }
 
+
+    public static class ExtensionMethods
+    {
         public static string NumeroALetras(this decimal numberAsString)
         {
             string dec;
@@ -120,7 +174,7 @@ namespace MAD_AAVD_proyecto
             var res = NumeroALetras(Convert.ToDouble(entero)) + dec;
             return res;
         }
-        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
+
         private static string NumeroALetras(double value)
         {
             string num2Text; value = Math.Truncate(value);
@@ -198,4 +252,4 @@ namespace MAD_AAVD_proyecto
         }
     }
 }
-}
+
