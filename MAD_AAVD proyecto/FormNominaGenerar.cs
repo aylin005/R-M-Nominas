@@ -34,6 +34,8 @@ namespace MAD_AAVD_proyecto
             GREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.White;
             GREPORTE_DGV_table.DefaultCellStyle.BackColor = Color.Black;
             GREPORTE_DGV_table.Rows.Clear();
+
+
             //Agregar columna cantidad a depositar ?
         }
 
@@ -106,6 +108,8 @@ namespace MAD_AAVD_proyecto
             //Obtener conceptos fijos
             List<Conceptos> conceptos = linkCassandra.GetConceptos(true);
 
+            List<DepartamentosSueldos> auxDepSueldos = new List<DepartamentosSueldos>(); //Lista aux para la tabla de departamentosSueldos
+            //Por cada empleado se va a ir sumando en ese departamento en esa fecha
 
             //Insertar en recibos (Por cada uno)
             foreach (Empleados emp in empleados)
@@ -141,12 +145,93 @@ namespace MAD_AAVD_proyecto
                 //Insertar datos en el DGV
                 string nombreCompleto = $"{emp.nombres} {emp.apPaterno} {emp.apMaterno}";
                 GREPORTE_DGV_table.Rows.Add(emp.noEmpleado, nombreCompleto, auxFin.ToShortDateString(), total, emp.banco, emp.noCuenta);
+
+                //Se agrega a la lista auxiliar
+                DepartamentosSueldos aux = new DepartamentosSueldos(emp.departamento, fecha.Year, fecha.Month, sueldoBruto, total);
+                auxDepSueldos.Add(aux);
             }
             MessageBox.Show("Nómina generada exitosamente", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //Guardar registro de la nomina generada
             string[] auxPrimaryKey = { "year", "month" }; string[] auxPkValues = { $"{fecha.Year}", $"{fecha.Month}" };
             string[] columns = { }; string[] values = { }; //Vacias porque no se necesitan
             linkCassandra.InsertFechaNomina(fecha);
+
+            //Registrar reporte nómina
+            // Agrupar por departamento, año y mes
+            List<DepartamentosSueldos> finalReporteNomina = auxDepSueldos
+                .GroupBy(d => new { d.nombreDepto, d.year, d.month })
+                .Select(grupo => new DepartamentosSueldos
+                {
+                    nombreDepto = grupo.Key.nombreDepto,
+                    year = grupo.Key.year,
+                    month = grupo.Key.month,
+                    sueldoBruto = grupo.Sum(x => x.sueldoBruto),
+                    sueldoNeto = grupo.Sum(x => x.sueldoNeto)
+                })
+                .ToList();
+
+            //Insertar tabla en cassandra
+            linkCassandra.InserReporteNomina(finalReporteNomina);
+
+            ///////HEADCOUNTER///////////
+            List<Headcounter> headCounter = new List<Headcounter>();
+            int year = fecha.Year; // Año de la fecha de referencia
+            int month = fecha.Month; // Mes de la fecha de referencia
+
+            // Agrupar empleados por departamento y puesto
+            var agrupadosPorPuesto = empleados
+                .GroupBy(emp => new { emp.departamento, emp.puesto })
+                .Select(g => new
+                {
+                    Departamento = g.Key.departamento,
+                    Puesto = g.Key.puesto,
+                    Cantidad = g.Count()
+                });
+
+            // Agrupar empleados solo por departamento
+            var agrupadosPorDepartamento = empleados
+                .GroupBy(emp => emp.departamento)
+                .Select(g => new
+                {
+                    Departamento = g.Key,
+                    Cantidad = g.Count()
+                });
+
+            // Crear objetos Headcounter para departamento y puesto
+            foreach (var grupo in agrupadosPorPuesto)
+            {
+                Headcounter hc = new Headcounter
+                {
+                    departamento = grupo.Departamento,
+                    puesto = grupo.Puesto,
+                    year = (short)year,
+                    cantEmpMes = new Dictionary<byte, short>
+                    {
+                        { (byte)month, (short)grupo.Cantidad } // Cantidad por mes
+                    }
+                };
+
+                headCounter.Add(hc);
+            }
+
+            // Crear objetos Headcounter para departamento (puesto = -1)
+            foreach (var grupo in agrupadosPorDepartamento)
+            {
+                Headcounter hc = new Headcounter
+                {
+                    departamento = grupo.Departamento,
+                    puesto = "-1", // Signfica que cuenta todo el departamento
+                    year = (short)year,
+                    cantEmpMes = new Dictionary<byte, short>
+                    {
+                        { (byte)month, (short)grupo.Cantidad } // Cantidad por mes
+                    }
+                };
+
+                headCounter.Add(hc);
+            }
+
+            //Insertar en tabla headcounter
         }
 
     }

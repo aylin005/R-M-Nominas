@@ -98,4 +98,32 @@ namespace MAD_AAVD_proyecto
         public int year { get; set; }
         public int month { get; set; }
     }
+
+    public class DepartamentosSueldos
+    {
+        public string nombreDepto { get; set; }
+        public int year { get; set; }
+        public int month { get; set; }
+        public decimal sueldoBruto { get; set; }
+        public decimal sueldoNeto { get; set; }
+
+        public DepartamentosSueldos() { }
+        public DepartamentosSueldos(string pnombreDepto, int pyear, int pmonth, decimal psueldoBruto, decimal psueldoNeto)
+        {
+            nombreDepto = pnombreDepto;
+            year = pyear;
+            month = pmonth;
+            sueldoBruto = psueldoBruto;
+            sueldoNeto = psueldoNeto;
+        }
+    }
+
+    public class Headcounter
+    {
+        public string departamento { get; set; }
+        public string puesto { get; set; }
+        public Int16 year { get; set; }
+        public Dictionary<byte, short> cantEmpMes {  get; set; }
+    }
+    
 }

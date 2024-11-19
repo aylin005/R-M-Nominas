@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,23 +13,61 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormNominaReporte : Form
     {
+        string[] meses = {
+        "", "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+        "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
+};
         public FormNominaReporte()
         {
             InitializeComponent();
-            UpdateTable();
+            Reload();
         }
-        void UpdateTable()
+        void Reload()
         {
-            NREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.Black; //por alguna razon me sale en blanco
-            NREPORTE_DGV_table.Rows.Add("DESARROLLO", 2024, "Marzo", "$180,000.00", "200,000.00");
-            NREPORTE_DGV_table.Rows.Add("DESARROLLO", 2024, "Abril", "$160,000.00", "180,000.00");
-            NREPORTE_DGV_table.Rows.Add("DESARROLLO", 2024, "Mayo", "$200,000.00", "205,000.00");
-            NREPORTE_DGV_table.Rows.Add("CONTABILIDAD", 2024, "Marzo", "$120,000.00", "135,000.00");
-            //recuperar las celdas 3 y 4 anteriores a la final para obtener la sumatoria
-            int lastIndex = NREPORTE_DGV_table.Rows.Count - 1; //esto es por si agregas mas
-            NREPORTE_DGV_table.Rows[lastIndex].DefaultCellStyle.ForeColor = Color.RoyalBlue;
-            NREPORTE_DGV_table.Rows[lastIndex].Cells[3].Value = "$660,000.00"; //estas son para los totales
-            NREPORTE_DGV_table.Rows[lastIndex].Cells[4].Value = "$720,000.00";
+            NREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.White;
+            NREPORTE_DGV_table.DefaultCellStyle.BackColor = Color.Black;
+
+
+            var linkCassandra = new EnlaceCassandra();
+            List<DepartamentosSueldos> aux = linkCassandra.GetReporteNomina(NREPORTE_DTP_date.Value.Year);
+            // Calcular totales
+            var totalSueldoBruto = aux.Sum(x => x.sueldoBruto);
+            var totalSueldoNeto = aux.Sum(x => x.sueldoNeto);
+
+            // Crear un nuevo registro con los totales
+            DepartamentosSueldos totalRow = new DepartamentosSueldos
+            {
+                nombreDepto = "Total",
+                //year = 0,
+                //month = 0,
+                sueldoBruto = totalSueldoBruto,
+                sueldoNeto = totalSueldoNeto
+            };
+
+            //Añadir el registro de totales a la lista
+            aux.Add(totalRow);
+
+            //Asignar la lista actualizada al DataGridView
+            // Limpiar las filas existentes
+            NREPORTE_DGV_table.Rows.Clear();
+
+            // Añadir filas desde la lista aux
+            foreach (var item in aux)
+            {
+                NREPORTE_DGV_table.Rows.Add(
+                    item.nombreDepto,
+                    item.year,
+                    meses[item.month],//Mes en letras
+                    item.sueldoBruto,
+                    item.sueldoNeto
+                );
+            }
+
+            // Opcional: Cambiar el formato del renglón total (por ejemplo, en negritas)
+            var lastRowIndex = NREPORTE_DGV_table.Rows.Count - 1;
+            NREPORTE_DGV_table.Rows[lastRowIndex].DefaultCellStyle.Font = new Font(NREPORTE_DGV_table.Font, FontStyle.Bold);
+            NREPORTE_DGV_table.Columns["baseSalary"].DefaultCellStyle.Format = "C"; // Formato de moneda
+            NREPORTE_DGV_table.Columns["totalSalary"].DefaultCellStyle.Format = "C";
         }
 
         private void NReport_CB_OrderBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,7 +77,7 @@ namespace MAD_AAVD_proyecto
 
         private void NREPORT_BTN_Filter_Click(object sender, EventArgs e)
         {
-
+            Reload();
         }
 
         private void NREPORTE_DTP_date_ValueChanged(object sender, EventArgs e)

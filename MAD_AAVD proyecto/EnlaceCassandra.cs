@@ -611,5 +611,83 @@ namespace MAD_AAVD_proyecto
             return table.ToList();
 
         }
+
+        public void InserReporteNomina(List<DepartamentosSueldos> depSueldo)
+        {
+            try
+            {
+                conectar();
+                foreach (DepartamentosSueldos depto in depSueldo)
+                {
+                    string query = $"INSERT INTO departamentos_sueldos (nombreDepto, year, month, sueldoBruto, sueldoNeto)" +
+                      $" VALUES('{depto.nombreDepto}', {depto.year}, {depto.month}, {depto.sueldoBruto}, {depto.sueldoNeto});";
+                    
+                    _session.Execute(query);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public List<DepartamentosSueldos> GetReporteNomina(int year)
+        {
+            string query;
+            query = $"SELECT nombreDepto, year, month, sueldoBruto, sueldoNeto FROM departamentos_sueldos WHERE year = {year};";
+           
+
+            conectar();
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<DepartamentosSueldos> table = mapper.Fetch<DepartamentosSueldos>(query);
+
+            desconectar();
+            return table.ToList();
+
+        }
+
+        public void InsertHeadcounter(List<Headcounter> headcounter, int month)
+        {
+            try
+            {
+                conectar();
+                foreach (Headcounter hc in headcounter)
+                {
+                    string query = "UPDATE HEADCOUNTER SET cantEmpMes = cantEmpMes + {"+ month + ":" + hc.cantEmpMes[(byte)month] + "} WHERE " +
+                        $"departamento = '{hc.departamento}' AND puesto = '{hc.puesto}' AND year = {hc.year};";
+
+                    _session.Execute(query);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public List<DepartamentosSueldos> GetHeadcounter(DateTime fecha)
+        {
+            string query;
+            query = $"SELECT nombreDepto, year, month, sueldoBruto, sueldoNeto FROM departamentos_sueldos WHERE year = {year};";
+
+
+            conectar();
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<DepartamentosSueldos> table = mapper.Fetch<DepartamentosSueldos>(query);
+
+            desconectar();
+            return table.ToList();
+
+        }
     }
 }
