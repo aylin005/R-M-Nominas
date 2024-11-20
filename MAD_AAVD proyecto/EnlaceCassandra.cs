@@ -401,7 +401,7 @@ namespace MAD_AAVD_proyecto
                 foreach (var registro in empleados)
                 {
                     // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
-                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, curp, salarioDiario, banco, noCuenta " +
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, curp, salarioDiario, banco, noCuenta, fechaNacimiento " +
                         $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
 
                     Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MAD_AAVD_proyecto.Globals;
+using CsvHelper;
 
 namespace MAD_AAVD_proyecto
 {
@@ -112,7 +113,7 @@ namespace MAD_AAVD_proyecto
 
             if (aplicarEmp)
             {
-                if (noEmp != null)
+                if (noEmp != null || noEmp == "")
                 {
                     //EnlaceCassandra.conectar();
                     CONCEPAPLICAR_LBL_Loading.Visible = true;
@@ -261,6 +262,7 @@ namespace MAD_AAVD_proyecto
 
                 //3. Insertar en recibo
                 linkCassandra.InsertRecibo(empleado, concepto, fecha);
+                MessageBox.Show("Insertado con éxito");
             }
             
         }

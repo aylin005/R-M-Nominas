@@ -113,7 +113,7 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     PUESTOS_LBL_Loading.Visible= true;
-                    linkCassandra.Delete("PUESTOS", columnas, noPuesto);
+                    linkCassandra.Delete("PUESTOS", primaryKey, noPuesto);
                     Reload();
                     PUESTOS_LBL_Loading.Visible = false;
                 }

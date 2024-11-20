@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography; //PARA HASH
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 using static MAD_AAVD_proyecto.Globals; //Agregar a cada archivo para no tener que escribir Globals.
 
@@ -129,9 +130,10 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_Puesto.DisplayMember = "nombrePuesto";
                 EMP_CB_Puesto.ValueMember = "noPuesto";
 
-                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
-                EMP_DGV_Empleados.DataSource = tabla;
-                HideUnnecessaryColumns();
+                updateTable();
+                //List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
+                //EMP_DGV_Empleados.DataSource = tabla;
+                //HideUnnecessaryColumns();
                 //EnlaceCassandra.desconectar();
             }
         }
@@ -163,11 +165,11 @@ namespace MAD_AAVD_proyecto
                     EMP_LBL_Loading.Visible = true;
 
                     var linkCassandra = new EnlaceCassandra();
-                    string[] columnas = { "fechaBaja" };
+                    string[] columnas = { "fechaBaja", "fechaInicio" };
                     Empleados lastPuesto = linkCassandra.LastPuesto<Empleados>(columnas, edit_noEmp.ToString());
                     if (lastPuesto.fechaBaja == null)
                     {
-                        loadDatosEmpleado(edit_noEmp, fechaInicio);
+                        loadDatosEmpleado(edit_noEmp, lastPuesto.fechaInicio.ToString());
 
                         edit_Emp = true; //para que cuando registre se haga un update en vez de un insert
                         EMP_LBL_Edit.Text = "EDITANDO EMPLEADO " + edit_noEmp.ToString();
@@ -220,16 +222,22 @@ namespace MAD_AAVD_proyecto
                 DateTime fecha = EMP_DTP_Fecha.Value;
 
                 //Detectar si ya es hash******
-                //CONVERTIR CONTRASEÑA A HASH
                 string hashPassword;
-                using (SHA256 sha256Hash = SHA256.Create())
+                if (!IsSHA256Hash(contrasena)) //Si no es
                 {
-                    string hash = GetHash(sha256Hash, contrasena);
-                    hashPassword = hash;
-                    Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
+                    //CONVERTIR CONTRASEÑA A HASH
+                    using (SHA256 sha256Hash = SHA256.Create())
+                    {
+                        string hash = GetHash(sha256Hash, contrasena);
+                        hashPassword = hash;
+                        Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
+                    }
+                    hashPassword = $"'{hashPassword}'";
                 }
-                hashPassword = $"'{hashPassword}'";
-
+                else // si ya es hash la deja igual
+                {
+                    hashPassword = $"'{contrasena}'";
+                }
 
                 if (DB_SQLServer)
                 {
@@ -292,8 +300,8 @@ namespace MAD_AAVD_proyecto
                         }
                         else
                         {
-                            continueRegister = false;
-                            MessageBox.Show("No se puede hacer el cambio de puesto que seleccionó");
+                            continueRegister = true;
+                            
                         }
                     }
 
@@ -335,6 +343,7 @@ namespace MAD_AAVD_proyecto
                         string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos,"TRUE", auxFechaInicio };
 
                         linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
+                        MessageBox.Show("Se insertó con éxito", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearAll();
                         Reload();
                         EMP_LBL_Loading.Visible = false;
@@ -446,18 +455,39 @@ namespace MAD_AAVD_proyecto
             }
             else if (DB_Cassandra)
             {
-                var linkCassandra = new EnlaceCassandra();
-                string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
-                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
-
-                EMP_DGV_Empleados.DataSource = tabla;
+                updateTable();
+                //EMP_DGV_Empleados.DataSource = tabla;
 
                 // Ocultar columnas no necesarias
-                HideUnnecessaryColumns();
+                //HideUnnecessaryColumns();
             }
 
         }
+        public void updateTable()
+        {
+            var linkCassandra = new EnlaceCassandra();
+            string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
+            //List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
+            List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
 
+            EMP_DGV_Empleados.Rows.Clear();
+            foreach (var item in tabla)
+            {
+                string formattedDateInicio = new DateTime(item.fechaInicio.Year, item.fechaInicio.Month, item.fechaInicio.Day)
+                .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                string formattedDateIngreso = new DateTime(item.fechaIngreso.Year, item.fechaIngreso.Month, item.fechaIngreso.Day)
+                .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                EMP_DGV_Empleados.Rows.Add(
+                    item.noEmpleado,
+                    $"{item.nombres} {item.apPaterno} {item.apMaterno}",
+                    item.departamento,
+                    item.puesto,
+                    formattedDateInicio,
+                    formattedDateIngreso
+                    );
+            }
+        }
         public static string GetHash(HashAlgorithm hashAlgorithm, string input)
         {
             byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
@@ -471,8 +501,8 @@ namespace MAD_AAVD_proyecto
 
         private void EMP_BTN_Baja_Click(object sender, EventArgs e)
         {
-            edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["noEmpleado"].Value.ToString());
-            string fechaInicio = $"'{EMP_DGV_Empleados.CurrentRow.Cells["fechaInicio"].Value.ToString()}'";
+            edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["NoEmpleado"].Value.ToString());
+            string fechaInicio = $"'{EMP_DGV_Empleados.CurrentRow.Cells["FechaInicio"].Value.ToString()}'";
 
             if (DB_SQLServer)
             {
@@ -487,7 +517,7 @@ namespace MAD_AAVD_proyecto
                 Empleados lastPuesto = linkCassandra.LastPuesto<Empleados>(columnas, edit_noEmp.ToString());
                 if(lastPuesto.fechaBaja == null)
                 {
-                    loadDatosEmpleado(edit_noEmp, fechaInicio);
+                    loadDatosEmpleado(edit_noEmp, lastPuesto.fechaInicio.ToString());
                     baja_Emp = true; //para que cuando registre se haga un update en vez de un insert
                     EMP_LBL_Edit.Text = "DAR DE BAJA EMPLEADO " + edit_noEmp.ToString();
                     EMP_LBL_Edit.Visible = true;
@@ -505,7 +535,7 @@ namespace MAD_AAVD_proyecto
 
         private void loadDatosEmpleado( int noEmpleado, string fechaInicio)
         {
-
+            fechaInicio = $"'{fechaInicio}'";
             var linkCassandra = new EnlaceCassandra();
 
             string[] pkValues = { edit_noEmp.ToString(), fechaInicio };
@@ -545,6 +575,51 @@ namespace MAD_AAVD_proyecto
 
             EMP_TB_Contrasena.Text = empleado.contrasena;
 
+        }
+
+        public bool IsSHA256Hash(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return false;
+
+            // Verificar que tenga exactamente 64 caracteres y sean hexadecimales
+            return Regex.IsMatch(input, @"\A\b[0-9a-fA-F]{64}\b\Z");
+        }
+
+        private void EMP_TB_NoCuenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y teclas de control como Backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela el evento para caracteres no permitidos
+            }
+        }
+
+        private void EMP_TB_Tel1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y teclas de control como Backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela el evento para caracteres no permitidos
+            }
+        }
+
+        private void EMP_TB_Tel2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y teclas de control como Backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela el evento para caracteres no permitidos
+            }
+        }
+
+        private void EMP_TB_Cp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y teclas de control como Backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela el evento para caracteres no permitidos
+            }
         }
     }
 }

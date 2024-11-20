@@ -61,7 +61,19 @@ namespace MAD_AAVD_proyecto
 
                 string[] columnas = { "noConcepto", "nombreConcepto", "cuota", "porcentaje", "fijo", "percepcion" };
                 List<Conceptos> tabla = linkCassandra.Get_All<Conceptos>(columnas, "CONCEPTOS");
-                ADMIN_DGV_Conceptos.DataSource = tabla;
+                ADMIN_DGV_Conceptos.Rows.Clear();
+                foreach (var item in tabla)
+                {
+                    ADMIN_DGV_Conceptos.Rows.Add(
+                        item.noConcepto,
+                        item.nombreConcepto,
+                        item.cuota,
+                        item.porcentaje,
+                        item.fijo,
+                        item.percepcion
+                        );
+                }
+                //ADMIN_DGV_Conceptos.DataSource = tabla;
                 ADMIN_DGV_Conceptos.Columns["noConcepto"].Visible = false;
 
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";

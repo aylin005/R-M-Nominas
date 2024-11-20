@@ -5,10 +5,13 @@ using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CsvHelper;
 
 namespace MAD_AAVD_proyecto
 {
@@ -34,7 +37,7 @@ namespace MAD_AAVD_proyecto
             GREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.White;
             GREPORTE_DGV_table.DefaultCellStyle.BackColor = Color.Black;
             GREPORTE_DGV_table.Rows.Clear();
-
+            GREPORTE_DGV_table.Columns["salaryResult"].DefaultCellStyle.Format = "C"; // Formato de moneda
 
             //Agregar columna cantidad a depositar ?
         }
@@ -111,6 +114,8 @@ namespace MAD_AAVD_proyecto
             List<DepartamentosSueldos> auxDepSueldos = new List<DepartamentosSueldos>(); //Lista aux para la tabla de departamentosSueldos
             //Por cada empleado se va a ir sumando en ese departamento en esa fecha
 
+            List<GenerarNomina> generarNomina = new List<GenerarNomina>();//Para tabla que se muestra en pantalla
+
             //Insertar en recibos (Por cada uno)
             foreach (Empleados emp in empleados)
             {
@@ -144,13 +149,42 @@ namespace MAD_AAVD_proyecto
                 linkCassandra.cerrarRecibo(emp, fecha, diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalConLetra);
                 //Insertar datos en el DGV
                 string nombreCompleto = $"{emp.nombres} {emp.apPaterno} {emp.apMaterno}";
-                GREPORTE_DGV_table.Rows.Add(emp.noEmpleado, nombreCompleto, auxFin.ToShortDateString(), total, emp.banco, emp.noCuenta);
+                
+                //Se agrega a la lista para mostrar en la tabla
+                GenerarNomina empAux = new GenerarNomina(emp.noEmpleado, nombreCompleto, auxFin.ToString("yyyy/MMM/dd"), total, emp.banco, emp.noCuenta.ToString());
+                generarNomina.Add(empAux);
+                GREPORTE_DGV_table.Rows.Add(emp.noEmpleado, nombreCompleto, auxFin.ToString("yyyy/MMM/dd"), total, emp.banco, emp.noCuenta.ToString());
 
                 //Se agrega a la lista auxiliar
                 DepartamentosSueldos aux = new DepartamentosSueldos(emp.departamento, fecha.Year, fecha.Month, sueldoBruto, total);
                 auxDepSueldos.Add(aux);
             }
+            //Mostrar datos en la tabla de la pantalla
+            //GREPORTE_DGV_table.DataSource = generarNomina;
+
             MessageBox.Show("Nómina generada exitosamente", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //Generar CSV
+            string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+            string folderPath = Path.Combine(projectPath, "Nóminas");
+
+            // Crear la carpeta si no existe
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            string filePath = Path.Combine(folderPath, $"Nómina_{auxFin:yyyy-MM-dd}.csv");
+
+            using (var writer = new StreamWriter(filePath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(generarNomina);
+            }
+
+            MessageBox.Show($"Se generó con éxito el archivo CSV. Archivo guardado en: {filePath}");
+            //MessageBox.Show("Se generó con éxito el archivo CSV", "ÉXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             //Guardar registro de la nomina generada
             string[] auxPrimaryKey = { "year", "month" }; string[] auxPkValues = { $"{fecha.Year}", $"{fecha.Month}" };
             string[] columns = { }; string[] values = { }; //Vacias porque no se necesitan

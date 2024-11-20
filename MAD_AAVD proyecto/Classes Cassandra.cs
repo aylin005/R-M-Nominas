@@ -133,5 +133,27 @@ namespace MAD_AAVD_proyecto
         public Int16 year { get; set; }
         public Dictionary<short, short> cantEmpMes {  get; set; }
     }
+
+    public class GenerarNomina
+    {
+        public int noEmpleado { get; set; }
+        public string nombre { get; set; }
+        public string fecha { get; set; }
+        public decimal cantidad { get; set; }
+        public string banco { get; set; }
+        public string noCuenta { get; set; }
+
+        public GenerarNomina() { }
+        public GenerarNomina(int pnoEmp, string pnombre, string pfecha, decimal pcantidad, string pbanco, string pnoCuenta) 
+        {
+            noEmpleado = pnoEmp;
+            nombre = pnombre;
+            fecha = pfecha;
+            cantidad = pcantidad;
+            banco = pbanco;
+            noCuenta = pnoCuenta;
+
+        }
+    }
     
 }

@@ -111,6 +111,12 @@
             this.EMP_TB_Municipio = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.EMP_TB_Estado = new System.Windows.Forms.TextBox();
+            this.NoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel16.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EMP_DGV_Empleados)).BeginInit();
@@ -618,6 +624,7 @@
             this.EMP_TB_Cp.Name = "EMP_TB_Cp";
             this.EMP_TB_Cp.Size = new System.Drawing.Size(219, 25);
             this.EMP_TB_Cp.TabIndex = 25;
+            this.EMP_TB_Cp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EMP_TB_Cp_KeyPress);
             // 
             // panel12
             // 
@@ -661,6 +668,7 @@
             this.EMP_TB_Tel1.Name = "EMP_TB_Tel1";
             this.EMP_TB_Tel1.Size = new System.Drawing.Size(219, 25);
             this.EMP_TB_Tel1.TabIndex = 33;
+            this.EMP_TB_Tel1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EMP_TB_Tel1_KeyPress);
             // 
             // EMP_TB_Email
             // 
@@ -687,6 +695,7 @@
             this.EMP_TB_NoCuenta.Name = "EMP_TB_NoCuenta";
             this.EMP_TB_NoCuenta.Size = new System.Drawing.Size(221, 25);
             this.EMP_TB_NoCuenta.TabIndex = 29;
+            this.EMP_TB_NoCuenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EMP_TB_NoCuenta_KeyPress);
             // 
             // panel15
             // 
@@ -804,6 +813,7 @@
             this.EMP_TB_Tel2.Name = "EMP_TB_Tel2";
             this.EMP_TB_Tel2.Size = new System.Drawing.Size(221, 25);
             this.EMP_TB_Tel2.TabIndex = 35;
+            this.EMP_TB_Tel2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EMP_TB_Tel2_KeyPress);
             // 
             // panel20
             // 
@@ -905,11 +915,17 @@
             // 
             this.EMP_DGV_Empleados.AllowUserToAddRows = false;
             this.EMP_DGV_Empleados.AllowUserToDeleteRows = false;
-            this.EMP_DGV_Empleados.AllowUserToOrderColumns = true;
             this.EMP_DGV_Empleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.EMP_DGV_Empleados.BackgroundColor = System.Drawing.Color.Black;
             this.EMP_DGV_Empleados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_DGV_Empleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EMP_DGV_Empleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NoEmpleado,
+            this.Nombre,
+            this.Departamento,
+            this.Puesto,
+            this.FechaInicio,
+            this.FechaIngreso});
             this.EMP_DGV_Empleados.GridColor = System.Drawing.Color.DodgerBlue;
             this.EMP_DGV_Empleados.Location = new System.Drawing.Point(0, 613);
             this.EMP_DGV_Empleados.Margin = new System.Windows.Forms.Padding(4);
@@ -1134,6 +1150,52 @@
             this.EMP_TB_Estado.Size = new System.Drawing.Size(219, 25);
             this.EMP_TB_Estado.TabIndex = 17;
             // 
+            // NoEmpleado
+            // 
+            this.NoEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.NoEmpleado.HeaderText = "No Empleado";
+            this.NoEmpleado.MinimumWidth = 6;
+            this.NoEmpleado.Name = "NoEmpleado";
+            this.NoEmpleado.ReadOnly = true;
+            this.NoEmpleado.Width = 120;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 85;
+            // 
+            // Departamento
+            // 
+            this.Departamento.HeaderText = "Departamento";
+            this.Departamento.MinimumWidth = 6;
+            this.Departamento.Name = "Departamento";
+            this.Departamento.ReadOnly = true;
+            // 
+            // Puesto
+            // 
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.MinimumWidth = 6;
+            this.Puesto.Name = "Puesto";
+            this.Puesto.ReadOnly = true;
+            // 
+            // FechaInicio
+            // 
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.MinimumWidth = 6;
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaIngreso
+            // 
+            this.FechaIngreso.HeaderText = "Fecha Ingreso";
+            this.FechaIngreso.MinimumWidth = 6;
+            this.FechaIngreso.Name = "FechaIngreso";
+            this.FechaIngreso.ReadOnly = true;
+            // 
             // FormGestionEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1319,5 +1381,11 @@
         private System.Windows.Forms.TextBox EMP_TB_Municipio;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.TextBox EMP_TB_Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Departamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaIngreso;
     }
 }
