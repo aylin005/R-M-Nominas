@@ -33,6 +33,12 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.HDCOUNTER_FilterOptions = new System.Windows.Forms.Panel();
+            this.HDCOUNTER_Filter = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.HDCOUNTER_CB_Departamento = new System.Windows.Forms.ComboBox();
+            this.HDCOUNTER_DTP_Date = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.ADMIN_DGV_PuestoCant = new System.Windows.Forms.DataGridView();
             this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,17 +48,11 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.HDCOUNTER_DTP_Date = new System.Windows.Forms.DateTimePicker();
-            this.HDCOUNTER_CB_orderOption = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.HDCOUNTER_Filter = new System.Windows.Forms.Button();
-            this.HDCOUNTER_FilterOptions = new System.Windows.Forms.Panel();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.HDCOUNTER_FilterOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).BeginInit();
-            this.HDCOUNTER_FilterOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // HDCOUNTER_Title
@@ -83,7 +83,7 @@
             this.panel5.Controls.Add(this.panel1);
             this.panel5.Controls.Add(this.HDCOUNTER_FilterOptions);
             this.panel5.Location = new System.Drawing.Point(1, 114);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1309, 76);
             this.panel5.TabIndex = 46;
@@ -109,8 +109,97 @@
             this.panel3.Size = new System.Drawing.Size(1309, 4);
             this.panel3.TabIndex = 40;
             // 
+            // HDCOUNTER_FilterOptions
+            // 
+            this.HDCOUNTER_FilterOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
+            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_Filter);
+            this.HDCOUNTER_FilterOptions.Controls.Add(this.label1);
+            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_CB_Departamento);
+            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_DTP_Date);
+            this.HDCOUNTER_FilterOptions.Controls.Add(this.label5);
+            this.HDCOUNTER_FilterOptions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HDCOUNTER_FilterOptions.Location = new System.Drawing.Point(0, 0);
+            this.HDCOUNTER_FilterOptions.Margin = new System.Windows.Forms.Padding(4);
+            this.HDCOUNTER_FilterOptions.Name = "HDCOUNTER_FilterOptions";
+            this.HDCOUNTER_FilterOptions.Size = new System.Drawing.Size(1309, 87);
+            this.HDCOUNTER_FilterOptions.TabIndex = 47;
+            // 
+            // HDCOUNTER_Filter
+            // 
+            this.HDCOUNTER_Filter.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.HDCOUNTER_Filter.FlatAppearance.BorderSize = 0;
+            this.HDCOUNTER_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HDCOUNTER_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HDCOUNTER_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.HDCOUNTER_Filter.Location = new System.Drawing.Point(887, 18);
+            this.HDCOUNTER_Filter.Margin = new System.Windows.Forms.Padding(4);
+            this.HDCOUNTER_Filter.Name = "HDCOUNTER_Filter";
+            this.HDCOUNTER_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.HDCOUNTER_Filter.Size = new System.Drawing.Size(151, 38);
+            this.HDCOUNTER_Filter.TabIndex = 69;
+            this.HDCOUNTER_Filter.Text = "Filtrar";
+            this.HDCOUNTER_Filter.UseVisualStyleBackColor = false;
+            this.HDCOUNTER_Filter.Click += new System.EventHandler(this.HDCOUNTER_Filter_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.LightBlue;
+            this.label1.Location = new System.Drawing.Point(468, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 20);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "Departamento: ";
+            // 
+            // HDCOUNTER_CB_Departamento
+            // 
+            this.HDCOUNTER_CB_Departamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
+            this.HDCOUNTER_CB_Departamento.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.HDCOUNTER_CB_Departamento.FormattingEnabled = true;
+            this.HDCOUNTER_CB_Departamento.Items.AddRange(new object[] {
+            "Todos",
+            "Desarrollo",
+            "Contabilidad",
+            "Seguridad",
+            "TI"});
+            this.HDCOUNTER_CB_Departamento.Location = new System.Drawing.Point(627, 22);
+            this.HDCOUNTER_CB_Departamento.Margin = new System.Windows.Forms.Padding(4);
+            this.HDCOUNTER_CB_Departamento.Name = "HDCOUNTER_CB_Departamento";
+            this.HDCOUNTER_CB_Departamento.Size = new System.Drawing.Size(231, 24);
+            this.HDCOUNTER_CB_Departamento.TabIndex = 54;
+            this.HDCOUNTER_CB_Departamento.SelectedIndexChanged += new System.EventHandler(this.HDCOUNTER_CB_orderOption_SelectedIndexChanged);
+            // 
+            // HDCOUNTER_DTP_Date
+            // 
+            this.HDCOUNTER_DTP_Date.CustomFormat = "MMM/yyyy";
+            this.HDCOUNTER_DTP_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(317, 23);
+            this.HDCOUNTER_DTP_Date.Margin = new System.Windows.Forms.Padding(4);
+            this.HDCOUNTER_DTP_Date.Name = "HDCOUNTER_DTP_Date";
+            this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(121, 22);
+            this.HDCOUNTER_DTP_Date.TabIndex = 6;
+            this.HDCOUNTER_DTP_Date.ValueChanged += new System.EventHandler(this.HDCOUNTER_DTP_Date_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.LightBlue;
+            this.label5.Location = new System.Drawing.Point(215, 26);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 20);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Mes/año:";
+            // 
             // ADMIN_DGV_PuestoCant
             // 
+            this.ADMIN_DGV_PuestoCant.AllowUserToAddRows = false;
+            this.ADMIN_DGV_PuestoCant.AllowUserToDeleteRows = false;
             this.ADMIN_DGV_PuestoCant.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ADMIN_DGV_PuestoCant.BackgroundColor = System.Drawing.Color.Black;
             this.ADMIN_DGV_PuestoCant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -120,8 +209,9 @@
             this.CantPuesto});
             this.ADMIN_DGV_PuestoCant.GridColor = System.Drawing.SystemColors.MenuHighlight;
             this.ADMIN_DGV_PuestoCant.Location = new System.Drawing.Point(39, 206);
-            this.ADMIN_DGV_PuestoCant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ADMIN_DGV_PuestoCant.Margin = new System.Windows.Forms.Padding(4);
             this.ADMIN_DGV_PuestoCant.Name = "ADMIN_DGV_PuestoCant";
+            this.ADMIN_DGV_PuestoCant.ReadOnly = true;
             this.ADMIN_DGV_PuestoCant.RowHeadersWidth = 51;
             this.ADMIN_DGV_PuestoCant.Size = new System.Drawing.Size(1197, 388);
             this.ADMIN_DGV_PuestoCant.TabIndex = 47;
@@ -163,6 +253,8 @@
             // 
             // ADMIN_DGV_DepartamentoCant
             // 
+            this.ADMIN_DGV_DepartamentoCant.AllowUserToAddRows = false;
+            this.ADMIN_DGV_DepartamentoCant.AllowUserToDeleteRows = false;
             this.ADMIN_DGV_DepartamentoCant.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ADMIN_DGV_DepartamentoCant.BackgroundColor = System.Drawing.Color.Black;
             this.ADMIN_DGV_DepartamentoCant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -171,8 +263,9 @@
             this.dataGridViewTextBoxColumn2});
             this.ADMIN_DGV_DepartamentoCant.GridColor = System.Drawing.SystemColors.MenuHighlight;
             this.ADMIN_DGV_DepartamentoCant.Location = new System.Drawing.Point(39, 623);
-            this.ADMIN_DGV_DepartamentoCant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ADMIN_DGV_DepartamentoCant.Margin = new System.Windows.Forms.Padding(4);
             this.ADMIN_DGV_DepartamentoCant.Name = "ADMIN_DGV_DepartamentoCant";
+            this.ADMIN_DGV_DepartamentoCant.ReadOnly = true;
             this.ADMIN_DGV_DepartamentoCant.RowHeadersWidth = 51;
             this.ADMIN_DGV_DepartamentoCant.Size = new System.Drawing.Size(1197, 236);
             this.ADMIN_DGV_DepartamentoCant.TabIndex = 48;
@@ -190,6 +283,7 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad de empleados";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // panel6
             // 
@@ -200,92 +294,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1309, 4);
             this.panel6.TabIndex = 40;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.LightBlue;
-            this.label5.Location = new System.Drawing.Point(215, 26);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Mes/año:";
-            // 
-            // HDCOUNTER_DTP_Date
-            // 
-            this.HDCOUNTER_DTP_Date.CustomFormat = "MMM/yyyy";
-            this.HDCOUNTER_DTP_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HDCOUNTER_DTP_Date.Location = new System.Drawing.Point(317, 23);
-            this.HDCOUNTER_DTP_Date.Margin = new System.Windows.Forms.Padding(4);
-            this.HDCOUNTER_DTP_Date.Name = "HDCOUNTER_DTP_Date";
-            this.HDCOUNTER_DTP_Date.Size = new System.Drawing.Size(121, 22);
-            this.HDCOUNTER_DTP_Date.TabIndex = 6;
-            this.HDCOUNTER_DTP_Date.ValueChanged += new System.EventHandler(this.HDCOUNTER_DTP_Date_ValueChanged);
-            // 
-            // HDCOUNTER_CB_orderOption
-            // 
-            this.HDCOUNTER_CB_orderOption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.HDCOUNTER_CB_orderOption.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.HDCOUNTER_CB_orderOption.FormattingEnabled = true;
-            this.HDCOUNTER_CB_orderOption.Items.AddRange(new object[] {
-            "Todos",
-            "Desarrollo",
-            "Contabilidad",
-            "Seguridad",
-            "TI"});
-            this.HDCOUNTER_CB_orderOption.Location = new System.Drawing.Point(627, 22);
-            this.HDCOUNTER_CB_orderOption.Margin = new System.Windows.Forms.Padding(4);
-            this.HDCOUNTER_CB_orderOption.Name = "HDCOUNTER_CB_orderOption";
-            this.HDCOUNTER_CB_orderOption.Size = new System.Drawing.Size(231, 24);
-            this.HDCOUNTER_CB_orderOption.TabIndex = 54;
-            this.HDCOUNTER_CB_orderOption.SelectedIndexChanged += new System.EventHandler(this.HDCOUNTER_CB_orderOption_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.LightBlue;
-            this.label1.Location = new System.Drawing.Point(468, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 20);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "Departamento: ";
-            // 
-            // HDCOUNTER_Filter
-            // 
-            this.HDCOUNTER_Filter.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.HDCOUNTER_Filter.FlatAppearance.BorderSize = 0;
-            this.HDCOUNTER_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HDCOUNTER_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HDCOUNTER_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.HDCOUNTER_Filter.Location = new System.Drawing.Point(887, 18);
-            this.HDCOUNTER_Filter.Margin = new System.Windows.Forms.Padding(4);
-            this.HDCOUNTER_Filter.Name = "HDCOUNTER_Filter";
-            this.HDCOUNTER_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.HDCOUNTER_Filter.Size = new System.Drawing.Size(151, 38);
-            this.HDCOUNTER_Filter.TabIndex = 69;
-            this.HDCOUNTER_Filter.Text = "Filtrar";
-            this.HDCOUNTER_Filter.UseVisualStyleBackColor = false;
-            // 
-            // HDCOUNTER_FilterOptions
-            // 
-            this.HDCOUNTER_FilterOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_Filter);
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.label1);
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_CB_orderOption);
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.HDCOUNTER_DTP_Date);
-            this.HDCOUNTER_FilterOptions.Controls.Add(this.label5);
-            this.HDCOUNTER_FilterOptions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.HDCOUNTER_FilterOptions.Location = new System.Drawing.Point(0, 0);
-            this.HDCOUNTER_FilterOptions.Margin = new System.Windows.Forms.Padding(4);
-            this.HDCOUNTER_FilterOptions.Name = "HDCOUNTER_FilterOptions";
-            this.HDCOUNTER_FilterOptions.Size = new System.Drawing.Size(1309, 87);
-            this.HDCOUNTER_FilterOptions.TabIndex = 47;
             // 
             // FormHeadCounter
             // 
@@ -302,16 +310,16 @@
             this.Controls.Add(this.HDCOUNTER_Title);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormHeadCounter";
             this.Text = "FormHeadCounter";
             this.Load += new System.EventHandler(this.FormHeadCounter_Load);
             this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).EndInit();
             this.HDCOUNTER_FilterOptions.ResumeLayout(false);
             this.HDCOUNTER_FilterOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,7 +344,7 @@
         private System.Windows.Forms.Panel HDCOUNTER_FilterOptions;
         private System.Windows.Forms.Button HDCOUNTER_Filter;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox HDCOUNTER_CB_orderOption;
+        private System.Windows.Forms.ComboBox HDCOUNTER_CB_Departamento;
         private System.Windows.Forms.DateTimePicker HDCOUNTER_DTP_Date;
         private System.Windows.Forms.Label label5;
     }

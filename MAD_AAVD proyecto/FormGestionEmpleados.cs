@@ -114,25 +114,25 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_Municipio.Visible = false;
 
                 var linkCassandra = new EnlaceCassandra();
-                EnlaceCassandra.conectar();
+                //EnlaceCassandra.conectar();
                 //COMBOBOX DEPARTAMENTOS
                 string[] columnasDepto = { "noDepto", "nombreDpto"};
-                List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS", false);
+                List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
                 EMP_CB_Departamento.DataSource = listaDepartamentos;
                 EMP_CB_Departamento.DisplayMember = "nombreDpto";
                 EMP_CB_Departamento.ValueMember = "noDepto";
 
                 //COMBOBOX PUESTOS
                 string[] columnasPuestos = { "noPuesto", "nombrePuesto" };
-                List<Puestos> listaPuestos = linkCassandra.Get_All<Puestos>(columnasPuestos, "PUESTOS", false);
+                List<Puestos> listaPuestos = linkCassandra.Get_All<Puestos>(columnasPuestos, "PUESTOS");
                 EMP_CB_Puesto.DataSource = listaPuestos;
                 EMP_CB_Puesto.DisplayMember = "nombrePuesto";
                 EMP_CB_Puesto.ValueMember = "noPuesto";
 
-                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value, false);
+                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
                 EMP_DGV_Empleados.DataSource = tabla;
                 HideUnnecessaryColumns();
-                EnlaceCassandra.desconectar();
+                //EnlaceCassandra.desconectar();
             }
         }
 

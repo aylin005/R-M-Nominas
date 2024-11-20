@@ -205,9 +205,9 @@ namespace MAD_AAVD_proyecto
                     departamento = grupo.Departamento,
                     puesto = grupo.Puesto,
                     year = (short)year,
-                    cantEmpMes = new Dictionary<byte, short>
+                    cantEmpMes = new Dictionary<short, short>
                     {
-                        { (byte)month, (short)grupo.Cantidad } // Cantidad por mes
+                        { (short)month, (short)grupo.Cantidad } // Cantidad por mes
                     }
                 };
 
@@ -222,9 +222,9 @@ namespace MAD_AAVD_proyecto
                     departamento = grupo.Departamento,
                     puesto = "-1", // Signfica que cuenta todo el departamento
                     year = (short)year,
-                    cantEmpMes = new Dictionary<byte, short>
+                    cantEmpMes = new Dictionary<short, short>
                     {
-                        { (byte)month, (short)grupo.Cantidad } // Cantidad por mes
+                        { (short)month, (short)grupo.Cantidad } // Cantidad por mes
                     }
                 };
 
@@ -232,6 +232,7 @@ namespace MAD_AAVD_proyecto
             }
 
             //Insertar en tabla headcounter
+            linkCassandra.InsertHeadcounter(headCounter, GREPORTE_DTP_date.Value.Month);
         }
 
     }

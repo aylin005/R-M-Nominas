@@ -63,7 +63,7 @@ namespace MAD_AAVD_proyecto
                 );
             }
 
-            // Opcional: Cambiar el formato del renglón total (por ejemplo, en negritas)
+            // Renglón total en negritas
             var lastRowIndex = NREPORTE_DGV_table.Rows.Count - 1;
             NREPORTE_DGV_table.Rows[lastRowIndex].DefaultCellStyle.Font = new Font(NREPORTE_DGV_table.Font, FontStyle.Bold);
             NREPORTE_DGV_table.Columns["baseSalary"].DefaultCellStyle.Format = "C"; // Formato de moneda

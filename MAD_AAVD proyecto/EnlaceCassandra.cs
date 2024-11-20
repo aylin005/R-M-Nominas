@@ -238,10 +238,10 @@ namespace MAD_AAVD_proyecto
             {
                 if(withConectar)
                     conectar();
-                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, nombreConcepto, cantConcepto, fechaConcepto, " +
+                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, percepcion, nombreConcepto, cantConcepto, fechaConcepto, " +
                     $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp)";
 
-                query += $"VALUES(uuid(), {empleado.noEmpleado}, '{finPeriodo}', {concepto.noConcepto}, '{concepto.nombreConcepto}', {cantConcepto}, '{fechaConcepto}'," +
+                query += $"VALUES(uuid(), {empleado.noEmpleado}, '{finPeriodo}', {concepto.noConcepto}, {concepto.percepcion.ToString()},'{concepto.nombreConcepto}', {cantConcepto}, '{fechaConcepto}'," +
                     $" '{nombreEmpleado}', '{empleado.departamento}', '{empleado.puesto}', {empleado.salarioDiario}, '{empleado.banco}', '{empleado.noCuenta}', '{empleado.fechaIngreso}', " +
                     $"'{inicioPeriodo}', '{finPeriodo}', '{empleado.nss}', '{empleado.rfc}', '{empleado.curp}')";
                 IMapper mapper = new Mapper(_session);
@@ -254,7 +254,7 @@ namespace MAD_AAVD_proyecto
             }
             finally
             {
-                MessageBox.Show("Insertado exitosamente");
+                //MessageBox.Show("Insertado exitosamente");
                 if(withConectar)
                     desconectar();
             }
@@ -270,7 +270,7 @@ namespace MAD_AAVD_proyecto
             string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
 
-            string query = $"SELECT noConcepto, nombreConcepto, cantConcepto FROM RECIBOS " +
+            string query = $"SELECT noConcepto, nombreConcepto, cantConcepto, percepcion FROM RECIBOS " +
                 $"WHERE noEmpleado = {noEmp} AND mesRecibo = '{date1}';";
             if(withConectar)
                 conectar();
@@ -280,7 +280,7 @@ namespace MAD_AAVD_proyecto
             if(withConectar)
                 desconectar();
 
-            return finalList.ToList(); // Guarda el último puesto de cada empleado para la fecha seleccionada
+            return finalList.ToList();
         }
         public void Delete(string nombreTabla, string [] columnas, int noID)
         {
@@ -366,7 +366,7 @@ namespace MAD_AAVD_proyecto
                 query += columna + ", ";
             }
             query = query.Remove(query.Length - 2);
-            query += " FROM RECIBOS WHERE noEmpleado = " + noEmp + " mesRecibo>= '" + date1 + "' AND mesRecibo < '" + date2 + "' ALLOW FILTERING;";
+            query += " FROM RECIBOS WHERE noEmpleado = " + noEmp + " AND mesRecibo>= '" + date1 + "' AND mesRecibo < '" + date2 + "' ALLOW FILTERING;";
             conectar();
 
             IMapper mapper = new Mapper(_session);
@@ -471,13 +471,13 @@ namespace MAD_AAVD_proyecto
             {
                 if (withConectar)
                     conectar();
-                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, nombreConcepto, cantConcepto, fechaConcepto, " +
+                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, percepcion, nombreConcepto, cantConcepto, fechaConcepto, " +
                     $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp" +
                     $",diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalLetra, generado)";
 
-                query += $"VALUES(uuid(), {emp.noEmpleado}, '{finPeriodo}', 0, 'SALARIO', {sueldoBruto}, '{fechaConcepto}'," +
+                query += $"VALUES(uuid(), {emp.noEmpleado}, '{finPeriodo}', 0, TRUE, 'SALARIO', {sueldoBruto}, '{fechaConcepto}'," +
                     $" '{nombreEmpleado}', '{emp.departamento}', '{emp.puesto}', {emp.salarioDiario}, '{emp.banco}', '{emp.noCuenta}', '{emp.fechaIngreso}', " +
-                    $"'{inicioPeriodo}', '{finPeriodo}', '{emp.nss}', '{emp.rfc}', '{emp.curp}', {diasTrabajados}, {sueldoBruto}, {totalP}, {totalD}," +
+                    $"'{inicioPeriodo}', '{finPeriodo}', '{emp.nss}', '{emp.rfc}', '{emp.curp}', {diasTrabajados}, {sueldoBruto}, {totalP + sueldoBruto}, {totalD}," +
                     $"{total}, '{totalLetra}', TRUE)";
                 IMapper mapper = new Mapper(_session);
 
@@ -674,20 +674,25 @@ namespace MAD_AAVD_proyecto
             }
         }
 
-        public List<DepartamentosSueldos> GetHeadcounter(DateTime fecha)
+        public List<Headcounter> GetHeadcounter(DateTime fecha, string departamento)
         {
             string query;
-            query = $"SELECT nombreDepto, year, month, sueldoBruto, sueldoNeto FROM departamentos_sueldos WHERE year = {year};";
+
+            if(departamento != "TODOS") //Trae cierto departamento
+                query = $"SELECT departamento, year, puesto, cantEmpMes FROM HEADCOUNTER " +
+                    $"WHERE departamento = '{departamento}' AND year = {fecha.Year} ALLOW FILTERING;";
+            else //Trae todos los departamentos
+                query = "SELECT departamento, year, puesto, cantEmpMes FROM HEADCOUNTER " +
+                    $"WHERE year = {fecha.Year} ALLOW FILTERING";
 
 
             conectar();
 
             IMapper mapper = new Mapper(_session);
-            IEnumerable<DepartamentosSueldos> table = mapper.Fetch<DepartamentosSueldos>(query);
+            IEnumerable<Headcounter> table = mapper.Fetch<Headcounter>(query);
 
             desconectar();
             return table.ToList();
-
         }
     }
 }

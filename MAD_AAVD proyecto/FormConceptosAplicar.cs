@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cassandra.Mapping;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -114,11 +116,60 @@ namespace MAD_AAVD_proyecto
                 {
                     //EnlaceCassandra.conectar();
                     CONCEPAPLICAR_LBL_Loading.Visible = true;
-                    //1. Obtener Empleado en el puesto activo durante esa fecha
-                    string[] columnas = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "curp", "rfc", "nss", "banco", "noCuenta", "salarioDiario", "departamento", "puesto", "fechaIngreso" };
-                    Empleados empleado = linkCassandra.LastPuesto2<Empleados>(columnas, noEmp, CONCEPAPLICAR_DTP_Fecha.Value);
 
-                    aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                    //Validar la fecha del concepto
+                    //Traer ultima nomina generada
+                    // Obtener la lista de nóminas generadas
+                    string[] primaryKey = { "year", "month" }; string[] columnas = primaryKey;
+                    List<RegistroNominas> nominasGeneradas = linkCassandra.Get_All<RegistroNominas>(columnas, "REGISTRO_NOMINAS");
+
+                    // Verificar si la lista contiene datos
+                    if (nominasGeneradas != null && nominasGeneradas.Count > 0)
+                    {
+                        // Ordenar por año y mes en orden descendente
+                        RegistroNominas ultimaNomina = nominasGeneradas
+                            .OrderByDescending(n => n.year)
+                            .ThenByDescending(n => n.month)
+                            .FirstOrDefault();
+
+                        if (ultimaNomina != null)
+                        {
+                            // Convertir el año y mes a un objeto DateTime
+                            DateTime fechaUltimaNomina = new DateTime(ultimaNomina.year, ultimaNomina.month, 1);
+
+                            // Comparar con la nueva fecha seleccionada
+                            DateTime nuevaFecha = CONCEPAPLICAR_DTP_Fecha.Value;
+                            DateTime primerDiaNuevoMes = new DateTime(nuevaFecha.Year, nuevaFecha.Month, 1);
+
+                            // Verificar si la nueva fecha es el mes siguiente de la última nómina
+                            DateTime mesSiguiente = fechaUltimaNomina.AddMonths(1);
+                            if (primerDiaNuevoMes == mesSiguiente && nuevaFecha > iniCompany) //Es válido
+                            {
+                                //1. Obtener Empleado en el puesto activo durante esa fecha
+                                string[] auxcolumnas = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "curp", "rfc", "nss", "banco", "noCuenta", "salarioDiario", "departamento", "puesto", "fechaIngreso" };
+                                Empleados empleado = linkCassandra.LastPuesto2<Empleados>(auxcolumnas, noEmp, CONCEPAPLICAR_DTP_Fecha.Value);
+
+                                aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Fecha inválida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else if(CONCEPAPLICAR_DTP_Fecha.Value > iniCompany)//Es válida
+                    {
+                        //1. Obtener Empleado en el puesto activo durante esa fecha
+                        string[] auxcolumnas = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "curp", "rfc", "nss", "banco", "noCuenta", "salarioDiario", "departamento", "puesto", "fechaIngreso" };
+                        Empleados empleado = linkCassandra.LastPuesto2<Empleados>(auxcolumnas, noEmp, CONCEPAPLICAR_DTP_Fecha.Value);
+
+                        aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                    }
+                    else//No es válida
+                    {
+                        MessageBox.Show("Fecha inválida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
                     CONCEPAPLICAR_LBL_Loading.Visible = false;
                     //EnlaceCassandra.desconectar();
                 }
@@ -131,19 +182,72 @@ namespace MAD_AAVD_proyecto
             {
                 //EnlaceCassandra.conectar();
                 CONCEPAPLICAR_LBL_Loading.Visible = true;
-                //Obtener empleados
-                //Por cada empleado llamar aplicarEmp
-                List<Empleados> empleadosDepto = linkCassandra.FilterEmpByDepto(CONCEPAPLICAR_DTP_Fecha.Value, CONCEPAPLICAR_CB_Departamentos.Text);
-                foreach(var empleado in empleadosDepto)
+
+                string[] primaryKey = { "year", "month" }; string[] columnas = primaryKey;
+                List<RegistroNominas> nominasGeneradas = linkCassandra.Get_All<RegistroNominas>(columnas, "REGISTRO_NOMINAS");
+
+                // Verificar si la lista contiene datos
+                if (nominasGeneradas != null && nominasGeneradas.Count > 0)
                 {
-                    aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                    // Ordenar por año y mes en orden descendente
+                    RegistroNominas ultimaNomina = nominasGeneradas
+                        .OrderByDescending(n => n.year)
+                        .ThenByDescending(n => n.month)
+                        .FirstOrDefault();
+
+                    if (ultimaNomina != null)
+                    {
+                        // Convertir el año y mes a un objeto DateTime
+                        DateTime fechaUltimaNomina = new DateTime(ultimaNomina.year, ultimaNomina.month, 1);
+
+                        // Comparar con la nueva fecha seleccionada
+                        DateTime nuevaFecha = CONCEPAPLICAR_DTP_Fecha.Value;
+                        DateTime primerDiaNuevoMes = new DateTime(nuevaFecha.Year, nuevaFecha.Month, 1);
+
+                        // Verificar si la nueva fecha es el mes siguiente de la última nómina
+                        DateTime mesSiguiente = fechaUltimaNomina.AddMonths(1);
+                        if (primerDiaNuevoMes == mesSiguiente && nuevaFecha > iniCompany) //Es válido
+                        {
+                            //Obtener empleados
+                            //Por cada empleado llamar aplicarEmp
+                            List<Empleados> empleadosDepto = linkCassandra.FilterEmpByDepto(CONCEPAPLICAR_DTP_Fecha.Value, CONCEPAPLICAR_CB_Departamentos.Text);
+                            foreach (var empleado in empleadosDepto)
+                            {
+                                aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                            }
+                            CONCEPAPLICAR_LBL_Loading.Visible = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fecha inválida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
+                else if (CONCEPAPLICAR_DTP_Fecha.Value > iniCompany)//Es válida
+                {
+                    //Obtener empleados
+                    //Por cada empleado llamar aplicarEmp
+                    List<Empleados> empleadosDepto = linkCassandra.FilterEmpByDepto(CONCEPAPLICAR_DTP_Fecha.Value, CONCEPAPLICAR_CB_Departamentos.Text);
+                    foreach (var empleado in empleadosDepto)
+                    {
+                        aplicarCpEmp(empleado, CONCEPAPLICAR_CB_Conceptos.SelectedValue.ToString(), CONCEPAPLICAR_DTP_Fecha.Value);
+                    }
+                    CONCEPAPLICAR_LBL_Loading.Visible = false;
+                }
+                else//No es válida
+                {
+                    MessageBox.Show("Fecha inválida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 CONCEPAPLICAR_LBL_Loading.Visible = false;
                 //EnlaceCassandra.desconectar();
             }
-        
-
+            else
+            {
+                MessageBox.Show("Seleccione un empleado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        
 
         private void aplicarCpEmp(Empleados empleado, string noConcepto, DateTime fecha)
         {
@@ -152,7 +256,8 @@ namespace MAD_AAVD_proyecto
             if (empleado != null)
             {
                 //2. Se trae el concepto a insertar de la lista que ya se trajo para hacer más rápido el proceso
-                Conceptos concepto = listaConceptos[int.Parse(noConcepto)-1]; //Índice del comboBox
+                //Conceptos concepto = listaConceptos[int.Parse(noConcepto)-1]; //Índice del comboBox
+                Conceptos concepto = listaConceptos.FirstOrDefault(c => c.noConcepto == int.Parse(noConcepto));
 
                 //3. Insertar en recibo
                 linkCassandra.InsertRecibo(empleado, concepto, fecha);

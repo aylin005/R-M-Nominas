@@ -22,6 +22,14 @@ namespace MAD_AAVD_proyecto
         public int noDepto { get; set; }
         public string nombreDpto { get; set; } 
         public float  sueldoBase { get; set; }
+
+        public Departamentos() { }
+        public Departamentos(int noDepto, string nombreDpto, float sueldoBase)
+        {
+            this.noDepto = noDepto;
+            this.nombreDpto = nombreDpto;
+            this.sueldoBase = sueldoBase;
+        }
     }
 
     public class Conceptos
@@ -66,7 +74,7 @@ namespace MAD_AAVD_proyecto
 
     public class Recibos
     {
-        public string idRecibo {  get; set; }
+        public Guid idRecibo {  get; set; }
         public int noEmpleado { get; set; }
         public Cassandra.LocalDate mesRecibo { get; set; }
         public string nombreEmpleado { get; set; }
@@ -123,7 +131,7 @@ namespace MAD_AAVD_proyecto
         public string departamento { get; set; }
         public string puesto { get; set; }
         public Int16 year { get; set; }
-        public Dictionary<byte, short> cantEmpMes {  get; set; }
+        public Dictionary<short, short> cantEmpMes {  get; set; }
     }
     
 }
