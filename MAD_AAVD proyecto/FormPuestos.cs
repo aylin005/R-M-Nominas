@@ -36,7 +36,7 @@ namespace MAD_AAVD_proyecto
             ///////////////////////////SQL///////////////////////////////////////////
             else
             {
-                if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)) || nivel <= 0)
+                if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)))
                 {
                     MessageBox.Show("(!) Ingresó un nivel salarial incorrecto");
                 }

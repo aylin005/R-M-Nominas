@@ -67,8 +67,10 @@ namespace MAD_AAVD_proyecto
                 //Activa combobox y desactiva textbox
                 EMP_TB_Estado.Visible = false;
                 EMP_TB_Municipio.Visible = false;
+                EMP_TB_Banco.Visible = false;
                 panel8.Visible = false;
                 panel9.Visible = false;
+                panel20.Visible = false;
                 EMP_CB_ESTADO.Visible = true;
                 EMP_CB_Municipio.Visible = true;
 
@@ -87,7 +89,7 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_Puesto.DisplayMember = "nombrePuesto"; 
                 EMP_CB_Puesto.ValueMember = "noPuesto";
 
-                DataTable TablaEstados = linkDB.GetEstados();
+                DataTable TablaEstados = linkDB.GetEstadosBancos(true);
                 EMP_CB_ESTADO.DataSource = TablaEstados;
                 EMP_CB_ESTADO.DisplayMember = "nombreEstado";
                 EMP_CB_ESTADO.ValueMember = "noEstado";
@@ -96,6 +98,11 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_Municipio.DataSource = TablaMunicipios;
                 EMP_CB_Municipio.DisplayMember = "nombreMunicipio";
                 EMP_CB_Municipio.ValueMember = "noMunicipio";
+
+                DataTable TablaBancos = linkDB.GetEstadosBancos(false);
+                EMP_CB_Banco.DataSource = TablaBancos;
+                EMP_CB_Banco.DisplayMember = "nombreBanco";
+                EMP_CB_Banco.ValueMember = "IDBanco";
 
                 // Falta actualizar municipios cada vez que se cambia de estado
 
@@ -201,24 +208,8 @@ namespace MAD_AAVD_proyecto
         {
             if(!baja_Emp)
             {
-                string nombres = $"'{EMP_TB_Nombres.Text}'";
-                string apPaterno = $"'{EMP_TB_ApPaterno.Text}'";
-                string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
-                string cDepartamento = $"'{EMP_CB_Departamento.Text}'";
-                string cPuesto = $"'{EMP_CB_Puesto.Text}'";
                 string contrasena = EMP_TB_Contrasena.Text; // Se guardara como HASH
                 DateTime fechaNacimiento = EMP_DTP_Nacimiento.Value;
-                string calleNo = $"'{EMP_TB_CalleNo.Text}'";
-                string colonia = $"'{EMP_TB_Colonia.Text}'";
-                string cEstado = $"'{EMP_TB_Estado.Text}'";
-                string cMunicipio = $"'{EMP_TB_Municipio.Text}'";
-                string cp = $"'{EMP_TB_Cp.Text}'";
-                string cBanco = $"'{EMP_TB_Banco.Text}'";
-                string cNoCuenta = EMP_TB_NoCuenta.Text;
-                string email = $"'{EMP_TB_Email.Text}'";
-                string curp = $"'{EMP_TB_Curp.Text}'";
-                string nss = $"'{EMP_TB_Nss.Text}'";
-                string rfc = $"'{EMP_TB_Rfc.Text}'";
                 DateTime fecha = EMP_DTP_Fecha.Value;
 
                 //Detectar si ya es hash******
@@ -232,23 +223,37 @@ namespace MAD_AAVD_proyecto
                         hashPassword = hash;
                         Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
                     }
-                    hashPassword = $"'{hashPassword}'";
+                    if(DB_Cassandra)
+                        hashPassword = $"'{hashPassword}'";//Si no es cassandra no se guarda con comillas
                 }
                 else // si ya es hash la deja igual
                 {
-                    hashPassword = $"'{contrasena}'";
+                    if (DB_Cassandra)
+                        hashPassword = $"'{contrasena}'";
+                    else
+                        hashPassword = contrasena;
                 }
 
                 if (DB_SQLServer)
                 {
-                    int banco = int.Parse(EMP_TB_Banco.Text);
-                    int estado = int.Parse(EMP_CB_ESTADO.Text);
-                    int municipio = int.Parse(EMP_CB_Municipio.Text);
-                    int departamento = int.Parse(EMP_CB_Departamento.Text);
-                    int puesto = int.Parse(EMP_CB_Puesto.Text);
+                    string nombres = EMP_TB_Nombres.Text;
+                    string apPaterno = EMP_TB_ApPaterno.Text;
+                    string apMaterno = EMP_TB_ApMaterno.Text;
+                    int banco = int.Parse(EMP_CB_Banco.SelectedValue.ToString());
+                    int estado = int.Parse(EMP_CB_ESTADO.SelectedValue.ToString());
+                    int municipio = int.Parse(EMP_CB_Municipio.SelectedValue.ToString());
+                    int departamento = int.Parse(EMP_CB_Departamento.SelectedValue.ToString());
+                    int puesto = int.Parse(EMP_CB_Puesto.SelectedValue.ToString());
+                    string calleNo = EMP_TB_CalleNo.Text;
+                    string colonia = EMP_TB_Colonia.Text;
                     Int64 tel1 = Int64.Parse(EMP_TB_Tel1.Text);
                     Int64 tel2 = Int64.Parse(EMP_TB_Tel2.Text);
                     int noCuenta = int.Parse(EMP_TB_NoCuenta.Text);
+                    string email = EMP_TB_Email.Text;
+                    string curp = EMP_TB_Curp.Text;
+                    string nss = EMP_TB_Nss.Text;
+                    string rfc = EMP_TB_Rfc.Text;
+                    string cp = EMP_TB_Cp.Text;
 
                     var linkDB = new EnlaceDB();
                     bool ok = false;
@@ -272,6 +277,23 @@ namespace MAD_AAVD_proyecto
                 }
                 else if (DB_Cassandra)
                 {
+                    string nombres = $"'{EMP_TB_Nombres.Text}'";
+                    string apPaterno = $"'{EMP_TB_ApPaterno.Text}'";
+                    string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
+                    string cDepartamento = $"'{EMP_CB_Departamento.Text}'";
+                    string cPuesto = $"'{EMP_CB_Puesto.Text}'";
+                    string calleNo = $"'{EMP_TB_CalleNo.Text}'";
+                    string colonia = $"'{EMP_TB_Colonia.Text}'";
+                    string cEstado = $"'{EMP_TB_Estado.Text}'";
+                    string cMunicipio = $"'{EMP_TB_Municipio.Text}'";
+                    string cBanco = $"'{EMP_TB_Banco.Text}'";
+                    string cNoCuenta = EMP_TB_NoCuenta.Text;
+                    string email = $"'{EMP_TB_Email.Text}'";
+                    string curp = $"'{EMP_TB_Curp.Text}'";
+                    string nss = $"'{EMP_TB_Nss.Text}'";
+                    string rfc = $"'{EMP_TB_Rfc.Text}'";
+                    string cp = $"'{EMP_TB_Cp.Text}'";
+
                     var linkCassandra = new EnlaceCassandra();
                     bool continueRegister = true;
                     DateTime fechaInicio = EMP_DTP_Fecha.Value;

@@ -209,7 +209,7 @@ namespace MAD_AAVD_proyecto
                     desconectar();
             }
         }
-        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha, bool withConectar = true)
+        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha, bool mulpDias, bool withConectar = true)
         {
             DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
             int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
@@ -231,7 +231,10 @@ namespace MAD_AAVD_proyecto
             }
             else
             {//calcular porcentaje
-                cantConcepto = empleado.salarioDiario * (concepto.porcentaje);
+                if (mulpDias)
+                    cantConcepto = empleado.salarioDiario * (concepto.porcentaje) * days;
+                else
+                    cantConcepto = empleado.salarioDiario * (concepto.porcentaje);
             }
             
             try

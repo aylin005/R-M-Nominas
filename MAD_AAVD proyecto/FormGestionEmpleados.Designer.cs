@@ -95,6 +95,12 @@
             this.label29 = new System.Windows.Forms.Label();
             this.EMP_DTP_Fecha = new System.Windows.Forms.DateTimePicker();
             this.EMP_DGV_Empleados = new System.Windows.Forms.DataGridView();
+            this.NoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EMP_BTN_Baja = new System.Windows.Forms.Button();
             this.EMP_BTN_Editar = new System.Windows.Forms.Button();
             this.EMP_DTP_FiltroFecha = new System.Windows.Forms.DateTimePicker();
@@ -111,12 +117,7 @@
             this.EMP_TB_Municipio = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.EMP_TB_Estado = new System.Windows.Forms.TextBox();
-            this.NoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EMP_CB_Banco = new System.Windows.Forms.ComboBox();
             this.panel16.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EMP_DGV_Empleados)).BeginInit();
@@ -936,6 +937,52 @@
             this.EMP_DGV_Empleados.TabIndex = 98;
             this.EMP_DGV_Empleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EMP_DGV_Empleados_CellContentClick);
             // 
+            // NoEmpleado
+            // 
+            this.NoEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.NoEmpleado.HeaderText = "No Empleado";
+            this.NoEmpleado.MinimumWidth = 6;
+            this.NoEmpleado.Name = "NoEmpleado";
+            this.NoEmpleado.ReadOnly = true;
+            this.NoEmpleado.Width = 120;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 85;
+            // 
+            // Departamento
+            // 
+            this.Departamento.HeaderText = "Departamento";
+            this.Departamento.MinimumWidth = 6;
+            this.Departamento.Name = "Departamento";
+            this.Departamento.ReadOnly = true;
+            // 
+            // Puesto
+            // 
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.MinimumWidth = 6;
+            this.Puesto.Name = "Puesto";
+            this.Puesto.ReadOnly = true;
+            // 
+            // FechaInicio
+            // 
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.MinimumWidth = 6;
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaIngreso
+            // 
+            this.FechaIngreso.HeaderText = "Fecha Ingreso";
+            this.FechaIngreso.MinimumWidth = 6;
+            this.FechaIngreso.Name = "FechaIngreso";
+            this.FechaIngreso.ReadOnly = true;
+            // 
             // EMP_BTN_Baja
             // 
             this.EMP_BTN_Baja.FlatAppearance.BorderSize = 0;
@@ -1120,7 +1167,7 @@
             this.EMP_TB_Municipio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_TB_Municipio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMP_TB_Municipio.Location = new System.Drawing.Point(663, 247);
+            this.EMP_TB_Municipio.Location = new System.Drawing.Point(661, 247);
             this.EMP_TB_Municipio.Margin = new System.Windows.Forms.Padding(4);
             this.EMP_TB_Municipio.Multiline = true;
             this.EMP_TB_Municipio.Name = "EMP_TB_Municipio";
@@ -1150,51 +1197,19 @@
             this.EMP_TB_Estado.Size = new System.Drawing.Size(219, 25);
             this.EMP_TB_Estado.TabIndex = 17;
             // 
-            // NoEmpleado
+            // EMP_CB_Banco
             // 
-            this.NoEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.NoEmpleado.HeaderText = "No Empleado";
-            this.NoEmpleado.MinimumWidth = 6;
-            this.NoEmpleado.Name = "NoEmpleado";
-            this.NoEmpleado.ReadOnly = true;
-            this.NoEmpleado.Width = 120;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 85;
-            // 
-            // Departamento
-            // 
-            this.Departamento.HeaderText = "Departamento";
-            this.Departamento.MinimumWidth = 6;
-            this.Departamento.Name = "Departamento";
-            this.Departamento.ReadOnly = true;
-            // 
-            // Puesto
-            // 
-            this.Puesto.HeaderText = "Puesto";
-            this.Puesto.MinimumWidth = 6;
-            this.Puesto.Name = "Puesto";
-            this.Puesto.ReadOnly = true;
-            // 
-            // FechaInicio
-            // 
-            this.FechaInicio.HeaderText = "Fecha Inicio";
-            this.FechaInicio.MinimumWidth = 6;
-            this.FechaInicio.Name = "FechaInicio";
-            this.FechaInicio.ReadOnly = true;
-            // 
-            // FechaIngreso
-            // 
-            this.FechaIngreso.HeaderText = "Fecha Ingreso";
-            this.FechaIngreso.MinimumWidth = 6;
-            this.FechaIngreso.Name = "FechaIngreso";
-            this.FechaIngreso.ReadOnly = true;
+            this.EMP_CB_Banco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.EMP_CB_Banco.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EMP_CB_Banco.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EMP_CB_Banco.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMP_CB_Banco.FormattingEnabled = true;
+            this.EMP_CB_Banco.ItemHeight = 16;
+            this.EMP_CB_Banco.Location = new System.Drawing.Point(1078, 150);
+            this.EMP_CB_Banco.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EMP_CB_Banco.Name = "EMP_CB_Banco";
+            this.EMP_CB_Banco.Size = new System.Drawing.Size(215, 24);
+            this.EMP_CB_Banco.TabIndex = 110;
             // 
             // FormGestionEmpleados
             // 
@@ -1202,6 +1217,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1307, 874);
+            this.Controls.Add(this.EMP_CB_Banco);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.EMP_TB_Municipio);
             this.Controls.Add(this.button1);
@@ -1387,5 +1403,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaIngreso;
+        private System.Windows.Forms.ComboBox EMP_CB_Banco;
     }
 }

@@ -712,7 +712,7 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             }
         }
-        public DataTable GetConceptos()
+        public DataTable GetConceptos(char pAction = 'G') //'G' toda la tabla 'f' conceptos no fijos
         {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -725,7 +725,7 @@ namespace MAD_AAVD_proyecto
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
-                parametro1.Value = 'G';
+                parametro1.Value = pAction;
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
@@ -824,7 +824,7 @@ namespace MAD_AAVD_proyecto
             }
         }
 
-        public DataTable GetEmpleados()
+        public DataTable GetEmpleados(char pAction = 'G', int noDepto = 0, int noPuesto = 0, DateTime fechaInicio = default(DateTime))
         {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -837,7 +837,18 @@ namespace MAD_AAVD_proyecto
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
-                parametro1.Value = 'G';
+                parametro1.Value = pAction;
+
+                if (pAction == 'H') //Pantalla aplicar conceptos para ver los emp en cierto puesto y departamento
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@pIdDepartamento", SqlDbType.SmallInt, 4);
+                    parameter2.Value = noDepto;
+                    var parameter3 = _comandosql.Parameters.Add("@pIdPuesto", SqlDbType.Int, 8);
+                    parameter3.Value = noPuesto;
+                    var parameter4 = _comandosql.Parameters.Add("@pFechaInicio", SqlDbType.Date, 3);
+                    parameter4.Value = fechaInicio.Date;
+                }
+                
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
@@ -858,14 +869,19 @@ namespace MAD_AAVD_proyecto
         }
 
         ///************************************************************+
-        public DataTable GetEstados()
+        public DataTable GetEstadosBancos(bool estados)
         {
             var msg = "";
             DataTable tabla = new DataTable();
             try
             {
                 conectar();
-                string qry = "sp_ESTADOS";
+                string qry;
+                if (estados)
+                    qry = "sp_ESTADOS";
+                else
+                    qry = "sp_BANCOS";
+
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;

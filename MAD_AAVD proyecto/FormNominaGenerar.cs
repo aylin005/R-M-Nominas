@@ -121,7 +121,7 @@ namespace MAD_AAVD_proyecto
             {
                 foreach (Conceptos concepto in conceptos)
                 {
-                    linkCassandra.InsertRecibo(emp, concepto, fecha);
+                    linkCassandra.InsertRecibo(emp, concepto, fecha, true);
                 }
                 //*Obtener lista de percepciones y lista de deducciones*
                 //Traer lista de todos sus conceptos
