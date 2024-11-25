@@ -47,7 +47,22 @@ namespace MAD_AAVD_proyecto
                 var linkDB = new EnlaceDB(); //enlace temporal con la db
                 DataTable TablaConceptos = new DataTable(); //se crea una tabla
                 TablaConceptos = linkDB.GetConceptos(); //se acceden a los departamentos de la db y se guardan en la tabla creada
-                ADMIN_DGV_Conceptos.DataSource = TablaConceptos;
+                //ADMIN_DGV_Conceptos.DataSource = TablaConceptos;
+
+                ADMIN_DGV_Conceptos.Rows.Clear();
+
+                // Recorre las filas del DataTable y agrégalas al DataGridView
+                foreach (DataRow row in TablaConceptos.Rows)
+                {
+                    // Crea una nueva fila en el DataGridView
+                    int rowIndex = ADMIN_DGV_Conceptos.Rows.Add();
+
+                    // Asigna valores a las columnas específicas
+                    for (int colIndex = 0; colIndex < TablaConceptos.Columns.Count; colIndex++)
+                    {
+                            ADMIN_DGV_Conceptos.Rows[rowIndex].Cells[colIndex].Value = row[colIndex];
+                    }
+                }
 
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";
                 CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";

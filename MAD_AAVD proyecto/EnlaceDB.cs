@@ -498,6 +498,65 @@ namespace MAD_AAVD_proyecto
             return add;
         }
 
+        //////////////////////
+        public bool insertConcepto(bool isDepto, int concepto, DateTime fecha, int noEmp = 0, int noDepto = 0)
+        {
+            var msg = "";
+            var add = true;
+
+            char pOpcion;
+
+            if (isDepto)
+                pOpcion = 'd';
+            else
+                pOpcion = 'c';
+
+            try
+            {
+                conectar();
+                string qry = "sp_RECIBOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1); //action representa que haremos en el procedure
+                parameter1.Value = pOpcion;
+
+                var parameter2 = _comandosql.Parameters.Add("@concepto", SqlDbType.Int);
+                parameter2.Value = concepto;  // Manejo de nulos
+
+                var parameter3 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parameter3.Value = fecha.Date; //para cuando lleve un nulo
+
+                if (pOpcion == 'd') //Se esta aplicando a departamento
+                {
+                    var parameter4 = _comandosql.Parameters.Add("@departamento", SqlDbType.Int);
+                        parameter4.Value = noDepto;
+                }
+
+                if (pOpcion == 'c') //Se esta aplicando a un empleado en especifico
+                {
+                    var parameter5 = _comandosql.Parameters.Add("@noEmpleado", SqlDbType.Int);
+                    parameter5.Value = noEmp;
+                }
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return add;
+        }
 
 
         //******************* P A R A     S E L E C T S

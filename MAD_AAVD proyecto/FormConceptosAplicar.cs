@@ -168,13 +168,31 @@ namespace MAD_AAVD_proyecto
             
             if(DB_SQLServer)
             {
-                if(aplicarEmp)
-                {
+                var linkDB = new EnlaceDB();
+                
+                int concepto;
+                if (CONCEPAPLICAR_CB_Conceptos.SelectedValue != null)
+                    concepto = Convert.ToInt32(CONCEPAPLICAR_CB_Conceptos.SelectedValue);
+                else
+                    concepto = -1;
 
+                int departamento;
+                if (CONCEPAPLICAR_CB_Departamentos.SelectedValue != null)
+                    departamento = Convert.ToInt32(CONCEPAPLICAR_CB_Departamentos.SelectedValue);
+                else
+                    departamento = -1;
+
+                if (aplicarEmp)
+                {
+                    bool ok = linkDB.insertConcepto(false, concepto, CONCEPAPLICAR_DTP_Fecha.Value, int.Parse(noEmp));
+                    if (ok)
+                        MessageBox.Show("Se ha insertado correctamente");
                 }
                 else if (aplicarDepto)
                 {
-
+                    bool ok = linkDB.insertConcepto(true, concepto, CONCEPAPLICAR_DTP_Fecha.Value, 0, departamento);
+                    if (ok)
+                        MessageBox.Show("Se ha insertado correctamente");
                 }
             }
             //////////////////////////////////////////////////////////////////////////////////////////////////
