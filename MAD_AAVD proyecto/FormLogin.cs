@@ -64,6 +64,7 @@ namespace MAD_AAVD_proyecto
 
                     if (checker) //Para pruebas empleado
                     {
+                        activeUser = auxUser;
                         this.Hide();
                         new FormUsuario().ShowDialog();
                         this.Close();

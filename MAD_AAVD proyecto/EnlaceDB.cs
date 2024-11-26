@@ -922,7 +922,7 @@ namespace MAD_AAVD_proyecto
             }
         }
 
-        public DataTable GetEmpleados(char pAction = 'G', int noDepto = 0, int noPuesto = 0, DateTime fechaInicio = default(DateTime))
+        public DataTable GetEmpleados(char pAction = 'F', int noDepto = 0, int noPuesto = 0, DateTime fechaInicio = default(DateTime))
         {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -936,6 +936,12 @@ namespace MAD_AAVD_proyecto
 
                 var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
                 parametro1.Value = pAction;
+
+                if(pAction == 'F')
+                {
+                    var parameter2 = _comandosql.Parameters.Add("@pFechaFiltro", SqlDbType.Date);
+                    parameter2.Value = fechaInicio.Date;
+                }
 
                 if (pAction == 'H') //Pantalla aplicar conceptos para ver los emp en cierto puesto y departamento
                 {
@@ -1094,6 +1100,44 @@ namespace MAD_AAVD_proyecto
                 parametro1.Value = 'n';
                 var parametro2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
                 parametro2.Value = fecha.Date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable GetRecibo(char pAction, DateTime fecha, int noEmp)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_REPORTES";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parametro1.Value = pAction;
+                var parametro2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parametro2.Value = fecha.Date;
+                var parametro3 = _comandosql.Parameters.Add("@emp", SqlDbType.Int);
+                parametro3.Value = noEmp;
+
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
