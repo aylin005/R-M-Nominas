@@ -14,6 +14,7 @@ using System.Security.Cryptography; //PARA HASH
 using System.Globalization;
 
 using static MAD_AAVD_proyecto.Globals; //Agregar a cada archivo para no tener que escribir Globals.
+using static System.Windows.Forms.LinkLabel;
 
 namespace MAD_AAVD_proyecto
 {
@@ -83,7 +84,7 @@ namespace MAD_AAVD_proyecto
 
                 DataTable TablaPuestos = linkDB.GetPuesto();
                 EMP_CB_Puesto.DataSource = TablaPuestos;
-                EMP_CB_Puesto.DisplayMember = "nombrePuesto"; 
+                EMP_CB_Puesto.DisplayMember = "nombrePuesto";
                 EMP_CB_Puesto.ValueMember = "noPuesto";
 
                 DataTable TablaEstados = linkDB.GetEstados();
@@ -91,17 +92,17 @@ namespace MAD_AAVD_proyecto
                 EMP_CB_ESTADO.DisplayMember = "nombreEstado";
                 EMP_CB_ESTADO.ValueMember = "noEstado";
 
+                // Falta actualizar municipios cada vez que se cambia de estado
+
+                EMP_CB_Departamento.SelectedIndex = 0; //Aqui ya se selecciona
+                EMP_CB_Puesto.SelectedIndex = 0;
+                EMP_CB_ESTADO.SelectedIndex = 0;
+                //EMP_CB_Municipio.SelectedIndex = 0;
                 DataTable TablaMunicipios = linkDB.GetMunicipios(EMP_CB_ESTADO.Text);
                 EMP_CB_Municipio.DataSource = TablaMunicipios;
                 EMP_CB_Municipio.DisplayMember = "nombreMunicipio";
                 EMP_CB_Municipio.ValueMember = "noMunicipio";
 
-                // Falta actualizar municipios cada vez que se cambia de estado
-
-                EMP_CB_Departamento.SelectedIndex= 0; //Aqui ya se selecciona
-                EMP_CB_Puesto.SelectedIndex = 0;
-                EMP_CB_ESTADO.SelectedIndex = 0;
-                //EMP_CB_Municipio.SelectedIndex = 0;
 
             }
             ////////////////ENLACE CASSANDRA////////////////////
@@ -115,7 +116,7 @@ namespace MAD_AAVD_proyecto
 
                 var linkCassandra = new EnlaceCassandra();
                 //COMBOBOX DEPARTAMENTOS
-                string[] columnasDepto = { "noDepto", "nombreDpto"};
+                string[] columnasDepto = { "noDepto", "nombreDpto" };
                 List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
                 EMP_CB_Departamento.DataSource = listaDepartamentos;
                 EMP_CB_Departamento.DisplayMember = "nombreDpto";
@@ -177,7 +178,7 @@ namespace MAD_AAVD_proyecto
                         MessageBox.Show("No se puede editar, el empleado ya se dió de baja");
                     }
 
-                        
+
                     EMP_LBL_Loading.Visible = false;
                 }
             }
@@ -196,150 +197,160 @@ namespace MAD_AAVD_proyecto
         /// ******************************************************************************************************************************************************************************************************
         private void EMP_BTN_Registrar_Click(object sender, EventArgs e)
         {
-            if(!baja_Emp)
+            if (!baja_Emp)
             {
-                string nombres = $"'{EMP_TB_Nombres.Text}'";
-                string apPaterno = $"'{EMP_TB_ApPaterno.Text}'";
-                string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
-                string cDepartamento = $"'{EMP_CB_Departamento.Text}'";
-                string cPuesto = $"'{EMP_CB_Puesto.Text}'";
-                string contrasena = EMP_TB_Contrasena.Text; // Se guardara como HASH
-                DateTime fechaNacimiento = EMP_DTP_Nacimiento.Value;
-                string calleNo = $"'{EMP_TB_CalleNo.Text}'";
-                string colonia = $"'{EMP_TB_Colonia.Text}'";
-                string cEstado = $"'{EMP_TB_Estado.Text}'";
-                string cMunicipio = $"'{EMP_TB_Municipio.Text}'";
-                string cp = $"'{EMP_TB_Cp.Text}'";
-                string cBanco = $"'{EMP_TB_Banco.Text}'";
-                string cNoCuenta = EMP_TB_NoCuenta.Text;
-                string email = $"'{EMP_TB_Email.Text}'";
-                string curp = $"'{EMP_TB_Curp.Text}'";
-                string nss = $"'{EMP_TB_Nss.Text}'";
-                string rfc = $"'{EMP_TB_Rfc.Text}'";
-                DateTime fecha = EMP_DTP_Fecha.Value;
-
-                //CONVERTIR CONTRASEÑA A HASH
-                string hashPassword;
-                using (SHA256 sha256Hash = SHA256.Create())
+                DateTime aux = EMP_DTP_Nacimiento.Value;
+                if (CheckBirthday(aux))
                 {
-                    string hash = GetHash(sha256Hash, contrasena);
-                    hashPassword = hash;
-                    Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
-                }
-                hashPassword = $"'{hashPassword}'";
-
-
-                if (DB_SQLServer)
-                {
-                    int banco = int.Parse(EMP_TB_Banco.Text);
-                    int estado = int.Parse(EMP_CB_ESTADO.Text);
-                    int municipio = int.Parse(EMP_CB_Municipio.Text);
-                    int departamento = int.Parse(EMP_CB_Departamento.Text);
-                    int puesto = int.Parse(EMP_CB_Puesto.Text);
-                    Int64 tel1 = Int64.Parse(EMP_TB_Tel1.Text);
-                    Int64 tel2 = Int64.Parse(EMP_TB_Tel2.Text);
-                    int noCuenta = int.Parse(EMP_TB_NoCuenta.Text);
-
-                    var linkDB = new EnlaceDB();
-                    bool ok = false;
-
-                    if (!edit_Emp)
-                        ok = linkDB.GestionEmpleados("I", 0, nombres, apPaterno, apMaterno, hashPassword, calleNo, colonia, municipio, estado, cp,
-                            banco, noCuenta, email, tel1, tel2, curp, nss, rfc, departamento, puesto, fechaNacimiento, fecha);
-                    else
+                    string nombres = $"'{EMP_TB_Nombres.Text}'";
+                    string apPaterno = $"'{EMP_TB_ApPaterno.Text}'";
+                    string apMaterno = $"'{EMP_TB_ApMaterno.Text}'";
+                    string cDepartamento = $"'{EMP_CB_Departamento.Text}'";
+                    string cPuesto = $"'{EMP_CB_Puesto.Text}'";
+                    string contrasena = EMP_TB_Contrasena.Text; // Se guardara como HASH
+                    DateTime fechaNacimiento = EMP_DTP_Nacimiento.Value;
+                    string calleNo = $"'{EMP_TB_CalleNo.Text}'";
+                    string colonia = $"'{EMP_TB_Colonia.Text}'";
+                    string cEstado = $"'{EMP_TB_Estado.Text}'";
+                    string cMunicipio = $"'{EMP_TB_Municipio.Text}'";
+                    string cp = $"'{EMP_TB_Cp.Text}'";
+                    string cBanco = $"'{EMP_TB_Banco.Text}'";
+                    string cNoCuenta = EMP_TB_NoCuenta.Text;
+                    string email = $"'{EMP_TB_Email.Text}'";
+                    string curp = $"'{EMP_TB_Curp.Text}'";
+                    string nss = $"'{EMP_TB_Nss.Text}'";
+                    string rfc = $"'{EMP_TB_Rfc.Text}'";
+                    DateTime fecha = EMP_DTP_Fecha.Value;
+                    //validar edad
+                    //CONVERTIR CONTRASEÑA A HASH
+                    string hashPassword;
+                    using (SHA256 sha256Hash = SHA256.Create())
                     {
-                        ok = linkDB.GestionEmpleados("U", edit_noEmp, nombres, apPaterno, apMaterno, hashPassword, calleNo, colonia, municipio, estado, cp,
-                            banco, noCuenta, email, tel1, tel2, curp, nss, rfc, departamento, puesto, fechaNacimiento, fecha);
+                        string hash = GetHash(sha256Hash, contrasena);
+                        hashPassword = hash;
+                        Console.WriteLine($"The SHA256 hash of {contrasena} is: {hashPassword}.");
                     }
-                    if (ok)
+                    hashPassword = $"'{hashPassword}'";
+
+
+                    if (DB_SQLServer)
                     {
-                        MessageBox.Show("Se guardo en la BD");
-                        ClearAll(); //actualizamos la tabla
-                        Reload();
-                    }
-                    else
-                        MessageBox.Show("Error en el guardado");
-                }
-                else if (DB_Cassandra)
-                {
-                    var linkCassandra = new EnlaceCassandra();
-                    bool continueRegister = true;
-                    DateTime fechaInicio = EMP_DTP_Fecha.Value;
-                    DateTime auxDate1 = new DateTime(fechaInicio.Year, fechaInicio.Month, 1);
-                    string date = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-                    Cassandra.LocalDate parsedFechaInicio = Cassandra.LocalDate.Parse(date);
+                        int banco = int.Parse(EMP_TB_Banco.Text);
+                        int estado = int.Parse(EMP_CB_ESTADO.Text);
+                        int municipio = int.Parse(EMP_CB_Municipio.Text);
+                        int departamento = int.Parse(EMP_CB_Departamento.Text);
+                        int puesto = int.Parse(EMP_CB_Puesto.Text);
+                        Int64 tel1 = Int64.Parse(EMP_TB_Tel1.Text);
+                        Int64 tel2 = Int64.Parse(EMP_TB_Tel2.Text);
+                        int noCuenta = int.Parse(EMP_TB_NoCuenta.Text);
 
-                    if (edit_Emp) //VALIDAR CAMBIOS DE PUESTOS
-                    {
-                        string[] auxColumnas = { "departamento", "puesto", "fechaInicio" };
-                        Empleados lastPuesto = linkCassandra.LastPuesto<Empleados>(auxColumnas, edit_noEmp.ToString());
+                        var linkDB = new EnlaceDB();
+                        bool ok = false;
 
-                       
-                        DateTime fechaInicioLastPuesto = new DateTime(lastPuesto.fechaInicio.Year, lastPuesto.fechaInicio.Month, 1);
-                        DateTime fechaInicioParsed = new DateTime(parsedFechaInicio.Year, parsedFechaInicio.Month, 1);
-
-                        // Realiza la comparación
-                        if ((lastPuesto.departamento != cDepartamento || lastPuesto.puesto != cPuesto) && fechaInicioLastPuesto < fechaInicioParsed)
-                        {
-                            continueRegister = true;
-                        }
-                        else if(lastPuesto.departamento == cDepartamento && lastPuesto.puesto == cPuesto && fechaInicioLastPuesto != fechaInicioParsed)
-                        {
-                            continueRegister = false;
-                            MessageBox.Show("No se puede hacer el cambio de puesto que seleccionó");
-                        }
+                        if (!edit_Emp)
+                            ok = linkDB.GestionEmpleados("I", 0, nombres, apPaterno, apMaterno, hashPassword, calleNo, colonia, municipio, estado, cp,
+                                banco, noCuenta, email, tel1, tel2, curp, nss, rfc, departamento, puesto, fechaNacimiento, fecha);
                         else
                         {
-                            continueRegister = false;
-                            MessageBox.Show("No se puede hacer el cambio de puesto que seleccionó");
+                            ok = linkDB.GestionEmpleados("U", edit_noEmp, nombres, apPaterno, apMaterno, hashPassword, calleNo, colonia, municipio, estado, cp,
+                                banco, noCuenta, email, tel1, tel2, curp, nss, rfc, departamento, puesto, fechaNacimiento, fecha);
+                        }
+                        if (ok)
+                        {
+                            MessageBox.Show("Se guardo en la BD");
+                            ClearAll(); //actualizamos la tabla
+                            Reload();
+                        }
+                        else
+                            MessageBox.Show("Error en el guardado");
+                    }
+                    else if (DB_Cassandra)
+                    {
+                        var linkCassandra = new EnlaceCassandra();
+                        bool continueRegister = true;
+                        DateTime fechaInicio = EMP_DTP_Fecha.Value;
+                        DateTime auxDate1 = new DateTime(fechaInicio.Year, fechaInicio.Month, 1);
+                        string date = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        Cassandra.LocalDate parsedFechaInicio = Cassandra.LocalDate.Parse(date);
+
+                        if (edit_Emp) //VALIDAR CAMBIOS DE PUESTOS
+                        {
+                            string[] auxColumnas = { "departamento", "puesto", "fechaInicio" };
+                            Empleados lastPuesto = linkCassandra.LastPuesto<Empleados>(auxColumnas, edit_noEmp.ToString());
+
+
+                            DateTime fechaInicioLastPuesto = new DateTime(lastPuesto.fechaInicio.Year, lastPuesto.fechaInicio.Month, 1);
+                            DateTime fechaInicioParsed = new DateTime(parsedFechaInicio.Year, parsedFechaInicio.Month, 1);
+
+                            // Realiza la comparación
+                            if ((lastPuesto.departamento != cDepartamento || lastPuesto.puesto != cPuesto) && fechaInicioLastPuesto < fechaInicioParsed)
+                            {
+                                continueRegister = true;
+                            }
+                            else if (lastPuesto.departamento == cDepartamento && lastPuesto.puesto == cPuesto && fechaInicioLastPuesto != fechaInicioParsed)
+                            {
+                                continueRegister = false;
+                                MessageBox.Show("No se puede hacer el cambio de puesto que seleccionó");
+                            }
+                            else
+                            {
+                                continueRegister = false;
+                                MessageBox.Show("No se puede hacer el cambio de puesto que seleccionó");
+                            }
+                        }
+
+                        if (continueRegister)
+                        {
+                            //DATOS FALTANTES
+
+                            string telefono1 = EMP_TB_Tel1.Text;
+                            string telefono2 = EMP_TB_Tel2.Text;
+
+                            string telefonos;
+                            if (telefono2 != "")
+                                telefonos = "{'" + telefono1 + "', '" + telefono2 + "'}";
+                            else
+                                telefonos = "{'" + telefono1 + "'}";
+                            string cfechaNacimiento = $"'{EMP_DTP_Nacimiento.Value.ToString("yyyy-MM-dd")}'";
+
+                            EMP_LBL_Loading.Visible = true;
+                            ////////CALCULAR SALARIO DIARIO/////////
+                            //Sueldo Base
+                            string noDepto = EMP_CB_Departamento.SelectedValue.ToString();
+                            string[] primaryKeyDepto = { "noDepto" }; string[] columnasDepto = { "sueldoBase" };
+                            string[] pkValuesDepto = { noDepto.ToString() };
+                            Departamentos auxDepto = linkCassandra.Get_One<Departamentos>(primaryKeyDepto, columnasDepto, "DEPARTAMENTOS", pkValuesDepto);
+
+                            //Nivel Salarial
+                            string noPuesto = EMP_CB_Puesto.SelectedValue.ToString();
+                            string[] primaryKeyPuesto = { "noPuesto" }; string[] columnasPuesto = { "nivelSalarial" };
+                            string[] pkValuesPuesto = { noPuesto.ToString() };
+                            Puestos auxPuesto = linkCassandra.Get_One<Puestos>(primaryKeyPuesto, columnasPuesto, "PUESTOS", pkValuesPuesto);
+
+                            //SALARIO DIARIO
+                            float salarioDiario = auxDepto.sueldoBase * auxPuesto.nivelSalarial;
+
+                            string auxFechaInicio = $"'{parsedFechaInicio}'";
+                            ////////INSERTAR TODO EN LA TABLA////////////
+                            string[] pkValues = { edit_noEmp.ToString(), auxFechaInicio, cDepartamento, cPuesto, salarioDiario.ToString() };
+                            string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos", "activo", "fechaIngreso" };
+                            string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos, "TRUE", auxFechaInicio };
+
+                            linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
+                            ClearAll();
+                            Reload();
+                            EMP_LBL_Loading.Visible = false;
+                            edit_Emp = false;
+
                         }
                     }
-
-                    if(continueRegister)
-                    {
-                        //DATOS FALTANTES
-
-                        string telefono1 = EMP_TB_Tel1.Text;
-                        string telefono2 = EMP_TB_Tel2.Text;
-
-                        string telefonos;
-                        if (telefono2 != "")
-                            telefonos = "{'" + telefono1 + "', '" + telefono2 + "'}";
-                        else
-                            telefonos = "{'" + telefono1 + "'}";
-                        string cfechaNacimiento = $"'{EMP_DTP_Nacimiento.Value.ToString("yyyy-MM-dd")}'";
-
-                        EMP_LBL_Loading.Visible = true;
-                        ////////CALCULAR SALARIO DIARIO/////////
-                        //Sueldo Base
-                        string noDepto = EMP_CB_Departamento.SelectedValue.ToString();
-                        string[] primaryKeyDepto = { "noDepto" }; string[] columnasDepto = { "sueldoBase" };
-                        string[] pkValuesDepto = { noDepto.ToString() };
-                        Departamentos auxDepto = linkCassandra.Get_One<Departamentos>(primaryKeyDepto, columnasDepto, "DEPARTAMENTOS", pkValuesDepto);
-
-                        //Nivel Salarial
-                        string noPuesto = EMP_CB_Puesto.SelectedValue.ToString();
-                        string[] primaryKeyPuesto = { "noPuesto" }; string[] columnasPuesto = { "nivelSalarial" };
-                        string[] pkValuesPuesto = { noPuesto.ToString() };
-                        Puestos auxPuesto = linkCassandra.Get_One<Puestos>(primaryKeyPuesto, columnasPuesto, "PUESTOS", pkValuesPuesto);
-
-                        //SALARIO DIARIO
-                        float salarioDiario = auxDepto.sueldoBase * auxPuesto.nivelSalarial;
-
-                        string auxFechaInicio = $"'{parsedFechaInicio}'";
-                        ////////INSERTAR TODO EN LA TABLA////////////
-                        string[] pkValues = { edit_noEmp.ToString(), auxFechaInicio, cDepartamento, cPuesto, salarioDiario.ToString() };
-                        string[] columnas = { "nombres", "apPaterno", "apMaterno", "contrasena", "fechaNacimiento", "curp", "rfc", "nss", "calleNo", "colonia", "municipio", "estado", "cp", "banco", "noCuenta", "email", "telefonos", "activo", "fechaIngreso" };
-                        string[] values = { nombres, apPaterno, apMaterno, hashPassword, cfechaNacimiento, curp, rfc, nss, calleNo, colonia, cMunicipio, cEstado, cp, cBanco, cNoCuenta, email, telefonos,"TRUE", auxFechaInicio };
-
-                        linkCassandra.Insert(edit_Emp, "EMPLEADOS", primaryKey, pkValues, columnas, values);
-                        ClearAll();
-                        Reload();
-                        EMP_LBL_Loading.Visible = false;
-                        edit_Emp = false;
-
-                    }
-                }     
+                }
+                else
+                {
+                    MessageBox.Show($"(!) Se ha ingresado una fecha de nacimiento inválida", "ERROR",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Exclamation);
+                }
             }
             else if (baja_Emp) // se esta dando de baja el empleado
             {
@@ -349,7 +360,7 @@ namespace MAD_AAVD_proyecto
                                  MessageBoxButtons.YesNo,
                                  MessageBoxIcon.Question);
 
-                if(DB_Cassandra)
+                if (DB_Cassandra)
                 {
                     if (result == DialogResult.Yes)
                     {
@@ -483,7 +494,7 @@ namespace MAD_AAVD_proyecto
                 var linkCassandra = new EnlaceCassandra();
                 string[] columnas = { "fechaBaja", "fechaInicio" };
                 Empleados lastPuesto = linkCassandra.LastPuesto<Empleados>(columnas, edit_noEmp.ToString());
-                if(lastPuesto.fechaBaja == null)
+                if (lastPuesto.fechaBaja == null)
                 {
                     loadDatosEmpleado(edit_noEmp, fechaInicio);
                     baja_Emp = true; //para que cuando registre se haga un update en vez de un insert
@@ -494,14 +505,14 @@ namespace MAD_AAVD_proyecto
                 {
                     MessageBox.Show("El empleado ya se dió de baja");
                 }
-                
+
                 EMP_LBL_Loading.Visible = false;
 
             }
 
         }
 
-        private void loadDatosEmpleado( int noEmpleado, string fechaInicio)
+        private void loadDatosEmpleado(int noEmpleado, string fechaInicio)
         {
 
             var linkCassandra = new EnlaceCassandra();
@@ -532,7 +543,7 @@ namespace MAD_AAVD_proyecto
 
             List<string> telefonosList = empleado.telefonos.ToList();
             EMP_TB_Tel1.Text = telefonosList[0].ToString();
-            if(telefonosList.Count > 1 )
+            if (telefonosList.Count > 1)
                 EMP_TB_Tel2.Text = telefonosList[1].ToString();
 
             EMP_TB_Curp.Text = empleado.curp;
@@ -543,6 +554,35 @@ namespace MAD_AAVD_proyecto
 
             EMP_TB_Contrasena.Text = empleado.contrasena;
 
+        }
+
+        private void EMP_CB_ESTADO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var linkDB = new EnlaceDB();
+            DataTable TablaMunicipios = linkDB.GetMunicipios(EMP_CB_ESTADO.Text);
+            EMP_CB_Municipio.DataSource = TablaMunicipios;
+            EMP_CB_Municipio.DisplayMember = "nombreMunicipio";
+            EMP_CB_Municipio.ValueMember = "noMunicipio";
+        }
+
+        private bool CheckBirthday(DateTime pBirth)
+        {
+            DateTime now = DateTime.Now; 
+            int age = now.Year - pBirth.Year;
+
+            if (pBirth.Date < now.AddYears(-age).Date) //se valida si el cumpleaños ya ha pasado o no
+            {
+                age--;
+            }
+
+            if (age < 18 || age >= 60)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
