@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MAD_AAVD_proyecto.Globals; //Agregar a cada archivo para no tener que escribir Globals.
 
 namespace MAD_AAVD_proyecto
 {
@@ -65,43 +66,73 @@ namespace MAD_AAVD_proyecto
 
         private void RGN_BTN_Filtrar_Click(object sender, EventArgs e)
         {
-            LoadTablaReporte();
+            if (DB_SQLServer)
+            {
+                DateTime aux = RGN_DTP_FiltroFecha.Value;
+                var linkDB = new EnlaceDB();
+                bool ok = linkDB.ReporteGeneralNomina(aux);
+                if (ok)
+                {
+                    DataTable reporteGeneralNomina = linkDB.GetReporteGeneralNomina(aux);
+                    RGN_DGV_Reporte.Rows.Clear();
+
+                    foreach (DataRow row in reporteGeneralNomina.Rows)
+                    {
+                        int rowIndex = RGN_DGV_Reporte.Rows.Add();
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["noEmp"].Value = row["noEmpleado"];
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Nombre"].Value = row["Nombres"];
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["FechaIngreso"].Value = row["fechaIngreso"];
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["SalarioDiario"].Value = row["salarioDia"];
+                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Edad"].Value = row["EdadAct"];
+                    }
+                }
+            }
+            //  LoadTablaReporte();
         }
 
         private void LoadTablaReporte()
         {
             RGN_LBL_Loading.Visible = true;
             DateTime fechaFiltro = RGN_DTP_FiltroFecha.Value;
-            //string departamento = RGN_CB_Departamento.Text;
 
-            var linkCassandra = new EnlaceCassandra();
-
-            //List<Empleados> tablaReporte = linkCassandra.FilterEmpleados(fechaFiltro, false, true, departamento);
-            List<Empleados> tablaReporte = linkCassandra.FilterEmpleados(fechaFiltro, false);
-            //RGN_DGV_Reporte.DataSource = tablaReporte;
-            //HideUnnecessaryColumns();
-            RGN_DGV_Reporte.Rows.Clear();
-            foreach (var item in tablaReporte)
+            if(DB_Cassandra)
             {
-                string formattedDateIngreso = new DateTime(item.fechaIngreso.Year, item.fechaIngreso.Month, item.fechaIngreso.Day)
-                .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                //string departamento = RGN_CB_Departamento.Text;
 
-                //Obtener edad
-                DateTime fechaNacimiento = new DateTime(item.fechaNacimiento.Year, item.fechaNacimiento.Month, item.fechaNacimiento.Day);
-                int edad = DateTime.Now.Year - fechaNacimiento.Year;
-                // Ajuste si no ha cumplido años este año
-                if (DateTime.Now.DayOfYear < fechaNacimiento.DayOfYear)
-                    edad--;
+                var linkCassandra = new EnlaceCassandra();
 
-                RGN_DGV_Reporte.Rows.Add(
-                    item.noEmpleado,
-                    $"{item.nombres} {item.apPaterno} {item.apMaterno}",
-                    item.departamento,
-                    item.puesto,
-                    formattedDateIngreso,
-                    item.salarioDiario,
-                    edad
-                    );
+                //List<Empleados> tablaReporte = linkCassandra.FilterEmpleados(fechaFiltro, false, true, departamento);
+                List<Empleados> tablaReporte = linkCassandra.FilterEmpleados(fechaFiltro, false);
+                //RGN_DGV_Reporte.DataSource = tablaReporte;
+                //HideUnnecessaryColumns();
+                RGN_DGV_Reporte.Rows.Clear();
+                foreach (var item in tablaReporte)
+                {
+                    string formattedDateIngreso = new DateTime(item.fechaIngreso.Year, item.fechaIngreso.Month, item.fechaIngreso.Day)
+                    .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                    //Obtener edad
+                    DateTime fechaNacimiento = new DateTime(item.fechaNacimiento.Year, item.fechaNacimiento.Month, item.fechaNacimiento.Day);
+                    int edad = DateTime.Now.Year - fechaNacimiento.Year;
+                    // Ajuste si no ha cumplido años este año
+                    if (DateTime.Now.DayOfYear < fechaNacimiento.DayOfYear)
+                        edad--;
+
+                    RGN_DGV_Reporte.Rows.Add(
+                        item.noEmpleado,
+                        $"{item.nombres} {item.apPaterno} {item.apMaterno}",
+                        item.departamento,
+                        item.puesto,
+                        formattedDateIngreso,
+                        item.salarioDiario,
+                        edad
+                        );
+                }
+
+
             }
 
             //foreach (DataGridViewRow row in RGN_DGV_Reporte.Rows)
@@ -132,6 +163,11 @@ namespace MAD_AAVD_proyecto
         private void RGN_DTP_FiltroFecha_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void RGN_DGV_Reporte_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }

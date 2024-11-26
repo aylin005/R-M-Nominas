@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.HDCOUNTER_Title = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -82,7 +80,7 @@
             this.label1.Location = new System.Drawing.Point(588, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(608, 57);
+            this.label1.Size = new System.Drawing.Size(481, 45);
             this.label1.TabIndex = 2;
             this.label1.Text = "Reporte General de Nómina";
             // 
@@ -245,7 +243,7 @@
             this.RGN_DTP_FiltroFecha.MaxDate = new System.DateTime(2080, 9, 22, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.MinDate = new System.DateTime(1924, 9, 22, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.Name = "RGN_DTP_FiltroFecha";
-            this.RGN_DTP_FiltroFecha.Size = new System.Drawing.Size(168, 22);
+            this.RGN_DTP_FiltroFecha.Size = new System.Drawing.Size(168, 19);
             this.RGN_DTP_FiltroFecha.TabIndex = 70;
             this.RGN_DTP_FiltroFecha.Value = new System.DateTime(2024, 11, 14, 0, 0, 0, 0);
             this.RGN_DTP_FiltroFecha.ValueChanged += new System.EventHandler(this.RGN_DTP_FiltroFecha_ValueChanged);
@@ -276,7 +274,7 @@
             this.RGN_LBL_Loading.Location = new System.Drawing.Point(853, 95);
             this.RGN_LBL_Loading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RGN_LBL_Loading.Name = "RGN_LBL_Loading";
-            this.RGN_LBL_Loading.Size = new System.Drawing.Size(82, 18);
+            this.RGN_LBL_Loading.Size = new System.Drawing.Size(71, 15);
             this.RGN_LBL_Loading.TabIndex = 109;
             this.RGN_LBL_Loading.Text = "Loading...";
             this.RGN_LBL_Loading.Visible = false;
@@ -293,14 +291,6 @@
             this.RGN_DGV_Reporte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RGN_DGV_Reporte.BackgroundColor = System.Drawing.Color.Black;
             this.RGN_DGV_Reporte.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RGN_DGV_Reporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.RGN_DGV_Reporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RGN_DGV_Reporte.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.noEmp,
@@ -310,14 +300,6 @@
             this.FechaIngreso,
             this.SalarioDiario,
             this.Edad});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RGN_DGV_Reporte.DefaultCellStyle = dataGridViewCellStyle6;
             this.RGN_DGV_Reporte.GridColor = System.Drawing.Color.DodgerBlue;
             this.RGN_DGV_Reporte.Location = new System.Drawing.Point(37, 220);
             this.RGN_DGV_Reporte.Margin = new System.Windows.Forms.Padding(0);
@@ -326,6 +308,7 @@
             this.RGN_DGV_Reporte.RowHeadersWidth = 51;
             this.RGN_DGV_Reporte.Size = new System.Drawing.Size(1659, 794);
             this.RGN_DGV_Reporte.TabIndex = 110;
+            this.RGN_DGV_Reporte.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RGN_DGV_Reporte_CellContentClick);
             // 
             // noEmp
             // 
@@ -334,7 +317,7 @@
             this.noEmp.MinimumWidth = 6;
             this.noEmp.Name = "noEmp";
             this.noEmp.ReadOnly = true;
-            this.noEmp.Width = 120;
+            this.noEmp.Width = 96;
             // 
             // Nombre
             // 
@@ -343,7 +326,7 @@
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 85;
+            this.Nombre.Width = 69;
             // 
             // Departamento
             // 
@@ -368,9 +351,9 @@
             // 
             // SalarioDiario
             // 
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.SalarioDiario.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.SalarioDiario.DefaultCellStyle = dataGridViewCellStyle1;
             this.SalarioDiario.HeaderText = "Salario Diario";
             this.SalarioDiario.MinimumWidth = 6;
             this.SalarioDiario.Name = "SalarioDiario";
@@ -385,10 +368,10 @@
             // 
             // FormEmployReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(1747, 922);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.RGN_DGV_Reporte);
             this.Controls.Add(this.RGN_LBL_Loading);
             this.Controls.Add(this.button2);

@@ -1112,6 +1112,77 @@ namespace MAD_AAVD_proyecto
 
             return tabla;
         }
+        public bool ReporteGeneralNomina(DateTime fecha)
+        {
+            var msg = "";
+            var add = true;
 
+            bool resultado = false;
+            try
+            {
+                conectar();
+
+                string qry = "sp_REPORTES";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parameter1.Value = 'g';
+                var parameter2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parameter2.Value = fecha.Date;
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return add;
+
+        }
+        public DataTable GetReporteGeneralNomina(DateTime fecha)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_REPORTES";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parametro1.Value = 'g';
+                var parametro2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parametro2.Value = fecha.Date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
     }
 }
