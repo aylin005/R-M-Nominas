@@ -233,6 +233,7 @@
             this.LOGIN_TB_username.PromptChar = ' ';
             this.LOGIN_TB_username.Size = new System.Drawing.Size(260, 19);
             this.LOGIN_TB_username.TabIndex = 1;
+            this.LOGIN_TB_username.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.LOGIN_TB_username_MaskInputRejected);
             // 
             // Login
             // 

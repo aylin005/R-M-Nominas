@@ -107,5 +107,10 @@ namespace MAD_AAVD_proyecto
             DB_SQLServer = true;
             MessageBox.Show("Seleccionó SQL Server como la base de datos");
         }
+
+        private void LOGIN_TB_username_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
     }
 }
