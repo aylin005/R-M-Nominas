@@ -25,7 +25,7 @@ namespace MAD_AAVD_proyecto
 
             RGN_LBL_Loading.Visible = true;
 
-            var linkCassandra = new EnlaceCassandra();
+//            var linkCassandra = new EnlaceCassandra();
             //COMBOBOX DEPARTAMENTOS
             //string[] columnasDepto = { "noDepto", "nombreDpto" };
             //List<Departamentos> listaDeptos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
@@ -39,7 +39,7 @@ namespace MAD_AAVD_proyecto
 
             //RGN_DGV_Reporte.Columns.Add("Edad", "Edad");
             LoadTablaReporte();
-            
+
             RGN_LBL_Loading.Visible = false;
         }
 
@@ -51,7 +51,7 @@ namespace MAD_AAVD_proyecto
             RGN_DGV_Reporte.Columns["rfc"].Visible = false;
             RGN_DGV_Reporte.Columns["nss"].Visible = false;
             RGN_DGV_Reporte.Columns["calleNo"].Visible = false;
-            RGN_DGV_Reporte .Columns["colonia"].Visible = false;
+            RGN_DGV_Reporte.Columns["colonia"].Visible = false;
             RGN_DGV_Reporte.Columns["municipio"].Visible = false;
             RGN_DGV_Reporte.Columns["estado"].Visible = false;
             RGN_DGV_Reporte.Columns["cp"].Visible = false;
@@ -68,29 +68,26 @@ namespace MAD_AAVD_proyecto
         {
             if (DB_SQLServer)
             {
-                DateTime aux = RGN_DTP_FiltroFecha.Value;
-                var linkDB = new EnlaceDB();
-                bool ok = linkDB.ReporteGeneralNomina(aux);
-                if (ok)
-                {
-                    DataTable reporteGeneralNomina = linkDB.GetReporteGeneralNomina(aux);
-                    RGN_DGV_Reporte.Rows.Clear();
+                LoadTablaReporte();
+                //DateTime aux = RGN_DTP_FiltroFecha.Value;
+                //var linkDB = new EnlaceDB();
 
-                    foreach (DataRow row in reporteGeneralNomina.Rows)
-                    {
-                        int rowIndex = RGN_DGV_Reporte.Rows.Add();
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["noEmp"].Value = row["noEmpleado"];
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Nombre"].Value = row["Nombres"];
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+                //DataTable reporteGeneralNomina = linkDB.GetReporteGeneralNomina(aux);
+                //RGN_DGV_Reporte.Rows.Clear();
 
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["FechaIngreso"].Value = row["fechaIngreso"];
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["SalarioDiario"].Value = row["salarioDia"];
-                        RGN_DGV_Reporte.Rows[rowIndex].Cells["Edad"].Value = row["EdadAct"];
-                    }
-                }
+                //foreach (DataRow row in reporteGeneralNomina.Rows)
+                //{
+                //    int rowIndex = RGN_DGV_Reporte.Rows.Add();
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["noEmp"].Value = row["noEmpleado"];
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["Nombre"].Value = row["Nombres"];
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["FechaIngreso"].Value = row["fechaIngreso"];
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["SalarioDiario"].Value = row["salarioDia"];
+                //    RGN_DGV_Reporte.Rows[rowIndex].Cells["Edad"].Value = row["EdadAct"];
+                //}
             }
-            //  LoadTablaReporte();
         }
 
         private void LoadTablaReporte()
@@ -98,7 +95,7 @@ namespace MAD_AAVD_proyecto
             RGN_LBL_Loading.Visible = true;
             DateTime fechaFiltro = RGN_DTP_FiltroFecha.Value;
 
-            if(DB_Cassandra)
+            if (DB_Cassandra)
             {
                 //string departamento = RGN_CB_Departamento.Text;
 
@@ -131,8 +128,27 @@ namespace MAD_AAVD_proyecto
                         edad
                         );
                 }
+            }
+            else
+            {
+                DateTime aux = RGN_DTP_FiltroFecha.Value;
+                var linkDB = new EnlaceDB();
 
+                DataTable reporteGeneralNomina = linkDB.GetReporteGeneralNomina(aux);
+                RGN_DGV_Reporte.Rows.Clear();
 
+                foreach (DataRow row in reporteGeneralNomina.Rows)
+                {
+                    int rowIndex = RGN_DGV_Reporte.Rows.Add();
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["noEmp"].Value = row["noEmpleado"];
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["Nombre"].Value = row["Nombres"];
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["FechaIngreso"].Value = row["fechaIngreso"];
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["SalarioDiario"].Value = row["salarioDia"];
+                    RGN_DGV_Reporte.Rows[rowIndex].Cells["Edad"].Value = row["EdadAct"];
+                }
             }
 
             //foreach (DataGridViewRow row in RGN_DGV_Reporte.Rows)
@@ -167,7 +183,7 @@ namespace MAD_AAVD_proyecto
 
         private void RGN_DGV_Reporte_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
     }
 }

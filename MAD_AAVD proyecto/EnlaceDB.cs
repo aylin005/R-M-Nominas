@@ -1157,7 +1157,6 @@ namespace MAD_AAVD_proyecto
             return tabla;
         }
 
-        }
         public DataTable GetReporteGeneralNomina(DateTime fecha)
         {
             var msg = "";
