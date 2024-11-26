@@ -132,6 +132,7 @@
             // NREPORTE_DGV_table
             // 
             this.NREPORTE_DGV_table.AllowUserToAddRows = false;
+            this.NREPORTE_DGV_table.AllowUserToDeleteRows = false;
             this.NREPORTE_DGV_table.BackgroundColor = System.Drawing.Color.Black;
             this.NREPORTE_DGV_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.NREPORTE_DGV_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -142,6 +143,7 @@
             this.totalSalary});
             this.NREPORTE_DGV_table.Location = new System.Drawing.Point(37, 176);
             this.NREPORTE_DGV_table.Name = "NREPORTE_DGV_table";
+            this.NREPORTE_DGV_table.ReadOnly = true;
             this.NREPORTE_DGV_table.RowHeadersWidth = 51;
             this.NREPORTE_DGV_table.Size = new System.Drawing.Size(902, 498);
             this.NREPORTE_DGV_table.TabIndex = 72;

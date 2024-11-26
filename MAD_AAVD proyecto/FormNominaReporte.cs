@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -27,47 +28,71 @@ namespace MAD_AAVD_proyecto
             NREPORTE_DGV_table.DefaultCellStyle.ForeColor = Color.White;
             NREPORTE_DGV_table.DefaultCellStyle.BackColor = Color.Black;
 
-
-            var linkCassandra = new EnlaceCassandra();
-            List<DepartamentosSueldos> aux = linkCassandra.GetReporteNomina(NREPORTE_DTP_date.Value.Year);
-            // Calcular totales
-            var totalSueldoBruto = aux.Sum(x => x.sueldoBruto);
-            var totalSueldoNeto = aux.Sum(x => x.sueldoNeto);
-
-            // Crear un nuevo registro con los totales
-            DepartamentosSueldos totalRow = new DepartamentosSueldos
+            if(DB_SQLServer)
             {
-                nombreDepto = "Total",
-                //year = 0,
-                //month = 0,
-                sueldoBruto = totalSueldoBruto,
-                sueldoNeto = totalSueldoNeto
-            };
+                var linkDB = new EnlaceDB();
+                DataTable reporte = linkDB.GetReporteDeNomina(NREPORTE_DTP_date.Value);
 
-            //Añadir el registro de totales a la lista
-            aux.Add(totalRow);
+                NREPORTE_DGV_table.Rows.Clear();
 
-            //Asignar la lista actualizada al DataGridView
-            // Limpiar las filas existentes
-            NREPORTE_DGV_table.Rows.Clear();
+                // Añade cada fila del DataTable al DGV
+                foreach (DataRow row in reporte.Rows)
+                {
+                    // Crea una nueva fila en el DataGridView
+                    int rowIndex = NREPORTE_DGV_table.Rows.Add();
 
-            // Añadir filas desde la lista aux
-            foreach (var item in aux)
-            {
-                NREPORTE_DGV_table.Rows.Add(
-                    item.nombreDepto,
-                    item.year,
-                    meses[item.month],//Mes en letras
-                    item.sueldoBruto,
-                    item.sueldoNeto
-                );
+                    //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                    NREPORTE_DGV_table.Rows[rowIndex].Cells["departmentJob"].Value = row["Departamento"];
+                    NREPORTE_DGV_table.Rows[rowIndex].Cells["year"].Value = row["Anio"];
+                    NREPORTE_DGV_table.Rows[rowIndex].Cells["month"].Value = row["Mes"];
+                    NREPORTE_DGV_table.Rows[rowIndex].Cells["baseSalary"].Value = row["SumatoriaSueldoBruto"];
+                    NREPORTE_DGV_table.Rows[rowIndex].Cells["totalSalary"].Value = row["SumatoriaSueldoNeto"];
+                }
+
             }
+            if(DB_Cassandra)
+            {
+                var linkCassandra = new EnlaceCassandra();
+                List<DepartamentosSueldos> aux = linkCassandra.GetReporteNomina(NREPORTE_DTP_date.Value.Year);
+                // Calcular totales
+                var totalSueldoBruto = aux.Sum(x => x.sueldoBruto);
+                var totalSueldoNeto = aux.Sum(x => x.sueldoNeto);
 
-            // Renglón total en negritas
-            var lastRowIndex = NREPORTE_DGV_table.Rows.Count - 1;
-            NREPORTE_DGV_table.Rows[lastRowIndex].DefaultCellStyle.Font = new Font(NREPORTE_DGV_table.Font, FontStyle.Bold);
-            NREPORTE_DGV_table.Columns["baseSalary"].DefaultCellStyle.Format = "C"; // Formato de moneda
-            NREPORTE_DGV_table.Columns["totalSalary"].DefaultCellStyle.Format = "C";
+                // Crear un nuevo registro con los totales
+                DepartamentosSueldos totalRow = new DepartamentosSueldos
+                {
+                    nombreDepto = "Total",
+                    //year = 0,
+                    //month = 0,
+                    sueldoBruto = totalSueldoBruto,
+                    sueldoNeto = totalSueldoNeto
+                };
+
+                //Añadir el registro de totales a la lista
+                aux.Add(totalRow);
+
+                //Asignar la lista actualizada al DataGridView
+                // Limpiar las filas existentes
+                NREPORTE_DGV_table.Rows.Clear();
+
+                // Añadir filas desde la lista aux
+                foreach (var item in aux)
+                {
+                    NREPORTE_DGV_table.Rows.Add(
+                        item.nombreDepto,
+                        item.year,
+                        meses[item.month],//Mes en letras
+                        item.sueldoBruto,
+                        item.sueldoNeto
+                    );
+                }
+
+                // Renglón total en negritas
+                var lastRowIndex = NREPORTE_DGV_table.Rows.Count - 1;
+                NREPORTE_DGV_table.Rows[lastRowIndex].DefaultCellStyle.Font = new Font(NREPORTE_DGV_table.Font, FontStyle.Bold);
+                NREPORTE_DGV_table.Columns["baseSalary"].DefaultCellStyle.Format = "C"; // Formato de moneda
+                NREPORTE_DGV_table.Columns["totalSalary"].DefaultCellStyle.Format = "C";
+            }
         }
 
         private void NReport_CB_OrderBy_SelectedIndexChanged(object sender, EventArgs e)

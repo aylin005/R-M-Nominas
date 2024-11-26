@@ -1221,6 +1221,41 @@ namespace MAD_AAVD_proyecto
             return tabla;
         }
 
+        public DataTable GetReporteDeNomina(DateTime fecha)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_REPORTES";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parametro1.Value = 's';
+                var parametro2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parametro2.Value = fecha.Date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
         public DataTable GetEditarEmpleado(int noEmp)
         {
             var msg = "";
