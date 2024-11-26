@@ -36,7 +36,7 @@ namespace MAD_AAVD_proyecto
             ///////////////////////////SQL///////////////////////////////////////////
             else
             {
-                if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)) || nivel <= 0)
+                if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)))
                 {
                     MessageBox.Show("(!) Ingresó un nivel salarial incorrecto");
                 }
@@ -113,7 +113,7 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     PUESTOS_LBL_Loading.Visible= true;
-                    linkCassandra.Delete("PUESTOS", columnas, noPuesto);
+                    linkCassandra.Delete("PUESTOS", primaryKey, noPuesto);
                     Reload();
                     PUESTOS_LBL_Loading.Visible = false;
                 }

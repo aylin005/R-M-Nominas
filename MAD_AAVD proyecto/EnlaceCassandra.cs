@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 using System.Collections;
 using static System.Collections.Specialized.BitVector32;
 using Microsoft.Win32;
-
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -27,7 +27,7 @@ namespace MAD_AAVD_proyecto
         static private Cluster _cluster;
         static private ISession _session;
 
-        public void conectar()
+        public static void conectar()
         {
             _dbServer = ConfigurationManager.AppSettings["Cluster"].ToString();
             _dbKeySpace = ConfigurationManager.AppSettings["KeySpace"].ToString();
@@ -52,12 +52,29 @@ namespace MAD_AAVD_proyecto
             _session = _cluster.Connect("keyspace3");
         }
 
-        public void desconectar()
+        public static void desconectar()
         {
             _cluster.Dispose();
         }
 
-        public List<T> Get_All<T>(string[] columnas, string nombreTabla)
+        public bool Autenticar(string username, string password)
+        {
+            string query = $"SELECT noEmpleado, contrasena FROM EMPLEADOS WHERE noEmpleado = {username} AND contrasena = '{password}' ALLOW FILTERING;";
+            conectar();
+            IMapper mapper = new Mapper(_session);
+            Empleados emp = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
+            desconectar();
+            if (emp != null)
+            {
+                activeUser = emp.noEmpleado;
+                return true;
+            }
+            else
+                return false;
+            
+        }
+
+        public List<T> Get_All<T>(string[] columnas, string nombreTabla, bool withConnect = true)
         {
             string query = "SELECT ";
             foreach (var columna in columnas)
@@ -66,20 +83,23 @@ namespace MAD_AAVD_proyecto
             }
             query = query.Remove(query.Length - 2);
             query += " FROM " + nombreTabla + ";";
-            conectar();
+            if(withConnect)
+                conectar();
 
             IMapper mapper = new Mapper(_session);
             IEnumerable<T> table = mapper.Fetch<T>(query);
 
-            desconectar();
+            if (withConnect)
+                desconectar();
             return table.ToList();
         }
 
-        public void Insert(bool edit, string nombreTabla, string[] primaryKey , string[] pkValues, string[] columns, string[] values)//en values enviar strings entre ''
+        public void Insert(bool edit, string nombreTabla, string[] primaryKey , string[] pkValues, string[] columns, string[] values, bool withConnect = true)//en values enviar strings entre ''
         {
             try
             {
-                conectar();
+                if(withConnect)
+                    conectar();
                 string query = "";
                 
                 //contar arreglos
@@ -160,11 +180,36 @@ namespace MAD_AAVD_proyecto
             }
             finally
             {
-                desconectar();
+                if (withConnect)
+                    desconectar();
             }
         }
        
-        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha, bool withConectar = true)
+        public void InsertFechaNomina (DateTime fecha, bool withConectar = true)
+        {
+            int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+            DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
+
+            string query = $"INSERT INTO REGISTRO_NOMINAS (year, month) VALUES ({auxFin.Year},{auxFin.Month})";
+
+            try
+            {
+                if (withConectar)
+                    conectar();
+                IMapper mapper = new Mapper(_session);
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (withConectar)
+                    desconectar();
+            }
+        }
+        public void InsertRecibo(Empleados empleado, Conceptos concepto, DateTime fecha, bool mulpDias, bool withConectar = true)
         {
             DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
             int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
@@ -178,7 +223,7 @@ namespace MAD_AAVD_proyecto
             string nombreEmpleado = $"{empleado.nombres} {empleado.apPaterno} {empleado.apMaterno}";
 
             //Obtener cantidad del concepto
-            float cantConcepto;
+            decimal cantConcepto;
 
             if (concepto.cuota != 0)
             {
@@ -186,17 +231,20 @@ namespace MAD_AAVD_proyecto
             }
             else
             {//calcular porcentaje
-                cantConcepto = (float)empleado.salarioDiario * (concepto.porcentaje);
+                if (mulpDias)
+                    cantConcepto = empleado.salarioDiario * (concepto.porcentaje) * days;
+                else
+                    cantConcepto = empleado.salarioDiario * (concepto.porcentaje);
             }
             
             try
             {
                 if(withConectar)
                     conectar();
-                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, nombreConcepto, cantConcepto, fechaConcepto, " +
+                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, percepcion, nombreConcepto, cantConcepto, fechaConcepto, " +
                     $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp)";
 
-                query += $"VALUES(uuid(), {empleado.noEmpleado}, '{finPeriodo}', {concepto.noConcepto}, '{concepto.nombreConcepto}', {cantConcepto}, '{fechaConcepto}'," +
+                query += $"VALUES(uuid(), {empleado.noEmpleado}, '{finPeriodo}', {concepto.noConcepto}, {concepto.percepcion.ToString()},'{concepto.nombreConcepto}', {cantConcepto}, '{fechaConcepto}'," +
                     $" '{nombreEmpleado}', '{empleado.departamento}', '{empleado.puesto}', {empleado.salarioDiario}, '{empleado.banco}', '{empleado.noCuenta}', '{empleado.fechaIngreso}', " +
                     $"'{inicioPeriodo}', '{finPeriodo}', '{empleado.nss}', '{empleado.rfc}', '{empleado.curp}')";
                 IMapper mapper = new Mapper(_session);
@@ -209,10 +257,33 @@ namespace MAD_AAVD_proyecto
             }
             finally
             {
-                MessageBox.Show("Insertado exitosamente");
+                //MessageBox.Show("Insertado exitosamente");
                 if(withConectar)
                     desconectar();
             }
+        }
+        public List<Conceptos> getConceptosRecibo(int noEmp, DateTime fecha, bool withConectar = true)
+        {
+            //Traer todos los conceptos del recibo
+            // Dia ultimo del mes seleccionado
+            DateTime auxDate1 = new DateTime(fecha.Year, fecha.Month, 1);
+            auxDate1 = auxDate1.AddMonths(1).AddDays(-1);
+
+            // Convertir ambas fechas a string en el formato de Cassandra
+            string date1 = auxDate1.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+
+            string query = $"SELECT noConcepto, nombreConcepto, cantConcepto, percepcion FROM RECIBOS " +
+                $"WHERE noEmpleado = {noEmp} AND mesRecibo = '{date1}';";
+            if(withConectar)
+                conectar();
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Conceptos> finalList = mapper.Fetch<Conceptos>(query);
+
+            if(withConectar)
+                desconectar();
+
+            return finalList.ToList();
         }
         public void Delete(string nombreTabla, string [] columnas, int noID)
         {
@@ -298,7 +369,7 @@ namespace MAD_AAVD_proyecto
                 query += columna + ", ";
             }
             query = query.Remove(query.Length - 2);
-            query += " FROM RECIBOS WHERE noEmpleado = " + noEmp + " mesRecibo>= '" + date1 + "' AND mesRecibo < '" + date2 + "' ALLOW FILTERING;";
+            query += " FROM RECIBOS WHERE noEmpleado = " + noEmp + " AND mesRecibo>= '" + date1 + "' AND mesRecibo < '" + date2 + "' ALLOW FILTERING;";
             conectar();
 
             IMapper mapper = new Mapper(_session);
@@ -333,7 +404,7 @@ namespace MAD_AAVD_proyecto
                 foreach (var registro in empleados)
                 {
                     // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
-                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, crup, salarioDiario, banco, noCuenta " +
+                    query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, departamento, puesto, fechaInicio, fechaIngreso, rfc, nss, curp, salarioDiario, banco, noCuenta, fechaNacimiento " +
                         $"FROM Empleados WHERE noEmpleado = {registro.noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE LIMIT 1 ALLOW FILTERING;";
 
                     Empleados empleado = mapper.FirstOrDefault<Empleados>(query); // Devuelve null si no hay resultado
@@ -385,8 +456,49 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             return finalList; // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
+        public bool cerrarRecibo(Empleados emp, DateTime fecha, int diasTrabajados, decimal sueldoBruto, 
+            decimal totalP, decimal totalD, decimal total, string totalLetra, bool withConectar = true)
+        {
+            DateTime auxInicio = new DateTime(fecha.Year, fecha.Month, 1);
+            int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
+            DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
 
-        public List<Empleados> FilterEmpByDepto (DateTime fecha, string departamento)
+            string fechaConcepto = fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string inicioPeriodo = auxInicio.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string finPeriodo = auxFin.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            //Concatenar nombre del empleado
+            string nombreEmpleado = $"{emp.nombres} {emp.apPaterno} {emp.apMaterno}";
+
+            try
+            {
+                if (withConectar)
+                    conectar();
+                string query = $"INSERT INTO RECIBOS (idRecibo, noEmpleado, mesRecibo, noConcepto, percepcion, nombreConcepto, cantConcepto, fechaConcepto, " +
+                    $"nombreEmpleado, departamento, puesto, salarioDiario, banco, noCuenta, fechaAlta, inicioPeriodo, finPeriodo, nss, rfc, curp" +
+                    $",diasTrabajados, sueldoBruto, totalPercepciones, totalDeducciones, total, totalLetra, generado)";
+
+                query += $"VALUES(uuid(), {emp.noEmpleado}, '{finPeriodo}', 0, TRUE, 'SALARIO', {sueldoBruto}, '{fechaConcepto}'," +
+                    $" '{nombreEmpleado}', '{emp.departamento}', '{emp.puesto}', {emp.salarioDiario}, '{emp.banco}', '{emp.noCuenta}', '{emp.fechaIngreso}', " +
+                    $"'{inicioPeriodo}', '{finPeriodo}', '{emp.nss}', '{emp.rfc}', '{emp.curp}', {diasTrabajados}, {sueldoBruto}, {totalP + sueldoBruto}, {totalD}," +
+                    $"{total}, '{totalLetra}', TRUE)";
+                IMapper mapper = new Mapper(_session);
+
+                _session.Execute(query);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                //MessageBox.Show("Insertado exitosamente");
+                if (withConectar)
+                    desconectar();
+            }
+            return false; 
+        }
+        public List<Empleados> FilterEmpByDepto (DateTime fecha, string departamento, bool withConnect = true)
         {
             // Dia ultimo del mes seleccionado
             DateTime auxDate1 = new DateTime(fecha.Year, fecha.Month, 1);
@@ -397,14 +509,17 @@ namespace MAD_AAVD_proyecto
             
             // Ejecutar la segunda consulta usando noEmpleado y fechaInicio máxima
 
-            string query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, curp, rfc, nss, banco, noCuenta, salarioDiario, departamento, puesto " +
+            string query = $"SELECT noEmpleado, nombres, apPaterno, apMaterno, curp, rfc, nss, banco, noCuenta, salarioDiario, departamento, puesto, fechaIngreso " +
                 $"FROM Empleados WHERE fechaInicio <= '{date1}' AND departamento = '{departamento}'" +
                 $"AND activo = TRUE ALLOW FILTERING;";
 
+            if (withConnect)
+                conectar();
             IMapper mapper = new Mapper(_session);
             IEnumerable<Empleados> finalList = mapper.Fetch<Empleados>(query);
 
-            desconectar();
+            if (withConnect)
+                desconectar();
             return finalList.ToList(); // Guarda el último puesto de cada empleado para la fecha seleccionada
         }
 
@@ -454,12 +569,12 @@ namespace MAD_AAVD_proyecto
 
             conectar();
             IMapper mapper = new Mapper(_session);
-            Empleados row = mapper.Single<Empleados>(query); //un solo resultado.
+            Empleados row = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
             desconectar();
             return row;
         }
 
-        public Empleados LastPuesto2<Empleados>(string[] columnas, string noEmpleado, DateTime date) //Obtiene el puesto activo en cierta fecha
+        public Empleados LastPuesto2<Empleados>(string[] columnas, string noEmpleado, DateTime date, bool withConnect = true) //Obtiene el puesto activo en cierta fecha
         { //REVISAR LO DE ACTIVO
             string date1 = date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
@@ -471,10 +586,12 @@ namespace MAD_AAVD_proyecto
             query = query.Remove(query.Length - 2);
             query += $" FROM EMPLEADOS WHERE noEmpleado = {noEmpleado} AND fechaInicio <= '{date1}' AND activo = TRUE ORDER BY fechaInicio DESC LIMIT 1 ALLOW FILTERING";
 
-            conectar();
+            if(withConnect)
+                conectar();
             IMapper mapper = new Mapper(_session);
             Empleados row = mapper.FirstOrDefault<Empleados>(query); //un solo resultado.
-            desconectar();
+            if (withConnect)
+                desconectar();
             return row;
         }
 
@@ -496,6 +613,89 @@ namespace MAD_AAVD_proyecto
                 desconectar();
             return table.ToList();
 
+        }
+
+        public void InserReporteNomina(List<DepartamentosSueldos> depSueldo)
+        {
+            try
+            {
+                conectar();
+                foreach (DepartamentosSueldos depto in depSueldo)
+                {
+                    string query = $"INSERT INTO departamentos_sueldos (nombreDepto, year, month, sueldoBruto, sueldoNeto)" +
+                      $" VALUES('{depto.nombreDepto}', {depto.year}, {depto.month}, {depto.sueldoBruto}, {depto.sueldoNeto});";
+                    
+                    _session.Execute(query);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public List<DepartamentosSueldos> GetReporteNomina(int year)
+        {
+            string query;
+            query = $"SELECT nombreDepto, year, month, sueldoBruto, sueldoNeto FROM departamentos_sueldos WHERE year = {year};";
+           
+
+            conectar();
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<DepartamentosSueldos> table = mapper.Fetch<DepartamentosSueldos>(query);
+
+            desconectar();
+            return table.ToList();
+
+        }
+
+        public void InsertHeadcounter(List<Headcounter> headcounter, int month)
+        {
+            try
+            {
+                conectar();
+                foreach (Headcounter hc in headcounter)
+                {
+                    string query = "UPDATE HEADCOUNTER SET cantEmpMes = cantEmpMes + {"+ month + ":" + hc.cantEmpMes[(byte)month] + "} WHERE " +
+                        $"departamento = '{hc.departamento}' AND puesto = '{hc.puesto}' AND year = {hc.year};";
+
+                    _session.Execute(query);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public List<Headcounter> GetHeadcounter(DateTime fecha, string departamento)
+        {
+            string query;
+
+            if(departamento != "TODOS") //Trae cierto departamento
+                query = $"SELECT departamento, year, puesto, cantEmpMes FROM HEADCOUNTER " +
+                    $"WHERE departamento = '{departamento}' AND year = {fecha.Year} ALLOW FILTERING;";
+            else //Trae todos los departamentos
+                query = "SELECT departamento, year, puesto, cantEmpMes FROM HEADCOUNTER " +
+                    $"WHERE year = {fecha.Year} ALLOW FILTERING";
+
+
+            conectar();
+
+            IMapper mapper = new Mapper(_session);
+            IEnumerable<Headcounter> table = mapper.Fetch<Headcounter>(query);
+
+            desconectar();
+            return table.ToList();
         }
     }
 }

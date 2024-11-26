@@ -22,16 +22,26 @@ namespace MAD_AAVD_proyecto
         public int noDepto { get; set; }
         public string nombreDpto { get; set; } 
         public float  sueldoBase { get; set; }
+
+        public Departamentos() { }
+        public Departamentos(int noDepto, string nombreDpto, float sueldoBase)
+        {
+            this.noDepto = noDepto;
+            this.nombreDpto = nombreDpto;
+            this.sueldoBase = sueldoBase;
+        }
     }
 
     public class Conceptos
     {
         public int noConcepto { get; set; }
         public string nombreConcepto { get; set; }
-        public float cuota { get; set; }
-        public float porcentaje { get; set; }
+        public decimal cuota { get; set; }
+        public decimal porcentaje { get; set; }
         public bool fijo { get; set; }
         public bool percepcion { get; set; }
+
+        public decimal cantConcepto { get; set; }
     }
 
     public class  Empleados
@@ -64,7 +74,7 @@ namespace MAD_AAVD_proyecto
 
     public class Recibos
     {
-        public string idRecibo {  get; set; }
+        public Guid idRecibo {  get; set; }
         public int noEmpleado { get; set; }
         public Cassandra.LocalDate mesRecibo { get; set; }
         public string nombreEmpleado { get; set; }
@@ -96,4 +106,54 @@ namespace MAD_AAVD_proyecto
         public int year { get; set; }
         public int month { get; set; }
     }
+
+    public class DepartamentosSueldos
+    {
+        public string nombreDepto { get; set; }
+        public int year { get; set; }
+        public int month { get; set; }
+        public decimal sueldoBruto { get; set; }
+        public decimal sueldoNeto { get; set; }
+
+        public DepartamentosSueldos() { }
+        public DepartamentosSueldos(string pnombreDepto, int pyear, int pmonth, decimal psueldoBruto, decimal psueldoNeto)
+        {
+            nombreDepto = pnombreDepto;
+            year = pyear;
+            month = pmonth;
+            sueldoBruto = psueldoBruto;
+            sueldoNeto = psueldoNeto;
+        }
+    }
+
+    public class Headcounter
+    {
+        public string departamento { get; set; }
+        public string puesto { get; set; }
+        public Int16 year { get; set; }
+        public Dictionary<short, short> cantEmpMes {  get; set; }
+    }
+
+    public class GenerarNomina
+    {
+        public int noEmpleado { get; set; }
+        public string nombre { get; set; }
+        public string fecha { get; set; }
+        public decimal cantidad { get; set; }
+        public string banco { get; set; }
+        public string noCuenta { get; set; }
+
+        public GenerarNomina() { }
+        public GenerarNomina(int pnoEmp, string pnombre, string pfecha, decimal pcantidad, string pbanco, string pnoCuenta) 
+        {
+            noEmpleado = pnoEmp;
+            nombre = pnombre;
+            fecha = pfecha;
+            cantidad = pcantidad;
+            banco = pbanco;
+            noCuenta = pnoCuenta;
+
+        }
+    }
+    
 }

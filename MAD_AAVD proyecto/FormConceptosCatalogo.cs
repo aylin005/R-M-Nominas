@@ -47,7 +47,22 @@ namespace MAD_AAVD_proyecto
                 var linkDB = new EnlaceDB(); //enlace temporal con la db
                 DataTable TablaConceptos = new DataTable(); //se crea una tabla
                 TablaConceptos = linkDB.GetConceptos(); //se acceden a los departamentos de la db y se guardan en la tabla creada
-                ADMIN_DGV_Conceptos.DataSource = TablaConceptos;
+                //ADMIN_DGV_Conceptos.DataSource = TablaConceptos;
+
+                ADMIN_DGV_Conceptos.Rows.Clear();
+
+                // Recorre las filas del DataTable y agrégalas al DataGridView
+                foreach (DataRow row in TablaConceptos.Rows)
+                {
+                    // Crea una nueva fila en el DataGridView
+                    int rowIndex = ADMIN_DGV_Conceptos.Rows.Add();
+
+                    // Asigna valores a las columnas específicas
+                    for (int colIndex = 0; colIndex < TablaConceptos.Columns.Count; colIndex++)
+                    {
+                            ADMIN_DGV_Conceptos.Rows[rowIndex].Cells[colIndex].Value = row[colIndex];
+                    }
+                }
 
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";
                 CONCEPTOSCAT_TB_Porcentaje.Text = "N/A";
@@ -61,7 +76,19 @@ namespace MAD_AAVD_proyecto
 
                 string[] columnas = { "noConcepto", "nombreConcepto", "cuota", "porcentaje", "fijo", "percepcion" };
                 List<Conceptos> tabla = linkCassandra.Get_All<Conceptos>(columnas, "CONCEPTOS");
-                ADMIN_DGV_Conceptos.DataSource = tabla;
+                ADMIN_DGV_Conceptos.Rows.Clear();
+                foreach (var item in tabla)
+                {
+                    ADMIN_DGV_Conceptos.Rows.Add(
+                        item.noConcepto,
+                        item.nombreConcepto,
+                        item.cuota,
+                        item.porcentaje,
+                        item.fijo,
+                        item.percepcion
+                        );
+                }
+                //ADMIN_DGV_Conceptos.DataSource = tabla;
                 ADMIN_DGV_Conceptos.Columns["noConcepto"].Visible = false;
 
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";

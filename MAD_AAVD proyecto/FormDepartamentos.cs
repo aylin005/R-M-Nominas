@@ -28,6 +28,7 @@ namespace MAD_AAVD_proyecto
         private void FormDepartamentos_Load(object sender, EventArgs e)
         {
             Reload();
+            ADMIN_DGV_Departamentos.Columns["SueldoBase"].DefaultCellStyle.Format = "C"; // Formato de moneda
         }
 
         /// ******************************************************************************************************************************************************************************************************
@@ -118,7 +119,7 @@ namespace MAD_AAVD_proyecto
                 {
                     var linkCassandra = new EnlaceCassandra();
                     DEPARTAMENTOS_LBL_Loading.Visible = true;
-                    linkCassandra.Delete("DEPARTAMENTOS", columnas, noDepto);
+                    linkCassandra.Delete("DEPARTAMENTOS", primaryKey, noDepto);
                     Reload();
                     DEPARTAMENTOS_LBL_Loading.Visible = false;
                 }
@@ -213,7 +214,13 @@ namespace MAD_AAVD_proyecto
                 
                 string[] columnas = { "noDepto", "nombreDpto", "sueldoBase" };
                 List<Departamentos> tabla = linkCassandra.Get_All<Departamentos>(columnas, "DEPARTAMENTOS");
-                ADMIN_DGV_Departamentos.DataSource = tabla;
+                ADMIN_DGV_Departamentos.Rows.Clear();
+                foreach (var item in tabla)
+                {
+                    ADMIN_DGV_Departamentos.Rows.Add(item.noDepto, item.nombreDpto, item.sueldoBase);
+                }
+                
+                //ADMIN_DGV_Departamentos.DataSource = tabla;
                 ADMIN_DGV_Departamentos.Columns["noDepto"].Visible = false;
             }
         }

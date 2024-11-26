@@ -62,7 +62,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(-1, 136);
+            this.panel2.Location = new System.Drawing.Point(-1, 124);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(999, 3);
@@ -118,6 +118,9 @@
             // 
             // GREPORTE_DGV_table
             // 
+            this.GREPORTE_DGV_table.AllowUserToAddRows = false;
+            this.GREPORTE_DGV_table.AllowUserToDeleteRows = false;
+            this.GREPORTE_DGV_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GREPORTE_DGV_table.BackgroundColor = System.Drawing.Color.Black;
             this.GREPORTE_DGV_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GREPORTE_DGV_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -130,25 +133,28 @@
             this.GREPORTE_DGV_table.GridColor = System.Drawing.Color.DodgerBlue;
             this.GREPORTE_DGV_table.Location = new System.Drawing.Point(36, 244);
             this.GREPORTE_DGV_table.Name = "GREPORTE_DGV_table";
+            this.GREPORTE_DGV_table.ReadOnly = true;
             this.GREPORTE_DGV_table.RowHeadersWidth = 51;
             this.GREPORTE_DGV_table.Size = new System.Drawing.Size(890, 427);
             this.GREPORTE_DGV_table.TabIndex = 72;
             // 
             // numEmploy
             // 
+            this.numEmploy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.numEmploy.HeaderText = "No. Empleado";
             this.numEmploy.MinimumWidth = 6;
             this.numEmploy.Name = "numEmploy";
             this.numEmploy.ReadOnly = true;
-            this.numEmploy.Width = 125;
+            this.numEmploy.Width = 130;
             // 
             // nameEmploy
             // 
-            this.nameEmploy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameEmploy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.nameEmploy.HeaderText = "Nombre ";
             this.nameEmploy.MinimumWidth = 6;
             this.nameEmploy.Name = "nameEmploy";
             this.nameEmploy.ReadOnly = true;
+            this.nameEmploy.Width = 102;
             // 
             // date
             // 
@@ -156,31 +162,33 @@
             this.date.MinimumWidth = 6;
             this.date.Name = "date";
             this.date.ReadOnly = true;
-            this.date.Width = 70;
             // 
             // salaryResult
             // 
+            this.salaryResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.salaryResult.HeaderText = "Cantidad a depositar";
             this.salaryResult.MinimumWidth = 6;
             this.salaryResult.Name = "salaryResult";
             this.salaryResult.ReadOnly = true;
-            this.salaryResult.Width = 125;
+            this.salaryResult.Width = 175;
             // 
             // bank
             // 
-            this.bank.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.bank.HeaderText = "Banco en que se depositará";
+            this.bank.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.bank.HeaderText = "Banco";
             this.bank.MinimumWidth = 6;
             this.bank.Name = "bank";
             this.bank.ReadOnly = true;
+            this.bank.Width = 86;
             // 
             // accountNum
             // 
+            this.accountNum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.accountNum.HeaderText = "No. Cuenta";
             this.accountNum.MinimumWidth = 6;
             this.accountNum.Name = "accountNum";
             this.accountNum.ReadOnly = true;
-            this.accountNum.Width = 70;
+            this.accountNum.Width = 111;
             // 
             // FormNominaGenerar
             // 

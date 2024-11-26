@@ -49,6 +49,9 @@
             this.DEPARTAMENTOS_BTN_Limpiar = new System.Windows.Forms.Button();
             this.DEPARTAMENTOS_LBL_Edit = new System.Windows.Forms.Label();
             this.DEPARTAMENTOS_LBL_Loading = new System.Windows.Forms.Label();
+            this.noDepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SueldoBase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Departamentos)).BeginInit();
@@ -219,6 +222,10 @@
             this.ADMIN_DGV_Departamentos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ADMIN_DGV_Departamentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ADMIN_DGV_Departamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_Departamentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.noDepto,
+            this.Nombre,
+            this.SueldoBase});
             this.ADMIN_DGV_Departamentos.GridColor = System.Drawing.Color.DodgerBlue;
             this.ADMIN_DGV_Departamentos.Location = new System.Drawing.Point(283, 537);
             this.ADMIN_DGV_Departamentos.Margin = new System.Windows.Forms.Padding(4);
@@ -314,6 +321,28 @@
             this.DEPARTAMENTOS_LBL_Loading.Text = "Loading...";
             this.DEPARTAMENTOS_LBL_Loading.Visible = false;
             // 
+            // noDepto
+            // 
+            this.noDepto.HeaderText = "noDepto";
+            this.noDepto.MinimumWidth = 6;
+            this.noDepto.Name = "noDepto";
+            this.noDepto.ReadOnly = true;
+            this.noDepto.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // SueldoBase
+            // 
+            this.SueldoBase.HeaderText = "Sueldo Base";
+            this.SueldoBase.MinimumWidth = 6;
+            this.SueldoBase.Name = "SueldoBase";
+            this.SueldoBase.ReadOnly = true;
+            // 
             // FormDepartamentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -376,5 +405,8 @@
         private System.Windows.Forms.Button DEPARTAMENTOS_BTN_Limpiar;
         private System.Windows.Forms.Label DEPARTAMENTOS_LBL_Edit;
         private System.Windows.Forms.Label DEPARTAMENTOS_LBL_Loading;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noDepto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SueldoBase;
     }
 }

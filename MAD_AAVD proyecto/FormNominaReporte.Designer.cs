@@ -53,7 +53,7 @@
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(329, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(339, 45);
+            this.label1.Size = new System.Drawing.Size(430, 57);
             this.label1.TabIndex = 3;
             this.label1.Text = "Reporte de Nómina";
             // 
@@ -85,11 +85,11 @@
             this.NREPORT_BTN_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NREPORT_BTN_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NREPORT_BTN_Filter.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.NREPORT_BTN_Filter.Location = new System.Drawing.Point(512, 104);
+            this.NREPORT_BTN_Filter.Location = new System.Drawing.Point(525, 97);
             this.NREPORT_BTN_Filter.Name = "NREPORT_BTN_Filter";
             this.NREPORT_BTN_Filter.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.NREPORT_BTN_Filter.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.NREPORT_BTN_Filter.Size = new System.Drawing.Size(85, 28);
+            this.NREPORT_BTN_Filter.Size = new System.Drawing.Size(93, 42);
             this.NREPORT_BTN_Filter.TabIndex = 0;
             this.NREPORT_BTN_Filter.Text = "Filtrar";
             this.NREPORT_BTN_Filter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,9 +102,9 @@
             this.NREPORTE_DTP_date.CalendarTitleForeColor = System.Drawing.SystemColors.ButtonFace;
             this.NREPORTE_DTP_date.CustomFormat = "yyyy";
             this.NREPORTE_DTP_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.NREPORTE_DTP_date.Location = new System.Drawing.Point(399, 106);
+            this.NREPORTE_DTP_date.Location = new System.Drawing.Point(386, 106);
             this.NREPORTE_DTP_date.Name = "NREPORTE_DTP_date";
-            this.NREPORTE_DTP_date.Size = new System.Drawing.Size(93, 22);
+            this.NREPORTE_DTP_date.Size = new System.Drawing.Size(106, 26);
             this.NREPORTE_DTP_date.TabIndex = 70;
             this.NREPORTE_DTP_date.ValueChanged += new System.EventHandler(this.NREPORTE_DTP_date_ValueChanged);
             // 
@@ -131,6 +131,7 @@
             // 
             // NREPORTE_DGV_table
             // 
+            this.NREPORTE_DGV_table.AllowUserToAddRows = false;
             this.NREPORTE_DGV_table.BackgroundColor = System.Drawing.Color.Black;
             this.NREPORTE_DGV_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.NREPORTE_DGV_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -141,6 +142,7 @@
             this.totalSalary});
             this.NREPORTE_DGV_table.Location = new System.Drawing.Point(37, 176);
             this.NREPORTE_DGV_table.Name = "NREPORTE_DGV_table";
+            this.NREPORTE_DGV_table.RowHeadersWidth = 51;
             this.NREPORTE_DGV_table.Size = new System.Drawing.Size(902, 498);
             this.NREPORTE_DGV_table.TabIndex = 72;
             this.NREPORTE_DGV_table.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NREPORTE_DGV_table_CellContentClick);
@@ -149,6 +151,7 @@
             // 
             this.departmentJob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.departmentJob.HeaderText = "Departamento";
+            this.departmentJob.MinimumWidth = 6;
             this.departmentJob.Name = "departmentJob";
             this.departmentJob.ReadOnly = true;
             // 
@@ -156,6 +159,7 @@
             // 
             this.year.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.year.HeaderText = "Año";
+            this.year.MinimumWidth = 6;
             this.year.Name = "year";
             this.year.ReadOnly = true;
             // 
@@ -163,6 +167,7 @@
             // 
             this.month.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.month.HeaderText = "Mes";
+            this.month.MinimumWidth = 6;
             this.month.Name = "month";
             this.month.ReadOnly = true;
             // 
@@ -170,6 +175,7 @@
             // 
             this.baseSalary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.baseSalary.HeaderText = "ΣSueldo Bruto";
+            this.baseSalary.MinimumWidth = 6;
             this.baseSalary.Name = "baseSalary";
             this.baseSalary.ReadOnly = true;
             // 
@@ -177,12 +183,13 @@
             // 
             this.totalSalary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.totalSalary.HeaderText = "ΣSueldo Neto";
+            this.totalSalary.MinimumWidth = 6;
             this.totalSalary.Name = "totalSalary";
             this.totalSalary.ReadOnly = true;
             // 
             // FormNominaReporte
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(980, 710);

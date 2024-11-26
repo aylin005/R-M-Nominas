@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.CONCEPTOSCAT_LBL_Titulo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,6 +59,12 @@
             this.CONCEPTOSCAT_BTN_Limpiar = new System.Windows.Forms.Button();
             this.CONCEPTOSCAT_LBL_Edit = new System.Windows.Forms.Label();
             this.CONCEPTOSCAT_LBL_Loading = new System.Windows.Forms.Label();
+            this.noConcepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fijo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Percepcion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_Conceptos)).BeginInit();
             this.panel6.SuspendLayout();
@@ -309,6 +317,13 @@
             this.ADMIN_DGV_Conceptos.BackgroundColor = System.Drawing.Color.Black;
             this.ADMIN_DGV_Conceptos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ADMIN_DGV_Conceptos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_Conceptos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.noConcepto,
+            this.Nombre,
+            this.Cuota,
+            this.Porcentaje,
+            this.Fijo,
+            this.Percepcion});
             this.ADMIN_DGV_Conceptos.GridColor = System.Drawing.Color.DodgerBlue;
             this.ADMIN_DGV_Conceptos.Location = new System.Drawing.Point(127, 534);
             this.ADMIN_DGV_Conceptos.Margin = new System.Windows.Forms.Padding(4);
@@ -424,6 +439,56 @@
             this.CONCEPTOSCAT_LBL_Loading.Text = "Loading...";
             this.CONCEPTOSCAT_LBL_Loading.Visible = false;
             // 
+            // noConcepto
+            // 
+            this.noConcepto.HeaderText = "noConcepto";
+            this.noConcepto.MinimumWidth = 6;
+            this.noConcepto.Name = "noConcepto";
+            this.noConcepto.ReadOnly = true;
+            this.noConcepto.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 85;
+            // 
+            // Cuota
+            // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Cuota.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Cuota.HeaderText = "Cuota";
+            this.Cuota.MinimumWidth = 6;
+            this.Cuota.Name = "Cuota";
+            this.Cuota.ReadOnly = true;
+            // 
+            // Porcentaje
+            // 
+            dataGridViewCellStyle2.NullValue = "0";
+            this.Porcentaje.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Porcentaje.HeaderText = "Porcentaje";
+            this.Porcentaje.MinimumWidth = 6;
+            this.Porcentaje.Name = "Porcentaje";
+            this.Porcentaje.ReadOnly = true;
+            // 
+            // Fijo
+            // 
+            this.Fijo.HeaderText = "Fijo";
+            this.Fijo.MinimumWidth = 6;
+            this.Fijo.Name = "Fijo";
+            this.Fijo.ReadOnly = true;
+            // 
+            // Percepcion
+            // 
+            this.Percepcion.HeaderText = "Percepción";
+            this.Percepcion.MinimumWidth = 6;
+            this.Percepcion.Name = "Percepcion";
+            this.Percepcion.ReadOnly = true;
+            // 
             // CONCEPTOSCAT_DB_Tipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -502,5 +567,11 @@
         private System.Windows.Forms.Button CONCEPTOSCAT_BTN_Limpiar;
         private System.Windows.Forms.Label CONCEPTOSCAT_LBL_Edit;
         private System.Windows.Forms.Label CONCEPTOSCAT_LBL_Loading;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noConcepto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cuota;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Porcentaje;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Fijo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Percepcion;
     }
 }

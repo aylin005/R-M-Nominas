@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
     public partial class FormEditarUsuario : Form
     {
-        int noEmp = 1; //Para pruebas, se debe traer variable del usuario activo en la sesion
+        int noEmp = activeUser; //Para pruebas, se debe traer variable del usuario activo en la sesion
         Empleados empleado;
         public FormEditarUsuario()
         {
