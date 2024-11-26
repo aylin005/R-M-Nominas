@@ -79,6 +79,22 @@ namespace MAD_AAVD_proyecto
                         GREPORTE_DGV_table.Rows[rowIndex].Cells["accountNum"].Value = row["noCuenta"];
 
                     }
+
+                    //Generar CSV
+                    string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+                    string folderPath = Path.Combine(projectPath, "Nóminas");
+
+                    // Crear la carpeta si no existe
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    string filePath = Path.Combine(folderPath, $"Nómina_{auxFin:yyyy-MM-dd}.csv");
+
+                    WriteDataTableToCsv(reporteNomina, filePath);
+
+                    MessageBox.Show($"Se generó con éxito el archivo CSV. Archivo guardado en: {filePath}");
                 }
                     
 
@@ -300,12 +316,37 @@ namespace MAD_AAVD_proyecto
             //Insertar en tabla headcounter
             linkCassandra.InsertHeadcounter(headCounter, GREPORTE_DTP_date.Value.Month);
         }
+        static void WriteDataTableToCsv(DataTable table, string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
+            {
+                // Escribir los encabezados de las columnas
+                string[] columnNames = new string[table.Columns.Count];
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    columnNames[i] = table.Columns[i].ColumnName;
+                }
+                writer.WriteLine(string.Join(",", columnNames));
 
+                // Escribir las filas
+                foreach (DataRow row in table.Rows)
+                {
+                    string[] fields = new string[table.Columns.Count];
+                    for (int i = 0; i < table.Columns.Count; i++)
+                    {
+                        fields[i] = row[i]?.ToString().Replace(",", " "); // Manejar comas en los datos
+                    }
+                    writer.WriteLine(string.Join(",", fields));
+                }
+            }
+        }
     }
 
 
     public static class ExtensionMethods
     {
+        
+
         public static string NumeroALetras(this decimal numberAsString)
         {
             string dec;
@@ -403,6 +444,8 @@ namespace MAD_AAVD_proyecto
             }
             return num2Text;
         }
+
+        
     }
 }
 
