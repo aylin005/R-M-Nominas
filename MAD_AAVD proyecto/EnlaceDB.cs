@@ -471,7 +471,36 @@ namespace MAD_AAVD_proyecto
                     var parameter23 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 1);
                     parameter23.Value = noEmp;
                 }
-
+                if(pOpcion == "e")
+                {
+                    var parameter5 = _comandosql.Parameters.Add("@pPasswordHash", SqlDbType.VarChar, 255);
+                    parameter5.Value = pPassword;
+                    var parameter12 = _comandosql.Parameters.Add("@pCalleNombre", SqlDbType.VarChar, 30);
+                    parameter12.Value = pCalleNo;
+                    var parameter13 = _comandosql.Parameters.Add("@pColonia", SqlDbType.VarChar, 30);
+                    parameter13.Value = pCol;
+                    var parameter14 = _comandosql.Parameters.Add("@pIdMunicipio", SqlDbType.Int, 8);
+                    parameter14.Value = pMun;
+                    var parameter15 = _comandosql.Parameters.Add("@pIdEstado", SqlDbType.Int, 8);
+                    parameter15.Value = pEst;
+                    var parameter16 = _comandosql.Parameters.Add("@pIdBanco", SqlDbType.Int, 8);
+                    parameter16.Value = pBanco;
+                    var parameter17 = _comandosql.Parameters.Add("@pNoCuenta", SqlDbType.Int, 8);
+                    parameter17.Value = pNoC;
+                    var parameter18 = _comandosql.Parameters.Add("@pCodPostal", SqlDbType.VarChar, 6);
+                    parameter18.Value = pCP;
+                    var parameter19 = _comandosql.Parameters.Add("@pEmail", SqlDbType.VarChar, 100);
+                    if (pEmail == "No registrado")
+                        parameter19.Value = DBNull.Value;
+                    else
+                        parameter19.Value = pEmail;
+                    var parameter20 = _comandosql.Parameters.Add("@pTelefono1", SqlDbType.BigInt, 8);
+                    parameter20.Value = pT1;
+                    var parameter21 = _comandosql.Parameters.Add("@pTelefono2", SqlDbType.BigInt, 8);
+                    parameter21.Value = pT2;
+                    var parameter23 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 1);
+                    parameter23.Value = noEmp;
+                }
                 if (pOpcion == "B")
                 {
                     var parameter2 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.SmallInt, 1);
@@ -1173,6 +1202,41 @@ namespace MAD_AAVD_proyecto
                 parametro1.Value = 'g';
                 var parametro2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
                 parametro2.Value = fecha.Date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable GetEditarEmpleado(int noEmp)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_EMPLEADOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parametro1.Value = 'S';
+                var parametro2 = _comandosql.Parameters.Add("@pNoEmpleado", SqlDbType.Int);
+                parametro2.Value = noEmp;
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
