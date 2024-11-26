@@ -77,8 +77,24 @@ namespace MAD_AAVD_proyecto
 
                 var linkDB = new EnlaceDB();
                 DataTable TablaEmpleados = new DataTable();
-                TablaEmpleados = linkDB.GetEmpleados();
-                EMP_DGV_Empleados.DataSource = TablaEmpleados;
+                TablaEmpleados = linkDB.GetEmpleados('F', 0,0, EMP_DTP_FiltroFecha.Value);
+                //EMP_DGV_Empleados.DataSource = TablaEmpleados;
+                EMP_DGV_Empleados.Rows.Clear();
+
+                // Añade cada fila del DataTable al DGV
+                foreach (DataRow row in TablaEmpleados.Rows)
+                {
+                    // Crea una nueva fila en el DataGridView
+                    int rowIndex = EMP_DGV_Empleados.Rows.Add();
+
+                    //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["NoEmpleado"].Value = row["noEmpleado"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["Nombre"].Value = row["nombreEmp"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["FechaInicio"].Value = row["fechaInicio"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["FechaIngreso"].Value = row["fechaIngreso"];
+                }
 
                 DataTable TablaDepartamentos = linkDB.GetDepto();
                 EMP_CB_Departamento.DataSource = TablaDepartamentos;
@@ -153,7 +169,7 @@ namespace MAD_AAVD_proyecto
             if (EMP_DGV_Empleados.CurrentRow != null)
             {
                 edit_noEmp = Int16.Parse(EMP_DGV_Empleados.CurrentRow.Cells["noEmpleado"].Value.ToString());
-                string fechaInicio = $"'{EMP_DGV_Empleados.CurrentRow.Cells["fechaInicio"].Value.ToString()}'";
+                //string fechaInicio = $"'{EMP_DGV_Empleados.CurrentRow.Cells["fechaInicio"].Value.ToString()}'";
                 if (DB_SQLServer)
                 {
                     ////Cargar los datos a los text box
@@ -482,44 +498,59 @@ namespace MAD_AAVD_proyecto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (DB_SQLServer)
-            {
-
-            }
-            else if (DB_Cassandra)
-            {
-                updateTable();
-                //EMP_DGV_Empleados.DataSource = tabla;
-
-                // Ocultar columnas no necesarias
-                //HideUnnecessaryColumns();
-            }
-
+            updateTable();
         }
         public void updateTable()
         {
-            var linkCassandra = new EnlaceCassandra();
-            string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
-            //List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
-            List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
-
-            EMP_DGV_Empleados.Rows.Clear();
-            foreach (var item in tabla)
+            if(DB_SQLServer)
             {
-                string formattedDateInicio = new DateTime(item.fechaInicio.Year, item.fechaInicio.Month, item.fechaInicio.Day)
-                .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                string formattedDateIngreso = new DateTime(item.fechaIngreso.Year, item.fechaIngreso.Month, item.fechaIngreso.Day)
-                .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                var linkDB = new EnlaceDB();
+                DataTable TablaEmpleados = new DataTable();
+                TablaEmpleados = linkDB.GetEmpleados('F', 0, 0, EMP_DTP_FiltroFecha.Value);
+                //EMP_DGV_Empleados.DataSource = TablaEmpleados;
+                EMP_DGV_Empleados.Rows.Clear();
 
-                EMP_DGV_Empleados.Rows.Add(
-                    item.noEmpleado,
-                    $"{item.nombres} {item.apPaterno} {item.apMaterno}",
-                    item.departamento,
-                    item.puesto,
-                    formattedDateInicio,
-                    formattedDateIngreso
-                    );
+                // Añade cada fila del DataTable al DGV
+                foreach (DataRow row in TablaEmpleados.Rows)
+                {
+                    // Crea una nueva fila en el DataGridView
+                    int rowIndex = EMP_DGV_Empleados.Rows.Add();
+
+                    //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["NoEmpleado"].Value = row["noEmpleado"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["Nombre"].Value = row["nombreEmp"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["FechaInicio"].Value = row["fechaInicio"];
+                    EMP_DGV_Empleados.Rows[rowIndex].Cells["FechaIngreso"].Value = row["fechaIngreso"];
+                }
             }
+            else if(DB_Cassandra)
+            {
+                var linkCassandra = new EnlaceCassandra();
+                string[] columnasTablaEmp = { "noEmpleado", "nombres", "apPaterno", "apMaterno", "departamento", "puesto", "fechaInicio" };
+                //List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
+                List<Empleados> tabla = linkCassandra.FilterEmpleados(EMP_DTP_FiltroFecha.Value);
+
+                EMP_DGV_Empleados.Rows.Clear();
+                foreach (var item in tabla)
+                {
+                    string formattedDateInicio = new DateTime(item.fechaInicio.Year, item.fechaInicio.Month, item.fechaInicio.Day)
+                    .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    string formattedDateIngreso = new DateTime(item.fechaIngreso.Year, item.fechaIngreso.Month, item.fechaIngreso.Day)
+                    .ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                    EMP_DGV_Empleados.Rows.Add(
+                        item.noEmpleado,
+                        $"{item.nombres} {item.apPaterno} {item.apMaterno}",
+                        item.departamento,
+                        item.puesto,
+                        formattedDateInicio,
+                        formattedDateIngreso
+                        );
+                }
+            }
+            
         }
         public static string GetHash(HashAlgorithm hashAlgorithm, string input)
         {

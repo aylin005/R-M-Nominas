@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.RECIBO_DGV_Percepciones = new System.Windows.Forms.DataGridView();
             this.RECIBO_DGV_Deducciones = new System.Windows.Forms.DataGridView();
@@ -56,6 +58,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.RECIBO_TB_IdRecibo = new System.Windows.Forms.Label();
             this.RECIBO_TB_PeriodoPago = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.RECIBO_TB_FechaPago = new System.Windows.Forms.Label();
@@ -83,13 +86,12 @@
             this.RECIBO_TB_Total = new System.Windows.Forms.Label();
             this.RECIBO_TB_TotalLetra = new System.Windows.Forms.Label();
             this.RECIBO_BTN_Aplicar = new System.Windows.Forms.Button();
-            this.RECIBO_TB_IdRecibo = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Concepto2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.RECIBO_DGV_Percepciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RECIBO_DGV_Deducciones)).BeginInit();
             this.panel5.SuspendLayout();
@@ -115,11 +117,11 @@
             this.RECIBO_DGV_Percepciones.BackgroundColor = System.Drawing.Color.Black;
             this.RECIBO_DGV_Percepciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RECIBO_DGV_Percepciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.Clave,
             this.Concepto,
-            this.pImporte});
+            this.Importe});
             this.RECIBO_DGV_Percepciones.Location = new System.Drawing.Point(29, 489);
-            this.RECIBO_DGV_Percepciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RECIBO_DGV_Percepciones.Margin = new System.Windows.Forms.Padding(4);
             this.RECIBO_DGV_Percepciones.Name = "RECIBO_DGV_Percepciones";
             this.RECIBO_DGV_Percepciones.ReadOnly = true;
             this.RECIBO_DGV_Percepciones.RowHeadersWidth = 51;
@@ -135,11 +137,11 @@
             this.RECIBO_DGV_Deducciones.BackgroundColor = System.Drawing.Color.Black;
             this.RECIBO_DGV_Deducciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RECIBO_DGV_Deducciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dImporte});
+            this.Clave2,
+            this.Concepto2,
+            this.Importe2});
             this.RECIBO_DGV_Deducciones.Location = new System.Drawing.Point(659, 489);
-            this.RECIBO_DGV_Deducciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RECIBO_DGV_Deducciones.Margin = new System.Windows.Forms.Padding(4);
             this.RECIBO_DGV_Deducciones.Name = "RECIBO_DGV_Deducciones";
             this.RECIBO_DGV_Deducciones.ReadOnly = true;
             this.RECIBO_DGV_Deducciones.RowHeadersWidth = 51;
@@ -199,11 +201,10 @@
             this.RECIBO_DTP_Fecha.CustomFormat = "MM/yyyy";
             this.RECIBO_DTP_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.RECIBO_DTP_Fecha.Location = new System.Drawing.Point(643, 106);
-            this.RECIBO_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RECIBO_DTP_Fecha.Margin = new System.Windows.Forms.Padding(4);
             this.RECIBO_DTP_Fecha.Name = "RECIBO_DTP_Fecha";
             this.RECIBO_DTP_Fecha.Size = new System.Drawing.Size(109, 22);
             this.RECIBO_DTP_Fecha.TabIndex = 71;
-            this.RECIBO_DTP_Fecha.ValueChanged += new System.EventHandler(this.GREPORTE_DTP_date_ValueChanged);
             // 
             // label4
             // 
@@ -459,6 +460,19 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1309, 42);
             this.panel5.TabIndex = 73;
+            // 
+            // RECIBO_TB_IdRecibo
+            // 
+            this.RECIBO_TB_IdRecibo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.RECIBO_TB_IdRecibo.AutoSize = true;
+            this.RECIBO_TB_IdRecibo.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RECIBO_TB_IdRecibo.ForeColor = System.Drawing.Color.AliceBlue;
+            this.RECIBO_TB_IdRecibo.Location = new System.Drawing.Point(53, 12);
+            this.RECIBO_TB_IdRecibo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.RECIBO_TB_IdRecibo.Name = "RECIBO_TB_IdRecibo";
+            this.RECIBO_TB_IdRecibo.Size = new System.Drawing.Size(15, 21);
+            this.RECIBO_TB_IdRecibo.TabIndex = 105;
+            this.RECIBO_TB_IdRecibo.Text = " ";
             // 
             // RECIBO_TB_PeriodoPago
             // 
@@ -808,25 +822,36 @@
             this.RECIBO_BTN_Aplicar.UseVisualStyleBackColor = false;
             this.RECIBO_BTN_Aplicar.Click += new System.EventHandler(this.RECIBO_BTN_Aplicar_Click);
             // 
-            // RECIBO_TB_IdRecibo
+            // Clave2
             // 
-            this.RECIBO_TB_IdRecibo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.RECIBO_TB_IdRecibo.AutoSize = true;
-            this.RECIBO_TB_IdRecibo.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RECIBO_TB_IdRecibo.ForeColor = System.Drawing.Color.AliceBlue;
-            this.RECIBO_TB_IdRecibo.Location = new System.Drawing.Point(53, 12);
-            this.RECIBO_TB_IdRecibo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.RECIBO_TB_IdRecibo.Name = "RECIBO_TB_IdRecibo";
-            this.RECIBO_TB_IdRecibo.Size = new System.Drawing.Size(15, 21);
-            this.RECIBO_TB_IdRecibo.TabIndex = 105;
-            this.RECIBO_TB_IdRecibo.Text = " ";
+            this.Clave2.HeaderText = "Clave";
+            this.Clave2.MinimumWidth = 6;
+            this.Clave2.Name = "Clave2";
+            this.Clave2.ReadOnly = true;
             // 
-            // Column1
+            // Concepto2
             // 
-            this.Column1.HeaderText = "Clave";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.Concepto2.HeaderText = "Concepto";
+            this.Concepto2.MinimumWidth = 6;
+            this.Concepto2.Name = "Concepto2";
+            this.Concepto2.ReadOnly = true;
+            // 
+            // Importe2
+            // 
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Importe2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Importe2.HeaderText = "Importe";
+            this.Importe2.MinimumWidth = 6;
+            this.Importe2.Name = "Importe2";
+            this.Importe2.ReadOnly = true;
+            // 
+            // Clave
+            // 
+            this.Clave.HeaderText = "Clave";
+            this.Clave.MinimumWidth = 6;
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
             // 
             // Concepto
             // 
@@ -835,33 +860,15 @@
             this.Concepto.Name = "Concepto";
             this.Concepto.ReadOnly = true;
             // 
-            // pImporte
+            // Importe
             // 
-            this.pImporte.HeaderText = "Importe";
-            this.pImporte.MinimumWidth = 6;
-            this.pImporte.Name = "pImporte";
-            this.pImporte.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Clave";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Concepto";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dImporte
-            // 
-            this.dImporte.HeaderText = "Importe";
-            this.dImporte.MinimumWidth = 6;
-            this.dImporte.Name = "dImporte";
-            this.dImporte.ReadOnly = true;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Importe.HeaderText = "Importe";
+            this.Importe.MinimumWidth = 6;
+            this.Importe.Name = "Importe";
+            this.Importe.ReadOnly = true;
             // 
             // FormReciboNomina
             // 
@@ -921,7 +928,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormReciboNomina";
             this.Text = "FormReciboNomina";
             this.Load += new System.EventHandler(this.FormReciboNomina_Load);
@@ -992,11 +999,11 @@
         private System.Windows.Forms.Label RECIBO_TB_TotalLetra;
         private System.Windows.Forms.Button RECIBO_BTN_Aplicar;
         private System.Windows.Forms.Label RECIBO_TB_IdRecibo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
         private System.Windows.Forms.DataGridViewTextBoxColumn Concepto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pImporte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dImporte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clave2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Concepto2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Importe2;
     }
 }
