@@ -77,6 +77,9 @@
             this.EDITEMP_BTN_Guardar = new System.Windows.Forms.Button();
             this.EDITEMP_TB_NoEmp = new System.Windows.Forms.TextBox();
             this.EDITEMP_LBL_Loading = new System.Windows.Forms.Label();
+            this.EDITEMP_CB_Municipio = new System.Windows.Forms.ComboBox();
+            this.EDITEMP_CB_Estado = new System.Windows.Forms.ComboBox();
+            this.EDITEMP_CB_Banco = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -98,7 +101,7 @@
             this.EDITEMP_DTP_FechaNacimiento.Enabled = false;
             this.EDITEMP_DTP_FechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.EDITEMP_DTP_FechaNacimiento.Location = new System.Drawing.Point(259, 564);
-            this.EDITEMP_DTP_FechaNacimiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_DTP_FechaNacimiento.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_DTP_FechaNacimiento.Name = "EDITEMP_DTP_FechaNacimiento";
             this.EDITEMP_DTP_FechaNacimiento.Size = new System.Drawing.Size(158, 22);
             this.EDITEMP_DTP_FechaNacimiento.TabIndex = 107;
@@ -150,7 +153,7 @@
             this.EDITEMP_TB_Tel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Tel1.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Tel1.Location = new System.Drawing.Point(1060, 503);
-            this.EDITEMP_TB_Tel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Tel1.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Tel1.Multiline = true;
             this.EDITEMP_TB_Tel1.Name = "EDITEMP_TB_Tel1";
             this.EDITEMP_TB_Tel1.Size = new System.Drawing.Size(219, 25);
@@ -163,7 +166,7 @@
             this.EDITEMP_TB_Tel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Tel2.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Tel2.Location = new System.Drawing.Point(1050, 565);
-            this.EDITEMP_TB_Tel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Tel2.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Tel2.Multiline = true;
             this.EDITEMP_TB_Tel2.Name = "EDITEMP_TB_Tel2";
             this.EDITEMP_TB_Tel2.Size = new System.Drawing.Size(221, 25);
@@ -176,7 +179,7 @@
             this.EDITEMP_TB_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Email.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Email.Location = new System.Drawing.Point(1060, 431);
-            this.EDITEMP_TB_Email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Email.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Email.Multiline = true;
             this.EDITEMP_TB_Email.Name = "EDITEMP_TB_Email";
             this.EDITEMP_TB_Email.Size = new System.Drawing.Size(219, 25);
@@ -189,7 +192,7 @@
             this.EDITEMP_TB_NoCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_NoCuenta.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_NoCuenta.Location = new System.Drawing.Point(1060, 353);
-            this.EDITEMP_TB_NoCuenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_NoCuenta.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_NoCuenta.Multiline = true;
             this.EDITEMP_TB_NoCuenta.Name = "EDITEMP_TB_NoCuenta";
             this.EDITEMP_TB_NoCuenta.Size = new System.Drawing.Size(221, 25);
@@ -212,7 +215,7 @@
             this.EDITEMP_TB_Banco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Banco.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Banco.Location = new System.Drawing.Point(1060, 279);
-            this.EDITEMP_TB_Banco.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Banco.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Banco.Multiline = true;
             this.EDITEMP_TB_Banco.Name = "EDITEMP_TB_Banco";
             this.EDITEMP_TB_Banco.Size = new System.Drawing.Size(219, 25);
@@ -235,7 +238,7 @@
             this.EDITEMP_TB_Cp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Cp.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Cp.Location = new System.Drawing.Point(656, 566);
-            this.EDITEMP_TB_Cp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Cp.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Cp.Multiline = true;
             this.EDITEMP_TB_Cp.Name = "EDITEMP_TB_Cp";
             this.EDITEMP_TB_Cp.Size = new System.Drawing.Size(219, 25);
@@ -288,7 +291,7 @@
             this.EDITEMP_TB_Estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Estado.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Estado.Location = new System.Drawing.Point(660, 500);
-            this.EDITEMP_TB_Estado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Estado.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Estado.Multiline = true;
             this.EDITEMP_TB_Estado.Name = "EDITEMP_TB_Estado";
             this.EDITEMP_TB_Estado.Size = new System.Drawing.Size(219, 25);
@@ -301,7 +304,7 @@
             this.EDITEMP_TB_Municipio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Municipio.Location = new System.Drawing.Point(656, 432);
-            this.EDITEMP_TB_Municipio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Municipio.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Municipio.Multiline = true;
             this.EDITEMP_TB_Municipio.Name = "EDITEMP_TB_Municipio";
             this.EDITEMP_TB_Municipio.Size = new System.Drawing.Size(219, 25);
@@ -314,7 +317,7 @@
             this.EDITEMP_TB_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Password.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Password.Location = new System.Drawing.Point(229, 493);
-            this.EDITEMP_TB_Password.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Password.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Password.Multiline = true;
             this.EDITEMP_TB_Password.Name = "EDITEMP_TB_Password";
             this.EDITEMP_TB_Password.PasswordChar = '*';
@@ -328,7 +331,7 @@
             this.EDITEMP_TB_Colonia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Colonia.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Colonia.Location = new System.Drawing.Point(656, 353);
-            this.EDITEMP_TB_Colonia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Colonia.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Colonia.Multiline = true;
             this.EDITEMP_TB_Colonia.Name = "EDITEMP_TB_Colonia";
             this.EDITEMP_TB_Colonia.Size = new System.Drawing.Size(221, 25);
@@ -341,7 +344,7 @@
             this.EDITEMP_TB_ApMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_ApMaterno.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_ApMaterno.Location = new System.Drawing.Point(229, 431);
-            this.EDITEMP_TB_ApMaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_ApMaterno.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_ApMaterno.Multiline = true;
             this.EDITEMP_TB_ApMaterno.Name = "EDITEMP_TB_ApMaterno";
             this.EDITEMP_TB_ApMaterno.Size = new System.Drawing.Size(219, 25);
@@ -364,7 +367,7 @@
             this.EDITEMP_TB_ApPaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_ApPaterno.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_ApPaterno.Location = new System.Drawing.Point(229, 360);
-            this.EDITEMP_TB_ApPaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_ApPaterno.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_ApPaterno.Multiline = true;
             this.EDITEMP_TB_ApPaterno.Name = "EDITEMP_TB_ApPaterno";
             this.EDITEMP_TB_ApPaterno.Size = new System.Drawing.Size(221, 25);
@@ -377,7 +380,7 @@
             this.EDITEMP_TB_CalleNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_CalleNo.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_CalleNo.Location = new System.Drawing.Point(656, 281);
-            this.EDITEMP_TB_CalleNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_CalleNo.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_CalleNo.Multiline = true;
             this.EDITEMP_TB_CalleNo.Name = "EDITEMP_TB_CalleNo";
             this.EDITEMP_TB_CalleNo.Size = new System.Drawing.Size(219, 25);
@@ -390,7 +393,7 @@
             this.EDITEMP_TB_Nombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDITEMP_TB_Nombres.ForeColor = System.Drawing.SystemColors.Window;
             this.EDITEMP_TB_Nombres.Location = new System.Drawing.Point(229, 283);
-            this.EDITEMP_TB_Nombres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EDITEMP_TB_Nombres.Margin = new System.Windows.Forms.Padding(4);
             this.EDITEMP_TB_Nombres.Multiline = true;
             this.EDITEMP_TB_Nombres.Name = "EDITEMP_TB_Nombres";
             this.EDITEMP_TB_Nombres.Size = new System.Drawing.Size(219, 25);
@@ -664,12 +667,63 @@
             this.EDITEMP_LBL_Loading.Text = "Loading...";
             this.EDITEMP_LBL_Loading.Visible = false;
             // 
+            // EDITEMP_CB_Municipio
+            // 
+            this.EDITEMP_CB_Municipio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.EDITEMP_CB_Municipio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_CB_Municipio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EDITEMP_CB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_CB_Municipio.FormattingEnabled = true;
+            this.EDITEMP_CB_Municipio.Items.AddRange(new object[] {
+            "Percepción",
+            "Deducción"});
+            this.EDITEMP_CB_Municipio.Location = new System.Drawing.Point(655, 435);
+            this.EDITEMP_CB_Municipio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EDITEMP_CB_Municipio.Name = "EDITEMP_CB_Municipio";
+            this.EDITEMP_CB_Municipio.Size = new System.Drawing.Size(216, 24);
+            this.EDITEMP_CB_Municipio.TabIndex = 161;
+            // 
+            // EDITEMP_CB_Estado
+            // 
+            this.EDITEMP_CB_Estado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.EDITEMP_CB_Estado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_CB_Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EDITEMP_CB_Estado.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_CB_Estado.FormattingEnabled = true;
+            this.EDITEMP_CB_Estado.Items.AddRange(new object[] {
+            "Percepción",
+            "Deducción"});
+            this.EDITEMP_CB_Estado.Location = new System.Drawing.Point(655, 504);
+            this.EDITEMP_CB_Estado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EDITEMP_CB_Estado.Name = "EDITEMP_CB_Estado";
+            this.EDITEMP_CB_Estado.Size = new System.Drawing.Size(216, 24);
+            this.EDITEMP_CB_Estado.TabIndex = 162;
+            // 
+            // EDITEMP_CB_Banco
+            // 
+            this.EDITEMP_CB_Banco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.EDITEMP_CB_Banco.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.EDITEMP_CB_Banco.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EDITEMP_CB_Banco.ForeColor = System.Drawing.SystemColors.Window;
+            this.EDITEMP_CB_Banco.FormattingEnabled = true;
+            this.EDITEMP_CB_Banco.Items.AddRange(new object[] {
+            "Percepción",
+            "Deducción"});
+            this.EDITEMP_CB_Banco.Location = new System.Drawing.Point(1055, 288);
+            this.EDITEMP_CB_Banco.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EDITEMP_CB_Banco.Name = "EDITEMP_CB_Banco";
+            this.EDITEMP_CB_Banco.Size = new System.Drawing.Size(216, 24);
+            this.EDITEMP_CB_Banco.TabIndex = 163;
+            // 
             // FormEditarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(1287, 825);
+            this.Controls.Add(this.EDITEMP_CB_Banco);
+            this.Controls.Add(this.EDITEMP_CB_Estado);
+            this.Controls.Add(this.EDITEMP_CB_Municipio);
             this.Controls.Add(this.EDITEMP_LBL_Loading);
             this.Controls.Add(this.EDITEMP_TB_NoEmp);
             this.Controls.Add(this.EDITEMP_BTN_Guardar);
@@ -721,7 +775,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormEditarUsuario";
             this.Text = "FormEditarUsuario";
             this.Load += new System.EventHandler(this.FormEditarUsuario_Load);
@@ -781,5 +835,8 @@
         private System.Windows.Forms.Button EDITEMP_BTN_Guardar;
         private System.Windows.Forms.TextBox EDITEMP_TB_NoEmp;
         private System.Windows.Forms.Label EDITEMP_LBL_Loading;
+        private System.Windows.Forms.ComboBox EDITEMP_CB_Municipio;
+        private System.Windows.Forms.ComboBox EDITEMP_CB_Estado;
+        private System.Windows.Forms.ComboBox EDITEMP_CB_Banco;
     }
 }
