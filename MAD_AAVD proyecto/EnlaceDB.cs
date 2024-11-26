@@ -558,8 +558,47 @@ namespace MAD_AAVD_proyecto
             return add;
         }
 
+        public bool GenerarNomina(DateTime fecha)
+        {
+            var msg = "";
+            var add = true;
+
+            bool resultado = false;
+            try
+            {
+                conectar();
+
+                string qry = "sp_RECIBOS";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parameter1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parameter1.Value = 'G';
+                var parameter2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parameter2.Value = fecha.Date;
+
+                _adaptador.InsertCommand = _comandosql;
+
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                add = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return add;
+
+        }
 
         //******************* P A R A     S E L E C T S
+
         public void GetPuesto(Int16 noPuesto, TextBox txtNombrePuesto, TextBox txtNivelSalarial)
         {
             try
@@ -1037,40 +1076,42 @@ namespace MAD_AAVD_proyecto
             return resultado;
         }
 
-        public bool GenerarNomina()
+        /////////////////////////R E P O R T E S////////////////////////////
+
+        public DataTable GetReporteNomina(DateTime fecha)
         {
-            //bool resultado = false;
-            //try
-            //{
-            //    conectar();
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_REPORTES";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
 
-            //    string qry = "sp_CheckLogIn";
-            //    _comandosql = new SqlCommand(qry, _conexion);
-            //    _comandosql.CommandType = CommandType.StoredProcedure;
-            //    _comandosql.CommandTimeout = 1200;
+                var parametro1 = _comandosql.Parameters.Add("@pAction", SqlDbType.Char, 1);
+                parametro1.Value = 'n';
+                var parametro2 = _comandosql.Parameters.Add("@fecha", SqlDbType.Date);
+                parametro2.Value = fecha.Date;
 
-            //    var parameter1 = _comandosql.Parameters.Add("@pUser", SqlDbType.Int, 4);
-            //    parameter1.Value = pUser;
-            //    var parameter2 = _comandosql.Parameters.Add("@pPassword", SqlDbType.VarChar, 255);
-            //    parameter2.Value = pPassword;
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+                // la ejecución del SP espera que regrese datos en formato tabla
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
 
-            //    SqlDataReader reader = _comandosql.ExecuteReader();
-
-            //    if (reader.Read())
-            //        resultado = (bool)reader["isConnected"];
-            //    else
-            //        resultado = false;
-            //}
-            //catch (SqlException ex)
-            //{
-            //    MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //finally
-            //{
-            //    desconectar();
-            //}
-            //return resultado;
-
+            return tabla;
         }
+
     }
 }

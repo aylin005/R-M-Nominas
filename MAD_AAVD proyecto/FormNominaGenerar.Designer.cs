@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -145,7 +146,7 @@
             this.numEmploy.MinimumWidth = 6;
             this.numEmploy.Name = "numEmploy";
             this.numEmploy.ReadOnly = true;
-            this.numEmploy.Width = 130;
+            this.numEmploy.Width = 142;
             // 
             // nameEmploy
             // 
@@ -158,6 +159,9 @@
             // 
             // date
             // 
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle1;
             this.date.HeaderText = "Fecha";
             this.date.MinimumWidth = 6;
             this.date.Name = "date";

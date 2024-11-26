@@ -55,7 +55,32 @@ namespace MAD_AAVD_proyecto
             if (DB_SQLServer)
             {
                 var linkDB = new EnlaceDB();
+                bool ok = linkDB.GenerarNomina(fecha);
+                if (ok)
+                {
+                    MessageBox.Show("Se generó la nómina correctamente", "Operación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    DataTable reporteNomina = linkDB.GetReporteNomina(fecha);
+
+                    GREPORTE_DGV_table.Rows.Clear();
+
+                    // Añade cada fila del DataTable al DGV
+                    foreach (DataRow row in reporteNomina.Rows)
+                    {
+                        // Crea una nueva fila en el DataGridView
+                        int rowIndex = GREPORTE_DGV_table.Rows.Add();
+
+                        //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                        GREPORTE_DGV_table.Rows[rowIndex].Cells["numEmploy"].Value = row["empleado"];
+                        GREPORTE_DGV_table.Rows[rowIndex].Cells["nameEmploy"].Value = row["Nombres"];
+                        GREPORTE_DGV_table.Rows[rowIndex].Cells["date"].Value = row["fechaPago"];
+                        GREPORTE_DGV_table.Rows[rowIndex].Cells["salaryResult"].Value = row["total"];
+                        GREPORTE_DGV_table.Rows[rowIndex].Cells["bank"].Value = row["nombreBanco"];
+                        GREPORTE_DGV_table.Rows[rowIndex].Cells["accountNum"].Value = row["noCuenta"];
+
+                    }
+                }
+                    
 
             }
             else if(DB_Cassandra)
@@ -301,6 +326,7 @@ namespace MAD_AAVD_proyecto
             var res = NumeroALetras(Convert.ToDouble(entero)) + dec;
             return res;
         }
+
 
         private static string NumeroALetras(double value)
         {
