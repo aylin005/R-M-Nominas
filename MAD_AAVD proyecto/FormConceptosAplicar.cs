@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MAD_AAVD_proyecto.Globals;
-using CsvHelper;
+//using CsvHelper;
 
 namespace MAD_AAVD_proyecto
 {

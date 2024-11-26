@@ -1121,12 +1121,12 @@
             this.EMP_TB_Municipio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EMP_TB_Municipio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EMP_TB_Municipio.ForeColor = System.Drawing.SystemColors.Window;
-<<<<<<< HEAD
+//<<<<<<< HEAD
             this.EMP_TB_Municipio.Location = new System.Drawing.Point(497, 201);
-=======
-            this.EMP_TB_Municipio.Location = new System.Drawing.Point(661, 247);
+//=======
+            //this.EMP_TB_Municipio.Location = new System.Drawing.Point(661, 247);
             this.EMP_TB_Municipio.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> origin
+//>>>>>>> origin
             this.EMP_TB_Municipio.Multiline = true;
             this.EMP_TB_Municipio.Name = "EMP_TB_Municipio";
             this.EMP_TB_Municipio.Size = new System.Drawing.Size(166, 20);
@@ -1173,12 +1173,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(980, 640);
-=======
-            this.ClientSize = new System.Drawing.Size(1307, 874);
+//<<<<<<< HEAD
+           this.ClientSize = new System.Drawing.Size(980, 640);
+//=======
+           // this.ClientSize = new System.Drawing.Size(1307, 874);
             this.Controls.Add(this.EMP_CB_Banco);
->>>>>>> origin
+//>>>>>>> origin
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.EMP_TB_Municipio);
             this.Controls.Add(this.button1);
