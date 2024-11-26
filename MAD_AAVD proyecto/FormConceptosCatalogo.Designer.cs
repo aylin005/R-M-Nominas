@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.CONCEPTOSCAT_LBL_Titulo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -468,8 +467,6 @@
             // 
             // Porcentaje
             // 
-            dataGridViewCellStyle2.NullValue = "0";
-            this.Porcentaje.DefaultCellStyle = dataGridViewCellStyle2;
             this.Porcentaje.HeaderText = "Porcentaje";
             this.Porcentaje.MinimumWidth = 6;
             this.Porcentaje.Name = "Porcentaje";

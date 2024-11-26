@@ -47,21 +47,24 @@ namespace MAD_AAVD_proyecto
                 var linkDB = new EnlaceDB(); //enlace temporal con la db
                 DataTable TablaConceptos = new DataTable(); //se crea una tabla
                 TablaConceptos = linkDB.GetConceptos(); //se acceden a los departamentos de la db y se guardan en la tabla creada
-                //ADMIN_DGV_Conceptos.DataSource = TablaConceptos;
 
+                //Importante limpiar antes para que al recargar no se duplique
                 ADMIN_DGV_Conceptos.Rows.Clear();
 
-                // Recorre las filas del DataTable y agrégalas al DataGridView
+                // Añade cada fila del DataTable al DGV
                 foreach (DataRow row in TablaConceptos.Rows)
                 {
                     // Crea una nueva fila en el DataGridView
                     int rowIndex = ADMIN_DGV_Conceptos.Rows.Add();
 
-                    // Asigna valores a las columnas específicas
-                    for (int colIndex = 0; colIndex < TablaConceptos.Columns.Count; colIndex++)
-                    {
-                            ADMIN_DGV_Conceptos.Rows[rowIndex].Cells[colIndex].Value = row[colIndex];
-                    }
+                    //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                    ADMIN_DGV_Conceptos.Rows[rowIndex].Cells["noConcepto"].Value = row["noConcepto"];
+                    ADMIN_DGV_Conceptos.Rows[rowIndex].Cells["Nombre"].Value = row["nombreConcepto"];
+                    ADMIN_DGV_Conceptos.Rows[rowIndex].Cells["Cuota"].Value = row["cuota"];
+                    ADMIN_DGV_Conceptos.Rows[rowIndex].Cells["Porcentaje"].Value = row["porcentaje"];
+                    ADMIN_DGV_Conceptos.Rows[rowIndex].Cells["Fijo"].Value = row["fijo"];
+                    ADMIN_DGV_Conceptos.Rows[rowIndex].Cells["Percepcion"].Value = row["percepcion"];
+
                 }
 
                 CONCEPTOSCAT_TB_Cuota.Text = "N/A";

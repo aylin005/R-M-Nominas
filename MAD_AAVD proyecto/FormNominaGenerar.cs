@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CsvHelper;
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -45,60 +46,66 @@ namespace MAD_AAVD_proyecto
         private void GREPORTE_BTN_generate_Click(object sender, EventArgs e)
         {
             GREPORTE_DGV_table.Rows.Clear();
-            var linkCassandra = new EnlaceCassandra();
-            //EnlaceCassandra.conectar();
-
             DateTime fecha = GREPORTE_DTP_date.Value; //Revisar valor que trae
 
             int days = DateTime.DaysInMonth(fecha.Year, fecha.Month);
             DateTime auxFin = new DateTime(fecha.Year, fecha.Month, days);
-
-            //Revisar si se generó el recibo del mes anterior
-
             DateTime mesAnterior = GREPORTE_DTP_date.Value.AddMonths(-1);
-            string[] primaryKey = { "year", "month" }; string[] columnas = primaryKey;
-            string[] pkValues = { mesAnterior.Year.ToString(), (mesAnterior.Month).ToString() };
-            
-            // Obtener la lista de nóminas generadas
-            List<RegistroNominas> nominasGeneradas = linkCassandra.Get_All<RegistroNominas>(columnas, "REGISTRO_NOMINAS");
 
-            // Verificar si la lista contiene datos
-            if (nominasGeneradas != null && nominasGeneradas.Count > 0)
+            if (DB_SQLServer)
             {
-                // Ordenar por año y mes en orden descendente
-                RegistroNominas ultimaNomina = nominasGeneradas
-                    .OrderByDescending(n => n.year)
-                    .ThenByDescending(n => n.month)
-                    .FirstOrDefault();
+                var linkDB = new EnlaceDB();
 
-                if (ultimaNomina != null)
+
+            }
+            else if(DB_Cassandra)
+            {
+                var linkCassandra = new EnlaceCassandra();
+                //Revisar si se generó el recibo del mes anterior
+                string[] primaryKey = { "year", "month" }; string[] columnas = primaryKey;
+                string[] pkValues = { mesAnterior.Year.ToString(), (mesAnterior.Month).ToString() };
+            
+                // Obtener la lista de nóminas generadas
+                List<RegistroNominas> nominasGeneradas = linkCassandra.Get_All<RegistroNominas>(columnas, "REGISTRO_NOMINAS");
+
+                // Verificar si la lista contiene datos
+                if (nominasGeneradas != null && nominasGeneradas.Count > 0)
                 {
-                    // Convertir el año y mes a un objeto DateTime
-                    DateTime fechaUltimaNomina = new DateTime(ultimaNomina.year, ultimaNomina.month, 1);
+                    // Ordenar por año y mes en orden descendente
+                    RegistroNominas ultimaNomina = nominasGeneradas
+                        .OrderByDescending(n => n.year)
+                        .ThenByDescending(n => n.month)
+                        .FirstOrDefault();
 
-                    // Comparar con la nueva fecha seleccionada
-                    DateTime nuevaFecha = GREPORTE_DTP_date.Value;
-                    DateTime primerDiaNuevoMes = new DateTime(nuevaFecha.Year, nuevaFecha.Month, 1);
-
-                    // Verificar si la nueva fecha es el mes siguiente de la última nómina
-                    DateTime mesSiguiente = fechaUltimaNomina.AddMonths(1);
-                    if (primerDiaNuevoMes == mesSiguiente) //Se puede generar la nomina
+                    if (ultimaNomina != null)
                     {
-                        generarNomina(fecha, auxFin);
+                        // Convertir el año y mes a un objeto DateTime
+                        DateTime fechaUltimaNomina = new DateTime(ultimaNomina.year, ultimaNomina.month, 1);
+
+                        // Comparar con la nueva fecha seleccionada
+                        DateTime nuevaFecha = GREPORTE_DTP_date.Value;
+                        DateTime primerDiaNuevoMes = new DateTime(nuevaFecha.Year, nuevaFecha.Month, 1);
+
+                        // Verificar si la nueva fecha es el mes siguiente de la última nómina
+                        DateTime mesSiguiente = fechaUltimaNomina.AddMonths(1);
+                        if (primerDiaNuevoMes == mesSiguiente) //Se puede generar la nomina
+                        {
+                            generarNomina(fecha, auxFin);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Primero genere la nómina del mes anterior", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Primero genere la nómina del mes anterior", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No se encontró una última nómina válida.");
                     }
                 }
-                else
+                else // no hay nominas registradas
                 {
-                    MessageBox.Show("No se encontró una última nómina válida.");
+                    generarNomina(fecha, auxFin);
                 }
-            }
-            else // no hay nominas registradas
-            {
-                generarNomina(fecha, auxFin);
             }
         }
         //EnlaceCassandra.desconectar();
