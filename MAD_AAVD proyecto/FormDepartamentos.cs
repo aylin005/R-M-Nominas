@@ -205,7 +205,21 @@ namespace MAD_AAVD_proyecto
                 var linkDB = new EnlaceDB(); //enlace temporal con la db
                 DataTable TablaDepartamentos = new DataTable(); //se crea una tabla
                 TablaDepartamentos = linkDB.GetDepto(); //se acceden a los departamentos de la db y se guardan en la tabla creada
-                ADMIN_DGV_Departamentos.DataSource = TablaDepartamentos;
+                //ADMIN_DGV_Departamentos.DataSource = TablaDepartamentos;
+
+                ADMIN_DGV_Departamentos.Rows.Clear();
+
+                // Añade cada fila del DataTable al DGV
+                foreach (DataRow row in TablaDepartamentos.Rows)
+                {
+                    // Crea una nueva fila en el DataGridView
+                    int rowIndex = ADMIN_DGV_Departamentos.Rows.Add();
+
+                    //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                    ADMIN_DGV_Departamentos.Rows[rowIndex].Cells["NoDepto"].Value = row["noDepto"];
+                    ADMIN_DGV_Departamentos.Rows[rowIndex].Cells["Nombre"].Value = row["nombreDpto"];
+                    ADMIN_DGV_Departamentos.Rows[rowIndex].Cells["SueldoBase"].Value = row["sueldoBase"];
+                }
             }
             ////////////////ENLACE CASSANDRA////////////////////
             else if (DB_Cassandra)
