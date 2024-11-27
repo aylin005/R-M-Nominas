@@ -36,11 +36,11 @@ namespace MAD_AAVD_proyecto
             ///////////////////////////SQL///////////////////////////////////////////
             else
             {
-                if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)))
-                {
-                    MessageBox.Show("(!) Ingresó un nivel salarial incorrecto");
-                }
-                else if (DB_SQLServer)
+                //if ((!decimal.TryParse(PUESTOS_TB_Nivel.Text, out decimal nivel)))
+                //{
+                //    MessageBox.Show("(!) Ingresó un nivel salarial incorrecto");
+                //}
+                 if (DB_SQLServer)
                 {
                     var nombrePuesto = PUESTOS_TB_Nombre.Text;
                     var nivelPuesto = float.Parse(PUESTOS_TB_Nivel.Text);

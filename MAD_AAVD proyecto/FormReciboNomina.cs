@@ -258,7 +258,7 @@ namespace MAD_AAVD_proyecto
                             RECIBO_DGV_Deducciones.Rows[rowIndex].Cells["Importe2"].Value = item["cantidad"];
                         }
 
-                        foreach (DataGridViewRow index in RECIBO_DGV_Percepciones.Rows)
+                        foreach (DataGridViewRow index in RECIBO_DGV_Deducciones.Rows)
                         {
                             if (!index.IsNewRow)  // para no agregar la fila en blanco
                             {
