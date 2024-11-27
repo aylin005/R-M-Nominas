@@ -40,7 +40,6 @@ namespace MAD_AAVD_proyecto
                 {
                     // Crea una nueva fila en el DataGridView
                     int rowIndex = NREPORTE_DGV_table.Rows.Add();
-
                     //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
                     NREPORTE_DGV_table.Rows[rowIndex].Cells["departmentJob"].Value = row["Departamento"];
                     NREPORTE_DGV_table.Rows[rowIndex].Cells["year"].Value = row["Anio"];

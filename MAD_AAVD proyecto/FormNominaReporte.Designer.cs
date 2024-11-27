@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -176,6 +178,9 @@
             // baseSalary
             // 
             this.baseSalary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.baseSalary.DefaultCellStyle = dataGridViewCellStyle1;
             this.baseSalary.HeaderText = "ΣSueldo Bruto";
             this.baseSalary.MinimumWidth = 6;
             this.baseSalary.Name = "baseSalary";
@@ -184,6 +189,9 @@
             // totalSalary
             // 
             this.totalSalary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalSalary.DefaultCellStyle = dataGridViewCellStyle2;
             this.totalSalary.HeaderText = "ΣSueldo Neto";
             this.totalSalary.MinimumWidth = 6;
             this.totalSalary.Name = "totalSalary";

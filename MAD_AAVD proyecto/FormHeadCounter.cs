@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MAD_AAVD_proyecto.Globals;
 
 namespace MAD_AAVD_proyecto
 {
@@ -21,49 +23,57 @@ namespace MAD_AAVD_proyecto
 
         private void Reload()
         {
-            var linkCassandra = new EnlaceCassandra();
+            HDCOUNTER_CB_Departamento.Visible = false;
+            label1.Visible = false;
 
-            //Obtener las dos tablas
-
-            //Tabla departamento y puesto
-            List<Headcounter> completeList = linkCassandra.GetHeadcounter(HDCOUNTER_DTP_Date.Value, HDCOUNTER_CB_Departamento.Text);
-            //Esta lista se divide en dos:
-
-            //Tabla departamento y puesto:
-            List<Headcounter> depPuesto = completeList.Where(c => !string.IsNullOrEmpty(c.puesto) && c.puesto != "-1").ToList();
-            //Tabla solo de departamento
-            List<Headcounter> deptos = completeList.Where(c => !string.IsNullOrEmpty(c.puesto) && c.puesto == "-1").ToList();
-
-            ///////////TABLA DEPARTAMENTOS CON PUESTOS///////////
-            ADMIN_DGV_PuestoCant.Rows.Clear();
-
-            // Añadir filas desde la lista
-            foreach (var item in depPuesto)
+            if (DB_Cassandra)
             {
-                if (item.cantEmpMes.ContainsKey((byte)HDCOUNTER_DTP_Date.Value.Month)) // Verificar si el mes existe
+                
+                var linkCassandra = new EnlaceCassandra();
+
+                //Obtener las dos tablas
+
+                //Tabla departamento y puesto
+                List<Headcounter> completeList = linkCassandra.GetHeadcounter(HDCOUNTER_DTP_Date.Value, HDCOUNTER_CB_Departamento.Text);
+                //Esta lista se divide en dos:
+
+                //Tabla departamento y puesto:
+                List<Headcounter> depPuesto = completeList.Where(c => !string.IsNullOrEmpty(c.puesto) && c.puesto != "-1").ToList();
+                //Tabla solo de departamento
+                List<Headcounter> deptos = completeList.Where(c => !string.IsNullOrEmpty(c.puesto) && c.puesto == "-1").ToList();
+
+                ///////////TABLA DEPARTAMENTOS CON PUESTOS///////////
+                ADMIN_DGV_PuestoCant.Rows.Clear();
+
+                // Añadir filas desde la lista
+                foreach (var item in depPuesto)
                 {
-                    ADMIN_DGV_PuestoCant.Rows.Add(
-                        item.departamento,
-                        item.puesto,
-                        item.cantEmpMes[(byte)HDCOUNTER_DTP_Date.Value.Month] // Cantidad de empleados en el mes seleccionado
-                    );
+                    if (item.cantEmpMes.ContainsKey((byte)HDCOUNTER_DTP_Date.Value.Month)) // Verificar si el mes existe
+                    {
+                        ADMIN_DGV_PuestoCant.Rows.Add(
+                            item.departamento,
+                            item.puesto,
+                            item.cantEmpMes[(byte)HDCOUNTER_DTP_Date.Value.Month] // Cantidad de empleados en el mes seleccionado
+                        );
+                    }
+                }
+
+                ///////////TABLA DEPARTAMENTOS///////////
+                ADMIN_DGV_DepartamentoCant.Rows.Clear();
+
+                // Añadir filas desde la lista
+                foreach (var item in deptos)
+                {
+                    if (item.cantEmpMes.ContainsKey((byte)HDCOUNTER_DTP_Date.Value.Month)) // Verificar si el mes existe
+                    {
+                        ADMIN_DGV_DepartamentoCant.Rows.Add(
+                            item.departamento,
+                            item.cantEmpMes[(byte)HDCOUNTER_DTP_Date.Value.Month] // Cantidad de empleados en el mes seleccionado
+                        );
+                    }
                 }
             }
-
-            ///////////TABLA DEPARTAMENTOS///////////
-            ADMIN_DGV_DepartamentoCant.Rows.Clear();
-
-            // Añadir filas desde la lista
-            foreach (var item in deptos)
-            {
-                if (item.cantEmpMes.ContainsKey((byte)HDCOUNTER_DTP_Date.Value.Month)) // Verificar si el mes existe
-                {
-                    ADMIN_DGV_DepartamentoCant.Rows.Add(
-                        item.departamento,
-                        item.cantEmpMes[(byte)HDCOUNTER_DTP_Date.Value.Month] // Cantidad de empleados en el mes seleccionado
-                    );
-                }
-            }
+           
         }
         private void FormHeadCounter_Load(object sender, EventArgs e) 
         {
@@ -73,17 +83,24 @@ namespace MAD_AAVD_proyecto
             ADMIN_DGV_PuestoCant.DefaultCellStyle.ForeColor = Color.White;
             ADMIN_DGV_PuestoCant.DefaultCellStyle.BackColor = Color.Black;
 
-            var linkCassandra = new EnlaceCassandra();
-            //COMBOBOX DEPARTAMENTOS
-            string[] columnasDepto = { "noDepto", "nombreDpto" };
-            List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
-            Departamentos todos = new Departamentos(0,"TODOS",0);
-            listaDepartamentos.Insert(0, todos ); //Se inserta la opción de todos los departamentos
-            HDCOUNTER_CB_Departamento.DataSource = listaDepartamentos;
-            HDCOUNTER_CB_Departamento.DisplayMember = "nombreDpto";
-            HDCOUNTER_CB_Departamento.ValueMember = "noDepto";
+            HDCOUNTER_CB_Departamento.Visible = false;
+            label1.Visible = false;
 
-            Reload();
+            if (DB_Cassandra)
+            {
+                var linkCassandra = new EnlaceCassandra();
+                //COMBOBOX DEPARTAMENTOS
+                string[] columnasDepto = { "noDepto", "nombreDpto" };
+                List<Departamentos> listaDepartamentos = linkCassandra.Get_All<Departamentos>(columnasDepto, "DEPARTAMENTOS");
+                Departamentos todos = new Departamentos(0, "TODOS", 0);
+                listaDepartamentos.Insert(0, todos); //Se inserta la opción de todos los departamentos
+                HDCOUNTER_CB_Departamento.DataSource = listaDepartamentos;
+                HDCOUNTER_CB_Departamento.DisplayMember = "nombreDpto";
+                HDCOUNTER_CB_Departamento.ValueMember = "noDepto";
+
+                Reload();
+            }
+            
         }
         private void HDCOUNTER_Title_Click(object sender, EventArgs e) { }
 
