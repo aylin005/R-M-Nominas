@@ -360,7 +360,7 @@ namespace MAD_AAVD_proyecto
             }
             //Código agregado por mí
             else
-            {
+            {//r
                 //dec = " PESOS CON " + decimales.ToString() + "/100";
                 dec = $" PESOS {decimales:0,0} /100";
             }
