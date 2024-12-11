@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iText.IO.Font;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
@@ -28,7 +31,7 @@ namespace MAD_AAVD_proyecto
 
         private void RECIBO_DGV_Percepciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-   
+
 
         }
 
@@ -58,7 +61,7 @@ namespace MAD_AAVD_proyecto
             var linkCassandra = new EnlaceCassandra();
 
             //Obtener recibo
-            string[] auxColumnas = { "idRecibo", "finPeriodo", "inicioPeriodo", "diasTrabajados", 
+            string[] auxColumnas = { "idRecibo", "finPeriodo", "inicioPeriodo", "diasTrabajados",
                 "totalPercepciones","totalDeducciones","total", "totalLetra" };
             Recibos recibo = linkCassandra.BuscarRecibo(auxColumnas, activeUser, RECIBO_DTP_Fecha.Value);
 
@@ -94,13 +97,13 @@ namespace MAD_AAVD_proyecto
                     );
                 }
                 //Agregar total percepciones
-                RECIBO_DGV_Percepciones.Rows.Add(null,"TOTAL",recibo.totalPercepciones);
+                RECIBO_DGV_Percepciones.Rows.Add(null, "TOTAL", recibo.totalPercepciones);
                 // Renglón total en negritas
                 var lastRowIndex = RECIBO_DGV_Percepciones.Rows.Count - 1;
                 RECIBO_DGV_Percepciones.Rows[lastRowIndex].DefaultCellStyle.Font = new Font(RECIBO_DGV_Percepciones.Font, FontStyle.Bold);
 
                 //DEDUCCIONES
-                foreach(var item in deducciones)
+                foreach (var item in deducciones)
                 {
                     RECIBO_DGV_Deducciones.Rows.Add(
                         item.noConcepto,
@@ -118,7 +121,7 @@ namespace MAD_AAVD_proyecto
                 RECIBO_DGV_Percepciones.Columns["pImporte"].DefaultCellStyle.Format = "C";
                 RECIBO_DGV_Deducciones.Columns["dImporte"].DefaultCellStyle.Format = "C";
             }
-            else if(recibo == null)
+            else if (recibo == null)
             {
                 MessageBox.Show("El recibo no se ha generado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -138,16 +141,16 @@ namespace MAD_AAVD_proyecto
 
             string filePath = Path.Combine(folderPath, $"Nómina_{RECIBO_DTP_Fecha.Value:yyyy-MM-dd}.pdf");
 
-         //   string pdfPath = @"C:\Users\itzep\Desktop\Documents\5SEMESTRE\MAD_PIA"; //aqui pon la tuya
-
             using (PdfWriter writer = new PdfWriter(filePath))
             {
                 using (PdfDocument pdf = new PdfDocument(writer))
                 {
+                    PdfFont calibri = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN); //se carga la fuente calibri
+                    pdf.SetDefaultPageSize(iText.Kernel.Geom.PageSize.A4.Rotate());//lo establecemos como horiizontal :3
                     Document document = new Document(pdf);
-                    document.Add(new Paragraph(companyName).SetFontSize(24).SetTextAlignment(TextAlignment.CENTER));
-                    document.Add(new Paragraph(RP + " | " + RFC +" | " + DF + " | No. Telefónico: " + noTel + " | Email: " + email).SetFontSize(10).SetTextAlignment(TextAlignment.CENTER));
-                    document.Add(new Paragraph("Nómina_" + RECIBO_DTP_Fecha.Value).SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
+                    document.Add(new Paragraph(companyName).SetFont(calibri).SetFontSize(20).SetTextAlignment(TextAlignment.CENTER));
+                    document.Add(new Paragraph(RP + " | " + RFC + " | " + DF + " | No. Telefónico: " + noTel + " | Email: " + email).SetFont(calibri).SetFontSize(10).SetTextAlignment(TextAlignment.CENTER));
+                    document.Add(new Paragraph("Nómina " + RECIBO_DTP_Fecha.Value.ToShortDateString()).SetFont(calibri).SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
 
                     var linkDB = new EnlaceDB();
                     DataTable recibo = linkDB.GetRecibo('r', RECIBO_DTP_Fecha.Value, activeUser);
@@ -161,7 +164,7 @@ namespace MAD_AAVD_proyecto
                         Guid noRecibo = (Guid)(row["noRecibo"]);
                         DateTime fechaPago = Convert.ToDateTime(row["fechaPago"]);
                         DateTime inicioPeriodo = Convert.ToDateTime(row["inicioPeriodo"]);
-                        document.Add(new Paragraph("No. Recibo:" + noRecibo + " | Fecha de pago:" + fechaPago + " | Inicio del Período:" + inicioPeriodo ).SetFontSize(14).SetTextAlignment(TextAlignment.JUSTIFIED));
+                        document.Add(new Paragraph("No. Recibo:" + noRecibo + " | Fecha de pago:" + fechaPago + " | Inicio del Período:" + inicioPeriodo).SetFont(calibri).SetFontSize(14).SetTextAlignment(TextAlignment.JUSTIFIED));
                         ///
                         string nombre = row["nombre"].ToString();//
                         string nss = row["nss"].ToString();//
@@ -179,8 +182,8 @@ namespace MAD_AAVD_proyecto
                         decimal total = Convert.ToDecimal(row["total"]);
                         string totalLetra = row["totalLetra"].ToString();
                         // Asignar al PDF
-                        document.Add(new Paragraph("Nombre: " + nombre + " | No. Empleado: " + noEmpleado + " | CURP: " + curp + " | RFC: " + rfc + " | NSS: " + rfc).SetFontSize(12).SetTextAlignment(TextAlignment.JUSTIFIED));
-                        document.Add(new Paragraph("Departamento: " + nombreDpto + " | Puesto: " + nombrePuesto + " | Fecha de ingreso: " + fechaIngreso + " | Dias trabajados: " + diasTrabajados + " días | Salario Diario: $" + salarioDiario + " | Sueldo Bruto: $" + sueldoBruto).SetFontSize(12).SetTextAlignment(TextAlignment.JUSTIFIED));
+                        document.Add(new Paragraph("Nombre: " + nombre + " | No. Empleado: " + noEmpleado + " | CURP: " + curp + " | RFC: " + rfc + " | NSS: " + rfc).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.JUSTIFIED));
+                        document.Add(new Paragraph("Departamento: " + nombreDpto + " | Puesto: " + nombrePuesto + " | Fecha de ingreso: " + fechaIngreso + " | Dias trabajados: " + diasTrabajados + " días | Salario Diario: $" + salarioDiario + " | Sueldo Bruto: $" + sueldoBruto).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.JUSTIFIED));
 
                         // Asignar a los labels
                         RECIBO_TB_IdRecibo.Text = noRecibo.ToString();
@@ -204,8 +207,7 @@ namespace MAD_AAVD_proyecto
                         //Tablas de percepciones y deducciones
                         RECIBO_DGV_Percepciones.Rows.Clear();
                         RECIBO_DGV_Percepciones.Rows.Insert(0, 0, "SALARIO", sueldoBruto); //INSERTA SALARIO AL INICIO
-                                                                                           //PERCEPCIONES
-                        //////////////////////////// PERCEPCIONES
+                        //PERCEPCIONES
                         Table percep = new Table(3);
                         percep.AddCell("Clave");
                         percep.AddCell("Concepto");
@@ -230,9 +232,9 @@ namespace MAD_AAVD_proyecto
                                 percep.AddCell(index.Cells["Importe"].Value.ToString());
                             }
                         }
-                        percep.AddCell("Total: " + totalPercp);
+                        percep.AddCell("Total: $" + totalPercp);
                         document.Add(percep);
-                    
+
                         //Inseta total al final
                         RECIBO_DGV_Percepciones.Rows.Insert(RECIBO_DGV_Percepciones.Rows.Count, "", "", totalPercp);
                         RECIBO_DGV_Percepciones.Rows[RECIBO_DGV_Percepciones.Rows.Count - 1].DefaultCellStyle.Font = new Font(RECIBO_DGV_Percepciones.Font, FontStyle.Bold);
@@ -267,13 +269,15 @@ namespace MAD_AAVD_proyecto
                                 deduc.AddCell(index.Cells["Importe2"].Value.ToString());
                             }
                         }
-                        deduc.AddCell("Total: " + totalDeduc);
+                        deduc.AddCell("Total: $" + totalDeduc);
                         document.Add(deduc);
 
                         //Inseta total al final
                         RECIBO_DGV_Deducciones.Rows.Insert(RECIBO_DGV_Deducciones.Rows.Count, "", "", totalDeduc);
                         RECIBO_DGV_Deducciones.Rows[RECIBO_DGV_Deducciones.Rows.Count - 1].DefaultCellStyle.Font = new Font(RECIBO_DGV_Deducciones.Font, FontStyle.Bold);
+                    document.Add(new Paragraph("Total: $" + total + " | Total con letra: " + totalLetra).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER));
                     }
+
                     document.Close();
                 }
             }
@@ -322,11 +326,11 @@ namespace MAD_AAVD_proyecto
             RECIBO_TB_FechaPago.Text = "";
             RECIBO_TB_PeriodoPago.Text = "";
             RECIBO_TB_DiasTrabajados.Text = "";
-            RECIBO_TB_Total.Text ="";
+            RECIBO_TB_Total.Text = "";
             RECIBO_TB_TotalLetra.Text = "";
 
             RECIBO_TB_NombreEmp.Text = "";
-            RECIBO_TB_Imss.Text ="";
+            RECIBO_TB_Imss.Text = "";
             RECIBO_TB_Curp.Text = "";
             RECIBO_TB_Rfc.Text = "";
             RECIBO_TB_NoEmp.Text = "";

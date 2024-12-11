@@ -99,7 +99,8 @@ namespace MAD_AAVD_proyecto
                     
 
             }
-            else if(DB_Cassandra)
+            else 
+            if(DB_Cassandra)
             {
                 var linkCassandra = new EnlaceCassandra();
                 //Revisar si se generó el recibo del mes anterior
@@ -316,6 +317,7 @@ namespace MAD_AAVD_proyecto
             //Insertar en tabla headcounter
             linkCassandra.InsertHeadcounter(headCounter, GREPORTE_DTP_date.Value.Month);
         }
+
         static void WriteDataTableToCsv(DataTable table, string filePath)
         {
             using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
@@ -345,8 +347,6 @@ namespace MAD_AAVD_proyecto
 
     public static class ExtensionMethods
     {
-        
-
         public static string NumeroALetras(this decimal numberAsString)
         {
             string dec;
@@ -443,9 +443,7 @@ namespace MAD_AAVD_proyecto
                 }
             }
             return num2Text;
-        }
-
-        
+        }   
     }
 }
 
