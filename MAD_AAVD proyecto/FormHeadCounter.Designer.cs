@@ -39,20 +39,20 @@
             this.HDCOUNTER_CB_Departamento = new System.Windows.Forms.ComboBox();
             this.HDCOUNTER_DTP_Date = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.ADMIN_DGV_PuestoCant = new System.Windows.Forms.DataGridView();
-            this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantPuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ADMIN_DGV_DepartamentoCant = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.CantPuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADMIN_DGV_PuestoCant = new System.Windows.Forms.DataGridView();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.HDCOUNTER_FilterOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).BeginInit();
             this.SuspendLayout();
             // 
             // HDCOUNTER_Title
@@ -196,51 +196,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Mes/año:";
             // 
-            // ADMIN_DGV_PuestoCant
-            // 
-            this.ADMIN_DGV_PuestoCant.AllowUserToAddRows = false;
-            this.ADMIN_DGV_PuestoCant.AllowUserToDeleteRows = false;
-            this.ADMIN_DGV_PuestoCant.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ADMIN_DGV_PuestoCant.BackgroundColor = System.Drawing.Color.Black;
-            this.ADMIN_DGV_PuestoCant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ADMIN_DGV_PuestoCant.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Departamento,
-            this.Puesto,
-            this.CantPuesto});
-            this.ADMIN_DGV_PuestoCant.GridColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ADMIN_DGV_PuestoCant.Location = new System.Drawing.Point(39, 206);
-            this.ADMIN_DGV_PuestoCant.Margin = new System.Windows.Forms.Padding(4);
-            this.ADMIN_DGV_PuestoCant.Name = "ADMIN_DGV_PuestoCant";
-            this.ADMIN_DGV_PuestoCant.ReadOnly = true;
-            this.ADMIN_DGV_PuestoCant.RowHeadersWidth = 51;
-            this.ADMIN_DGV_PuestoCant.Size = new System.Drawing.Size(1197, 388);
-            this.ADMIN_DGV_PuestoCant.TabIndex = 47;
-            this.ADMIN_DGV_PuestoCant.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HDCOUNTER_DGV_table_CellContentClick);
-            // 
-            // Departamento
-            // 
-            this.Departamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Departamento.HeaderText = "Departamento";
-            this.Departamento.MinimumWidth = 6;
-            this.Departamento.Name = "Departamento";
-            this.Departamento.ReadOnly = true;
-            // 
-            // Puesto
-            // 
-            this.Puesto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Puesto.HeaderText = "Puesto";
-            this.Puesto.MinimumWidth = 6;
-            this.Puesto.Name = "Puesto";
-            this.Puesto.ReadOnly = true;
-            // 
-            // CantPuesto
-            // 
-            this.CantPuesto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CantPuesto.HeaderText = "Cantidad de empleados";
-            this.CantPuesto.MinimumWidth = 6;
-            this.CantPuesto.Name = "CantPuesto";
-            this.CantPuesto.ReadOnly = true;
-            // 
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -295,6 +250,51 @@
             this.panel6.Size = new System.Drawing.Size(1309, 4);
             this.panel6.TabIndex = 40;
             // 
+            // CantPuesto
+            // 
+            this.CantPuesto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CantPuesto.HeaderText = "Cantidad de empleados";
+            this.CantPuesto.MinimumWidth = 6;
+            this.CantPuesto.Name = "CantPuesto";
+            this.CantPuesto.ReadOnly = true;
+            // 
+            // Puesto
+            // 
+            this.Puesto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.MinimumWidth = 6;
+            this.Puesto.Name = "Puesto";
+            this.Puesto.ReadOnly = true;
+            // 
+            // Departamento
+            // 
+            this.Departamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Departamento.HeaderText = "Departamento";
+            this.Departamento.MinimumWidth = 6;
+            this.Departamento.Name = "Departamento";
+            this.Departamento.ReadOnly = true;
+            // 
+            // ADMIN_DGV_PuestoCant
+            // 
+            this.ADMIN_DGV_PuestoCant.AllowUserToAddRows = false;
+            this.ADMIN_DGV_PuestoCant.AllowUserToDeleteRows = false;
+            this.ADMIN_DGV_PuestoCant.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ADMIN_DGV_PuestoCant.BackgroundColor = System.Drawing.Color.Black;
+            this.ADMIN_DGV_PuestoCant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ADMIN_DGV_PuestoCant.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Departamento,
+            this.Puesto,
+            this.CantPuesto});
+            this.ADMIN_DGV_PuestoCant.GridColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ADMIN_DGV_PuestoCant.Location = new System.Drawing.Point(39, 206);
+            this.ADMIN_DGV_PuestoCant.Margin = new System.Windows.Forms.Padding(4);
+            this.ADMIN_DGV_PuestoCant.Name = "ADMIN_DGV_PuestoCant";
+            this.ADMIN_DGV_PuestoCant.ReadOnly = true;
+            this.ADMIN_DGV_PuestoCant.RowHeadersWidth = 51;
+            this.ADMIN_DGV_PuestoCant.Size = new System.Drawing.Size(1197, 388);
+            this.ADMIN_DGV_PuestoCant.TabIndex = 47;
+            this.ADMIN_DGV_PuestoCant.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.HDCOUNTER_DGV_table_CellContentClick);
+            // 
             // FormHeadCounter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -318,8 +318,8 @@
             this.panel1.ResumeLayout(false);
             this.HDCOUNTER_FilterOptions.ResumeLayout(false);
             this.HDCOUNTER_FilterOptions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_DepartamentoCant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ADMIN_DGV_PuestoCant)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,13 +332,9 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView ADMIN_DGV_PuestoCant;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView ADMIN_DGV_DepartamentoCant;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Departamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantPuesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Panel HDCOUNTER_FilterOptions;
@@ -347,5 +343,9 @@
         private System.Windows.Forms.ComboBox HDCOUNTER_CB_Departamento;
         private System.Windows.Forms.DateTimePicker HDCOUNTER_DTP_Date;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantPuesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Departamento;
+        private System.Windows.Forms.DataGridView ADMIN_DGV_PuestoCant;
     }
 }
