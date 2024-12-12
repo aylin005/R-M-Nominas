@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cassandra;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -131,5 +132,6 @@ namespace MAD_AAVD_proyecto
         {
             Reload();
         }
+
     }
 }

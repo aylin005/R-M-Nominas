@@ -364,5 +364,10 @@ namespace MAD_AAVD_proyecto
         {
 
         }
+
+        private void CONCEPTOSCAT_TB_Nombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
