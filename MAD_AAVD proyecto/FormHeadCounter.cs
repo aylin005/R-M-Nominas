@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace MAD_AAVD_proyecto
 {
     public partial class FormHeadCounter : Form
     {
-
+        bool CBComplete = false;
         //**** M A N E J A D O R    D E   V E N T A N A
         public FormHeadCounter()
         {
@@ -23,10 +24,32 @@ namespace MAD_AAVD_proyecto
 
         private void Reload()
         {
-            HDCOUNTER_CB_Departamento.Visible = false;
-            label1.Visible = false;
+            //HDCOUNTER_CB_Departamento.Visible = false;
+            //label1.Visible = false;
+            if(DB_SQLServer)
+            {
+                var linkDB = new EnlaceDB();
 
-            if (DB_Cassandra)
+                DataTable TablaDepartamentos = linkDB.GetDepto();
+
+                DataTable TablaDeptosCB = TablaDepartamentos.Clone(); //copia solo la estructura de la tabla
+                TablaDeptosCB.Rows.Add(-1, "TODOS", 0);
+                foreach (DataRow row in TablaDepartamentos.Rows)
+                {
+                    TablaDeptosCB.ImportRow(row); // Importar las filas del DataTable original
+                }
+
+                //HDCOUNTER_CB_Departamento.Items.Clear();
+
+                HDCOUNTER_CB_Departamento.DataSource = TablaDeptosCB;
+                HDCOUNTER_CB_Departamento.DisplayMember = "nombreDpto";  // dato
+                HDCOUNTER_CB_Departamento.ValueMember = "noDepto";       // indice al que se relaciona el valor
+                //HDCOUNTER_CB_Departamento.SelectedIndex = 0;
+                CBComplete = true;
+
+                LoadHCTables();
+            }
+            else if (DB_Cassandra)
             {
                 
                 var linkCassandra = new EnlaceCassandra();
@@ -75,6 +98,38 @@ namespace MAD_AAVD_proyecto
             }
            
         }
+
+        private void LoadHCTables()
+        {
+            var linkDB = new EnlaceDB();
+
+            DataTable HC1 = linkDB.getHC('h', HDCOUNTER_DTP_Date.Value, Convert.ToInt32(HDCOUNTER_CB_Departamento.SelectedValue));
+            DataTable HC2 = linkDB.getHC('c', HDCOUNTER_DTP_Date.Value, Convert.ToInt32(HDCOUNTER_CB_Departamento.SelectedValue));
+
+            ADMIN_DGV_PuestoCant.Rows.Clear();
+            foreach (DataRow row in HC2.Rows)
+            {
+                // Crea una nueva fila en el DataGridView
+                int rowIndex = ADMIN_DGV_PuestoCant.Rows.Add();
+
+                //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                ADMIN_DGV_PuestoCant.Rows[rowIndex].Cells["Departamento"].Value = row["nombreDpto"];
+                ADMIN_DGV_PuestoCant.Rows[rowIndex].Cells["Puesto"].Value = row["nombrePuesto"];
+                ADMIN_DGV_PuestoCant.Rows[rowIndex].Cells["CantPuesto"].Value = row["cantEmp"];
+            }
+
+            ADMIN_DGV_DepartamentoCant.Rows.Clear();
+            foreach (DataRow row in HC1.Rows)
+            {
+                // Crea una nueva fila en el DataGridView
+                int rowIndex = ADMIN_DGV_DepartamentoCant.Rows.Add();
+
+                //Se especifica bien qué columna de la tabla SQL se asigna a qué columna de DGV
+                ADMIN_DGV_DepartamentoCant.Rows[rowIndex].Cells["Depto"].Value = row["nombreDpto"];
+                ADMIN_DGV_DepartamentoCant.Rows[rowIndex].Cells["CantEmpDepto"].Value = row["cantEmp"];
+            }
+
+        }
         private void FormHeadCounter_Load(object sender, EventArgs e) 
         {
             ADMIN_DGV_DepartamentoCant.DefaultCellStyle.ForeColor = Color.White;
@@ -83,9 +138,13 @@ namespace MAD_AAVD_proyecto
             ADMIN_DGV_PuestoCant.DefaultCellStyle.ForeColor = Color.White;
             ADMIN_DGV_PuestoCant.DefaultCellStyle.BackColor = Color.Black;
 
-            HDCOUNTER_CB_Departamento.Visible = false;
-            label1.Visible = false;
+            //HDCOUNTER_CB_Departamento.Visible = false;
+            //label1.Visible = false;
 
+            if(DB_SQLServer)
+            {
+                Reload();
+            }
             if (DB_Cassandra)
             {
                 var linkCassandra = new EnlaceCassandra();
@@ -125,11 +184,13 @@ namespace MAD_AAVD_proyecto
 
         private void HDCOUNTER_CB_orderOption_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(CBComplete)
+                LoadHCTables();
         }
 
         private void HDCOUNTER_Filter_Click(object sender, EventArgs e)
         {
-            Reload();
+            LoadHCTables();
         }
     }
 }
