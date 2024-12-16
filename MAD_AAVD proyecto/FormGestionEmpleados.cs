@@ -70,7 +70,7 @@ namespace MAD_AAVD_proyecto
                 EMP_TB_Municipio.Visible = false;
                 EMP_TB_Banco.Visible = false;
                 panel8.Visible = false;
-                panel9.Visible = false;
+                //panel9.Visible = false;
                 panel20.Visible = false;
                 EMP_CB_ESTADO.Visible = true;
                 EMP_CB_Municipio.Visible = true;
@@ -709,6 +709,16 @@ namespace MAD_AAVD_proyecto
             {
                 return true;
             }
+        }
+
+        private void EMP_TB_Nombres_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EMP_TB_Estado_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
