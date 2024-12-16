@@ -12,9 +12,11 @@ using System.Windows.Forms;
 using Cassandra.Data.Linq;
 using iText.IO.Font;
 using iText.IO.Font.Constants;
+using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout;
+using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 
@@ -46,11 +48,11 @@ namespace MAD_AAVD_proyecto
             RECIBO_TXT_NoTel.Text = noTel;
             RECIBO_TXT_Email.Text = email;
 
-            RECIBO_DGV_Percepciones.DefaultCellStyle.ForeColor = Color.White;
-            RECIBO_DGV_Percepciones.DefaultCellStyle.BackColor = Color.Black;
+            RECIBO_DGV_Percepciones.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            RECIBO_DGV_Percepciones.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
 
-            RECIBO_DGV_Deducciones.DefaultCellStyle.ForeColor = Color.White;
-            RECIBO_DGV_Deducciones.DefaultCellStyle.BackColor = Color.Black;
+            RECIBO_DGV_Deducciones.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            RECIBO_DGV_Deducciones.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
             /////
             ///
 
@@ -175,17 +177,30 @@ namespace MAD_AAVD_proyecto
                         string nombrePuesto = row["nombrePuesto"].ToString();//
                         string nombreDpto = row["nombreDpto"].ToString();//
                         int diasTrabajados = Convert.ToInt32(row["diasTrabajados"]); //
-                        decimal salarioDiario = Convert.ToDecimal(row["salarioDiario"]);//
+
+                        decimal aux = Convert.ToDecimal(row["salarioDiario"]);
+                        string salarioDiario = aux.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("es-MX"));//
+
                         DateTime fechaIngreso = Convert.ToDateTime(row["fechaIngreso"]);//
-                        decimal sueldoBruto = Convert.ToDecimal(row["sueldoBruto"]);//
-                        decimal totalDeduc = Convert.ToDecimal(row["totalDeduc"]);
-                        decimal totalPercp = Convert.ToDecimal(row["totalPercp"]);
-                        decimal total = Convert.ToDecimal(row["total"]);
+
+                        //aux = Convert.ToDecimal(row["sueldoBruto"]);
+                        //string sueldoBruto = aux.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("es-MX"));//
+                        decimal sueldoBruto = Convert.ToDecimal(row["sueldoBruto"]);
+                        aux = Convert.ToDecimal(row["totalDeduc"]);
+                        string totalDeduc = aux.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("es-MX"));//
+
+                        aux = Convert.ToDecimal(row["totalPercp"]);
+                        string totalPercp = aux.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("es-MX"));//
+
+
+                        aux = Convert.ToDecimal(row["total"]);
+                        string total = aux.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("es-MX"));//
+
                         string totalLetra = row["totalLetra"].ToString();
                         // Asignar al PDF
                         document.Add(new Paragraph(nombre + " | No. Empleado: " + noEmpleado + " | CURP: " + curp + " | RFC: " + rfc + " | NSS: " + rfc).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.JUSTIFIED_ALL));
                         document.Add(new Paragraph("Departamento: " + nombreDpto + "     |       Puesto: " + nombrePuesto + "     |      Fecha de ingreso: " + fechaIngreso.ToShortDateString()).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER));
-                        document.Add(new Paragraph("Dias trabajados: " + diasTrabajados + " días        |        Salario Diario: $" + salarioDiario + "      |       Sueldo Bruto: $" + sueldoBruto).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER));
+                        document.Add(new Paragraph("Dias trabajados: " + diasTrabajados + " días        |        Salario Diario: " + salarioDiario).SetFont(calibri).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER));
                         document.Add(new Paragraph("__________________________________________________________________________________________________________________").SetTextAlignment(TextAlignment.CENTER));
                         // Asignar a los labels
                         RECIBO_TB_IdRecibo.Text = noRecibo.ToString();
@@ -197,25 +212,29 @@ namespace MAD_AAVD_proyecto
                         RECIBO_TB_Puesto.Text = nombrePuesto;
                         RECIBO_TB_Departamento.Text = nombreDpto;
                         RECIBO_TB_DiasTrabajados.Text = diasTrabajados.ToString();
-                        RECIBO_TB_SalarioDiario.Text = salarioDiario.ToString("C");
+                        RECIBO_TB_SalarioDiario.Text = salarioDiario;
                         RECIBO_TB_FechaAlta.Text = fechaIngreso.ToString("yyyy/MMM/dd", CultureInfo.InvariantCulture);
                         RECIBO_TB_FechaPago.Text = fechaPago.ToString("yyyy/MMM/dd", CultureInfo.InvariantCulture);
                         RECIBO_TB_PeriodoPago.Text = $"{inicioPeriodo.ToString("yyyy/MMM/dd", CultureInfo.InvariantCulture)} - " +
                             $"{fechaPago.ToString("yyyy/MMM/dd", CultureInfo.InvariantCulture)}";
-                        RECIBO_TB_Total.Text = total.ToString("C");
+                        RECIBO_TB_Total.Text = total;
                         RECIBO_TB_TotalLetra.Text = totalLetra;
 
-                        Table helperTable = new Table(2);
+                        Table helperTable = new Table(2).SetTextAlignment(TextAlignment.CENTER);
                         //Tablas de percepciones y deducciones
                         RECIBO_DGV_Percepciones.Rows.Clear();
                         RECIBO_DGV_Percepciones.Rows.Insert(0, 0, "SALARIO", sueldoBruto); //INSERTA SALARIO AL INICIO
-                        document.Add(new Paragraph("Conceptos aplicados").SetFont(u).SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
+                        document.Add(new Paragraph("PERCEPCIONES                                                DEDUCCIONES").SetFont(u).SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
 
                         //PERCEPCIONES
+                        // Color gris claro
+                        iText.Kernel.Colors.Color lightGray = ColorConstants.LIGHT_GRAY;
+
                         Table percep = new Table(3);
-                        percep.AddCell("Clave de la percepción");
-                        percep.AddCell("Percepción aplicada");
-                        percep.AddCell("Importe de la percepción");
+
+                        percep.AddCell(new Cell().Add(new Paragraph("Clave")).SetBackgroundColor(lightGray));
+                        percep.AddCell(new Cell().Add(new Paragraph("Concepto")).SetBackgroundColor(lightGray));
+                        percep.AddCell(new Cell().Add(new Paragraph("Importe")).SetBackgroundColor(lightGray));
 
                         foreach (DataRow item in percepciones.Rows)
                         {
@@ -232,13 +251,20 @@ namespace MAD_AAVD_proyecto
                         {
                             if (!index.IsNewRow)  // para no agregar la fila en blanco
                             {
+                                decimal aux3 = Convert.ToDecimal(index.Cells["Importe"].Value);
+                                string importe = aux3.ToString("C2");
+
                                 percep.AddCell(index.Cells["Clave"].Value.ToString()).SetFont(calibri).SetFontSize(10);
                                 percep.AddCell(index.Cells["Concepto"].Value.ToString()).SetFont(calibri).SetFontSize(10);
-                                percep.AddCell("$" + index.Cells["Importe"].Value.ToString()).SetFont(calibri).SetFontSize(10);
+                                percep.AddCell(importe).SetFont(calibri).SetFontSize(10);
                             }
                         }
-                        percep.AddCell("Total: $" + totalPercp).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER);
-                        helperTable.AddCell(percep);
+                        percep.AddCell("");
+                        percep.AddCell("");
+                        percep.AddCell("Total: " + totalPercp).SetFontSize(12).SetFont(u).SetTextAlignment(TextAlignment.CENTER);
+                        percep.SetWidth((765 / 2) - 10);
+                        helperTable.AddCell(percep.SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER));
+                        
                         //document.Add(percep);
 
                         //Inseta total al final
@@ -247,9 +273,10 @@ namespace MAD_AAVD_proyecto
 
                         ////////////////////////////DEDUCCIONES
                         Table deduc = new Table(3);
-                        deduc.AddCell("Clave de la deducción");
-                        deduc.AddCell("Deducción aplicada");
-                        deduc.AddCell("Importe de la deducción");
+
+                        deduc.AddCell(new Cell().Add(new Paragraph("Clave")).SetBackgroundColor(lightGray));
+                        deduc.AddCell(new Cell().Add(new Paragraph("Concepto")).SetBackgroundColor(lightGray));
+                        deduc.AddCell(new Cell().Add(new Paragraph("Importe")).SetBackgroundColor(lightGray));
 
                         RECIBO_DGV_Deducciones.Rows.Clear();
                         // Añade cada fila del DataTable al DGV
@@ -268,23 +295,38 @@ namespace MAD_AAVD_proyecto
                         {
                             if (!index.IsNewRow)  // para no agregar la fila en blanco
                             {
+                                decimal aux2 = Convert.ToDecimal(index.Cells["Importe2"].Value);
+                                string importe = aux2.ToString("C2");
                                 deduc.AddCell(index.Cells["Clave2"].Value.ToString()).SetFont(calibri).SetFontSize(10);
                                 deduc.AddCell(index.Cells["Concepto2"].Value.ToString()).SetFont(calibri).SetFontSize(10);
-                                deduc.AddCell("$" + index.Cells["Importe2"].Value.ToString()).SetFont(calibri).SetFontSize(10);
+                                deduc.AddCell(importe).SetFont(calibri).SetFontSize(10);
                             }
                         }
-                        deduc.AddCell("Total: $" + totalDeduc).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER);
-                        helperTable.AddCell(deduc);
+                        deduc.AddCell("");
+                        deduc.AddCell("");
+                        deduc.AddCell("Total: " + totalDeduc).SetFontSize(12).SetFont(u).SetTextAlignment(TextAlignment.CENTER);
+                        deduc.SetWidth((765 / 2)-10);
+                        helperTable.AddCell(deduc.SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER));
                         float pageWidth = 765; // Ancho de la hoja
                          // Asignar el ancho de las columnas
                         helperTable.SetWidth(pageWidth);
+
+                        // eliminar bordes
+                        foreach (IElement element in helperTable.GetChildren())
+                        {
+                            if (element is Cell cell)
+                            {
+                                cell.SetBorder(Border.NO_BORDER);
+                            }
+                        }
+
                         document.Add(helperTable);
 
                         //Inseta total al final
                         RECIBO_DGV_Deducciones.Rows.Insert(RECIBO_DGV_Deducciones.Rows.Count, "", "", totalDeduc);
                         RECIBO_DGV_Deducciones.Rows[RECIBO_DGV_Deducciones.Rows.Count - 1].DefaultCellStyle.Font = new Font(RECIBO_DGV_Deducciones.Font, FontStyle.Bold);
                         document.Add(new Paragraph("__________________________________________________________________________________________________________________").SetTextAlignment(TextAlignment.CENTER));
-                        document.Add(new Paragraph("Total: $" + total + "           Total con letra: " + totalLetra).SetFont(u).SetPaddingTop(2).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER));
+                        document.Add(new Paragraph("Total: " + total + "           Total con letra: " + totalLetra).SetFont(u).SetPaddingTop(2).SetFontSize(12).SetTextAlignment(TextAlignment.CENTER));
                     }
 
                     document.Close();
