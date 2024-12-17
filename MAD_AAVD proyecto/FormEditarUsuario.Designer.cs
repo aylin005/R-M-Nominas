@@ -698,6 +698,7 @@
             this.EDITEMP_CB_Estado.Name = "EDITEMP_CB_Estado";
             this.EDITEMP_CB_Estado.Size = new System.Drawing.Size(216, 24);
             this.EDITEMP_CB_Estado.TabIndex = 162;
+            this.EDITEMP_CB_Estado.SelectedIndexChanged += new System.EventHandler(this.EDITEMP_CB_Estado_SelectedIndexChanged);
             // 
             // EDITEMP_CB_Banco
             // 

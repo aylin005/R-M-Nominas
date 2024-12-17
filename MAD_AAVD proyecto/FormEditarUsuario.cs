@@ -21,15 +21,16 @@ namespace MAD_AAVD_proyecto
     {
         int noEmp = activeUser; //Para pruebas, se debe traer variable del usuario activo en la sesion
         Empleados empleado;
+        bool datosCargados = false;
         public FormEditarUsuario()
         {
             InitializeComponent();
             //pollito
         }
 
-        private void FormEditarUsuario_Load(object sender, EventArgs e)
+        private void Reload()
         {
-            if(DB_SQLServer)
+            if (DB_SQLServer)
             {
                 var linkDB = new EnlaceDB();
 
@@ -43,10 +44,13 @@ namespace MAD_AAVD_proyecto
                 EDITEMP_CB_Estado.DisplayMember = "nombreEstado";
                 EDITEMP_CB_Estado.ValueMember = "noEstado";
 
-                DataTable TablaMunicipios = linkDB.GetMunicipios(EDITEMP_CB_Estado.Text);
-                EDITEMP_CB_Municipio.DataSource = TablaMunicipios;
-                EDITEMP_CB_Municipio.DisplayMember = "nombreMunicipio";
-                EDITEMP_CB_Municipio.ValueMember = "noMunicipio";
+                if (datosCargados)
+                {
+                    DataTable TablaMunicipios = linkDB.GetMunicipios(EDITEMP_CB_Estado.Text);
+                    EDITEMP_CB_Municipio.DataSource = TablaMunicipios;
+                    EDITEMP_CB_Municipio.DisplayMember = "nombreMunicipio";
+                    EDITEMP_CB_Municipio.ValueMember = "noMunicipio";
+                }
 
                 DataTable TablaBancos = linkDB.GetEstadosBancos(false);
                 EDITEMP_CB_Banco.DataSource = TablaBancos;
@@ -57,6 +61,10 @@ namespace MAD_AAVD_proyecto
             EDITEMP_LBL_Loading.Visible = true;
             loadDatosEmpleado();
             EDITEMP_LBL_Loading.Visible = false;
+        }
+        private void FormEditarUsuario_Load(object sender, EventArgs e)
+        {
+            Reload();
         }
 
         private void loadDatosEmpleado()
@@ -98,7 +106,7 @@ namespace MAD_AAVD_proyecto
                     EDITEMP_DTP_FechaNacimiento.Value = fechaNacm;
                     EDITEMP_TB_CalleNo.Text = calleNo;
                     EDITEMP_TB_Colonia.Text = colonia;
-                    EDITEMP_CB_Municipio.SelectedValue = Municipio;
+
                     EDITEMP_CB_Estado.SelectedValue = Estado;
                     EDITEMP_TB_Cp.Text = cp.ToString();
                     EDITEMP_CB_Banco.SelectedValue = banco;
@@ -107,6 +115,13 @@ namespace MAD_AAVD_proyecto
                     EDITEMP_TB_Tel1.Text = tel1;
                     EDITEMP_TB_Tel2.Text = tel2;
 
+                    DataTable TablaMunicipios = linkDB.GetMunicipios(EDITEMP_CB_Estado.Text);
+                    EDITEMP_CB_Municipio.DataSource = TablaMunicipios;
+                    EDITEMP_CB_Municipio.DisplayMember = "nombreMunicipio";
+                    EDITEMP_CB_Municipio.ValueMember = "noMunicipio";
+                    EDITEMP_CB_Municipio.SelectedValue = Municipio;
+
+                    datosCargados = true;
                 }
             }
             else if (DB_Cassandra)
@@ -257,6 +272,11 @@ namespace MAD_AAVD_proyecto
             return sBuilder.ToString();
         }
 
+        private void EDITEMP_CB_Estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(datosCargados)
+                Reload();
+        }
     }
 
 }

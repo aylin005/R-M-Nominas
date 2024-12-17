@@ -123,6 +123,8 @@ namespace MAD_AAVD_proyecto
                 //Formato dinero
                 RECIBO_DGV_Percepciones.Columns["pImporte"].DefaultCellStyle.Format = "C";
                 RECIBO_DGV_Deducciones.Columns["dImporte"].DefaultCellStyle.Format = "C";
+
+                MessageBox.Show("Se generó un PDF con el recibo", "GUARDADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (recibo == null)
             {
@@ -142,7 +144,7 @@ namespace MAD_AAVD_proyecto
                 Directory.CreateDirectory(folderPath);
             }
 
-            string filePath = Path.Combine(folderPath, $"Nómina_{RECIBO_DTP_Fecha.Value:yyyy-MM-dd}.pdf");
+            string filePath = Path.Combine(folderPath, $"Nómina_{activeUser}_{RECIBO_DTP_Fecha.Value:yyyy-MM}.pdf");
 
             using (PdfWriter writer = new PdfWriter(filePath))
             {
