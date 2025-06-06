@@ -40,7 +40,21 @@ namespace MAD_AAVD_proyecto
                     hashPassword = hash;
                 }
 
-                int auxUser = Int32.Parse(LOGIN_TB_username.Text);
+                //Marca error si se ingresa un usuario no numérico
+                int auxUser;
+                try
+                {
+                    auxUser = Int32.Parse(LOGIN_TB_username.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Usuario o contraseña incorrecta");
+                    LOGIN_TB_username.Clear();
+                    LOGIN_TB_password.Clear();
+                    LOGIN_TB_username.Focus();
+                    return;
+                }
+                
 
                 if (LOGIN_TB_username.Text == adminUser && LOGIN_TB_password.Text == adminPassword)
                 {
